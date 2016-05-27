@@ -2,6 +2,7 @@ Ejemplo
 ==========
 
 Este proyecto es un simple ejemplo que muestra un proyecto base en Java para la material Algo3.
+Integracion con Travis-CI
 
 ## Definición de pruebas
 ### Nombrar correctamente los archivos de pruebas

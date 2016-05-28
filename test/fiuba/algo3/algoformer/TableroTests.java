@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformer.Tablero;
-//import fiuba.algo3.algoformer.Casillero;
 import fiuba.algo3.algoformer.AlgoFormer;
-//import fiuba.algo3.algoformer.Spark;
 
 public class TableroTests {
 

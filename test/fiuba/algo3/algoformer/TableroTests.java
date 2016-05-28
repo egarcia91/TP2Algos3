@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-//import fiuba.algo3.algoformer.Tablero;
+import fiuba.algo3.algoformer.Tablero;
 //import fiuba.algo3.algoformer.Casillero;
-//import fiuba.algo3.algoformer.AlgoFormer;
+import fiuba.algo3.algoformer.AlgoFormer;
 //import fiuba.algo3.algoformer.Spark;
 
 public class TableroTests {
@@ -54,28 +54,26 @@ public class TableroTests {
 		tablero.agregarEscuadron(escuadronUno);
 		Assert.assertFalse(tablero.estaDesierto());
 		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
-		Assert.assertTrue(tablero.existeAlgoFormer(1,1));
-		Assert.assertTrue(tablero.existeAlgoFormer(1,2));
-		Assert.assertTrue(tablero.existeAlgoFormer(2,1));
+		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
+		Assert.assertTrue(tablero.existeAlgoFormer(segundoAlgoFormer,1,2));
+		Assert.assertTrue(tablero.existeAlgoFormer(tercerAlgoFormer,2,1));
 
 		tablero.agregarEscuadron(escuadronDos);
 		Assert.assertFalse(tablero.estaDesierto());
 		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size() + escuadronDos.size());
-		Assert.assertTrue(tablero.existeAlgoFormer(tablero.ancho()-1,tablero.alto()-1));
-		Assert.assertTrue(tablero.existeAlgoFormer(tablero.ancho()-1,tablero.alto()-2));
-		Assert.assertTrue(tablero.existeAlgoFormer(tablero.ancho()-2,tablero.alto()-1));
+		int ancho = tablero.ancho();
+		int alto = tablero.alto();
+		Assert.assertTrue(tablero.existeAlgoFormer(cuartoAlgoFormer,ancho-1,alto-1));
+		Assert.assertTrue(tablero.existeAlgoFormer(quintoAlgoFormer,ancho-1,alto-2));
+		Assert.assertTrue(tablero.existeAlgoFormer(sextoAlgoFormer,ancho-2,alto-1));
 	}
 
 	@Test
 	public void test04MoverAlgoFormer() {
 		AlgoFormer primerAlgoFormer = new AlgoFormer();
-		AlgoFormer segundoAlgoFormer = new AlgoFormer();
-		AlgoFormer tercerAlgoFormer = new AlgoFormer();
 
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 		escuadronUno.add(primerAlgoFormer);
-		escuadronUno.add(segundoAlgoFormer);
-		escuadronUno.add(tercerAlgoFormer);
 
 		Tablero tablero = new Tablero();
 		Assert.assertTrue(tablero.estaDesierto());
@@ -83,11 +81,41 @@ public class TableroTests {
 		tablero.agregarEscuadron(escuadronUno);
 		Assert.assertFalse(tablero.estaDesierto());
 		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
-		Assert.assertTrue(tablero.existeAlgoFormer(1,1));
-		Assert.assertTrue(tablero.existeAlgoFormer(1,2));
-		Assert.assertTrue(tablero.existeAlgoFormer(2,1));
+		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
 
 		primerAlgoFormer.moverDerecha();
-		//TODO Que hacemo
+		Assert.assertFalse(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
+		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,5,1));
+	}
+
+	@Test
+	public void test05AtaqueAlgoFormer() {
+		AlgoFormer primerAlgoFormer = new AlgoFormer();
+		AlgoFormer segundoAlgoFormer = new AlgoFormer();
+
+		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		escuadronUno.add(primerAlgoFormer);
+
+		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
+		escuadronDos.add(segundoAlgoFormer);
+
+		Tablero tablero = new Tablero(3,3); //Tablero chico, test de ataque
+		Assert.assertTrue(tablero.estaDesierto());
+
+		tablero.agregarEscuadron(escuadronUno);
+		Assert.assertFalse(tablero.estaDesierto());
+		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
+		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
+
+		tablero.agregarEscuadron(escuadronDos);
+		Assert.assertFalse(tablero.estaDesierto());
+		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size() + escuadronDos.size());
+		int ancho = tablero.ancho();
+		int alto = tablero.alto();
+		Assert.assertTrue(tablero.existeAlgoFormer(segundoAlgoFormer,ancho-1,alto-1));
+
+		Assert.assertTrue(segundoAlgoFormer.vida() == 500);
+		primerAlgoFormer.atacar();
+		Assert.assertTrue(segundoAlgoFormer.vida() == 450);
 	}
 }

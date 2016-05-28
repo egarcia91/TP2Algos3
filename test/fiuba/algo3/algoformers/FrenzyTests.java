@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformer;
+package fiuba.algo3.algoformers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformer.Frenzy;
+import fiuba.algo3.algoformers.Frenzy;
 
 public class FrenzyTests {
 	private int vidaHumanoide = 400;

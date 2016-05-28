@@ -1,12 +1,12 @@
-package fiuba.algo3.algoformer;
+package fiuba.algo3.algoformers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformer.Casillero;
-import fiuba.algo3.algoformer.AlgoFormer;
-import fiuba.algo3.algoformer.Spark;
-import fiuba.algo3.algoformer.CasilleroOcupadoException;
+import fiuba.algo3.algoformers.Casillero;
+import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.Spark;
+import fiuba.algo3.algoformers.CasilleroOcupadoException;
 
 public class CasilleroTests {
 

@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformer;
+package fiuba.algo3.algoformers;
 
 import java.util.ArrayList;
 import java.util.List;

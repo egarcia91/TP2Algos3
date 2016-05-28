@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformer;
+package fiuba.algo3.algoformers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformer.Bonecrusher;
+import fiuba.algo3.algoformers.Bonecrusher;
 
 public class BonecrusherTests {
 	private int vidaHumanoide = 200;

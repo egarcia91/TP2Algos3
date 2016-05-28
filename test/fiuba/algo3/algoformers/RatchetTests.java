@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformer;
+package fiuba.algo3.algoformers;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformer.Ratchet;
+import fiuba.algo3.algoformers.Ratchet;
 
 public class RatchetTests {
 	private int vidaHumanoide = 150;

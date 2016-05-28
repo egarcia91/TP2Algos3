@@ -20,6 +20,14 @@ public class AlgoFormer {
 	private int velocidadAlterno = 5;
 	private String unidadAlterno = "terrestre";
 
+	public void AlgoFormer(String modo){
+		if(modo == "Alterno"){
+			this.transformarAlterno();
+		} else {
+			this.transformarHumanoide();
+		}
+	}
+
 	public String getNombre(){
 		return this.nombre;
 	}
@@ -44,4 +52,19 @@ public class AlgoFormer {
 		return this.tipoUnidad;
 	}
 
+	public void transformarAlterno(){
+		this.vida = this.vidaAlterno;
+		this.fuerzaAtaque = this.fuerzaAtaqueAlterno;
+		this.distanciaAtaque = this.distanciaAtaqueAlterno;
+		this.velocidad = this.velocidadAlterno;
+		this.tipoUnidad = this.unidadAlterno;
+	}
+
+	public void transformarHumanoide(){
+		this.vida = this.vidaHumanoide;
+		this.fuerzaAtaque = this.fuerzaAtaqueHumanoide;
+		this.distanciaAtaque = this.distanciaAtaqueHumanoide;
+		this.velocidad = this.velocidadHumanoide;
+		this.tipoUnidad = this.unidadHumanoide;
+	}
 }

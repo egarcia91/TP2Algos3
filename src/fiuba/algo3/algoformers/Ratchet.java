@@ -1,17 +1,19 @@
 package fiuba.algo3.algoformers;
 
 public class Ratchet extends AlgoFormer {
-	private String nombre = "Ratchet";
 
-	private int vidaHumanoide = 150;
-	private int fuerzaAtaqueHumanoide = 5;
-	private int distanciaAtaqueHumanoide = 5;
-	private int velocidadHumanoide = 1;
-	private String unidadHumanoide = "terrestre";
-
-	private int vidaAlterno = 150;
-	private int fuerzaAtaqueAlterno = 35;
-	private int distanciaAtaqueAlterno = 2;
-	private int velocidadAlterno = 8;
-	private String unidadAlterno = "aerea";
+	public Ratchet(String modo){
+		this.nombre = "Ratchet";
+		this.vidaHumanoide = 150;
+		this.fuerzaAtaqueHumanoide = 5;
+		this.distanciaAtaqueHumanoide = 5;
+		this.velocidadHumanoide = 1;
+		this.unidadHumanoide = "terrestre";
+		this.vidaAlterno = 150;
+		this.fuerzaAtaqueAlterno = 35;
+		this.distanciaAtaqueAlterno = 2;
+		this.velocidadAlterno = 8;
+		this.unidadAlterno = "aerea";
+		super.AlgoFormer(modo);
+	}
 }

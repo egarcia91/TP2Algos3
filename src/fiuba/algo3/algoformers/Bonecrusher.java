@@ -1,17 +1,19 @@
 package fiuba.algo3.algoformers;
 
 public class Bonecrusher extends AlgoFormer {
-	private String nombre = "Bonecrusher";
 
-	private int vidaHumanoide = 200;
-	private int fuerzaAtaqueHumanoide = 30;
-	private int distanciaAtaqueHumanoide = 3;
-	private int velocidadHumanoide = 1;
-	private String unidadHumanoide = "terrestre";
-
-	private int vidaAlterno = 200;
-	private int fuerzaAtaqueAlterno = 30;
-	private int distanciaAtaqueAlterno = 3;
-	private int velocidadAlterno = 8;
-	private String unidadAlterno = "terrestre";
+	public Bonecrusher(String modo){
+		this.nombre = "Bonecrusher";
+		this.vidaHumanoide = 200;
+		this.fuerzaAtaqueHumanoide = 30;
+		this.distanciaAtaqueHumanoide = 3;
+		this.velocidadHumanoide = 1;
+		this.unidadHumanoide = "terrestre";
+		this.vidaAlterno = 200;
+		this.fuerzaAtaqueAlterno = 30;
+		this.distanciaAtaqueAlterno = 3;
+		this.velocidadAlterno = 8;
+		this.unidadAlterno = "terrestre";
+		super.AlgoFormer(modo);
+	}
 }

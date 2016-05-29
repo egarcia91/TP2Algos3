@@ -10,24 +10,24 @@ public class BonecrusherTests {
 	private int fuerzaAtaqueHumanoide = 30;
 	private int distanciaAtaqueHumanoide = 3;
 	private int velocidadHumanoide = 1;
-	private int unidadHumanoide = "terrestre";
+	private String unidadHumanoide = "terrestre";
 
 	private int vidaAlterno = 200;
 	private int fuerzaAtaqueAlterno = 30;
 	private int distanciaAtaqueAlterno = 3;
 	private int velocidadAlterno = 8;
-	private int unidadAlterno = "terrestre";
+	private String unidadAlterno = "terrestre";
 
 	@Test
 	public void test01CrearBonecrusher() {
-		Bonecrusher bonecrusher = new Bonecrusher();
+		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
 
 		Assert.assertTrue(bonecrusher.getNombre() == "Bonecrusher");
 	}
 
 	@Test
 	public void test02BonecrusherHumanoide() {
-		Bonecrusher bonecrusher = new Bonecrusher();
+		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
 		Assert.assertTrue(bonecrusher.vida() == vidaHumanoide);
 		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueHumanoide);
@@ -47,7 +47,7 @@ public class BonecrusherTests {
 
 	@Test
 	public void test04BonecrusherTransformHumanoideAlterno() {
-		Bonecrusher bonecrusher = new Bonecrusher();
+		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
 		bonecrusher.transformarAlterno();
 		Assert.assertTrue(bonecrusher.vida() == vidaAlterno);
 		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -59,7 +59,7 @@ public class BonecrusherTests {
 	@Test
 	public void test05BonecrusherTransformAlternoHumanoide() {
 		Bonecrusher bonecrusher = new Bonecrusher("Alterno");
-		bonecrusher.transformarHumaniode();
+		bonecrusher.transformarHumanoide();
 		Assert.assertTrue(bonecrusher.vida() == vidaHumanoide);
 		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueHumanoide);

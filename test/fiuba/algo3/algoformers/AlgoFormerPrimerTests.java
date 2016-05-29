@@ -6,8 +6,12 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-//import fiuba.algo3.modelo.Calendario;
-//import fiuba.algo3.modelo.RecursoOcupadoException;
+import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.Jugador;
+import fiuba.algo3.algoformers.Tablero;
+import fiuba.algo3.algoformers.Juego;
+
+import fiuba.algo3.algoformers.CasilleroOcupadoException;
 
 public class AlgoFormerPrimerTests {
 
@@ -15,20 +19,18 @@ public class AlgoFormerPrimerTests {
 	public void test01verificarMovimiento() {
 		Tablero tab = new Tablero();
 
-		Assert.assertTrue(tab.cantidadCasilleros() == 80);
+		Assert.assertTrue(tab.cantidadCasilleros() > 8);
 
 		AlgoFormer algoFormer = new AlgoFormer();
+		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		escuadronUno.add(algoFormer);
 
-		tab.addAlgoFormer(algoFormer,1,1);
+		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer));
-
-		Assert.assertTrue(algoFormer.posicionY() == 1);
-		Assert.assertTrue(algoFormer.posicionX() == 1);
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertTrue(algoFormer.posicionY() == 1);
-		Assert.assertTrue(algoFormer.posicionX() == 5);
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,5,1));
 	}
 	
 	@Test
@@ -36,8 +38,10 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero();
 
 		AlgoFormer algoFormer = new AlgoFormer();
+		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		escuadronUno.add(AlgoFormer);
 
-		tab.addAlgoFormer(algoFormer,1,1);
+		tab.agregarEscuadron(escuadronUno);
 
 		Assert.assertTrue(algoFormer.estadoTransformacion() == "Humanoide");
 
@@ -56,21 +60,18 @@ public class AlgoFormerPrimerTests {
 	public void test03verificarMovimientoAlterno() {
 		Tablero tab = new Tablero();
 
-		Assert.assertTrue(tab.cantidadCasilleros() == 80);
+		Assert.assertTrue(tab.cantidadCasilleros() > 9);
 
-		AlgoFormer algoFormer = new AlgoFormer();
-		algoFormer.transformarAlterno();
+		AlgoFormer algoFormer = new AlgoFormer("Alterno");
+		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		escuadronUno.add(AlgoFormer);
 
-		tab.addAlgoFormer(algoFormer,1,1);
+		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer));
-
-		Assert.assertTrue(algoFormer.posicionY() == 1);
-		Assert.assertTrue(algoFormer.posicionX() == 1);
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertTrue(algoFormer.posicionY() == 1);
-		Assert.assertTrue(algoFormer.posicionX() == 2);
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,2,1));
 	}
 
 	@Test
@@ -95,20 +96,20 @@ public class AlgoFormerPrimerTests {
 
 
 		Assert.assertTrue(jugadorDos.existeEscuadronAlgoFormer());
-		//TODO Posiciones.
+	//TODO Posiciones.
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,2));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,3));
 
-		//FIXME esto nose como va a ser pero hay que corroborar los turnos
+	//FIXME esto nose como va a ser pero hay que corroborar los turnos
 		jugadorUno.moverAlgoFormer();
 
 		jugadorDos.moverAlgoFormer();
 
-		//Exception!!!
+	//Exception!!!
 		jugadorDos.moverAlgoFormer();
 	}
-	
+  
 	@Test
 	public void test05modosAtaques() {
 		Tablero tab = new Tablero();

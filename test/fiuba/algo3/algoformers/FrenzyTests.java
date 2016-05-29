@@ -10,24 +10,24 @@ public class FrenzyTests {
 	private int fuerzaAtaqueHumanoide = 10;
 	private int distanciaAtaqueHumanoide = 5;
 	private int velocidadHumanoide = 2;
-	private int unidadHumanoide = "terrestre";
+	private String unidadHumanoide = "terrestre";
 
 	private int vidaAlterno = 400;
 	private int fuerzaAtaqueAlterno = 25;
 	private int distanciaAtaqueAlterno = 2;
 	private int velocidadAlterno = 6;
-	private int unidadAlterno = "terrestre";
+	private String unidadAlterno = "terrestre";
 
 	@Test
 	public void test01CrearFrenzy() {
-		Frenzy frenzy = new Frenzy();
+		Frenzy frenzy = new Frenzy("Humanoide");
 
 		Assert.assertTrue(frenzy.getNombre() == "Frenzy");
 	}
 
 	@Test
 	public void test02FrenzyHumanoide() {
-		Frenzy frenzy = new Frenzy();
+		Frenzy frenzy = new Frenzy("Humanoide");
 		Assert.assertTrue(frenzy.vida() == vidaHumanoide);
 		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueHumanoide);
@@ -47,7 +47,7 @@ public class FrenzyTests {
 
 	@Test
 	public void test04FrenzyTransformHumanoideAlterno() {
-		Frenzy frenzy = new Frenzy();
+		Frenzy frenzy = new Frenzy("Humanoide");
 		frenzy.transformarAlterno();
 		Assert.assertTrue(frenzy.vida() == vidaAlterno);
 		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -59,7 +59,7 @@ public class FrenzyTests {
 	@Test
 	public void test05FrenzyTransformAlternoHumanoide() {
 		Frenzy frenzy = new Frenzy("Alterno");
-		frenzy.transformarHumaniode();
+		frenzy.transformarHumanoide();
 		Assert.assertTrue(frenzy.vida() == vidaHumanoide);
 		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueHumanoide);

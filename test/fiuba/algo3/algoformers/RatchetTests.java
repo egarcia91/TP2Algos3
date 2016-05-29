@@ -10,24 +10,24 @@ public class RatchetTests {
 	private int fuerzaAtaqueHumanoide = 5;
 	private int distanciaAtaqueHumanoide = 5;
 	private int velocidadHumanoide = 1;
-	private int unidadHumanoide = "terrestre";
+	private String unidadHumanoide = "terrestre";
 
 	private int vidaAlterno = 150;
 	private int fuerzaAtaqueAlterno = 35;
 	private int distanciaAtaqueAlterno = 2;
 	private int velocidadAlterno = 8;
-	private int unidadAlterno = "aerea";
+	private String unidadAlterno = "aerea";
 
 	@Test
 	public void test01CrearRatchet() {
-		Ratchet ratchet = new Ratchet();
+		Ratchet ratchet = new Ratchet("Humanoide");
 
 		Assert.assertTrue(ratchet.getNombre() == "Ratchet");
 	}
 
 	@Test
 	public void test02RatchetHumanoide() {
-		Ratchet ratchet = new Ratchet();
+		Ratchet ratchet = new Ratchet("Humanoide");
 		Assert.assertTrue(ratchet.vida() == vidaHumanoide);
 		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueHumanoide);
@@ -47,7 +47,7 @@ public class RatchetTests {
 
 	@Test
 	public void test04RatchetTransformHumanoideAlterno() {
-		Ratchet ratchet = new Ratchet();
+		Ratchet ratchet = new Ratchet("Humanoide");
 		ratchet.transformarAlterno();
 		Assert.assertTrue(ratchet.vida() == vidaAlterno);
 		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -59,7 +59,7 @@ public class RatchetTests {
 	@Test
 	public void test05RatchetTransformAlternoHumanoide() {
 		Ratchet ratchet = new Ratchet("Alterno");
-		ratchet.transformarHumaniode();
+		ratchet.transformarHumanoide();
 		Assert.assertTrue(ratchet.vida() == vidaHumanoide);
 		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueHumanoide);

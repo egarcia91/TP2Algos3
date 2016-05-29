@@ -1,17 +1,19 @@
 package fiuba.algo3.algoformers;
 
 public class OptimusPrime extends AlgoFormer {
-	private String nombre = "Optimus Prime";
 
-	private int vidaHumanoide = 500;
-	private int fuerzaAtaqueHumanoide = 50;
-	private int distanciaAtaqueHumanoide = 2;
-	private int velocidadHumanoide = 2;
-	private String unidadHumanoide = "terrestre";
-
-	private int vidaAlterno = 500;
-	private int fuerzaAtaqueAlterno = 15;
-	private int distanciaAtaqueAlterno = 4;
-	private int velocidadAlterno = 5;
-	private String unidadAlterno = "terrestre";
+	public OptimusPrime(String modo){
+		this.nombre = "Optimus Prime";
+		this.vidaHumanoide = 500;
+		this.fuerzaAtaqueHumanoide = 50;
+		this.distanciaAtaqueHumanoide = 2;
+		this.velocidadHumanoide = 2;
+		this.unidadHumanoide = "terrestre";
+		this.vidaAlterno = 500;
+		this.fuerzaAtaqueAlterno = 15;
+		this.distanciaAtaqueAlterno = 4;
+		this.velocidadAlterno = 5;
+		this.unidadAlterno = "terrestre";
+		super.AlgoFormer(modo);
+	}
 }

@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import fiuba.algo3.algoformers.Casillero;
 import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.OptimusPrime;
+import fiuba.algo3.algoformers.Megatron;
 import fiuba.algo3.algoformers.Spark;
 import fiuba.algo3.algoformers.CasilleroOcupadoException;
 
@@ -61,17 +63,17 @@ public class CasilleroTests {
 
 	@Test(expected=CasilleroOcupadoException.class)
 	public void test05CasilleroNoSuperponerAlgoFormers() {
-		AlgoFormer algoFormer = new AlgoFormer();
+		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
 
-		AlgoFormer otroAlgoFormer = new AlgoFormer();
+		Megatron megatron = new Megatron("Humanoide");
 
 		Casillero casillero = new Casillero();
-		casillero.agregarAlgoFormer(algoFormer);
+		casillero.agregarAlgoFormer(optimusPrime);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeAlgoFormer(algoFormer));
+		Assert.assertTrue(casillero.existeAlgoFormer(optimusPrime));
 
-		casillero.agregarAlgoFormer(otroAlgoFormer);
+		casillero.agregarAlgoFormer(megatron);
 	}
 
 	@Test

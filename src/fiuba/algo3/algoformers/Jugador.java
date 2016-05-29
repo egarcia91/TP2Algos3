@@ -22,6 +22,10 @@ public class Jugador {
 		this.escuadron.addAll(unEscuadron);
 	}
 
+	public boolean existeEscuadron(){
+		return this.escuadron.isEmpty();
+	}
+
 	public int cantidadAlgoFormer(){
 		return escuadron.size();
 	}

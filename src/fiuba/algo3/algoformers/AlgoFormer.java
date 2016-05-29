@@ -7,7 +7,7 @@ public class AlgoFormer {
 	private int distanciaAtaque;
 	private int velocidad;
 	private String tipoUnidad;
-	private String estado;
+	private String estado = "Humanoide";
 
 	protected int vidaHumanoide = 500;
 	protected int fuerzaAtaqueHumanoide = 50;

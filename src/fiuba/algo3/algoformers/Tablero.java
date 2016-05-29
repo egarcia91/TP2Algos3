@@ -21,34 +21,42 @@ public class Tablero {
 		}
 	}
 
+	private void ubicarEscuadronUno(){
+		int initY = 1;
+		int initX = 1;
+		for (AlgoFormer algoFormer: this.escuadronUno) {
+			this.matrizPosition(initX,initY).agregarAlgoFormer(algoFormer);
+			if(initX == 1){
+				initX = 2;
+				initY = 1;
+			} else {
+				initX = 1;
+				initY = 2;
+			}
+		}
+	}
+
+	private void ubicarEscuadronDos(){
+		int initY = this.alto;
+		int initX = this.ancho;
+		for (AlgoFormer algoFormer: this.escuadronDos) {
+			this.matrizPosition(initX,initY).agregarAlgoFormer(algoFormer);
+			if(initX == this.ancho){
+				initX--;
+			} else {
+				initX = this.ancho;
+				initY--;
+			}
+		}
+	}
+
 	public void agregarEscuadron(List<AlgoFormer> escuadron){
-		if(escuadronUno.size() == 0){
+		if(escuadronUno.isEmpty()){
 			this.escuadronUno.addAll(escuadron);
-			int initY = 1;
-			int initX = 1;
-			for (AlgoFormer algoFormer: this.escuadronUno) {
-				this.matrizPosition(initX,initY).agregarAlgoFormer(algoFormer);
-				if(initX == 1){
-					initX = 2;
-					initY = 1;
-				} else {
-					initX = 1;
-					initY = 2;
-				}
-			}
-		} else if(escuadronDos.size() == 0){
+			this.ubicarEscuadronUno();
+		} else if(escuadronDos.isEmpty()){
 			this.escuadronDos.addAll(escuadron);
-			int initY = this.alto;
-			int initX = this.ancho;
-			for (AlgoFormer algoFormer: this.escuadronDos) {
-				this.matrizPosition(initX,initY).agregarAlgoFormer(algoFormer);
-				if(initX == this.ancho){
-					initX--;
-				} else {
-					initX = this.ancho;
-					initY--;
-				}
-			}
+			this.ubicarEscuadronDos();
 		}
 	}
 

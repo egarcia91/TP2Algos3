@@ -30,7 +30,7 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,5,1));
+		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,5,1));
 	}
 	
 	@Test
@@ -39,7 +39,7 @@ public class AlgoFormerPrimerTests {
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(AlgoFormer);
+		escuadronUno.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -62,9 +62,10 @@ public class AlgoFormerPrimerTests {
 
 		Assert.assertTrue(tab.cantidadCasilleros() > 9);
 
-		AlgoFormer algoFormer = new AlgoFormer("Alterno");
+		AlgoFormer algoFormer = new AlgoFormer();
+		algoFormer.transformarAlterno();
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(AlgoFormer);
+		escuadronUno.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -80,7 +81,10 @@ public class AlgoFormerPrimerTests {
 		Juego juego = new Juego();
 		
 		Jugador jugadorUno = new Jugador();
+		jugadorUno.setNombre("Sam");
+
 		Jugador jugadorDos = new Jugador();
+		jugadorDos.setNombre("Max");
 
 		juego.agregarJugador(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
@@ -89,24 +93,24 @@ public class AlgoFormerPrimerTests {
 
 		juego.iniciar();
 
-		Assert.assertTrue(jugadorUno.existeEscuadronAlgoFormer());
+		Assert.assertTrue(jugadorUno.existeEscuadron());
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,3));
 
 
-		Assert.assertTrue(jugadorDos.existeEscuadronAlgoFormer());
-	//TODO Posiciones.
+		Assert.assertTrue(jugadorDos.existeEscuadron());
+		//TODO Posiciones.
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,2));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,3));
 
-	//FIXME esto nose como va a ser pero hay que corroborar los turnos
+		//FIXME esto nose como va a ser pero hay que corroborar los turnos
 		jugadorUno.moverAlgoFormer();
 
 		jugadorDos.moverAlgoFormer();
 
-	//Exception!!!
+		//Exception!!!
 		jugadorDos.moverAlgoFormer();
 	}
   

@@ -30,7 +30,7 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,5,1));
+		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,3,1));
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,2,1));
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,6,1));
 	}
 
 	@Test
@@ -120,10 +120,10 @@ public class AlgoFormerPrimerTests {
 
 		Assert.assertTrue(tab.cantidadCasilleros() == 80);
 
-		OptimusPrime optimusPrime = new OptimusPrime();
+		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
 		tab.addAlgoFormer(optimusPrime,1,1);
 
-		Megatron megatron = new Megatron();
+		Megatron megatron = new Megatron("Humanoide");
 		tab.addAlgoFormer(megatron,2,2);
 
 		Assert.assertTrue(megatron.vida() == 550);

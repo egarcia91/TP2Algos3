@@ -1,6 +1,11 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.algoformers.Tablero;
+
 public class AlgoFormer {
+
+	protected Tablero tablero;
+
 	protected String nombre = "AlgoFormer";
 	private int vida;
 	private int fuerzaAtaque;
@@ -77,7 +82,9 @@ public class AlgoFormer {
 		this.tipoUnidad = this.unidadHumanoide;
 	}
 
-	public void moverDerecha(){}
+	public void moverDerecha(){
+		tablero.moverDerecha(this,this.velocidad);
+	}
 
 	public void atacar(){}
 

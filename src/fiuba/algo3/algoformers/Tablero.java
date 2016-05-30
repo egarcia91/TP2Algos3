@@ -95,4 +95,8 @@ public class Tablero {
 	public int espacio(){
 		return this.espacio;
 	}
+
+	public void addAlgoFormer (AlgoFormer unAlgoformer, int x, int y){}
+
+
 }

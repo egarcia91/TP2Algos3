@@ -76,4 +76,9 @@ public class AlgoFormer {
 		this.velocidad = this.velocidadHumanoide;
 		this.tipoUnidad = this.unidadHumanoide;
 	}
+
+	public void moverDerecha(){}
+
+	public void atacar(){}
+
 }

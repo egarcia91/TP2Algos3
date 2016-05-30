@@ -126,19 +126,19 @@ public class AlgoFormerPrimerTests {
 		Megatron megatron = new Megatron();
 		tab.addAlgoFormer(megatron,2,2);
 
-		Assert.assertTrue(megatron.getVida() == 550);
+		Assert.assertTrue(megatron.vida() == 550);
 		optimusPrime.atacar();
-		Assert.assertTrue(megatron.getVida() == 450);
+		Assert.assertTrue(megatron.vida() == 450);
 
-		Assert.assertTrue(optimusPrime.getVida() == 550);
+		Assert.assertTrue(optimusPrime.vida() == 550);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.getVida() == 450);
+		Assert.assertTrue(optimusPrime.vida() == 450);
 
 		optimusPrime.moverDerecha();
 
 		//Ahora esta lejos!
-		Assert.assertTrue(optimusPrime.getVida() == 450);
+		Assert.assertTrue(optimusPrime.vida() == 450);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.getVida() == 450);
+		Assert.assertTrue(optimusPrime.vida() == 450);
 	}
 }

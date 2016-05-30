@@ -30,4 +30,10 @@ public class Jugador {
 		return escuadron.size();
 	}
 
+	public boolean tieneAlgoFormerEnPosicion(int x, int y){return false;}
+
+	public void moverAlgoFormer(){}
+
+
+
 }

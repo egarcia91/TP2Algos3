@@ -96,14 +96,16 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(jugadorUno.existeEscuadron());
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
-		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,3));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
 
 
 		Assert.assertTrue(jugadorDos.existeEscuadron());
 		//TODO Posiciones.
-		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,1));
-		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,2));
-		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(1,3));
+		int ancho=juego.tableroAncho();
+		int alto=juego.tableroAlto();
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho-1));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto-1,ancho));
 
 		//FIXME esto nose como va a ser pero hay que corroborar los turnos
 		jugadorUno.moverAlgoFormer();
@@ -118,27 +120,33 @@ public class AlgoFormerPrimerTests {
 	public void test05modosAtaques() {
 		Tablero tab = new Tablero();
 
-		Assert.assertTrue(tab.cantidadCasilleros() == 80);
+		Assert.assertTrue(tab.cantidadCasilleros() > 8);
+
+		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
 
 		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
-		tab.addAlgoFormer(optimusPrime,1,1);
+		escuadronUno.add(optimusPrime);
 
 		Megatron megatron = new Megatron("Humanoide");
-		tab.addAlgoFormer(megatron,2,2);
+		escuadronDos.add(megatron);
+
+		tab.agregarEscuadron(escuadronUno);
+		tab.agregarEscuadron(escuadronDos);
 
 		Assert.assertTrue(megatron.vida() == 550);
 		optimusPrime.atacar();
-		Assert.assertTrue(megatron.vida() == 450);
+		Assert.assertTrue(megatron.vida() == 500);
 
-		Assert.assertTrue(optimusPrime.vida() == 550);
+		Assert.assertTrue(optimusPrime.vida() == 500);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 450);
+		Assert.assertTrue(optimusPrime.vida() == 490);
 
 		optimusPrime.moverDerecha();
 
 		//Ahora esta lejos!
-		Assert.assertTrue(optimusPrime.vida() == 450);
+		/*Assert.assertTrue(optimusPrime.vida() == 450);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 450);
+		Assert.assertTrue(optimusPrime.vida() == 450);*/
 	}
 }

@@ -23,14 +23,22 @@ public class Jugador {
 	}
 
 	public boolean existeEscuadron(){
-		return this.escuadron.isEmpty();
+		return (this.escuadron.size() != 0);
 	}
 
 	public int cantidadAlgoFormer(){
-		return escuadron.size();
+		return this.escuadron.size();
 	}
 
-	public boolean tieneAlgoFormerEnPosicion(int x, int y){return false;}
+	public boolean tieneAlgoFormerEnPosicion(int x, int y){
+		for (AlgoFormer unAlgoFormer:
+				this.escuadron){
+			if (unAlgoFormer.estaEnPosicion(x,y)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public void moverAlgoFormer(){}
 

@@ -9,10 +9,21 @@ import fiuba.algo3.algoformers.AlgoFormer;
 public class Tablero {
 	private List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 	private List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
-	private int ancho = 20;
-	private int alto = 20;
-	private int espacio = 400;
+	private int ancho = 3;
+	private int alto = 3;
+	private int espacio = 9;
 	private List<Casillero> casilleros = new ArrayList<Casillero>();
+
+	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
+		for (AlgoFormer eachAlgoFormer:
+				this.escuadronUno){
+			if (eachAlgoFormer.getNombre()==unAlgoFormer.getNombre()){
+				return true;
+			}
+		}
+		return false;
+
+	}
 
 	public Tablero(){
 		for(int i = 0; i < this.espacio; i++){
@@ -53,10 +64,10 @@ public class Tablero {
 	}
 
 	public void agregarEscuadron(List<AlgoFormer> escuadron){
-		if(escuadronUno.isEmpty()){
+		if(escuadronUno.size()==0){
 			this.escuadronUno.addAll(escuadron);
 			this.ubicarEscuadronUno();
-		} else if(escuadronDos.isEmpty()){
+		} else if(escuadronDos.size()==0){
 			this.escuadronDos.addAll(escuadron);
 			this.ubicarEscuadronDos();
 		}
@@ -128,4 +139,37 @@ public class Tablero {
 		}
 	}
 
+
+
+	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
+		int position = this.searchAlgoFormer(unAlgoFormer);
+		int unAncho = position%this.alto + 1;
+		int unAlto = (position-(position%this.alto))/this.alto + 1;
+		int anchoFinal = unAncho+unaDistanciaAtaque;
+		int anchoInicial = unAncho-unaDistanciaAtaque;
+		int altoFinal = unAlto+unaDistanciaAtaque;
+		int altoInicial = unAlto-unaDistanciaAtaque;
+		if (this.perteneceEscuadronUno(unAlgoFormer)) {
+			for (AlgoFormer eachAlgoFormer :
+					this.escuadronDos) {
+				int positionEnemigo = this.searchAlgoFormer(eachAlgoFormer);
+				int unAnchoEnemigo = positionEnemigo % this.alto + 1;
+				int unAltoEnemigo = (positionEnemigo - (positionEnemigo % this.alto)) / this.alto + 1;
+				if (unAnchoEnemigo >= anchoInicial && unAnchoEnemigo <= anchoFinal && unAltoEnemigo >= altoInicial && unAltoEnemigo <= altoFinal) {
+					eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
+				}
+			}
+		}else{
+				for (AlgoFormer eachAlgoFormer:
+						this.escuadronUno){
+					int positionEnemigo = this.searchAlgoFormer(eachAlgoFormer);
+					int unAnchoEnemigo = positionEnemigo%this.alto + 1;
+					int unAltoEnemigo = (positionEnemigo-(positionEnemigo%this.alto))/this.alto + 1;
+					if ( unAnchoEnemigo >= anchoInicial && unAnchoEnemigo <= anchoFinal && unAltoEnemigo >= altoInicial && unAltoEnemigo <= altoFinal){
+						eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
+					}
+				}
+		}
+
+	}
 }

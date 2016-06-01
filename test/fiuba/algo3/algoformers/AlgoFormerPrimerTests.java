@@ -11,8 +11,6 @@ import fiuba.algo3.algoformers.Jugador;
 import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Juego;
 
-import fiuba.algo3.algoformers.CasilleroOcupadoException;
-
 public class AlgoFormerPrimerTests {
 
 	@Test

@@ -86,10 +86,21 @@ public class AlgoFormer {
 		tablero.moverDerecha(this,this.velocidad);
 	}
 
+	public void moverIzquierda(){
+		tablero.moverIzquierda(this,this.velocidad);
+	}
+
+	public void moverArriba(){
+		tablero.moverArriba(this,this.velocidad);
+	}
+
+	public void moverAbajo(){
+		tablero.moverAbajo(this,this.velocidad);
+	}
+
 	public void atacar(){
 		this.tablero.ataqueZona(this, this.distanciaAtaque, this.fuerzaAtaque);
 	}
-
 
 	public boolean estaEnPosicion(int x, int y){
 		return this.tablero.existeAlgoFormer(this, x, y);

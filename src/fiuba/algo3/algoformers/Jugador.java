@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.Juego;
 
 public class Jugador {
 
 	private String nombre;
+	protected Juego juego;
 	private List<AlgoFormer> escuadron = new ArrayList<AlgoFormer>();
 
 	public void setNombre(String unNombre){
@@ -40,7 +42,13 @@ public class Jugador {
 		return false;
 	}
 
-	public void moverAlgoFormer(){}
+	public void moverAlgoFormer(){
+		if(this.juego.esTurnoJugador(this)){
+			this.juego.cambiarTurnoJugador();
+			//BLA BLA;
+		} else {
+		}
+	}
 
 
 

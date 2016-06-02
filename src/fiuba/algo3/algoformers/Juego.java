@@ -15,6 +15,7 @@ import fiuba.algo3.algoformers.Frenzy;
 public class Juego {
 	private List<Jugador> jugadores = new ArrayList<Jugador>();
 	private Tablero tablero = new Tablero();
+	private Jugador turnoJugador;
 
 	private List<AlgoFormer> escuadronAutoBot = new ArrayList<AlgoFormer>(){{
 		add(new OptimusPrime("Humanoide"));
@@ -31,6 +32,7 @@ public class Juego {
 	public void agregarJugador(Jugador unJugador){
 		if (this.jugadores.size()==0) {
 			this.jugadores.add(unJugador);
+			unJugador.juego = this;
 			unJugador.asignarEscuadron(escuadronAutoBot);
 			this.tablero.agregarEscuadron(escuadronAutoBot);
 		}
@@ -51,7 +53,19 @@ public class Juego {
 	}
 
 	public void iniciar(){
-		//No hacemos nada
+		turnoJugador = jugadores.get(0);
+	}
+
+	public boolean esTurnoJugador(Jugador unJugador){
+		return turnoJugador.getNombre() == unJugador.getNombre();
+	}
+
+	public void cambiarTurnoJugador(){
+		for(Jugador unJugador: this.jugadores){
+			if(!esTurnoJugador(unJugador)){
+				turnoJugador = unJugador;
+			}
+		}
 	}
 
 	public int tableroAncho(){

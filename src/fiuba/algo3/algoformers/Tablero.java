@@ -2,6 +2,7 @@ package fiuba.algo3.algoformers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import fiuba.algo3.algoformers.Casillero;
 import fiuba.algo3.algoformers.AlgoFormer;
@@ -9,10 +10,11 @@ import fiuba.algo3.algoformers.AlgoFormer;
 public class Tablero {
 	private List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 	private List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
-	private int ancho = 3;
-	private int alto = 3;
-	private int espacio = 9;
+	private int ancho = 20;
+	private int alto = 20;
+	private int espacio = 400;
 	private List<Casillero> casilleros = new ArrayList<Casillero>();
+	private Spark spark;
 
 	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		for (AlgoFormer eachAlgoFormer:
@@ -31,6 +33,15 @@ public class Tablero {
 			this.casilleros.add(unCasillero);
 		}
 	}
+
+	public void ubicarSpark(){
+		Random rnd = new Random();
+		int initX = rnd.nextInt(12)+8;
+		int initY = rnd.nextInt(12)+8;
+		this.matrizPosition(initX,initY).agregarContenido(this.spark);
+	}
+
+
 
 	private void ubicarEscuadronUno(){
 		int initY = 1;
@@ -128,7 +139,7 @@ public class Tablero {
 			int unAlto = (position-(position%this.alto))/this.alto + 1;
 
 			int anchoFinal = unAncho + velocidad;
-			if(anchoFinal <= this.ancho){
+			if(anchoFinal <= this.ancho  && anchoFinal > 0){
 				Casillero casilleroFinal = this.matrizPosition(anchoFinal,unAlto);
 				Casillero casilleroInicial = this.matrizPosition(unAncho,unAlto);
 				if(!casilleroFinal.tieneAlgoFormer()){
@@ -139,6 +150,59 @@ public class Tablero {
 		}
 	}
 
+	public void moverIzquierda(AlgoFormer unAlgoFormer, int velocidad){
+		int position = this.searchAlgoFormer(unAlgoFormer);
+		if(position > -1){
+			int unAncho = position%this.alto + 1;
+			int unAlto = (position-(position%this.alto))/this.alto + 1;
+
+			int anchoFinal = unAncho - velocidad; //Lo que cambia para moverse a la izquierda
+			if(anchoFinal <= this.ancho && anchoFinal > 0 ){
+				Casillero casilleroFinal = this.matrizPosition(anchoFinal,unAlto);
+				Casillero casilleroInicial = this.matrizPosition(unAncho,unAlto);
+				if(!casilleroFinal.tieneAlgoFormer()){
+					casilleroInicial.quitarAlgoFormer();
+					casilleroFinal.agregarAlgoFormer(unAlgoFormer);
+				}
+			}
+		}
+	}
+
+	public void moverArriba(AlgoFormer unAlgoFormer, int velocidad){
+		int position = this.searchAlgoFormer(unAlgoFormer);
+		if(position > -1){
+			int unAncho = position%this.alto + 1;
+			int unAlto = (position-(position%this.alto))/this.alto + 1;
+
+			int altoFinal = unAlto + velocidad;
+			if(altoFinal <= this.alto && altoFinal > 0){
+				Casillero casilleroFinal = this.matrizPosition(unAncho,altoFinal);
+				Casillero casilleroInicial = this.matrizPosition(unAncho,unAlto);
+				if(!casilleroFinal.tieneAlgoFormer()){
+					casilleroInicial.quitarAlgoFormer();
+					casilleroFinal.agregarAlgoFormer(unAlgoFormer);
+				}
+			}
+		}
+	}
+
+	public void moverAbajo(AlgoFormer unAlgoFormer, int velocidad){
+		int position = this.searchAlgoFormer(unAlgoFormer);
+		if(position > -1){
+			int unAncho = position%this.alto + 1;
+			int unAlto = (position-(position%this.alto))/this.alto + 1;
+
+			int altoFinal = unAlto - velocidad;
+			if(altoFinal <= this.alto && altoFinal > 0){
+				Casillero casilleroFinal = this.matrizPosition(unAncho,altoFinal);
+				Casillero casilleroInicial = this.matrizPosition(unAncho,unAlto);
+				if(!casilleroFinal.tieneAlgoFormer()){
+					casilleroInicial.quitarAlgoFormer();
+					casilleroFinal.agregarAlgoFormer(unAlgoFormer);
+				}
+			}
+		}
+	}
 
 
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){

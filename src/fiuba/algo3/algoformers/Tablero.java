@@ -2,6 +2,7 @@ package fiuba.algo3.algoformers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import fiuba.algo3.algoformers.Casillero;
 import fiuba.algo3.algoformers.AlgoFormer;
@@ -13,6 +14,7 @@ public class Tablero {
 	private int alto = 20;
 	private int espacio = 400;
 	private List<Casillero> casilleros = new ArrayList<Casillero>();
+	private Spark spark;
 
 	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		for (AlgoFormer eachAlgoFormer:
@@ -31,6 +33,15 @@ public class Tablero {
 			this.casilleros.add(unCasillero);
 		}
 	}
+
+	public void ubicarSpark(){
+		Random rnd = new Random();
+		int initX = rnd.nextInt(12)+8;
+		int initY = rnd.nextInt(12)+8;
+		this.matrizPosition(initX,initY).agregarContenido(this.spark);
+	}
+
+
 
 	private void ubicarEscuadronUno(){
 		int initY = 1;

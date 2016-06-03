@@ -12,7 +12,6 @@ import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Juego;
 
 import fiuba.algo3.algoformers.CasilleroOcupadoException;
-import org.testng.annotations.Test;
 
 public class AlgoFormerPrimerTests {
 

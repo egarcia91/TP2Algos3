@@ -4,6 +4,7 @@ libs/
 tmp/
 .classpath
 .project
+.project.bak
 .settings/
 bin/
 build.xml.old

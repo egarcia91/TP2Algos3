@@ -1,7 +1,8 @@
 package fiuba.algo3.algoformers;
 
-@SuppressWarnings("serial")
 public class CasilleroOcupadoException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
+	
 	CasilleroOcupadoException(){
 		super();
 	}

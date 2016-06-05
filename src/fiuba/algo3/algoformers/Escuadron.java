@@ -1,6 +1,5 @@
 package fiuba.algo3.algoformers;
 
-import fiuba.algo3.algoformers.Tablero;
 import java.util.ArrayList;
 import java.util.List;
 

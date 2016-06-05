@@ -28,20 +28,20 @@ public class OptimusPrimeTests {
 	@Test
 	public void test02OptimusHumanoide() {
 		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
-		Assert.assertTrue(optimusPrime.vida() == vidaHumanoide);
-		Assert.assertTrue(optimusPrime.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(optimusPrime.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(optimusPrime.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(optimusPrime.getVida() == vidaHumanoide);
+		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
 	public void test03OptimusAlterno() {
 		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
-		Assert.assertTrue(optimusPrime.vida() == vidaAlterno);
-		Assert.assertTrue(optimusPrime.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(optimusPrime.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(optimusPrime.velocidad() == velocidadAlterno);
+		Assert.assertTrue(optimusPrime.getVida() == vidaAlterno);
+		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadAlterno);
 	}
 
@@ -49,10 +49,10 @@ public class OptimusPrimeTests {
 	public void test04OptimusTransformHumanoideAlterno() {
 		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
 		optimusPrime.transformarAlterno();
-		Assert.assertTrue(optimusPrime.vida() == vidaAlterno);
-		Assert.assertTrue(optimusPrime.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(optimusPrime.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(optimusPrime.velocidad() == velocidadAlterno);
+		Assert.assertTrue(optimusPrime.getVida() == vidaAlterno);
+		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadAlterno);
 	}
 
@@ -60,10 +60,10 @@ public class OptimusPrimeTests {
 	public void test05OptimusTransformAlternoHumanoide() {
 		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
 		optimusPrime.transformarHumanoide();
-		Assert.assertTrue(optimusPrime.vida() == vidaHumanoide);
-		Assert.assertTrue(optimusPrime.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(optimusPrime.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(optimusPrime.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(optimusPrime.getVida() == vidaHumanoide);
+		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadHumanoide);
 	}
 }

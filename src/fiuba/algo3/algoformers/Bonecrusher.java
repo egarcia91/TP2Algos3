@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class Bonecrusher extends AlgoFormer {
 
-	public Bonecrusher(String modo){
+	public Bonecrusher(){
+		super();
 		this.nombre = "Bonecrusher";
 		this.vidaHumanoide = 200;
 		this.fuerzaAtaqueHumanoide = 30;
@@ -14,6 +15,5 @@ public class Bonecrusher extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 3;
 		this.velocidadAlterno = 8;
 		this.unidadAlterno = "terrestre";
-		super.AlgoFormer(modo);
 	}
 }

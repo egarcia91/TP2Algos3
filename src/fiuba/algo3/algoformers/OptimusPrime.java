@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class OptimusPrime extends AlgoFormer {
 
-	public OptimusPrime(String modo){
+	public OptimusPrime(){
+		super();
 		this.nombre = "Optimus Prime";
 		this.vidaHumanoide = 500;
 		this.fuerzaAtaqueHumanoide = 50;
@@ -14,7 +15,6 @@ public class OptimusPrime extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 4;
 		this.velocidadAlterno = 5;
 		this.unidadAlterno = "terrestre";
-		super.AlgoFormer(modo);
 	}
 
 }

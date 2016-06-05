@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class Ratchet extends AlgoFormer {
 
-	public Ratchet(String modo){
+	public Ratchet(){
+		super();
 		this.nombre = "Ratchet";
 		this.vidaHumanoide = 150;
 		this.fuerzaAtaqueHumanoide = 5;
@@ -14,6 +15,5 @@ public class Ratchet extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 2;
 		this.velocidadAlterno = 8;
 		this.unidadAlterno = "aerea";
-		super.AlgoFormer(modo);
 	}
 }

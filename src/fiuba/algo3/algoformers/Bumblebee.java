@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class Bumblebee extends AlgoFormer {
 
-	public Bumblebee(String modo){
+	public Bumblebee(){
+		super();
 		this.nombre = "Bumblebee";
 		this.vidaHumanoide = 350;
 		this.fuerzaAtaqueHumanoide = 40;
@@ -14,6 +15,5 @@ public class Bumblebee extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 3;
 		this.velocidadAlterno = 5;
 		this.unidadAlterno = "terrestre";
-		super.AlgoFormer(modo);
 	}
 }

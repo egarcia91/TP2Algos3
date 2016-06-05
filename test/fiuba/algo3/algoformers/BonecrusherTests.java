@@ -28,20 +28,20 @@ public class BonecrusherTests {
 	@Test
 	public void test02BonecrusherHumanoide() {
 		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
-		Assert.assertTrue(bonecrusher.vida() == vidaHumanoide);
-		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(bonecrusher.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(bonecrusher.getVida() == vidaHumanoide);
+		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
 	public void test03BonecrusherAlterno() {
 		Bonecrusher bonecrusher = new Bonecrusher("Alterno");
-		Assert.assertTrue(bonecrusher.vida() == vidaAlterno);
-		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(bonecrusher.velocidad() == velocidadAlterno);
+		Assert.assertTrue(bonecrusher.getVida() == vidaAlterno);
+		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadAlterno);
 	}
 
@@ -49,10 +49,10 @@ public class BonecrusherTests {
 	public void test04BonecrusherTransformHumanoideAlterno() {
 		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
 		bonecrusher.transformarAlterno();
-		Assert.assertTrue(bonecrusher.vida() == vidaAlterno);
-		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(bonecrusher.velocidad() == velocidadAlterno);
+		Assert.assertTrue(bonecrusher.getVida() == vidaAlterno);
+		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadAlterno);
 	}
 
@@ -60,10 +60,10 @@ public class BonecrusherTests {
 	public void test05BonecrusherTransformAlternoHumanoide() {
 		Bonecrusher bonecrusher = new Bonecrusher("Alterno");
 		bonecrusher.transformarHumanoide();
-		Assert.assertTrue(bonecrusher.vida() == vidaHumanoide);
-		Assert.assertTrue(bonecrusher.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(bonecrusher.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(bonecrusher.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(bonecrusher.getVida() == vidaHumanoide);
+		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadHumanoide);
 	}
 }

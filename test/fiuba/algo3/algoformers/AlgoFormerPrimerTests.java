@@ -120,13 +120,13 @@ public class AlgoFormerPrimerTests {
 		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
 		escuadronUno.add(optimusPrime);
 
-		Megatron megatron = new Megatron("Humanoide");
+		Megatron megatron = new Megatron();
 		escuadronDos.add(megatron);
 
 		tab.agregarEscuadron(escuadronUno);
 		tab.agregarEscuadron(escuadronDos);
 
-		Assert.assertTrue(megatron.vida() == 550);
+		Assert.assertTrue(megatron.getVida() == 550);
 
 		optimusPrime.moverDerecha();
 		optimusPrime.moverDerecha();
@@ -137,9 +137,9 @@ public class AlgoFormerPrimerTests {
 		optimusPrime.moverArriba();
 
 		optimusPrime.atacar();
-		Assert.assertTrue(megatron.vida() == 535);
+		Assert.assertTrue(megatron.getVida() == 535);
 
-		Assert.assertTrue(optimusPrime.vida() == 500);
+		Assert.assertTrue(optimusPrime.getVida() == 500);
 
 		megatron.moverIzquierda();
 		megatron.moverIzquierda();
@@ -150,15 +150,15 @@ public class AlgoFormerPrimerTests {
 		megatron.moverAbajo();
 
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 
 		optimusPrime.moverIzquierda();
 		optimusPrime.moverIzquierda();
 		optimusPrime.moverIzquierda();
 
 		//Ahora esta lejos!
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 	}
 }

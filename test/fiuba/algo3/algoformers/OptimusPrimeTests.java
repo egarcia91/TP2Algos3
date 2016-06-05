@@ -20,14 +20,14 @@ public class OptimusPrimeTests {
 
 	@Test
 	public void test01CrearOptimus() {
-		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
+		OptimusPrime optimusPrime = new OptimusPrime();
 
 		Assert.assertTrue(optimusPrime.getNombre() == "Optimus Prime");
 	}
 
 	@Test
 	public void test02OptimusHumanoide() {
-		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
+		OptimusPrime optimusPrime = new OptimusPrime();
 		Assert.assertTrue(optimusPrime.getVida() == vidaHumanoide);
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
@@ -37,7 +37,8 @@ public class OptimusPrimeTests {
 
 	@Test
 	public void test03OptimusAlterno() {
-		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
+		OptimusPrime optimusPrime = new OptimusPrime();
+		optimusPrime.transformarAlterno();
 		Assert.assertTrue(optimusPrime.getVida() == vidaAlterno);
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
@@ -47,7 +48,7 @@ public class OptimusPrimeTests {
 
 	@Test
 	public void test04OptimusTransformHumanoideAlterno() {
-		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
+		OptimusPrime optimusPrime = new OptimusPrime();
 		optimusPrime.transformarAlterno();
 		Assert.assertTrue(optimusPrime.getVida() == vidaAlterno);
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -58,7 +59,8 @@ public class OptimusPrimeTests {
 
 	@Test
 	public void test05OptimusTransformAlternoHumanoide() {
-		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
+		OptimusPrime optimusPrime = new OptimusPrime();
+		optimusPrime.transformarAlterno();
 		optimusPrime.transformarHumanoide();
 		Assert.assertTrue(optimusPrime.getVida() == vidaHumanoide);
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);

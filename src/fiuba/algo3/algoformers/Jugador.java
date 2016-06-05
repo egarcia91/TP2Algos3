@@ -41,7 +41,7 @@ public class Jugador {
 		return this.escuadron.size();
 	}*/
 
-	public int cantidadAlgoFormers(){
+	public int cantidadAlgoFormer(){
 		return this.escuadron.cantidadMiembrosEscuadron();
 	}
 

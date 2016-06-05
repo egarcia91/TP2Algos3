@@ -20,14 +20,14 @@ public class RatchetTests {
 
 	@Test
 	public void test01CrearRatchet() {
-		Ratchet ratchet = new Ratchet("Humanoide");
+		Ratchet ratchet = new Ratchet();
 
 		Assert.assertTrue(ratchet.getNombre() == "Ratchet");
 	}
 
 	@Test
 	public void test02RatchetHumanoide() {
-		Ratchet ratchet = new Ratchet("Humanoide");
+		Ratchet ratchet = new Ratchet();
 		Assert.assertTrue(ratchet.getVida() == vidaHumanoide);
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueHumanoide);
@@ -37,7 +37,8 @@ public class RatchetTests {
 
 	@Test
 	public void test03RatchetAlterno() {
-		Ratchet ratchet = new Ratchet("Alterno");
+		Ratchet ratchet = new Ratchet();
+		ratchet.transformarAlterno();
 		Assert.assertTrue(ratchet.getVida() == vidaAlterno);
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueAlterno);
@@ -47,7 +48,7 @@ public class RatchetTests {
 
 	@Test
 	public void test04RatchetTransformHumanoideAlterno() {
-		Ratchet ratchet = new Ratchet("Humanoide");
+		Ratchet ratchet = new Ratchet();
 		ratchet.transformarAlterno();
 		Assert.assertTrue(ratchet.getVida() == vidaAlterno);
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -58,7 +59,8 @@ public class RatchetTests {
 
 	@Test
 	public void test05RatchetTransformAlternoHumanoide() {
-		Ratchet ratchet = new Ratchet("Alterno");
+		Ratchet ratchet = new Ratchet();
+		ratchet.transformarAlterno();
 		ratchet.transformarHumanoide();
 		Assert.assertTrue(ratchet.getVida() == vidaHumanoide);
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);

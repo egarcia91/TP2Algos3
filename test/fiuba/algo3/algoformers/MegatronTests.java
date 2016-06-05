@@ -20,14 +20,14 @@ public class MegatronTests {
 
 	@Test
 	public void test01CrearMegatron() {
-		Megatron megatron = new Megatron("Humanoide");
+		Megatron megatron = new Megatron();
 
 		Assert.assertTrue(megatron.getNombre() == "Megatron");
 	}
 
 	@Test
 	public void test02MegatronHumanoide() {
-		Megatron megatron = new Megatron("Humanoide");
+		Megatron megatron = new Megatron();
 		Assert.assertTrue(megatron.getVida() == vidaHumanoide);
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueHumanoide);
@@ -37,7 +37,8 @@ public class MegatronTests {
 
 	@Test
 	public void test03MegatronAlterno() {
-		Megatron megatron = new Megatron("Alterno");
+		Megatron megatron = new Megatron();
+		megatron.transformarAlterno();
 		Assert.assertTrue(megatron.getVida() == vidaAlterno);
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueAlterno);
@@ -47,7 +48,7 @@ public class MegatronTests {
 
 	@Test
 	public void test04MegatronTransformHumanoideAlterno() {
-		Megatron megatron = new Megatron("Humanoide");
+		Megatron megatron = new Megatron();
 		megatron.transformarAlterno();
 		Assert.assertTrue(megatron.getVida() == vidaAlterno);
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -58,7 +59,8 @@ public class MegatronTests {
 
 	@Test
 	public void test05MegatronTransformAlternoHumanoide() {
-		Megatron megatron = new Megatron("Alterno");
+		Megatron megatron = new Megatron();
+		megatron.transformarAlterno();
 		megatron.transformarHumanoide();
 		Assert.assertTrue(megatron.getVida() == vidaHumanoide);
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueHumanoide);

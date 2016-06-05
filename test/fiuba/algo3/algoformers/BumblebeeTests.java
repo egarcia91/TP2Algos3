@@ -20,14 +20,14 @@ public class BumblebeeTests {
 
 	@Test
 	public void test01CrearBumblebee() {
-		Bumblebee bumblebee = new Bumblebee("Humanoide");
+		Bumblebee bumblebee = new Bumblebee();
 
 		Assert.assertTrue(bumblebee.getNombre() == "Bumblebee");
 	}
 
 	@Test
 	public void test02BumblebeeHumanoide() {
-		Bumblebee bumblebee = new Bumblebee("Humanoide");
+		Bumblebee bumblebee = new Bumblebee();
 		Assert.assertTrue(bumblebee.getVida() == vidaHumanoide);
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueHumanoide);
@@ -37,7 +37,8 @@ public class BumblebeeTests {
 
 	@Test
 	public void test03BumblebeeAlterno() {
-		Bumblebee bumblebee = new Bumblebee("Alterno");
+		Bumblebee bumblebee = new Bumblebee();
+		bumblebee.transformarAlterno();
 		Assert.assertTrue(bumblebee.getVida() == vidaAlterno);
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueAlterno);
@@ -47,7 +48,7 @@ public class BumblebeeTests {
 
 	@Test
 	public void test04BumblebeeTransformHumanoideAlterno() {
-		Bumblebee bumblebee = new Bumblebee("Humanoide");
+		Bumblebee bumblebee = new Bumblebee();
 		bumblebee.transformarAlterno();
 		Assert.assertTrue(bumblebee.getVida() == vidaAlterno);
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -58,7 +59,8 @@ public class BumblebeeTests {
 
 	@Test
 	public void test05BumblebeeTransformAlternoHumanoide() {
-		Bumblebee bumblebee = new Bumblebee("Alterno");
+		Bumblebee bumblebee = new Bumblebee();
+		bumblebee.transformarAlterno();
 		bumblebee.transformarHumanoide();
 		Assert.assertTrue(bumblebee.getVida() == vidaHumanoide);
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueHumanoide);

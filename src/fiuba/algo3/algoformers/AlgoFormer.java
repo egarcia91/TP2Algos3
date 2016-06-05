@@ -44,12 +44,12 @@ public class AlgoFormer {
 	public int getVelocidad(){
 		return estado.getVelocidad();
 	}
-
+	
 	public String tipoUnidad(){
 		return this.tipoUnidad;
 	}
 
-	public EstadoAlgoformer estadoTransformacion(){
+	public EstadoAlgoformer getEstado(){
 		return this.estado;
 	}
 

@@ -20,14 +20,14 @@ public class BonecrusherTests {
 
 	@Test
 	public void test01CrearBonecrusher() {
-		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
+		Bonecrusher bonecrusher = new Bonecrusher();
 
 		Assert.assertTrue(bonecrusher.getNombre() == "Bonecrusher");
 	}
 
 	@Test
 	public void test02BonecrusherHumanoide() {
-		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
+		Bonecrusher bonecrusher = new Bonecrusher();
 		Assert.assertTrue(bonecrusher.getVida() == vidaHumanoide);
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
@@ -37,7 +37,8 @@ public class BonecrusherTests {
 
 	@Test
 	public void test03BonecrusherAlterno() {
-		Bonecrusher bonecrusher = new Bonecrusher("Alterno");
+		Bonecrusher bonecrusher = new Bonecrusher();
+		bonecrusher.transformarAlterno();
 		Assert.assertTrue(bonecrusher.getVida() == vidaAlterno);
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
@@ -47,7 +48,7 @@ public class BonecrusherTests {
 
 	@Test
 	public void test04BonecrusherTransformHumanoideAlterno() {
-		Bonecrusher bonecrusher = new Bonecrusher("Humanoide");
+		Bonecrusher bonecrusher = new Bonecrusher();
 		bonecrusher.transformarAlterno();
 		Assert.assertTrue(bonecrusher.getVida() == vidaAlterno);
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
@@ -58,7 +59,8 @@ public class BonecrusherTests {
 
 	@Test
 	public void test05BonecrusherTransformAlternoHumanoide() {
-		Bonecrusher bonecrusher = new Bonecrusher("Alterno");
+		Bonecrusher bonecrusher = new Bonecrusher();
+		bonecrusher.transformarAlterno();
 		bonecrusher.transformarHumanoide();
 		Assert.assertTrue(bonecrusher.getVida() == vidaHumanoide);
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);

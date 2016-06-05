@@ -20,7 +20,7 @@ public class AlgoFormer {
 	protected String unidadAlterno = "terrestre";
 	private String tipoUnidad;
 
-	public void AlgoFormer(){
+	public AlgoFormer(){
 		estado = new Humanoide();
 		this.transformarHumanoide();
 	}

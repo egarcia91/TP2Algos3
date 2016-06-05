@@ -76,7 +76,7 @@ public class Tablero {
 		else return false;
 	}
 
-	//Estaria bueno extender este método hacia cualquier cosa (item, algoformer,spark, etc)
+	//Estaria bueno extender este metodo hacia cualquier cosa (item, algoformer,spark, etc)
 	//Se propone unir todos los elementos posibles en una superclase Elemento
 	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
 		if(posicionesElementosMoviles.containsKey(unAlgoFormer.nombre)== true){
@@ -96,7 +96,7 @@ public class Tablero {
 			Posicion posicion = buscarAlgoFormer(unAlgoFormer);
 			this.getCasillero(posicion).quitarAlgoFormer();
 	
-			//Ubicar nueva posicion dentro de los límites del tablero:
+			//Ubicar nueva posicion dentro de los limites del tablero:
 			if(posicion.getX() > valor){
 				posicion.setX(posicion.getX() - valor);
 			}
@@ -115,7 +115,7 @@ public class Tablero {
 			Posicion posicion = buscarAlgoFormer(unAlgoFormer);
 			this.getCasillero(posicion).quitarAlgoFormer();
 	
-			//Ubicar nueva posicion dentro de los límites del tablero:
+			//Ubicar nueva posicion dentro de los limites del tablero:
 			if(posicion.getX() < (ancho - valor)){
 				posicion.setX(posicion.getX() + valor);
 			}
@@ -135,7 +135,7 @@ public class Tablero {
 			Posicion posicion = buscarAlgoFormer(unAlgoFormer);
 			this.getCasillero(posicion).quitarAlgoFormer();
 	
-			//Ubicar nueva posicion dentro de los límites del tablero:
+			//Ubicar nueva posicion dentro de los limites del tablero:
 			if(posicion.getY() > valor){
 				posicion.setY(posicion.getY() - valor);
 			}
@@ -154,7 +154,7 @@ public class Tablero {
 			Posicion posicion = buscarAlgoFormer(unAlgoFormer);
 			this.getCasillero(posicion).quitarAlgoFormer();
 	
-			//Ubicar nueva posicion dentro de los límites del tablero:
+			//Ubicar nueva posicion dentro de los limites del tablero:
 			if(posicion.getY() < (alto - valor)){
 				posicion.setY(posicion.getY() + valor);
 			}
@@ -168,39 +168,33 @@ public class Tablero {
 		}	
 	}	
 
-/*
+
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
 		Posicion posicion = this.buscarAlgoFormer(unAlgoFormer);
-		int unAncho = posicion.getX() % this.alto + 1;
-		int unAlto = (posicion-(posicion%this.alto))/this.alto + 1;
-		int anchoFinal = unAncho+unaDistanciaAtaque;
-		int anchoInicial = unAncho-unaDistanciaAtaque;
-		int altoFinal = unAlto+unaDistanciaAtaque;
-		int altoInicial = unAlto-unaDistanciaAtaque;
+		int anchoFinal = posicion.getX()+unaDistanciaAtaque;
+		int anchoInicial = posicion.getX()-unaDistanciaAtaque;
+		int altoFinal = posicion.getY()+unaDistanciaAtaque;
+		int altoInicial = posicion.getY()-unaDistanciaAtaque;
 		if (this.perteneceEscuadronUno(unAlgoFormer)) {
 			for (AlgoFormer eachAlgoFormer :
 					this.escuadronDos) {
-				int positionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
-				int unAnchoEnemigo = positionEnemigo % this.alto + 1;
-				int unAltoEnemigo = (positionEnemigo - (positionEnemigo % this.alto)) / this.alto + 1;
-				if (unAnchoEnemigo >= anchoInicial && unAnchoEnemigo <= anchoFinal && unAltoEnemigo >= altoInicial && unAltoEnemigo <= altoFinal) {
+				Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
+				if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
 					eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
 				}
 			}
 		}else{
 				for (AlgoFormer eachAlgoFormer:
 						this.escuadronUno){
-					int positionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
-					int unAnchoEnemigo = positionEnemigo%this.alto + 1;
-					int unAltoEnemigo = (positionEnemigo-(positionEnemigo%this.alto))/this.alto + 1;
-					if ( unAnchoEnemigo >= anchoInicial && unAnchoEnemigo <= anchoFinal && unAltoEnemigo >= altoInicial && unAltoEnemigo <= altoFinal){
+					Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
+					if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
 						eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
 					}
 				}
 		}
 
 	}
-*/
+
 
 	@SuppressWarnings("unused")
 	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){

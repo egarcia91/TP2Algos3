@@ -16,8 +16,12 @@ public class Tablero {
 	private Casillero[][] tablero;
 	private Map<String,Posicion> posicionesElementosMoviles;
 
-	private List<AlgoFormer> escuadronUno;
-	private List<AlgoFormer> escuadronDos;
+	//private List<AlgoFormer> escuadronUno;
+	//private List<AlgoFormer> escuadronDos;
+
+	private EscuadronAutobot escuadronUno;
+	private EscuadronDecepticon escuadronDos;
+
 	private Spark spark;
 
 	public Tablero(int ancho, int alto){
@@ -27,8 +31,12 @@ public class Tablero {
 		tablero = new Casillero[ancho][alto];
 		this.ancho = ancho;
 		this.alto = alto;
-		escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronDos = new ArrayList<AlgoFormer>();
+		//escuadronUno = new ArrayList<AlgoFormer>();
+		//escuadronDos = new ArrayList<AlgoFormer>();
+
+
+		//escuadronUno = new EscuadronAutobot();
+		//escuadronDos = new EscuadronDecepticon();
 		posicionesElementosMoviles = new LinkedHashMap<String,Posicion>();
 	}
 	
@@ -63,8 +71,12 @@ public class Tablero {
 
 
 
-	public int cantidadAlgoFormer(){
+	/*public int cantidadAlgoFormer(){
 		return this.escuadronUno.size() + this.escuadronDos.size();
+	}*/
+
+	public int cantidadAlgoFormer(){
+		return this.escuadronUno.cantidadMiembrosEscuadron()+ this.escuadronDos.cantidadMiembrosEscuadron();
 	}
 
 	public int cantidadCasilleros(){
@@ -177,7 +189,7 @@ public class Tablero {
 		int altoInicial = posicion.getY()-unaDistanciaAtaque;
 		if (this.perteneceEscuadronUno(unAlgoFormer)) {
 			for (AlgoFormer eachAlgoFormer :
-					this.escuadronDos) {
+					this.escuadronDos.algoFormers) {
 				Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
 				if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
 					eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
@@ -185,7 +197,7 @@ public class Tablero {
 			}
 		}else{
 				for (AlgoFormer eachAlgoFormer:
-						this.escuadronUno){
+						this.escuadronUno.algoFormers){
 					Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
 					if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
 						eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
@@ -195,7 +207,7 @@ public class Tablero {
 
 	}
 
-
+	/*
 	@SuppressWarnings("unused")
 	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		for (AlgoFormer eachAlgoFormer:
@@ -205,12 +217,24 @@ public class Tablero {
 			}
 		}
 		return false;
-	}	
+	}*/
+
+
+	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
+		return this.escuadronUno.perteneceAlgoformer(unAlgoFormer);
+	}
+
+	private boolean perteneceEscuadronDos(AlgoFormer unAlgoFormer){
+		return this.escuadronDos.perteneceAlgoformer(unAlgoFormer);
+	}
+
+
+
 
 	private void ubicarEscuadronUno(){ //FIX: NO TIENE SENTIDO, INITX ES SIEMPRE 1
 		int initY = 1;
 		int initX = 1;
-		for (AlgoFormer algoFormer: this.escuadronUno) {
+		for (AlgoFormer algoFormer: this.escuadronUno.algoFormers) {
 			algoFormer.tablero = this;
 			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
 			if(initX == 1){
@@ -226,7 +250,7 @@ public class Tablero {
 	private void ubicarEscuadronDos(){
 		int initY = this.alto;
 		int initX = this.ancho;
-		for (AlgoFormer algoFormer: this.escuadronDos){
+		for (AlgoFormer algoFormer: this.escuadronDos.algoFormers){
 			algoFormer.tablero = this;
 			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
 			if(initX == this.ancho){
@@ -238,6 +262,8 @@ public class Tablero {
 		}
 	}
 
+
+	/*
 	public void agregarEscuadron(List<AlgoFormer> escuadron){
 		if(escuadronUno.size()==0){
 			this.escuadronUno.addAll(escuadron);
@@ -246,5 +272,17 @@ public class Tablero {
 			this.escuadronDos.addAll(escuadron);
 			this.ubicarEscuadronDos();
 		}
+	}*/
+
+	public void agregarEscuadron(Escuadron unEscuadron) {
+		if (!escuadronUno.existeEscuadron()) {
+			this.escuadronUno = new EscuadronAutobot();
+			this.ubicarEscuadronUno();
+		} else if (!escuadronUno.existeEscuadron()) {
+			this.escuadronDos = new EscuadronDecepticon();
+			this.ubicarEscuadronDos();
+		}
 	}
+
+
 }

@@ -22,24 +22,28 @@ public class Juego {
 		jugadores = new ArrayList<Jugador>();
 	}
 
-	private List<AlgoFormer> escuadronAutoBot = new ArrayList<AlgoFormer>(){{
+	/*private List<AlgoFormer> escuadronAutoBot = new ArrayList<AlgoFormer>(){{
 		add(new OptimusPrime("Humanoide"));
 		add(new Ratchet("Humanoide"));
 		add(new Bumblebee("Humanoide"));
-	}};
+	}};*/
 
-	private List<AlgoFormer> escuadronDecepticon = new ArrayList<AlgoFormer>(){{
+	private EscuadronAutobot escuadronAutobot;
+
+	/*private List<AlgoFormer> escuadronDecepticon = new ArrayList<AlgoFormer>(){{
 		add(new Megatron("Humanoide"));
 		add(new Bonecrusher("Humanoide"));
 		add(new Frenzy("Humanoide"));
-	}};
+	}};*/
+
+	private EscuadronDecepticon escuadronDecepticon;
 
 	public void agregarJugador(Jugador unJugador){
 		if (this.jugadores.size()==0) {
 			this.jugadores.add(unJugador);
 			unJugador.juego = this;
-			unJugador.asignarEscuadron(escuadronAutoBot);
-			this.tablero.agregarEscuadron(escuadronAutoBot);
+			unJugador.asignarEscuadron(escuadronAutobot);
+			this.tablero.agregarEscuadron(escuadronAutobot);
 		}
 		else {
 			this.jugadores.add(unJugador);

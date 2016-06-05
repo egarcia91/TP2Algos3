@@ -10,6 +10,7 @@ import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.Jugador;
 import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Juego;
+import fiuba.algo3.algoformers.Escuadron;
 
 public class AlgoFormerPrimerTests {
 
@@ -18,8 +19,9 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -34,8 +36,9 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -58,8 +61,9 @@ public class AlgoFormerPrimerTests {
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		algoFormer.transformarAlterno();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -114,14 +118,21 @@ public class AlgoFormerPrimerTests {
 	public void test05modosAtaques() {
 		Tablero tab = new Tablero(20,20);
 
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
+
+		Escuadron escuadronUno = new Escuadron();
+		Escuadron escuadronDos = new Escuadron();
+
 
 		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
-		escuadronUno.add(optimusPrime);
+		//escuadronUno.add(optimusPrime);
+		escuadronUno.algoFormers.add(optimusPrime);
+
 
 		Megatron megatron = new Megatron("Humanoide");
-		escuadronDos.add(megatron);
+		//escuadronDos.add(megatron);
+		escuadronDos.algoFormers.add(megatron);
 
 		tab.agregarEscuadron(escuadronUno);
 		tab.agregarEscuadron(escuadronDos);

@@ -19,8 +19,10 @@ public class Tablero {
 	//private List<AlgoFormer> escuadronUno;
 	//private List<AlgoFormer> escuadronDos;
 
-	private EscuadronAutobot escuadronUno;
-	private EscuadronDecepticon escuadronDos;
+	//private EscuadronAutobot escuadronUno;
+	//private EscuadronDecepticon escuadronDos;
+	private Escuadron escuadronUno;
+	private Escuadron escuadronDos;
 
 	private Spark spark;
 
@@ -37,6 +39,10 @@ public class Tablero {
 
 		//escuadronUno = new EscuadronAutobot();
 		//escuadronDos = new EscuadronDecepticon();
+
+		escuadronUno = new Escuadron();
+		escuadronDos = new Escuadron();
+
 		posicionesElementosMoviles = new LinkedHashMap<String,Posicion>();
 	}
 	
@@ -274,6 +280,7 @@ public class Tablero {
 		}
 	}*/
 
+	/*
 	public void agregarEscuadron(Escuadron unEscuadron) {
 		if (!escuadronUno.existeEscuadron()) {
 			this.escuadronUno = new EscuadronAutobot();
@@ -283,6 +290,19 @@ public class Tablero {
 			this.ubicarEscuadronDos();
 		}
 	}
+	*/
+
+
+	public void agregarEscuadron(Escuadron unEscuadron) {
+		if (!escuadronUno.existeEscuadron()) {
+			this.escuadronUno.algoFormers.addAll(unEscuadron.algoFormers);
+			this.ubicarEscuadronUno();
+		} else if (!escuadronDos.existeEscuadron()) {
+			this.escuadronDos.algoFormers.addAll(unEscuadron.algoFormers);
+			this.ubicarEscuadronDos();
+		}
+	}
+
 
 
 }

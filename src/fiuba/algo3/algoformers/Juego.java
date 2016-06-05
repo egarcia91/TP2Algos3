@@ -13,9 +13,14 @@ import fiuba.algo3.algoformers.Bonecrusher;
 import fiuba.algo3.algoformers.Frenzy;
 
 public class Juego {
-	private List<Jugador> jugadores = new ArrayList<Jugador>();
-	private Tablero tablero = new Tablero();
+	private Tablero tablero;
+	private List<Jugador> jugadores;
 	private Jugador turnoJugador;
+	
+	Juego(){
+		tablero = new Tablero(20,20);
+		jugadores = new ArrayList<Jugador>();
+	}
 
 	private List<AlgoFormer> escuadronAutoBot = new ArrayList<AlgoFormer>(){{
 		add(new OptimusPrime("Humanoide"));
@@ -69,11 +74,11 @@ public class Juego {
 	}
 
 	public int tableroAncho(){
-		return this.tablero.ancho();
+		return this.tablero.getAncho();
 	}
 
 	public int tableroAlto(){
-		return this.tablero.alto();
+		return this.tablero.getAlto();
 	}
 
 

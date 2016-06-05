@@ -7,7 +7,6 @@ import java.util.List;
 
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.Jugador;
-import fiuba.algo3.algoformers.Spark;
 
 public class JugadorTests {
 

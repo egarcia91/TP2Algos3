@@ -9,22 +9,21 @@ import java.util.List;
 import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.AlgoFormer;
 
-public class TableroTests {
+public class TableroTests{
 
 	@Test
 	public void test01TableroVacio() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero(20,20);
 
 		Assert.assertTrue(tablero.estaDesierto());
 	}
 
 	@Test
 	public void test02TieneCasilleros() {
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero(3,3);
 
-		Assert.assertTrue(tablero.espacio() > 8);
-		Assert.assertTrue(tablero.ancho() > 2);
-		Assert.assertTrue(tablero.alto() > 2);
+		Assert.assertTrue(tablero.getAncho() > 2);
+		Assert.assertTrue(tablero.getAlto() > 2);
 	}
 
 	@Test
@@ -46,7 +45,7 @@ public class TableroTests {
 		escuadronDos.add(quintoAlgoFormer);
 		escuadronDos.add(sextoAlgoFormer);
 
-		Tablero tablero = new Tablero();
+		Tablero tablero = new Tablero(20,20);
 		Assert.assertTrue(tablero.estaDesierto());
 
 		tablero.agregarEscuadron(escuadronUno);
@@ -59,8 +58,8 @@ public class TableroTests {
 		tablero.agregarEscuadron(escuadronDos);
 		Assert.assertFalse(tablero.estaDesierto());
 		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size() + escuadronDos.size());
-		int ancho = tablero.ancho();
-		int alto = tablero.alto();
+		int ancho = tablero.getAncho();
+		int alto = tablero.getAlto();
 		Assert.assertTrue(tablero.existeAlgoFormer(cuartoAlgoFormer,ancho,alto));
 		Assert.assertTrue(tablero.existeAlgoFormer(quintoAlgoFormer,ancho,alto-1));
 		Assert.assertTrue(tablero.existeAlgoFormer(sextoAlgoFormer,ancho-1,alto));

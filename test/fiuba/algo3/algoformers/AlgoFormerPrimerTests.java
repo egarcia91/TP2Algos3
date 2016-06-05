@@ -11,15 +11,11 @@ import fiuba.algo3.algoformers.Jugador;
 import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Juego;
 
-import fiuba.algo3.algoformers.CasilleroOcupadoException;
-
 public class AlgoFormerPrimerTests {
 
 	@Test
 	public void test01verificarMovimiento() {
-		Tablero tab = new Tablero();
-
-		Assert.assertTrue(tab.cantidadCasilleros() > 8);
+		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
@@ -35,7 +31,7 @@ public class AlgoFormerPrimerTests {
 	
 	@Test
 	public void test02verificarTransformacion() {
-		Tablero tab = new Tablero();
+		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
@@ -58,9 +54,7 @@ public class AlgoFormerPrimerTests {
 
 	@Test
 	public void test03verificarMovimientoAlterno() {
-		Tablero tab = new Tablero();
-
-		Assert.assertTrue(tab.cantidadCasilleros() > 9);
+		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		algoFormer.transformarAlterno();
@@ -118,9 +112,7 @@ public class AlgoFormerPrimerTests {
   
 	@Test
 	public void test05modosAtaques() {
-		Tablero tab = new Tablero();
-
-		Assert.assertTrue(tab.cantidadCasilleros() > 8);
+		Tablero tab = new Tablero(20,20);
 
 		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();

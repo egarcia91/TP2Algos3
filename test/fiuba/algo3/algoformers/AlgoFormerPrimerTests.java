@@ -42,17 +42,17 @@ public class AlgoFormerPrimerTests {
 
 		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Humanoide");
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
 
 		algoFormer.transformarAlterno();
 
-		Assert.assertFalse(algoFormer.estadoTransformacion() == "Humanoide");
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Alterno");
+		Assert.assertFalse(algoFormer.getEstado().getClass() == Humanoide.class);
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Alterno.class);
 
 		algoFormer.transformarHumanoide();
 
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Humanoide");
-		Assert.assertFalse(algoFormer.estadoTransformacion() == "Alterno");
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
+		Assert.assertFalse(algoFormer.getEstado().getClass() == Alterno.class);
 	}
 
 	@Test
@@ -125,7 +125,8 @@ public class AlgoFormerPrimerTests {
 		Escuadron escuadronDos = new Escuadron();
 
 
-		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
+		OptimusPrime optimusPrime = new OptimusPrime();
+		optimusPrime.transformarAlterno();
 		//escuadronUno.add(optimusPrime);
 		escuadronUno.algoFormers.add(optimusPrime);
 

@@ -1,6 +1,11 @@
 package fiuba.algo3.algoformers;
 
 import fiuba.algo3.algoformers.Tablero;
+import fiuba.algo3.algoformers.Posicion;
+import fiuba.algo3.algoformers.CasilleroOcupadoException;
+import fiuba.algo3.algoformers.MovimientoFueraDeRangoException;
+import java.lang.Math;
+
 
 public class AlgoFormer {
 
@@ -18,7 +23,8 @@ public class AlgoFormer {
 	protected int distanciaAtaqueAlterno = 4;
 	protected int velocidadAlterno = 5;
 	protected String unidadAlterno = "terrestre";
-	private String tipoUnidad;
+
+	protected Posicion posicion;
 
 	public AlgoFormer(){
 		estado = new Humanoide();
@@ -69,6 +75,20 @@ public class AlgoFormer {
 		estado.setDistanciaAtaque(this.distanciaAtaqueHumanoide);
 		estado.setVelocidad(this.velocidadHumanoide);
 		this.tipoUnidad = this.unidadHumanoide;
+	}
+
+	//mueve al algoFormer a una posicion absoluta del tablero. Podria haerse tambien un movimiento relativo.
+	void mover(int posX, int posY){
+		//primero me fijo si esa posicion esta dentro del rango de movimiento del algoformer.
+		if(!(Math.abs(this.posicion.getX() - posX) <= this.velocidad && Math.abs(this.posicion.getY() - posY )<= this.velocidad))
+			throw new MovimientoFueraDeRangoException();
+		else if(this.tablero.tieneAlgoFormer(posX,posY))
+			throw new CasilleroOcupadoException();
+		else{
+			this.tablero.quitarAlgoFormer(posX,posY);
+			this.tablero.agregarAlgoFormer(this,posX,posY);
+			this.posicion.setPosicion(posX,posY);
+		}
 	}
 
 	public void moverDerecha(){

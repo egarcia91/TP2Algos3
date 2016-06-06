@@ -66,5 +66,4 @@ public class Casillero {
 	public void quitarAlgoFormer(){
 		this.algoFormer = null;
 	}
-
 }

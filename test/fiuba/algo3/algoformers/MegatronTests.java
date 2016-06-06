@@ -32,7 +32,7 @@ public class MegatronTests {
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(megatron.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(megatron.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(megatron.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class MegatronTests {
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(megatron.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(megatron.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(megatron.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class MegatronTests {
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(megatron.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(megatron.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(megatron.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class MegatronTests {
 		Assert.assertTrue(megatron.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(megatron.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(megatron.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(megatron.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(megatron.getTipoUnidad() == unidadHumanoide);
 	}
 }

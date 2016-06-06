@@ -3,9 +3,9 @@ package fiuba.algo3.algoformers;
 public class EscuadronDecepticon extends Escuadron {
 
 	public EscuadronDecepticon(){
-		this.algoFormers.add(new Megatron());
-		this.algoFormers.add(new Bonecrusher());
-		this.algoFormers.add(new Frenzy());
+		this.agregarAlgoFormer(new Megatron());
+		this.agregarAlgoFormer(new Bonecrusher());
+		this.agregarAlgoFormer(new Frenzy());
 	}
 
 }

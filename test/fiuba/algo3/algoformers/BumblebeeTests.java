@@ -32,7 +32,7 @@ public class BumblebeeTests {
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bumblebee.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bumblebee.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bumblebee.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class BumblebeeTests {
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bumblebee.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bumblebee.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bumblebee.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class BumblebeeTests {
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bumblebee.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bumblebee.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bumblebee.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class BumblebeeTests {
 		Assert.assertTrue(bumblebee.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bumblebee.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bumblebee.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bumblebee.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bumblebee.getTipoUnidad() == unidadHumanoide);
 	}
 }

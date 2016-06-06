@@ -1,12 +1,9 @@
 package fiuba.algo3.algoformers;
 
-import fiuba.algo3.algoformers.Juego;
-
 public class Jugador {
 
 	private String nombre;
 	protected Juego juego;
-	//private List<AlgoFormer> escuadron = new ArrayList<AlgoFormer>();
 	private Escuadron escuadron;
 
 	public void setNombre(String unNombre){
@@ -17,12 +14,8 @@ public class Jugador {
 		return this.nombre;
 	}
 
-	/*public void asignarEscuadron(List<AlgoFormer> unEscuadron){
-		this.escuadron.addAll(unEscuadron);
-	}*/
-
 	public void asignarEscuadron(Escuadron unEscuadron){
-		this.escuadron.asignarEscuadron(unEscuadron);
+		this.escuadron = unEscuadron;
 	}
 
 	/*public boolean existeEscuadron(){
@@ -55,9 +48,6 @@ public class Jugador {
 		return (this.escuadron.estaAlgoformerEnPosicion( x, y));
 	}
 
-
-
-
 	public void moverAlgoFormer(){
 		if(this.juego.esTurnoJugador(this)){
 			this.juego.cambiarTurnoJugador();
@@ -65,7 +55,5 @@ public class Jugador {
 		} else {
 		}
 	}
-
-
 
 }

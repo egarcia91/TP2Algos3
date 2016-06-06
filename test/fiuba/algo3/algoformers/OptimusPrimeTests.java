@@ -32,7 +32,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(optimusPrime.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadHumanoide);
 	}
 }

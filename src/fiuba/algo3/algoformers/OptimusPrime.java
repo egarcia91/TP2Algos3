@@ -5,16 +5,26 @@ public class OptimusPrime extends AlgoFormer {
 	public OptimusPrime(){
 		super();
 		this.nombre = "Optimus Prime";
-		this.vidaHumanoide = 500;
-		this.fuerzaAtaqueHumanoide = 50;
-		this.distanciaAtaqueHumanoide = 2;
-		this.velocidadHumanoide = 2;
-		this.unidadHumanoide = "terrestre";
-		this.vidaAlterno = 500;
-		this.fuerzaAtaqueAlterno = 15;
-		this.distanciaAtaqueAlterno = 4;
-		this.velocidadAlterno = 5;
-		this.unidadAlterno = "terrestre";
+	}
+
+	@Override
+	public void transformarAlterno(){
+		this.estado = new Alterno();
+		estado.setVida(500);
+		estado.setFuerzaAtaque(15);
+		estado.setDistanciaAtaque(4);
+		estado.setVelocidad(5);
+		estado.setTerreno("terrestre");
+	}
+
+	@Override
+	public void transformarHumanoide(){
+		this.estado = new Humanoide();
+		estado.setVida(500);
+		estado.setFuerzaAtaque(50);
+		estado.setDistanciaAtaque(2);
+		estado.setVelocidad(2);
+		estado.setTerreno("terrestre");
 	}
 
 }

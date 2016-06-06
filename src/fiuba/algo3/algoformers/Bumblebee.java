@@ -5,15 +5,26 @@ public class Bumblebee extends AlgoFormer {
 	public Bumblebee(){
 		super();
 		this.nombre = "Bumblebee";
-		this.vidaHumanoide = 350;
-		this.fuerzaAtaqueHumanoide = 40;
-		this.distanciaAtaqueHumanoide = 1;
-		this.velocidadHumanoide = 2;
-		this.unidadHumanoide = "terrestre";
-		this.vidaAlterno = 350;
-		this.fuerzaAtaqueAlterno = 20;
-		this.distanciaAtaqueAlterno = 3;
-		this.velocidadAlterno = 5;
-		this.unidadAlterno = "terrestre";
 	}
+
+	@Override
+	public void transformarAlterno(){
+		this.estado = new Alterno();
+		estado.setVida(350);
+		estado.setFuerzaAtaque(20);
+		estado.setDistanciaAtaque(3);
+		estado.setVelocidad(5);
+		estado.setTerreno("terrestre");
+	}
+
+	@Override
+	public void transformarHumanoide(){
+		this.estado = new Humanoide();
+		estado.setVida(350);
+		estado.setFuerzaAtaque(40);
+		estado.setDistanciaAtaque(1);
+		estado.setVelocidad(2);
+		estado.setTerreno("terrestre");
+	}
+
 }

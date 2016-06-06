@@ -5,15 +5,26 @@ public class Bonecrusher extends AlgoFormer {
 	public Bonecrusher(){
 		super();
 		this.nombre = "Bonecrusher";
-		this.vidaHumanoide = 200;
-		this.fuerzaAtaqueHumanoide = 30;
-		this.distanciaAtaqueHumanoide = 3;
-		this.velocidadHumanoide = 1;
-		this.unidadHumanoide = "terrestre";
-		this.vidaAlterno = 200;
-		this.fuerzaAtaqueAlterno = 30;
-		this.distanciaAtaqueAlterno = 3;
-		this.velocidadAlterno = 8;
-		this.unidadAlterno = "terrestre";
 	}
+
+	@Override
+	public void transformarAlterno(){
+		this.estado = new Alterno();
+		estado.setVida(200);
+		estado.setFuerzaAtaque(30);
+		estado.setDistanciaAtaque(3);
+		estado.setVelocidad(8);
+		estado.setTerreno("terrestre");
+	}
+
+	@Override
+	public void transformarHumanoide(){
+		this.estado = new Humanoide();
+		estado.setVida(200);
+		estado.setFuerzaAtaque(30);
+		estado.setDistanciaAtaque(3);
+		estado.setVelocidad(1);
+		estado.setTerreno("terrestre");
+	}
+
 }

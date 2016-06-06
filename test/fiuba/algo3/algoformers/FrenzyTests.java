@@ -32,7 +32,7 @@ public class FrenzyTests {
 		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(frenzy.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(frenzy.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class FrenzyTests {
 		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(frenzy.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(frenzy.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(frenzy.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class FrenzyTests {
 		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(frenzy.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(frenzy.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(frenzy.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class FrenzyTests {
 		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(frenzy.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(frenzy.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(frenzy.getTipoUnidad() == unidadHumanoide);
 	}
 }

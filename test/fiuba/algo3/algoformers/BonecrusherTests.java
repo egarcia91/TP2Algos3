@@ -32,7 +32,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bonecrusher.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadHumanoide);
 	}
 }

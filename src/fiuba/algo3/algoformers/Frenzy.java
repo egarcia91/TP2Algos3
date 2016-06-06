@@ -5,15 +5,26 @@ public class Frenzy extends AlgoFormer {
 	public Frenzy(){
 		super();
 		this.nombre = "Frenzy";
-		this.vidaHumanoide = 400;
-		this.fuerzaAtaqueHumanoide = 10;
-		this.distanciaAtaqueHumanoide = 5;
-		this.velocidadHumanoide = 2;
-		this.unidadHumanoide = "terrestre";
-		this.vidaAlterno = 400;
-		this.fuerzaAtaqueAlterno = 25;
-		this.distanciaAtaqueAlterno = 2;
-		this.velocidadAlterno = 6;
-		this.unidadAlterno = "terrestre";
 	}
+
+	@Override
+	public void transformarAlterno(){
+		this.estado = new Alterno();
+		estado.setVida(400);
+		estado.setFuerzaAtaque(25);
+		estado.setDistanciaAtaque(2);
+		estado.setVelocidad(6);
+		estado.setTerreno("terrestre");
+	}
+
+	@Override
+	public void transformarHumanoide(){
+		this.estado = new Humanoide();
+		estado.setVida(400);
+		estado.setFuerzaAtaque(10);
+		estado.setDistanciaAtaque(5);
+		estado.setVelocidad(2);
+		estado.setTerreno("terrestre");
+	}
+
 }

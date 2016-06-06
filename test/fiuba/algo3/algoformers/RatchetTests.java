@@ -32,7 +32,7 @@ public class RatchetTests {
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(ratchet.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(ratchet.getTipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
@@ -43,7 +43,7 @@ public class RatchetTests {
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(ratchet.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(ratchet.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(ratchet.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class RatchetTests {
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(ratchet.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(ratchet.tipoUnidad() == unidadAlterno);
+		Assert.assertTrue(ratchet.getTipoUnidad() == unidadAlterno);
 	}
 
 	@Test
@@ -66,6 +66,6 @@ public class RatchetTests {
 		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(ratchet.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(ratchet.tipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(ratchet.getTipoUnidad() == unidadHumanoide);
 	}
 }

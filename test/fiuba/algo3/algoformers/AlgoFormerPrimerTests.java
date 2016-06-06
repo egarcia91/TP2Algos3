@@ -84,9 +84,9 @@ public class AlgoFormerPrimerTests {
 		Jugador jugadorDos = new Jugador();
 		jugadorDos.setNombre("Max");
 
-		juego.agregarJugador(jugadorUno);
+		juego.agregarJugadorUno(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
-		juego.agregarJugador(jugadorDos);
+		juego.agregarJugadorDos(jugadorDos);
 		Assert.assertTrue(juego.existeJugador(jugadorDos));
 
 		juego.iniciar();

@@ -7,12 +7,12 @@ public class Escuadron {
 
 	protected List<AlgoFormer> algoFormers = new ArrayList<AlgoFormer>();
 
-	public void asignarEscuadron(Escuadron unEscuadron){
-		this.algoFormers.addAll(unEscuadron.algoFormers);
+	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
+		this.algoFormers.add(unAlgoFormer);
 	}
 
 	public boolean existeEscuadron(){
-		return (this.algoFormers.size()!=0) ;
+		return (this.algoFormers.size() != 0);
 	}
 
 	public int cantidadMiembrosEscuadron(){
@@ -32,9 +32,9 @@ public class Escuadron {
 	public boolean perteneceAlgoformer(AlgoFormer unAlgoFormer) {
 		for (AlgoFormer eachAlgoFormer :
 				algoFormers) {
-			if (eachAlgoFormer.getNombre() == unAlgoFormer.getNombre()) {
-				return true;
-			}
+//			if (eachAlgoFormer.getNombre() == unAlgoFormer.getNombre()) {
+//				return true;
+//			}
 		}
 		return false;
 	}

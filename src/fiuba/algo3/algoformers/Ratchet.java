@@ -5,15 +5,26 @@ public class Ratchet extends AlgoFormer {
 	public Ratchet(){
 		super();
 		this.nombre = "Ratchet";
-		this.vidaHumanoide = 150;
-		this.fuerzaAtaqueHumanoide = 5;
-		this.distanciaAtaqueHumanoide = 5;
-		this.velocidadHumanoide = 1;
-		this.unidadHumanoide = "terrestre";
-		this.vidaAlterno = 150;
-		this.fuerzaAtaqueAlterno = 35;
-		this.distanciaAtaqueAlterno = 2;
-		this.velocidadAlterno = 8;
-		this.unidadAlterno = "aerea";
 	}
+
+	@Override
+	public void transformarAlterno(){
+		this.estado = new Alterno();
+		estado.setVida(150);
+		estado.setFuerzaAtaque(35);
+		estado.setDistanciaAtaque(2);
+		estado.setVelocidad(8);
+		estado.setTerreno("aerea");
+	}
+
+	@Override
+	public void transformarHumanoide(){
+		this.estado = new Humanoide();
+		estado.setVida(150);
+		estado.setFuerzaAtaque(5);
+		estado.setDistanciaAtaque(5);
+		estado.setVelocidad(1);
+		estado.setTerreno("terrestre");
+	}
+
 }

@@ -16,4 +16,9 @@ public class Posicion{
 	public int getX(){return x;}
 
 	public int getY(){return y;}
+
+	public void setPosicion(int posX, int posY){
+		this.x = posX;
+		this.y = posY;
+	}
 }

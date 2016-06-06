@@ -31,12 +31,6 @@ public class Tablero {
 		tablero = new Casillero[ancho][alto];
 		this.ancho = ancho;
 		this.alto = alto;
-		//escuadronUno = new ArrayList<AlgoFormer>();
-		//escuadronDos = new ArrayList<AlgoFormer>();
-
-
-		//escuadronUno = new EscuadronAutobot();
-		//escuadronDos = new EscuadronDecepticon();
 		posicionesElementosMoviles = new LinkedHashMap<String,Posicion>();
 	}
 	
@@ -59,6 +53,10 @@ public class Tablero {
 			return tablero[posicion.getX()][posicion.getY()];
 		}
 		throw new CasilleroNoExisteException();
+	}
+
+	public void quitarAlgoFormer(int posX, int posY){
+		this.tablero[posX][posY].quitarAlgoFormer();
 	}
 	
 	public void ubicarSpark(){
@@ -120,7 +118,11 @@ public class Tablero {
 		catch(AlgoFormerNoExisteException e){
 			return;
 		}	
-	}	
+	}
+
+	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int posX,int posY){
+		this.tablero[posX][posY].agregarAlgoFormer(unAlgoFormer);
+	}
 
 	public void moverDerecha(AlgoFormer unAlgoFormer, int valor){
 		try{
@@ -284,5 +286,8 @@ public class Tablero {
 		}
 	}
 
+	public boolean tieneAlgoFormer(int posX,int posY){
+		return(this.tablero[posX][posY].tieneAlgoFormer());
+	}
 
 }

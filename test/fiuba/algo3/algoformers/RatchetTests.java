@@ -20,50 +20,52 @@ public class RatchetTests {
 
 	@Test
 	public void test01CrearRatchet() {
-		Ratchet ratchet = new Ratchet("Humanoide");
+		Ratchet ratchet = new Ratchet();
 
 		Assert.assertTrue(ratchet.getNombre() == "Ratchet");
 	}
 
 	@Test
 	public void test02RatchetHumanoide() {
-		Ratchet ratchet = new Ratchet("Humanoide");
-		Assert.assertTrue(ratchet.vida() == vidaHumanoide);
-		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(ratchet.velocidad() == velocidadHumanoide);
+		Ratchet ratchet = new Ratchet();
+		Assert.assertTrue(ratchet.getVida() == vidaHumanoide);
+		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(ratchet.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(ratchet.tipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
 	public void test03RatchetAlterno() {
-		Ratchet ratchet = new Ratchet("Alterno");
-		Assert.assertTrue(ratchet.vida() == vidaAlterno);
-		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(ratchet.velocidad() == velocidadAlterno);
+		Ratchet ratchet = new Ratchet();
+		ratchet.transformarAlterno();
+		Assert.assertTrue(ratchet.getVida() == vidaAlterno);
+		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(ratchet.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(ratchet.tipoUnidad() == unidadAlterno);
 	}
 
 	@Test
 	public void test04RatchetTransformHumanoideAlterno() {
-		Ratchet ratchet = new Ratchet("Humanoide");
+		Ratchet ratchet = new Ratchet();
 		ratchet.transformarAlterno();
-		Assert.assertTrue(ratchet.vida() == vidaAlterno);
-		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(ratchet.velocidad() == velocidadAlterno);
+		Assert.assertTrue(ratchet.getVida() == vidaAlterno);
+		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(ratchet.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(ratchet.tipoUnidad() == unidadAlterno);
 	}
 
 	@Test
 	public void test05RatchetTransformAlternoHumanoide() {
-		Ratchet ratchet = new Ratchet("Alterno");
+		Ratchet ratchet = new Ratchet();
+		ratchet.transformarAlterno();
 		ratchet.transformarHumanoide();
-		Assert.assertTrue(ratchet.vida() == vidaHumanoide);
-		Assert.assertTrue(ratchet.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(ratchet.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(ratchet.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(ratchet.getVida() == vidaHumanoide);
+		Assert.assertTrue(ratchet.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(ratchet.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(ratchet.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(ratchet.tipoUnidad() == unidadHumanoide);
 	}
 }

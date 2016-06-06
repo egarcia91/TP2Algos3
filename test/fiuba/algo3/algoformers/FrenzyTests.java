@@ -20,50 +20,52 @@ public class FrenzyTests {
 
 	@Test
 	public void test01CrearFrenzy() {
-		Frenzy frenzy = new Frenzy("Humanoide");
+		Frenzy frenzy = new Frenzy();
 
 		Assert.assertTrue(frenzy.getNombre() == "Frenzy");
 	}
 
 	@Test
 	public void test02FrenzyHumanoide() {
-		Frenzy frenzy = new Frenzy("Humanoide");
-		Assert.assertTrue(frenzy.vida() == vidaHumanoide);
-		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(frenzy.velocidad() == velocidadHumanoide);
+		Frenzy frenzy = new Frenzy();
+		Assert.assertTrue(frenzy.getVida() == vidaHumanoide);
+		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(frenzy.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(frenzy.tipoUnidad() == unidadHumanoide);
 	}
 
 	@Test
 	public void test03FrenzyAlterno() {
-		Frenzy frenzy = new Frenzy("Alterno");
-		Assert.assertTrue(frenzy.vida() == vidaAlterno);
-		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(frenzy.velocidad() == velocidadAlterno);
+		Frenzy frenzy = new Frenzy();
+		frenzy.transformarAlterno();
+		Assert.assertTrue(frenzy.getVida() == vidaAlterno);
+		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(frenzy.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(frenzy.tipoUnidad() == unidadAlterno);
 	}
 
 	@Test
 	public void test04FrenzyTransformHumanoideAlterno() {
-		Frenzy frenzy = new Frenzy("Humanoide");
+		Frenzy frenzy = new Frenzy();
 		frenzy.transformarAlterno();
-		Assert.assertTrue(frenzy.vida() == vidaAlterno);
-		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueAlterno);
-		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueAlterno);
-		Assert.assertTrue(frenzy.velocidad() == velocidadAlterno);
+		Assert.assertTrue(frenzy.getVida() == vidaAlterno);
+		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueAlterno);
+		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueAlterno);
+		Assert.assertTrue(frenzy.getVelocidad() == velocidadAlterno);
 		Assert.assertTrue(frenzy.tipoUnidad() == unidadAlterno);
 	}
 
 	@Test
 	public void test05FrenzyTransformAlternoHumanoide() {
-		Frenzy frenzy = new Frenzy("Alterno");
+		Frenzy frenzy = new Frenzy();
+		frenzy.transformarAlterno();
 		frenzy.transformarHumanoide();
-		Assert.assertTrue(frenzy.vida() == vidaHumanoide);
-		Assert.assertTrue(frenzy.fuerzaAtaque() == fuerzaAtaqueHumanoide);
-		Assert.assertTrue(frenzy.distanciaAtaque() == distanciaAtaqueHumanoide);
-		Assert.assertTrue(frenzy.velocidad() == velocidadHumanoide);
+		Assert.assertTrue(frenzy.getVida() == vidaHumanoide);
+		Assert.assertTrue(frenzy.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
+		Assert.assertTrue(frenzy.getDistanciaAtaque() == distanciaAtaqueHumanoide);
+		Assert.assertTrue(frenzy.getVelocidad() == velocidadHumanoide);
 		Assert.assertTrue(frenzy.tipoUnidad() == unidadHumanoide);
 	}
 }

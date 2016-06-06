@@ -4,88 +4,76 @@ import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Posicion;
 import fiuba.algo3.algoformers.CasilleroOcupadoException;
 import fiuba.algo3.algoformers.MovimientoFueraDeRangoException;
-
 import java.lang.Math;
 
 
 public class AlgoFormer {
 
 	protected Tablero tablero;
+	private EstadoAlgoformer estado;
 
-	protected String nombre = "AlgoFormer";
-	private int vida;
-	private int fuerzaAtaque;
-	private int distanciaAtaque;
-	private int velocidad;
-	private String tipoUnidad;
-	private String estado = "Humanoide";
-
+	protected String nombre = "Algoformer";
 	protected int vidaHumanoide = 500;
 	protected int fuerzaAtaqueHumanoide = 50;
 	protected int distanciaAtaqueHumanoide = 2;
 	protected int velocidadHumanoide = 2;
 	protected String unidadHumanoide = "terrestre";
-
 	protected int vidaAlterno = 500;
 	protected int fuerzaAtaqueAlterno = 15;
 	protected int distanciaAtaqueAlterno = 4;
 	protected int velocidadAlterno = 5;
 	protected String unidadAlterno = "terrestre";
+
 	protected Posicion posicion;
 
-	public void AlgoFormer(String modo){
-		if(modo == "Alterno"){
-			this.estado = "Alterno";
-			this.transformarAlterno();
-		} else {
-			this.estado = "Humanoide";
-			this.transformarHumanoide();
-		}
+	public AlgoFormer(){
+		estado = new Humanoide();
+		this.transformarHumanoide();
 	}
 
 	public String getNombre(){
 		return this.nombre;
 	}
 
-	public int vida(){
-		return this.vida;
+	public int getVida(){
+		return estado.getVida();
 	}
 
-	public int fuerzaAtaque(){
-		return this.fuerzaAtaque;
+	public int getFuerzaAtaque(){
+		return estado.getFuerzaAtaque();
 	}
 
-	public int distanciaAtaque(){
-		return this.distanciaAtaque;
+	public int getDistanciaAtaque(){
+		return estado.getDistanciaAtaque();
 	}
 
-	public int velocidad(){
-		return this.velocidad;
+	public int getVelocidad(){
+		return estado.getVelocidad();
 	}
-
+	
 	public String tipoUnidad(){
 		return this.tipoUnidad;
 	}
 
-	public String estadoTransformacion(){
+	public EstadoAlgoformer getEstado(){
 		return this.estado;
 	}
 
 	public void transformarAlterno(){
-		this.estado = "Alterno";
-		this.vida = this.vidaAlterno;
-		this.fuerzaAtaque = this.fuerzaAtaqueAlterno;
-		this.distanciaAtaque = this.distanciaAtaqueAlterno;
-		this.velocidad = this.velocidadAlterno;
+		this.estado = new Alterno();
+		estado.setVida(this.vidaAlterno);
+		estado.setFuerzaAtaque(this.fuerzaAtaqueAlterno);
+		estado.setDistanciaAtaque(this.distanciaAtaqueAlterno);
+		estado.setVelocidad(this.velocidadAlterno);
 		this.tipoUnidad = this.unidadAlterno;
 	}
 
 	public void transformarHumanoide(){
-		this.estado = "Humanoide";
-		this.vida = this.vidaHumanoide;
-		this.fuerzaAtaque = this.fuerzaAtaqueHumanoide;
-		this.distanciaAtaque = this.distanciaAtaqueHumanoide;
-		this.velocidad = this.velocidadHumanoide;
+		this.estado = new Humanoide();
+		estado.setVida(this.vidaHumanoide);
+		estado.setFuerzaAtaque(this.fuerzaAtaqueHumanoide);
+		estado.setDistanciaAtaque(this.distanciaAtaqueHumanoide);
+		estado.setVelocidad(this.velocidadHumanoide);
 		this.tipoUnidad = this.unidadHumanoide;
 	}
 
@@ -104,30 +92,30 @@ public class AlgoFormer {
 	}
 
 	public void moverDerecha(){
-		tablero.moverDerecha(this,this.velocidad);
+		tablero.moverDerecha(this,estado.getVelocidad());
 	}
 
 	public void moverIzquierda(){
-		tablero.moverIzquierda(this,this.velocidad);
+		tablero.moverIzquierda(this,estado.getVelocidad());
 	}
 
 	public void moverArriba(){
-		tablero.moverArriba(this,this.velocidad);
+		tablero.moverArriba(this,estado.getVelocidad());
 	}
 
 	public void moverAbajo(){
-		tablero.moverAbajo(this,this.velocidad);
+		tablero.moverAbajo(this,estado.getVelocidad());
 	}
 
 	public void atacar(){
-		this.tablero.ataqueZona(this, this.distanciaAtaque, this.fuerzaAtaque);
+		this.tablero.ataqueZona(this,estado.getDistanciaAtaque(),estado.getFuerzaAtaque());
 	}
 
 	public boolean estaEnPosicion(int x, int y){
 		return this.tablero.existeAlgoFormer(this, x, y);
 	}
 
-	public void recibirAtaque(int fueraAtaque){
-		this.vida-=fueraAtaque;
+	public void recibirAtaque(int fuerzaAtaque){
+		estado.setVida(estado.getVida()-fuerzaAtaque);
 	}
 }

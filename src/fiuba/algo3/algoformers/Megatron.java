@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class Megatron extends AlgoFormer {
 
-	public Megatron(String modo){
+	public Megatron(){
+		super();
 		this.nombre = "Megatron";
 		this.vidaHumanoide = 550;
 		this.fuerzaAtaqueHumanoide = 10;
@@ -14,7 +15,6 @@ public class Megatron extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 2;
 		this.velocidadAlterno = 8;
 		this.unidadAlterno = "aerea";
-		super.AlgoFormer(modo);
 	}
 
 }

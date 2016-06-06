@@ -1,9 +1,5 @@
 package fiuba.algo3.algoformers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.Juego;
 
 public class Jugador {
@@ -41,7 +37,7 @@ public class Jugador {
 		return this.escuadron.size();
 	}*/
 
-	public int cantidadAlgoFormers(){
+	public int cantidadAlgoFormer(){
 		return this.escuadron.cantidadMiembrosEscuadron();
 	}
 

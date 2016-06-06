@@ -63,9 +63,9 @@ public class CasilleroTests {
 
 	@Test(expected=CasilleroOcupadoException.class)
 	public void test05CasilleroNoSuperponerAlgoFormers() {
-		OptimusPrime optimusPrime = new OptimusPrime("Humanoide");
+		OptimusPrime optimusPrime = new OptimusPrime();
 
-		Megatron megatron = new Megatron("Humanoide");
+		Megatron megatron = new Megatron();
 
 		Casillero casillero = new Casillero();
 		casillero.agregarAlgoFormer(optimusPrime);

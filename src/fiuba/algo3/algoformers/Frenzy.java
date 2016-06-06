@@ -2,7 +2,8 @@ package fiuba.algo3.algoformers;
 
 public class Frenzy extends AlgoFormer {
 
-	public Frenzy(String modo){
+	public Frenzy(){
+		super();
 		this.nombre = "Frenzy";
 		this.vidaHumanoide = 400;
 		this.fuerzaAtaqueHumanoide = 10;
@@ -14,6 +15,5 @@ public class Frenzy extends AlgoFormer {
 		this.distanciaAtaqueAlterno = 2;
 		this.velocidadAlterno = 6;
 		this.unidadAlterno = "terrestre";
-		super.AlgoFormer(modo);
 	}
 }

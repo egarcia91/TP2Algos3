@@ -10,6 +10,7 @@ import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.Jugador;
 import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.Juego;
+import fiuba.algo3.algoformers.Escuadron;
 
 public class AlgoFormerPrimerTests {
 
@@ -18,8 +19,9 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -34,22 +36,23 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Humanoide");
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
 
 		algoFormer.transformarAlterno();
 
-		Assert.assertFalse(algoFormer.estadoTransformacion() == "Humanoide");
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Alterno");
+		Assert.assertFalse(algoFormer.getEstado().getClass() == Humanoide.class);
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Alterno.class);
 
 		algoFormer.transformarHumanoide();
 
-		Assert.assertTrue(algoFormer.estadoTransformacion() == "Humanoide");
-		Assert.assertFalse(algoFormer.estadoTransformacion() == "Alterno");
+		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
+		Assert.assertFalse(algoFormer.getEstado().getClass() == Alterno.class);
 	}
 
 	@Test
@@ -58,8 +61,9 @@ public class AlgoFormerPrimerTests {
 
 		AlgoFormer algoFormer = new AlgoFormer();
 		algoFormer.transformarAlterno();
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		escuadronUno.add(algoFormer);
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.algoFormers.add(algoFormer);
 
 		tab.agregarEscuadron(escuadronUno);
 
@@ -114,19 +118,27 @@ public class AlgoFormerPrimerTests {
 	public void test05modosAtaques() {
 		Tablero tab = new Tablero(20,20);
 
-		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
 
-		OptimusPrime optimusPrime = new OptimusPrime("Alterno");
-		escuadronUno.add(optimusPrime);
+		Escuadron escuadronUno = new Escuadron();
+		Escuadron escuadronDos = new Escuadron();
 
-		Megatron megatron = new Megatron("Humanoide");
-		escuadronDos.add(megatron);
+
+		OptimusPrime optimusPrime = new OptimusPrime();
+		optimusPrime.transformarAlterno();
+		//escuadronUno.add(optimusPrime);
+		escuadronUno.algoFormers.add(optimusPrime);
+
+
+		Megatron megatron = new Megatron();
+		//escuadronDos.add(megatron);
+		escuadronDos.algoFormers.add(megatron);
 
 		tab.agregarEscuadron(escuadronUno);
 		tab.agregarEscuadron(escuadronDos);
 
-		Assert.assertTrue(megatron.vida() == 550);
+		Assert.assertTrue(megatron.getVida() == 550);
 
 		optimusPrime.moverDerecha();
 		optimusPrime.moverDerecha();
@@ -137,9 +149,9 @@ public class AlgoFormerPrimerTests {
 		optimusPrime.moverArriba();
 
 		optimusPrime.atacar();
-		Assert.assertTrue(megatron.vida() == 535);
+		Assert.assertTrue(megatron.getVida() == 535);
 
-		Assert.assertTrue(optimusPrime.vida() == 500);
+		Assert.assertTrue(optimusPrime.getVida() == 500);
 
 		megatron.moverIzquierda();
 		megatron.moverIzquierda();
@@ -150,15 +162,15 @@ public class AlgoFormerPrimerTests {
 		megatron.moverAbajo();
 
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 
 		optimusPrime.moverIzquierda();
 		optimusPrime.moverIzquierda();
 		optimusPrime.moverIzquierda();
 
 		//Ahora esta lejos!
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 		megatron.atacar();
-		Assert.assertTrue(optimusPrime.vida() == 490);
+		Assert.assertTrue(optimusPrime.getVida() == 490);
 	}
 }

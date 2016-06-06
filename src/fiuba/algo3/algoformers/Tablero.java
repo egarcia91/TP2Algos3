@@ -41,7 +41,7 @@ public class Tablero {
 
 		escuadronUno = new Escuadron();
 		escuadronDos = new Escuadron();
-
+		posicionesElementosMoviles = new LinkedHashMap<String,Posicion>();
 	}
 	
 	public int getAncho(){

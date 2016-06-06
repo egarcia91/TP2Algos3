@@ -23,7 +23,7 @@ public class AlgoFormer {
 	protected int distanciaAtaqueAlterno = 4;
 	protected int velocidadAlterno = 5;
 	protected String unidadAlterno = "terrestre";
-
+	protected String tipoUnidad;
 	protected Posicion posicion;
 
 	public AlgoFormer(){
@@ -80,7 +80,7 @@ public class AlgoFormer {
 	//mueve al algoFormer a una posicion absoluta del tablero. Podria haerse tambien un movimiento relativo.
 	void mover(int posX, int posY){
 		//primero me fijo si esa posicion esta dentro del rango de movimiento del algoformer.
-		if(!(Math.abs(this.posicion.getX() - posX) <= this.velocidad && Math.abs(this.posicion.getY() - posY )<= this.velocidad))
+		if(!(Math.abs(this.posicion.getX() - posX) <= estado.getVelocidad() && Math.abs(this.posicion.getY() - posY )<= estado.getVelocidad()))
 			throw new MovimientoFueraDeRangoException();
 		else if(this.tablero.tieneAlgoFormer(posX,posY))
 			throw new CasilleroOcupadoException();

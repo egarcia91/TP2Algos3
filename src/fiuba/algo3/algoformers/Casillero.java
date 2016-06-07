@@ -8,6 +8,7 @@ import fiuba.algo3.algoformers.CasilleroOcupadoException;
 public class Casillero {
 	private Spark spark;
 	private AlgoFormer algoFormer;
+	private Terreno terreno;
 
 	public boolean tieneAlgoFormer(){
 		return this.algoFormer != null;

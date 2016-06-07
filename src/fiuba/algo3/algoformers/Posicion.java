@@ -17,8 +17,21 @@ public class Posicion{
 
 	public int getY(){return y;}
 
-	public void setPosicion(int posX, int posY){
-		this.x = posX;
-		this.y = posY;
+	public void setPosicion(int x, int y){
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Posicion sumar(Posicion pos){
+		this.x += pos.x;
+		this.y += pos.y;
+		return this;
+	}
+	
+	public Posicion restar(Posicion pos){
+		this.x -= pos.x;
+		this.y -= pos.y;
+		return this;
 	}
 }
+

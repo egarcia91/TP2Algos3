@@ -1,6 +1,7 @@
 package fiuba.algo3.algoformers;
 
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
+import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Tablero;
 
 public class AlgoFormer {
@@ -61,26 +62,26 @@ public class AlgoFormer {
 	}
 
 
-	public void mover(int deltaX, int deltaY){
+	public void mover(Posicion posRelativa){
 		//if(!this.estado.estaEnRango(deltaX,deltaY))
 		//	throw new MovimientoFueraDeRangoException();
-		this.tablero.moverAlgoFormer(this,deltaX,deltaY);
+		this.tablero.moverAlgoFormer(this,posRelativa);
 	}
 
 	public void moverDerecha(){
-		tablero.moverDerecha(this,this.estado.getVelocidad());
+		tablero.moverAlgoFormer(this,1,0);
 	}
 
 	public void moverIzquierda(){
-		tablero.moverIzquierda(this,this.estado.getVelocidad());
+		tablero.moverAlgoFormer(this,-1,0);
 	}
 
 	public void moverArriba(){
-		tablero.moverArriba(this,this.estado.getVelocidad());
+		tablero.moverAlgoFormer(this,0,1);
 	}
 
 	public void moverAbajo(){
-		tablero.moverAbajo(this,this.estado.getVelocidad());
+		tablero.moverAlgoFormer(this,0,-1);
 	}
 
 	public void atacar(){

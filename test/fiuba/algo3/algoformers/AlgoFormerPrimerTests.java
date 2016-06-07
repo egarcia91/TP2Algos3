@@ -14,23 +14,6 @@ import fiuba.algo3.algoformers.personajes.OptimusPrime;
 public class AlgoFormerPrimerTests {
 
 	@Test
-	public void test01verificarMovimiento() {
-		Tablero tab = new Tablero(20,20);
-
-		AlgoFormer algoFormer = new AlgoFormer();
-		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.algoFormers.add(algoFormer);
-
-		tab.agregarEscuadron(escuadronUno);
-
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
-
-		algoFormer.moverDerecha();
-		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,3,1));
-	}
-	
-	@Test
 	public void test02verificarTransformacion() {
 		Tablero tab = new Tablero(20,20);
 
@@ -52,24 +35,6 @@ public class AlgoFormerPrimerTests {
 
 		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
 		Assert.assertFalse(algoFormer.getEstado().getClass() == Alterno.class);
-	}
-
-	@Test
-	public void test03verificarMovimientoAlterno() {
-		Tablero tab = new Tablero(20,20);
-
-		AlgoFormer algoFormer = new AlgoFormer();
-		algoFormer.transformarAlterno();
-		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.algoFormers.add(algoFormer);
-
-		tab.agregarEscuadron(escuadronUno);
-
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
-
-		algoFormer.moverDerecha();
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,6,1));
 	}
 
 	@Test

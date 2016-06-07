@@ -3,11 +3,6 @@ package fiuba.algo3.tablero;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import fiuba.algo3.algoformers.*;
 import fiuba.algo3.algoformers.personajes.*;
 
@@ -52,7 +47,35 @@ public class TableroTests{
 	}
 
 	@Test
-	public void test03UbicarAlgoFormer() {
+	public void test04MovimientoDeAlgoformers() {
+		Tablero tablero = new Tablero(200,200);
+		Megatron megatron = new Megatron();
+		Posicion posicionActual = new Posicion(10,10);
+		
+		tablero.agregarAlgoFormer(megatron,posicionActual);
+		
+		posicionActual.sumar(3,4);
+		tablero.moverAlgoFormer(megatron,3,4);
+		Assert.assertTrue(tablero.getPosicion(megatron) == posicionActual);
+		
+		posicionActual.sumar(-3,10);
+		tablero.moverAlgoFormer(megatron, -3,10);
+		Assert.assertTrue(tablero.getPosicion(megatron) == posicionActual);
+	}
+	
+	@Test (expected = CasilleroNoExisteException.class)
+	public void test05MovimientoNoSeVaDeLosLimitesDelTablero(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		Megatron megatron = new Megatron();
+		
+		tablero.agregarAlgoFormer(megatron,TABLERO_ANCHO - 1,TABLERO_ALTO - 1);
+		tablero.moverAlgoFormer(megatron,1,1);
+	}
+	
+	
+	
+	@Test
+	public void test06UbicarAlgoFormer() {
 		AlgoFormer primerAlgoFormer = new AlgoFormer();
 		AlgoFormer segundoAlgoFormer = new AlgoFormer();
 		AlgoFormer tercerAlgoFormer = new AlgoFormer();
@@ -90,6 +113,9 @@ public class TableroTests{
 		Assert.assertTrue(tablero.existeAlgoFormer(sextoAlgoFormer,ancho-1,alto));
 	}
 
+
+		
+	
 //	@Test
 //	public void test04MoverAlgoFormer() {
 //		AlgoFormer primerAlgoFormer = new AlgoFormer();

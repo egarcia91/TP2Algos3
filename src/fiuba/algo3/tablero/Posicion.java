@@ -22,12 +22,19 @@ public class Posicion{
 		this.y = y;
 	}
 	
-	public Posicion sumar(Posicion pos){
+	public void sumar(Posicion pos){
 		this.x += pos.x;
 		this.y += pos.y;
-		return this;
 	}
 	
+	public void sumar(int x, int y) {
+		this.x += x;
+		this.y += y;
+	}
+	
+	public Posicion getSuma(Posicion pos){
+		return new Posicion(this.x + pos.x, this.y + pos.y);
+	}	
 	public Posicion restar(Posicion pos){
 		this.x -= pos.x;
 		this.y -= pos.y;

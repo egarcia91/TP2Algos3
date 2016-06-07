@@ -1,12 +1,17 @@
 package fiuba.algo3.tablero;
 
 public class Posicion{
-	int x;
-	int y;
+	public int x;
+	public int y;
 	
-	Posicion(int x, int y){
+	public Posicion(int x, int y){
 		this.x = x;
 		this.y = y;
+	}
+
+	public Posicion(Posicion pos) {
+		this.x = pos.x;
+		this.y = pos.y;
 	}
 
 	public void setX(int x){this.x = x;}
@@ -40,5 +45,17 @@ public class Posicion{
 		this.y -= pos.y;
 		return this;
 	}
+
+	@Override
+	public boolean equals(Object obj){
+		if(obj instanceof Posicion){
+			Posicion p = (Posicion)obj;
+			return(this.x == p.x && this.y == p.y);
+		}	
+		else{
+			return false;
+		}
+	}
+	
 }
 

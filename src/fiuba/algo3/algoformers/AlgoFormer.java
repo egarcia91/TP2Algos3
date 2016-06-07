@@ -77,11 +77,11 @@ public class AlgoFormer {
 	}
 
 	public void moverArriba(){
-		tablero.moverAlgoFormer(this,0,1);
+		tablero.moverAlgoFormer(this,0,-1);
 	}
 
 	public void moverAbajo(){
-		tablero.moverAlgoFormer(this,0,-1);
+		tablero.moverAlgoFormer(this,0,1);
 	}
 
 	public void atacar(){
@@ -94,5 +94,9 @@ public class AlgoFormer {
 
 	public void recibirAtaque(int fuerzaAtaque){
 		estado.setVida(estado.getVida()-fuerzaAtaque);
+	}
+
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
 	}
 }

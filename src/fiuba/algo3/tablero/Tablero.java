@@ -69,7 +69,8 @@ public class Tablero {
 	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
-		posicionesElementos.put(unAlgoFormer.getNombre(),pos);
+		posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
+		unAlgoFormer.setTablero(this);
 	}
 	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){
@@ -192,20 +193,18 @@ public class Tablero {
 	
 
 	public void moverAlgoFormer(AlgoFormer algoFormer, int x, int y) {
-		moverAlgoFormer(algoFormer,new Posicion(x,y));
+		Posicion posicion = new Posicion(x,y);
+		moverAlgoFormer(algoFormer,posicion);
 	}
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
 		Posicion posicionInicial;
-		
-		try{
-			posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
-		}
-		catch(Exception e){
+			
+		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
+		if(posicionInicial == null){	
 			throw new AlgoFormerNoExisteException();
 		}
 		Posicion posicionFinal = posicionInicial.getSuma(posRelativa);
-
 		if(this.getCasillero(posicionFinal).contieneAlgoFormer() == true){
 			throw new CasilleroOcupadoException();
 		}

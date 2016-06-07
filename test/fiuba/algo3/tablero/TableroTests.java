@@ -26,7 +26,7 @@ public class TableroTests{
 					Assert.assertTrue(tablero.getCasillero(i,j).getClass() == Casillero.class);
 				}
 				catch(Exception e){
-					System.err.println("Error en casillero posición: (" + i + ',' + j + ')');
+					System.err.println("Error en casillero posicion: (" + i + ',' + j + ')');
 					throw e;
 				}
 			}

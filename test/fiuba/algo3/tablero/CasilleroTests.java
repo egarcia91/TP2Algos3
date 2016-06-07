@@ -1,14 +1,14 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformers.Casillero;
 import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.OptimusPrime;
-import fiuba.algo3.algoformers.Megatron;
 import fiuba.algo3.algoformers.Spark;
-import fiuba.algo3.algoformers.CasilleroOcupadoException;
+import fiuba.algo3.algoformers.personajes.Megatron;
+import fiuba.algo3.algoformers.personajes.OptimusPrime;
+import fiuba.algo3.tablero.Casillero;
+import fiuba.algo3.tablero.CasilleroOcupadoException;
 
 public class CasilleroTests {
 

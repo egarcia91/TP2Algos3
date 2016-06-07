@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.algoformers.personajes;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformers.Bumblebee;
+import fiuba.algo3.algoformers.personajes.Bumblebee;
 
 public class BumblebeeTests {
 	private int vidaHumanoide = 350;

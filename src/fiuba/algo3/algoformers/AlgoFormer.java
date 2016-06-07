@@ -1,5 +1,8 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
+import fiuba.algo3.tablero.Tablero;
+
 public class AlgoFormer {
 
 	protected Tablero tablero;
@@ -59,8 +62,8 @@ public class AlgoFormer {
 
 
 	public void mover(int deltaX, int deltaY){
-		if(!this.estado.estaEnRango(deltaX,deltaY))
-			throw new MovimientoFueraDeRangoException();
+		//if(!this.estado.estaEnRango(deltaX,deltaY))
+		//	throw new MovimientoFueraDeRangoException();
 		this.tablero.moverAlgoFormer(this,deltaX,deltaY);
 	}
 

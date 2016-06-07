@@ -7,10 +7,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.Jugador;
-import fiuba.algo3.algoformers.Tablero;
-import fiuba.algo3.algoformers.Juego;
+import fiuba.algo3.tablero.Juego;
+import fiuba.algo3.tablero.Jugador;
+import fiuba.algo3.tablero.Tablero;
 import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.algoformers.personajes.Megatron;
+import fiuba.algo3.algoformers.personajes.OptimusPrime;
 
 public class AlgoFormerPrimerTests {
 

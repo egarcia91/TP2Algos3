@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.algoformers.personajes;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformers.Megatron;
+import fiuba.algo3.algoformers.personajes.Megatron;
 
 public class MegatronTests {
 	private int vidaHumanoide = 550;

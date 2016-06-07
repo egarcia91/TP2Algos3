@@ -1,8 +1,7 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Tablero;
-
-//import java.lang.Math;
 
 public class AlgoFormer {
 
@@ -10,8 +9,6 @@ public class AlgoFormer {
 	protected EstadoAlgoformer estado;
 
 	protected String nombre = "Algoformer";
-
-//	protected Posicion posicion;
 
 	public AlgoFormer(){
 		this.transformarHumanoide();
@@ -63,19 +60,12 @@ public class AlgoFormer {
 		estado.setTerreno("terrestre");
 	}
 
-//	//mueve al algoFormer a una posicion absoluta del tablero. Podria haerse tambien un movimiento relativo.
-//	void mover(int posX, int posY){
-//		//primero me fijo si esa posicion esta dentro del rango de movimiento del algoformer.
-//		if(!(Math.abs(this.posicion.getX() - posX) <= estado.getVelocidad() && Math.abs(this.posicion.getY() - posY )<= estado.getVelocidad()))
-//			throw new MovimientoFueraDeRangoException();
-//		else if(this.tablero.tieneAlgoFormer(posX,posY))
-//			throw new CasilleroOcupadoException();
-//		else{
-//			this.tablero.quitarAlgoFormer(posX,posY);
-//			this.tablero.agregarAlgoFormer(this,posX,posY);
-//			this.posicion.setPosicion(posX,posY);
-//		}
-//	}
+
+	public void mover(int deltaX, int deltaY){
+		//if(!this.estado.estaEnRango(deltaX,deltaY))
+		//	throw new MovimientoFueraDeRangoException();
+		this.tablero.moverAlgoFormer(this,deltaX,deltaY);
+	}
 
 	public void moverDerecha(){
 		tablero.moverDerecha(this,this.estado.getVelocidad());

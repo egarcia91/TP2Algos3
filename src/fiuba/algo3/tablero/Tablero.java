@@ -25,6 +25,11 @@ public class Tablero {
 			return;
 		}
 		tablero = new Casillero[ancho][alto];
+		for(int i = 0; i < ancho; i++){
+			for(int j = 0; j < alto; j++){
+				tablero[i][j] = new Casillero();
+			}
+		}
 		this.ancho = ancho;
 		this.alto = alto;
 		posicionesElementos = new LinkedHashMap<String,Posicion>();
@@ -42,15 +47,15 @@ public class Tablero {
 		return this.alto;
 	}	
 
-	private Casillero getCasillero(int posX, int posY){
+	public Casillero getCasillero(int posX, int posY){
 		try{
 			return tablero[posX][posY];
-		}catch(ArrayIndexOutOfBoundsException e){
+		}catch(Exception e){
 			throw new CasilleroNoExisteException();
 		}
 	}	
 	
-	private Casillero getCasillero(Posicion posicion){
+	public Casillero getCasillero(Posicion posicion){
 		return this.getCasillero(posicion.getX(),posicion.getY());
 	}
 

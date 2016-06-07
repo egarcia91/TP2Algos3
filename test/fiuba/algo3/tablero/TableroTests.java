@@ -3,6 +3,8 @@ package fiuba.algo3.tablero;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +13,32 @@ import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.tablero.Tablero;
 
 public class TableroTests{
+	
+	private static final int TABLERO_ANCHO = 200;
+	private static final int TABLERO_ALTO = 200;
 
 	@Test
-	public void test01TableroVacio() {
-		Tablero tablero = new Tablero(20,20);
-
+	public void test01TableroVacio(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		
 		Assert.assertTrue(tablero.estaDesierto());
 	}
 
 	@Test
-	public void test02TieneCasilleros() {
-		Tablero tablero = new Tablero(3,3);
-
-		Assert.assertTrue(tablero.getAncho() > 2);
-		Assert.assertTrue(tablero.getAlto() > 2);
+	public void test02verificarConstruccionDeCasilleros() {
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		
+		for(int i = 0; i < TABLERO_ANCHO; i++){
+			for(int j = 0; j< TABLERO_ALTO; j++){
+				try{
+					Assert.assertTrue(tablero.getCasillero(i,j).getClass() == Casillero.class);
+				}
+				catch(Exception e){
+					System.err.println("Error en casillero posición: (" + i + ',' + j + ')');
+					throw e;
+				}
+			}
+		}	
 	}
 
 	@Test
@@ -36,19 +50,17 @@ public class TableroTests{
 		AlgoFormer quintoAlgoFormer = new AlgoFormer();
 		AlgoFormer sextoAlgoFormer = new AlgoFormer();
 
-		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 		Escuadron escuadronUno = new Escuadron();
 		escuadronUno.algoFormers.add(primerAlgoFormer);
 		escuadronUno.algoFormers.add(segundoAlgoFormer);
 		escuadronUno.algoFormers.add(tercerAlgoFormer);
 
-		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
 		Escuadron escuadronDos = new Escuadron();
 		escuadronDos.algoFormers.add(cuartoAlgoFormer);
 		escuadronDos.algoFormers.add(quintoAlgoFormer);
 		escuadronDos.algoFormers.add(sextoAlgoFormer);
 
-		Tablero tablero = new Tablero(20,20);
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
 		Assert.assertTrue(tablero.estaDesierto());
 
 		tablero.agregarEscuadron(escuadronUno);

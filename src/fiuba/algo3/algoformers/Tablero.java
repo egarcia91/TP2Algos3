@@ -65,7 +65,9 @@ public class Tablero {
 		throw new CasilleroNoExisteException();
 	}
 
-	public void quitarAlgoFormer(int posX, int posY){
+	public void quitarAlgoFormer(AlgoFormer unAlgoFormer,int posX, int posY)
+	{
+		posicionesElementosMoviles.remove(unAlgoFormer.nombre);
 		this.tablero[posX][posY].quitarAlgoFormer();
 	}
 	
@@ -107,6 +109,23 @@ public class Tablero {
 			throw new AlgoFormerNoExisteException();
 	}
 
+	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int deltaX, int deltaY){
+		if(!posicionesElementosMoviles.containsKey(unAlgoFormer.nombre))
+			throw new AlgoFormerNoExisteException();
+
+		Posicion unaPosicion = posicionesElementosMoviles.get(unAlgoFormer.nombre);
+		int posX = unaPosicion.getX();
+		int posY = unaPosicion.getY();
+
+		if(this.tieneAlgoFormer(posX+deltaX,posY+deltaY))
+			throw new CasilleroOcupadoException();
+		else {
+				this.quitarAlgoFormer(unAlgoFormer,posX+deltaX,posY+deltaY);
+				this.agregarAlgoFormer(unAlgoFormer,posX+deltaX,posY+deltaY);
+		}
+	}
+
+
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int posX, int posY){
 		return this.getCasillero(posX, posY).existeAlgoFormer(unAlgoFormer);
 	}
@@ -132,6 +151,9 @@ public class Tablero {
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int posX,int posY){
 		this.tablero[posX][posY].agregarAlgoFormer(unAlgoFormer);
+		Posicion unaPosicion = new Posicion(posX,posY);
+
+		posicionesElementosMoviles.put(unAlgoFormer.nombre,unaPosicion);
 	}
 
 	public void moverDerecha(AlgoFormer unAlgoFormer, int valor){

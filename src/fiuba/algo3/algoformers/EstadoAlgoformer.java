@@ -47,6 +47,10 @@ public class EstadoAlgoformer{
 		this.terreno = unTerreno;
 	}
 
+	public boolean estaEnRango(int deltaX,int deltaY){
+		return(this.velocidad <= deltaX && this.velocidad <= deltaY);
+	}
+
 	//Horrible solucion para plantear polimorfismo
 	public boolean estadoHumanoide(){
 		return false;

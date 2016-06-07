@@ -1,8 +1,5 @@
 package fiuba.algo3.algoformers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -80,15 +77,13 @@ public class AlgoFormerPrimerTests {
 
 		Juego juego = new Juego();
 		
-		Jugador jugadorUno = new Jugador();
-		jugadorUno.setNombre("Sam");
+		Jugador jugadorUno = new Jugador("Jere");
 
-		Jugador jugadorDos = new Jugador();
-		jugadorDos.setNombre("Max");
+		Jugador jugadorDos = new Jugador("Eze");
 
-		juego.agregarJugadorUno(jugadorUno);
+		juego.agregarJugador(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
-		juego.agregarJugadorDos(jugadorDos);
+		juego.agregarJugador(jugadorDos);
 		Assert.assertTrue(juego.existeJugador(jugadorDos));
 
 		juego.iniciar();

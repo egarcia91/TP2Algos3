@@ -9,61 +9,59 @@ public class Casillero {
 	private AlgoFormer algoFormer;
 	private Terreno terreno;
 
-	public boolean tieneAlgoFormer(){
-		return this.algoFormer != null;
+	public boolean contieneAlgoFormer(){
+		return (algoFormer != null); 
 	}
-
-	public boolean tieneContenido(){
-		return this.spark != null;
-	}
-
-	public boolean estaVacio(){
-		if(this.tieneContenido() || this.tieneAlgoFormer()){
-			return false;
-		}
-		return true;
-	}
-
-	public void agregarContenido(Spark unaSpark){
-		this.spark = unaSpark;
-	}
-
-	public boolean existeContenido(Spark unaSpark){
-		if(this.tieneContenido()){
-			return this.spark.getNombre() == unaSpark.getNombre();
-		}
-		return false;
-	}
-
-	public Spark quitarContenido(){
-		Spark copiaSpark = this.spark;
-		this.spark = null;
-		return copiaSpark;
-	}
-
+	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
-		if(this.tieneAlgoFormer()){
-			if(!this.existeAlgoFormer(unAlgoFormer)){
+		if(this.contieneAlgoFormer() == true){
 				throw new CasilleroOcupadoException();
-			}
-		} else {
-			Spark spark = this.quitarContenido();
-			//TODO Que hacemo si no es la Chispa Suprema? Punto Bonusss
-//			if(spark != null){
-//				unAlgoFormer.agregarContenido??
-//			}
+		}
+		else
 			this.algoFormer = unAlgoFormer;
-		}
 	}
-
-	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer){
-		if(this.tieneAlgoFormer()){
-			return this.algoFormer.getNombre() == unAlgoFormer.getNombre();
-		}
-		return false;
+	
+	public AlgoFormer getAlgoFormer(){
+		if(algoFormer == null)
+			throw new AlgoFormerNoExisteException();
+		else
+			return algoFormer;
 	}
-
+	
 	public void quitarAlgoFormer(){
 		this.algoFormer = null;
 	}
+	
+	public boolean contieneItem(){
+		return (spark != null);
+	}
+	
+	public void setItem(Spark unaSpark){
+		this.spark = unaSpark;
+	}	
+	
+	public Spark getItem(){
+		if(spark == null)
+			throw new ItemNoExisteException();
+		else
+			return spark;
+	}
+	
+	public void quitarItem(){
+		this.spark = null;
+	}
+	
+	public boolean estaVacio(){
+		if(this.contieneItem() == false && this.contieneAlgoFormer() == false){
+			return true;
+		}
+		return false;
+	}
+
+
+
+
+
+
+
 }

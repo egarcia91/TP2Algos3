@@ -13,10 +13,8 @@ public class JugadorTests {
 
 	@Test
 	public void test01CrearJugador() {
-		Jugador jugador = new Jugador();
-		jugador.setNombre("Juan");
-
-		Assert.assertTrue(jugador.getNombre() == "Juan");
+		Jugador jugador = new Jugador("Eze");
+		Assert.assertTrue(jugador.getNombre() == "Eze");
 	}
 
 	@Test
@@ -32,11 +30,10 @@ public class JugadorTests {
 		escuadronUno.algoFormers.add(tercerAlgoFormer);
 
 
-		Jugador jugador = new Jugador();
-		jugador.setNombre("Juan");
+		Jugador jugador = new Jugador("Jere");
 		jugador.asignarEscuadron(escuadronUno);
 
-		Assert.assertTrue(jugador.getNombre() == "Juan");
+		Assert.assertTrue(jugador.getNombre() == "Jere");
 		Assert.assertTrue(jugador.cantidadAlgoFormer() == escuadronUno.cantidadMiembrosEscuadron());
 
 	}

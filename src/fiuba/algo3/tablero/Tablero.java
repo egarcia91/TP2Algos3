@@ -18,8 +18,6 @@ public class Tablero {
 	private Escuadron escuadronUno;
 	private Escuadron escuadronDos;
 
-	private Spark spark;
-
 	public Tablero(int ancho, int alto){
 		if(ancho <= 0 || alto <= 0){
 			return;
@@ -63,14 +61,6 @@ public class Tablero {
 		this.tablero[posX][posY].quitarAlgoFormer();
 	}
 	
-	public void ubicarSpark(){
-		Random rand = new Random();
-		int randX = Math.round((ancho/2) + rand.nextInt(2));
-		int randY = Math.round((alto/2) + rand.nextInt(2));
-		this.getCasillero(randX,randY).agregarContenido(this.spark);
-		posicionesElementos.put("Spark",new Posicion(randX,randY));
-	}
-
 	public int cantidadAlgoFormer(){
 		return this.escuadronUno.cantidadMiembrosEscuadron()+ this.escuadronDos.cantidadMiembrosEscuadron();
 	}
@@ -80,10 +70,14 @@ public class Tablero {
 	}
 
 	public boolean estaDesierto(){
-		if(this.cantidadAlgoFormer() == 0)return true;
-		else return false;
+		return posicionesElementos.isEmpty();
 	}
-
+	
+	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int posX,int posY){
+		this.tablero[posX][posY].agregarAlgoFormer(unAlgoFormer);
+		posicionesElementos.put(unAlgoFormer.getNombre(), new Posicion(posX, posY));
+	}
+	
 	//Estaria bueno extender este metodo hacia cualquier cosa (item, algoformer,spark, etc)
 	//Se propone unir todos los elementos posibles en una superclase Elemento
 	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
@@ -96,7 +90,14 @@ public class Tablero {
 	}
 
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int posX, int posY){
-		return this.getCasillero(posX, posY).existeAlgoFormer(unAlgoFormer);
+		AlgoFormer algoFormer;
+		try{
+			algoFormer = this.getCasillero(posX, posY).getAlgoFormer();
+		}
+		catch(AlgoFormerNoExisteException e){
+			return false;
+		}
+		return (algoFormer.getNombre() == unAlgoFormer.getNombre());
 	}
 	
 	public void moverIzquierda(AlgoFormer unAlgoFormer, int valor){
@@ -118,9 +119,7 @@ public class Tablero {
 		}	
 	}
 
-	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int posX,int posY){
-		this.tablero[posX][posY].agregarAlgoFormer(unAlgoFormer);
-	}
+
 
 	public void moverDerecha(AlgoFormer unAlgoFormer, int valor){
 		try{
@@ -272,7 +271,11 @@ public class Tablero {
 
 
 	public boolean tieneAlgoFormer(int posX,int posY){
-		return(this.tablero[posX][posY].tieneAlgoFormer());
+		return(this.tablero[posX][posY].contieneAlgoFormer());
+	}
+
+	public void setItem(Spark item,int posX, int posY){
+		tablero[posX][posY].setItem(item);		
 	}
 
 }

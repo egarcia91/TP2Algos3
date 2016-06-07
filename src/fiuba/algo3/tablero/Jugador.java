@@ -8,6 +8,10 @@ public class Jugador {
 	protected Juego juego;
 	private Escuadron escuadron;
 
+	public Jugador(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public void setNombre(String unNombre){
 		this.nombre = unNombre;
 	}

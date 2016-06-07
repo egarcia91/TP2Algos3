@@ -24,10 +24,10 @@ public class CasilleroTests {
 		Spark spark = new Spark();
 
 		Casillero casillero = new Casillero();
-		casillero.agregarContenido(spark);
+		casillero.setItem(spark);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeContenido(spark));
+		Assert.assertTrue(casillero.getItem() == spark);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ public class CasilleroTests {
 		casillero.agregarAlgoFormer(algoFormer);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeAlgoFormer(algoFormer));
+		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
 	}
 
 
@@ -49,16 +49,16 @@ public class CasilleroTests {
 		Spark spark = new Spark();
 
 		Casillero casillero = new Casillero();
-		casillero.agregarContenido(spark);
+		casillero.setItem(spark);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertFalse(casillero.existeAlgoFormer(algoFormer));
-		Assert.assertTrue(casillero.existeContenido(spark));
+		Assert.assertFalse(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertTrue(casillero.getItem() == spark);
 
 		casillero.agregarAlgoFormer(algoFormer);
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeAlgoFormer(algoFormer));
-		Assert.assertFalse(casillero.existeContenido(spark));
+		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertFalse(casillero.getItem() == spark);
 	}
 
 	@Test(expected=CasilleroOcupadoException.class)
@@ -71,7 +71,7 @@ public class CasilleroTests {
 		casillero.agregarAlgoFormer(optimusPrime);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeAlgoFormer(optimusPrime));
+		Assert.assertTrue(casillero.getAlgoFormer() == optimusPrime);
 
 		casillero.agregarAlgoFormer(megatron);
 	}
@@ -84,11 +84,11 @@ public class CasilleroTests {
 
 		casillero.agregarAlgoFormer(algoFormer);
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.existeAlgoFormer(algoFormer));
+		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
 
 		casillero.quitarAlgoFormer();
 		Assert.assertTrue(casillero.estaVacio());
-		Assert.assertFalse(casillero.existeAlgoFormer(algoFormer));
+		Assert.assertFalse(casillero.getAlgoFormer() == algoFormer);
 	}
 
 }

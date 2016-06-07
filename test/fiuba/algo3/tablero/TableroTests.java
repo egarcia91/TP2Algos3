@@ -8,9 +8,8 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.Escuadron;
-import fiuba.algo3.tablero.Tablero;
+import fiuba.algo3.algoformers.*;
+import fiuba.algo3.algoformers.personajes.*;
 
 public class TableroTests{
 	
@@ -18,16 +17,9 @@ public class TableroTests{
 	private static final int TABLERO_ALTO = 200;
 
 	@Test
-	public void test01TableroVacio(){
+	public void test01verificarConstruccionDeCasilleros() {
 		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		
-		Assert.assertTrue(tablero.estaDesierto());
-	}
 
-	@Test
-	public void test02verificarConstruccionDeCasilleros() {
-		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		
 		for(int i = 0; i < TABLERO_ANCHO; i++){
 			for(int j = 0; j< TABLERO_ALTO; j++){
 				try{
@@ -39,6 +31,24 @@ public class TableroTests{
 				}
 			}
 		}	
+	}
+	
+	@Test
+	public void test02TableroVacio(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		
+		Assert.assertTrue(tablero.estaDesierto());
+		
+		tablero.agregarAlgoFormer(new Megatron(),TABLERO_ANCHO - 1 ,TABLERO_ALTO - 1);
+		Assert.assertFalse(tablero.estaDesierto());
+	}
+	
+	@Test (expected = CasilleroOcupadoException.class)
+	public void test03NoSePermiteSuperposicionDePersonajes(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		
+		tablero.agregarAlgoFormer(new Megatron(), TABLERO_ANCHO - 1, TABLERO_ALTO - 1);
+		tablero.agregarAlgoFormer(new Megatron(), TABLERO_ANCHO - 1, TABLERO_ALTO - 1);
 	}
 
 	@Test
@@ -101,21 +111,24 @@ public class TableroTests{
 //	}
 //
 //	@Test
-//	public void test05AtaqueAlgoFormer() {
-//		AlgoFormer primerAlgoFormer = new AlgoFormer();
-//		AlgoFormer segundoAlgoFormer = new AlgoFormer();
-//
-//		List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-//		escuadronUno.add(primerAlgoFormer);
-//
-//		List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
-//		escuadronDos.add(segundoAlgoFormer);
-//
-//		Tablero tablero = new Tablero(3,3); //Tablero chico, test de ataque
-//		Assert.assertTrue(tablero.estaDesierto());
-//
-//		tablero.agregarEscuadron(escuadronUno);
-//		Assert.assertFalse(tablero.estaDesierto());
+	public void test05AtaqueAlgoFormer(){
+	
+		Juego juego = new Juego();
+		Jugador fede = new Jugador("Fede");
+		Jugador eze = new Jugador("Eze");
+		
+		Megatron megatron = new Megatron();
+		OptimusPrime optimus = new OptimusPrime();
+		/*
+		fede.agregarAlgoforme(megatron);
+		eze.agregarAlgoforme(optimus);
+		fede.asignarEscuadron(new EscuadronAutobot);
+		eze.asignarEscuadron(new EscuadronDecepticon);
+		
+		juego.agregarJugador(fede);
+		juego.agregarJugador(eze);
+		*/
+
 //		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
 //		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
 //
@@ -129,5 +142,5 @@ public class TableroTests{
 //		Assert.assertTrue(segundoAlgoFormer.vida() == 500);
 //		primerAlgoFormer.atacar();
 //		Assert.assertTrue(segundoAlgoFormer.vida() == 450);
-//	}
+	}
 }

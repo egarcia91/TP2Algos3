@@ -1,5 +1,7 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.tablero.Tablero;
+
 //import java.lang.Math;
 
 public class AlgoFormer {

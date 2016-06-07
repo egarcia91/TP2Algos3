@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.Jugador;
 import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.tablero.Jugador;
 
 public class JugadorTests {
 

@@ -1,4 +1,6 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
+
+import fiuba.algo3.algoformers.Escuadron;
 
 public class Jugador {
 
@@ -18,31 +20,13 @@ public class Jugador {
 		this.escuadron = unEscuadron;
 	}
 
-	/*public boolean existeEscuadron(){
-		return (this.escuadron.size() != 0);
-	}*/
-
 	public boolean existeEscuadron(){
 		return (this.escuadron.existeEscuadron());
 	}
 
-	/*public int cantidadAlgoFormer(){
-		return this.escuadron.size();
-	}*/
-
 	public int cantidadAlgoFormer(){
 		return this.escuadron.cantidadMiembrosEscuadron();
 	}
-
-	/*public boolean tieneAlgoFormerEnPosicion(int x, int y){
-		for (AlgoFormer unAlgoFormer:
-				this.escuadron){
-			if (unAlgoFormer.estaEnPosicion(x,y)) {
-				return true;
-			}
-		}
-		return false;
-	}*/
 
 	public boolean tieneAlgoFormerEnPosicion(int x, int y){
 		return (this.escuadron.estaAlgoformerEnPosicion( x, y));
@@ -54,6 +38,10 @@ public class Jugador {
 			//BLA BLA;
 		} else {
 		}
+	}
+
+	public void setJuego(Juego juego) {
+		this.juego = juego;
 	}
 
 }

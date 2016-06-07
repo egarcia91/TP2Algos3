@@ -1,4 +1,8 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.algoformers.personajes;
+
+import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.Alterno;
+import fiuba.algo3.algoformers.Humanoide;
 
 public class Bumblebee extends AlgoFormer {
 

@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import fiuba.algo3.algoformers.Tablero;
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.tablero.Tablero;
 
 public class TableroTests{
 

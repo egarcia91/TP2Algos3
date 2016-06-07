@@ -1,4 +1,4 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
 
 public class Posicion{
 	int x;

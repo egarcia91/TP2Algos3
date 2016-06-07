@@ -1,10 +1,11 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.tablero;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
-import fiuba.algo3.algoformers.Casillero;
+import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.algoformers.Spark;
 import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Tablero {
@@ -81,8 +82,8 @@ public class Tablero {
 	//Estaria bueno extender este metodo hacia cualquier cosa (item, algoformer,spark, etc)
 	//Se propone unir todos los elementos posibles en una superclase Elemento
 	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
-		if(posicionesElementos.containsKey(unAlgoFormer.nombre)== true){
-			return posicionesElementos.get(unAlgoFormer.nombre);
+		if(posicionesElementos.containsKey(unAlgoFormer.getNombre())== true){
+			return posicionesElementos.get(unAlgoFormer.getNombre());
 
 		}
 		else
@@ -214,7 +215,7 @@ public class Tablero {
 		int initY = 1;
 		int initX = 1;
 		for (AlgoFormer algoFormer: this.escuadronUno.algoFormers) {
-			algoFormer.tablero = this;
+			//algoFormer.tablero = this;
 			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
 			if(initX == 1){
 				initX = 2;
@@ -230,7 +231,7 @@ public class Tablero {
 		int initY = this.alto;
 		int initX = this.ancho;
 		for (AlgoFormer algoFormer: this.escuadronDos.algoFormers){
-			algoFormer.tablero = this;
+			//algoFormer.tablero = this;
 			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
 			if(initX == this.ancho){
 				initX--;
@@ -240,18 +241,6 @@ public class Tablero {
 			}
 		}
 	}
-
-
-	/*
-	public void agregarEscuadron(List<AlgoFormer> escuadron){
-		if(escuadronUno.size()==0){
-			this.escuadronUno.addAll(escuadron);
-			this.ubicarEscuadronUno();
-		} else if(escuadronDos.size()==0){
-			this.escuadronDos.addAll(escuadron);
-			this.ubicarEscuadronDos();
-		}
-	}*/
 
 	/*
 	public void agregarEscuadron(Escuadron unEscuadron) {

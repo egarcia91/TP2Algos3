@@ -1,9 +1,9 @@
-package fiuba.algo3.algoformers;
+package fiuba.algo3.algoformers.personajes;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import fiuba.algo3.algoformers.OptimusPrime;
+import fiuba.algo3.algoformers.personajes.OptimusPrime;
 
 public class OptimusPrimeTests {
 	private int vidaHumanoide = 500;

@@ -212,6 +212,7 @@ public class Tablero {
 		else {
 				this.quitarAlgoFormer(unAlgoFormer);
 				this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+				posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
 		}
 	}
 

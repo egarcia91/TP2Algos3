@@ -135,4 +135,37 @@ public class AlgoFormerPrimerTests {
 		megatron.atacar();
 		Assert.assertTrue(optimusPrime.getVida() == 490);
 	}
+	
+	public void test05AtaqueAlgoFormer(){
+	
+		Juego juego = new Juego();
+		Jugador fede = new Jugador("Fede");
+		Jugador eze = new Jugador("Eze");
+		
+		Megatron megatron = new Megatron();
+		OptimusPrime optimus = new OptimusPrime();
+		/*
+		fede.agregarAlgoforme(megatron);
+		eze.agregarAlgoforme(optimus);
+		fede.asignarEscuadron(new EscuadronAutobot);
+		eze.asignarEscuadron(new EscuadronDecepticon);
+		
+		juego.agregarJugador(fede);
+		juego.agregarJugador(eze);
+		*/
+
+//		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
+//		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
+//
+//		tablero.agregarEscuadron(escuadronDos);
+//		Assert.assertFalse(tablero.estaDesierto());
+//		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size() + escuadronDos.size());
+//		int ancho = tablero.ancho();
+//		int alto = tablero.alto();
+//		Assert.assertTrue(tablero.existeAlgoFormer(segundoAlgoFormer,ancho-1,alto-1));
+//
+//		Assert.assertTrue(segundoAlgoFormer.vida() == 500);
+//		primerAlgoFormer.atacar();
+//		Assert.assertTrue(segundoAlgoFormer.vida() == 450);
+	}
 }

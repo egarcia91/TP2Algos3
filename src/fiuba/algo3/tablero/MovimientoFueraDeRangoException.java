@@ -1,8 +1,13 @@
 package fiuba.algo3.tablero;
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial");
 public class MovimientoFueraDeRangoException extends RuntimeException{
-    MovimientoFueraDeRangoException(){super();}
+
+    private static final long serialVersionUID = 1L;
+
+    MovimientoFueraDeRangoException(){
+        super();
+    }
 
     MovimientoFueraDeRangoException(String mensaje){
         super(mensaje);

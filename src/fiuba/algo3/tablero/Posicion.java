@@ -37,6 +37,11 @@ public class Posicion{
 		this.y += y;
 	}
 
+	public Posicion sumar(Posicion pos1, Posicion pos2){
+		Posicion pos3 = new Posicion(pos1.getX()+pos2.getX(),pos1.getY()+pos2.getY());
+		return pos3;
+	}
+
 	public Posicion getSuma(Posicion pos){
 		return new Posicion(this.x + pos.x, this.y + pos.y);
 	}

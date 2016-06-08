@@ -14,21 +14,21 @@ public class Frenzy extends AlgoFormer {
 	@Override
 	public void transformarAlterno(){
 		this.estado = new Alterno();
-		estado.setVida(400);
-		estado.setFuerzaAtaque(25);
-		estado.setDistanciaAtaque(2);
-		estado.setVelocidad(6);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(400);
+		this.estado.setFuerzaAtaque(25);
+		this.estado.setDistanciaAtaque(2);
+		this.estado.setVelocidad(6);
+		this.estado.setTerreno("terrestre");
 	}
 
 	@Override
 	public void transformarHumanoide(){
 		this.estado = new Humanoide();
-		estado.setVida(400);
-		estado.setFuerzaAtaque(10);
-		estado.setDistanciaAtaque(5);
-		estado.setVelocidad(2);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(400);
+		this.estado.setFuerzaAtaque(10);
+		this.estado.setDistanciaAtaque(5);
+		this.estado.setVelocidad(2);
+		this.estado.setTerreno("terrestre");
 	}
 
 }

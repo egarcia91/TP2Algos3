@@ -8,55 +8,57 @@ import org.junit.Test;
 
 public class MovimientoTests {
 
-    @Test
-    public void test01MovimientoNormalDelAlgoFormer(){
+	@Test
+	public void test01MovimientoNormalDelAlgoFormer(){
 
-        Tablero tablero = new Tablero(200,200);
-        Megatron megatron = new Megatron();
+		Tablero tablero = new Tablero(200,200);
+		Megatron megatron = new Megatron();
 
-        Posicion unaPosicion = new Posicion(20,20);
-        tablero.agregarAlgoFormer(megatron,unaPosicion);
+		Posicion unaPosicion = new Posicion(20,20);
+		tablero.agregarAlgoFormer(megatron,unaPosicion);
 
-        Assert.assertTrue(tablero.existeAlgoFormer(megatron,20,20));
+		Assert.assertTrue(tablero.existeAlgoFormer(megatron,20,20));
 
-        Posicion posicionRelativa = new Posicion(3,3);
+		Posicion posicionRelativa = new Posicion(1,1);
 
-        megatron.mover(posicionRelativa);
+		megatron.mover(posicionRelativa);
 
-        Assert.assertTrue(tablero.existeAlgoFormer(megatron,23,23));
-        Assert.assertFalse(tablero.existeAlgoFormer(megatron,20,20));
-    }
+		Assert.assertTrue(tablero.existeAlgoFormer(megatron,21,21));
+		Assert.assertFalse(tablero.existeAlgoFormer(megatron,20,20));
+	}
 
-    @Test (expected = CasilleroOcupadoException.class)
-    public void test02MovimientoHaciaCasilleroOcupado(){
-        Tablero tablero = new Tablero(200,200);
-        Megatron megatron = new Megatron();
-        OptimusPrime optimusPrime = new OptimusPrime();
+	@Test(expected=CasilleroOcupadoException.class)
+	public void test02MovimientoHaciaCasilleroOcupado(){
+		Tablero tablero = new Tablero(200,200);
+		Megatron megatron = new Megatron();
+		OptimusPrime optimusPrime = new OptimusPrime();
 
-        Posicion unaPosicion = new Posicion(50,50);
-        Posicion otraPosicion = new Posicion(53,51);
+		Posicion unaPosicion = new Posicion(50,50);
+		Posicion otraPosicion = new Posicion(51,51);
 
-        Posicion posRelativa = new Posicion(3,1);
+		Posicion posRelativa = new Posicion(1,1);
 
-        tablero.agregarAlgoFormer(megatron,unaPosicion);
-        tablero.agregarAlgoFormer(optimusPrime,otraPosicion);
+		tablero.agregarAlgoFormer(megatron,unaPosicion);
+		tablero.agregarAlgoFormer(optimusPrime,otraPosicion);
 
-        megatron.mover(posRelativa);
+		megatron.mover(posRelativa);
 
-        Assert.assertTrue(tablero.existeAlgoFormer(megatron,50,50));//megatron no se movio.
-    }
+		Assert.assertTrue(tablero.existeAlgoFormer(megatron,50,50));//megatron no se movio.
+	}
 
-    @Test (expected = MovimientoFueraDeRangoException.class)
-    public void testMovimientoFueraDeRango(){
-        Tablero tablero = new Tablero(100,100);
-        Megatron megatron = new Megatron();
-        Posicion unaPosicion = new Posicion(50,50);
-        Posicion posicionRelativa = new Posicion(10,15);
 
-        tablero.agregarAlgoFormer(megatron,unaPosicion);
+	@Test(expected=MovimientoFueraDeRangoException.class)
+	public void testMovimientoFueraDeRango(){
+		Tablero tablero = new Tablero(100,100);
+		Megatron megatron = new Megatron();
+		Posicion unaPosicion = new Posicion(50,50);
+		Posicion posicionRelativa = new Posicion(10,15);
 
-        megatron.mover(posicionRelativa);
+		tablero.agregarAlgoFormer(megatron,unaPosicion);
+		Assert.assertTrue(tablero.existeAlgoFormer(megatron,50,50));
 
-        Assert.assertTrue(tablero.existeAlgoFormer(megatron,50,50));//megatron no se movio.
-    }
+		megatron.mover(posicionRelativa);
+
+		Assert.assertTrue(tablero.existeAlgoFormer(megatron,50,50));//megatron no se movio.
+	}
 }

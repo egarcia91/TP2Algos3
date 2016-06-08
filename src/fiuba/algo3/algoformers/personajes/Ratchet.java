@@ -14,21 +14,21 @@ public class Ratchet extends AlgoFormer {
 	@Override
 	public void transformarAlterno(){
 		this.estado = new Alterno();
-		estado.setVida(150);
-		estado.setFuerzaAtaque(35);
-		estado.setDistanciaAtaque(2);
-		estado.setVelocidad(8);
-		estado.setTerreno("aerea");
+		this.estado.setVida(150);
+		this.estado.setFuerzaAtaque(35);
+		this.estado.setDistanciaAtaque(2);
+		this.estado.setVelocidad(8);
+		this.estado.setTerreno("aerea");
 	}
 
 	@Override
 	public void transformarHumanoide(){
 		this.estado = new Humanoide();
-		estado.setVida(150);
-		estado.setFuerzaAtaque(5);
-		estado.setDistanciaAtaque(5);
-		estado.setVelocidad(1);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(150);
+		this.estado.setFuerzaAtaque(5);
+		this.estado.setDistanciaAtaque(5);
+		this.estado.setVelocidad(1);
+		this.estado.setTerreno("terrestre");
 	}
 
 }

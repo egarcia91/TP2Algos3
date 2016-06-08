@@ -14,21 +14,21 @@ public class Bonecrusher extends AlgoFormer {
 	@Override
 	public void transformarAlterno(){
 		this.estado = new Alterno();
-		estado.setVida(200);
-		estado.setFuerzaAtaque(30);
-		estado.setDistanciaAtaque(3);
-		estado.setVelocidad(8);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(200);
+		this.estado.setFuerzaAtaque(30);
+		this.estado.setDistanciaAtaque(3);
+		this.estado.setVelocidad(8);
+		this.estado.setTerreno("terrestre");
 	}
 
 	@Override
 	public void transformarHumanoide(){
 		this.estado = new Humanoide();
-		estado.setVida(200);
-		estado.setFuerzaAtaque(30);
-		estado.setDistanciaAtaque(3);
-		estado.setVelocidad(1);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(200);
+		this.estado.setFuerzaAtaque(30);
+		this.estado.setDistanciaAtaque(3);
+		this.estado.setVelocidad(1);
+		this.estado.setTerreno("terrestre");
 	}
 
 }

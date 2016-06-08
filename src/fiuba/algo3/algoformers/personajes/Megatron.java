@@ -14,21 +14,21 @@ public class Megatron extends AlgoFormer {
 	@Override
 	public void transformarAlterno(){
 		this.estado = new Alterno();
-		estado.setVida(550);
-		estado.setFuerzaAtaque(55);
-		estado.setDistanciaAtaque(2);
-		estado.setVelocidad(8);
-		estado.setTerreno("aerea");
+		this.estado.setVida(550);
+		this.estado.setFuerzaAtaque(55);
+		this.estado.setDistanciaAtaque(2);
+		this.estado.setVelocidad(8);
+		this.estado.setTerreno("aerea");
 	}
 
 	@Override
 	public void transformarHumanoide(){
 		this.estado = new Humanoide();
-		estado.setVida(550);
-		estado.setFuerzaAtaque(10);
-		estado.setDistanciaAtaque(3);
-		estado.setVelocidad(1);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(550);
+		this.estado.setFuerzaAtaque(10);
+		this.estado.setDistanciaAtaque(3);
+		this.estado.setVelocidad(1);
+		this.estado.setTerreno("terrestre");
 	}
 
 }

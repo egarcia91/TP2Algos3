@@ -31,19 +31,18 @@ public class Tablero {
 		this.alto = alto;
 		this.posicionesElementos = new LinkedHashMap<String,Posicion>();
 
-		escuadronUno = new Escuadron();
-		escuadronDos = new Escuadron();
-
+		this.escuadronUno = new Escuadron();
+		this.escuadronDos = new Escuadron();
 	}
-	
+
 	public int getAncho(){
 		return this.ancho;
 	}
 
 	public int getAlto(){
 		return this.alto;
-	}	
-	
+	}
+
 	public boolean estaDesierto(){
 		return this.posicionesElementos.isEmpty();
 	}
@@ -104,7 +103,7 @@ public class Tablero {
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int posX, int posY){
 		return this.buscarAlgoFormer(unAlgoFormer).equals(new Posicion(posX,posY));
 	}
-	
+
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
 		Posicion posicion = this.buscarAlgoFormer(unAlgoFormer);
 		int anchoFinal = posicion.getX()+unaDistanciaAtaque;
@@ -182,7 +181,7 @@ public class Tablero {
 
 	public void moverAlgoFormer(AlgoFormer algoFormer, int x, int y) {
 		Posicion posicion = new Posicion(x,y);
-		moverAlgoFormer(algoFormer,posicion);
+		this.moverAlgoFormer(algoFormer,posicion);
 	}
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
@@ -194,13 +193,13 @@ public class Tablero {
 		}
 
 		Posicion posicionFinal = posicionInicial.getSuma(posRelativa);
-		if(this.getCasillero(posicionFinal).contieneAlgoFormer() == true){
+		if(this.getCasillero(posicionFinal).contieneAlgoFormer()){
 			throw new CasilleroOcupadoException();
 		}
 		else {
-				this.quitarAlgoFormer(unAlgoFormer);
-				this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
-				posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
+			this.quitarAlgoFormer(unAlgoFormer);
+			this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+			this.posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
 		}
 	}
 

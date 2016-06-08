@@ -21,23 +21,23 @@ public class AlgoFormer {
 	}
 
 	public int getVida(){
-		return estado.getVida();
+		return this.estado.getVida();
 	}
 
 	public int getFuerzaAtaque(){
-		return estado.getFuerzaAtaque();
+		return this.estado.getFuerzaAtaque();
 	}
 
 	public int getDistanciaAtaque(){
-		return estado.getDistanciaAtaque();
+		return this.estado.getDistanciaAtaque();
 	}
 
 	public int getVelocidad(){
-		return estado.getVelocidad();
+		return this.estado.getVelocidad();
 	}
 	
 	public String getTipoUnidad(){
-		return estado.getTerreno();
+		return this.estado.getTerreno();
 	}
 
 	public EstadoAlgoformer getEstado(){
@@ -46,27 +46,40 @@ public class AlgoFormer {
 
 	public void transformarAlterno(){
 		this.estado = new Alterno();
-		estado.setVida(500);
-		estado.setFuerzaAtaque(15);
-		estado.setDistanciaAtaque(4);
-		estado.setVelocidad(5);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(500);
+		this.estado.setFuerzaAtaque(15);
+		this.estado.setDistanciaAtaque(4);
+		this.estado.setVelocidad(5);
+		this.estado.setTerreno("terrestre");
 	}
 
 	public void transformarHumanoide(){
 		this.estado = new Humanoide();
-		estado.setVida(500);
-		estado.setFuerzaAtaque(50);
-		estado.setDistanciaAtaque(2);
-		estado.setVelocidad(2);
-		estado.setTerreno("terrestre");
+		this.estado.setVida(500);
+		this.estado.setFuerzaAtaque(50);
+		this.estado.setDistanciaAtaque(2);
+		this.estado.setVelocidad(2);
+		this.estado.setTerreno("terrestre");
 	}
 
 
 	public void mover(Posicion posRelativa){
-			//if(!this.estado.estaEnRango(posRelativa.getX(),posRelativa.getY()))
-			//	throw new MovimientoFueraDeRangoException();
-		this.tablero.moverAlgoFormer(this,posRelativa);
+		if(this.movimientoPosible(posRelativa)){
+			this.tablero.moverAlgoFormer(this,posRelativa);
+		} else {
+			throw new MovimientoFueraDeRangoException();
+		}
+	}
+
+	private boolean movimientoPosible(Posicion posicion){
+		int velocidad = this.getVelocidad();
+		velocidad = velocidad*velocidad;
+		int x = posicion.getX();
+		x = x*x;
+		int y = posicion.getY();
+		y = y*y;
+		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
+//		return true; //Circunferencia de alcance
 	}
 
 	public void moverDerecha(){

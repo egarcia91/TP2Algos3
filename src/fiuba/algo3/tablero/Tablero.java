@@ -3,7 +3,6 @@ package fiuba.algo3.tablero;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import fiuba.algo3.algoformers.Escuadron;
-import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Tablero {
@@ -84,7 +83,7 @@ public class Tablero {
 		return this.getCasillero(posX,posY).contieneAlgoFormer();
 	}
 
-	public void setItem(Spark item,int posX, int posY){
+	public void setItem(Item item,int posX, int posY){
 		this.getCasillero(posX,posY).setItem(item);
 	}
 

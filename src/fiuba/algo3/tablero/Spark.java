@@ -1,17 +1,11 @@
 package fiuba.algo3.tablero;
 
-public class Spark {
+public class Spark extends Item{
 	private static Spark instance = new Spark();
 	
-	private String nombre = "Spark";
-
 	private Spark(){};
 	
 	public static Spark getInstance(){
 		return instance;
-	}
-	
-	public String getNombre(){
-		return this.nombre;
 	}
 }

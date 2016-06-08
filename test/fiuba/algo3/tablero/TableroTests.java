@@ -24,7 +24,7 @@ public class TableroTests{
 					throw e;
 				}
 			}
-		}	
+		}	 
 	}
 	
 	@Test

@@ -3,7 +3,6 @@ package fiuba.algo3.tablero;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import fiuba.algo3.algoformers.Escuadron;
-import fiuba.algo3.algoformers.Spark;
 import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.algoformers.AlgoFormer;
 
@@ -219,5 +218,5 @@ public class Tablero {
 		return posicion;
 	}
 
-}
+} 
 

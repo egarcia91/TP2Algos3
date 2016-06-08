@@ -6,7 +6,6 @@ import java.util.Random;
 
 import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
-import fiuba.algo3.algoformers.Spark;
 
 public class Juego {
 	private static final int tableroAncho = 200;
@@ -19,7 +18,7 @@ public class Juego {
 	public EscuadronDecepticon escuadronDecepticon;
 
 	public Juego(){
-		tablero = new Tablero(this.tableroAncho,this.tableroAlto);
+		tablero = new Tablero(Juego.tableroAncho,Juego.tableroAlto);
 		jugadores = new ArrayList<Jugador>();
 		escuadronAutobot = new EscuadronAutobot();
 		escuadronDecepticon = new EscuadronDecepticon();
@@ -28,9 +27,9 @@ public class Juego {
 
 	public void ubicarSpark(Tablero tablero){
 		Random rand = new Random();
-		int randX = Math.round((this.tableroAncho/2) + rand.nextInt(2));
-		int randY = Math.round((this.tableroAlto/2) + rand.nextInt(2));
-		tablero.setItem(new Spark(),randX,randY);
+		int randX = Math.round((Juego.tableroAncho/2) + rand.nextInt(2));
+		int randY = Math.round((Juego.tableroAlto/2) + rand.nextInt(2));
+		tablero.setItem(Spark.getInstance(),randX,randY);
 	}
 
 	public void agregarJugador(Jugador unJugador){
@@ -79,11 +78,11 @@ public class Juego {
 	}
 
 	public int getTableroAncho(){
-		return this.tableroAncho;
+		return Juego.tableroAncho;
 	}
 
 	public int getTableroAlto(){
-		return this.tableroAlto;
+		return Juego.tableroAlto;
 	}
 
 }

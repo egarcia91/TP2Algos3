@@ -1,8 +1,6 @@
 package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.AlgoFormer;
-//TODO cambiar spark por contenido y agregar terreno/Superficie
-import fiuba.algo3.algoformers.Spark;
 
 public class Casillero {
 	private Spark spark;
@@ -12,7 +10,7 @@ public class Casillero {
 	public boolean contieneAlgoFormer(){
 		return (this.algoFormer != null);
 	}
-
+ 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
 		if(this.contieneAlgoFormer()){
 			throw new CasilleroOcupadoException();
@@ -59,5 +57,5 @@ public class Casillero {
 			return true;
 		}
 		return false;
-	}
+	} 
 }

@@ -18,6 +18,7 @@ public class MovimientoTests {
 		tablero.agregarAlgoFormer(megatron,unaPosicion);
 
 		Assert.assertTrue(tablero.existeAlgoFormer(megatron,20,20));
+		Assert.assertFalse(tablero.existeAlgoFormer(megatron,21,21));
 
 		Posicion posicionRelativa = new Posicion(1,1);
 

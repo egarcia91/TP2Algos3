@@ -196,7 +196,8 @@ public class Tablero {
 		Posicion posicionInicial;
 
 		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
-		if(posicionInicial == null){
+		
+		if(!posicionesElementos.containsKey(unAlgoFormer.getNombre())){
 			throw new AlgoFormerNoExisteException();
 		}
 
@@ -212,7 +213,7 @@ public class Tablero {
 
 	public Posicion getPosicion(AlgoFormer algoFormer) {
 		Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
-		if(posicion == null){
+		if(!posicionesElementos.containsKey(algoFormer.getNombre())){
 			throw new AlgoFormerNoExisteException();
 		}
 		return posicion;

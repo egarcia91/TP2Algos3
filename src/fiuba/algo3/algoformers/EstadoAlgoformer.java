@@ -1,5 +1,7 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.tablero.Posicion;
+
 public class EstadoAlgoformer{
 	private int vida;
 	private int velocidad;
@@ -48,7 +50,19 @@ public class EstadoAlgoformer{
 	}
 
 	public boolean estaEnRango(int deltaX,int deltaY){
-		return(this.velocidad <= deltaX && this.velocidad <= deltaY);
+		int velocidad = this.velocidad*this.velocidad;
+		int x=deltaX*deltaX;
+		int y=deltaY*deltaY;
+		return(velocidad <= deltaX && velocidad <= deltaY);
+	}
+
+	public boolean estaEnRango(Posicion posicionRelativa){
+		int velocidad = this.velocidad*this.velocidad;
+		int x = posicionRelativa.getX();
+		int y = posicionRelativa.getY();
+		x=x*x;
+		y=y*y;
+		return(x <= velocidad && y <= velocidad);
 	}
 
 	//Horrible solucion para plantear polimorfismo

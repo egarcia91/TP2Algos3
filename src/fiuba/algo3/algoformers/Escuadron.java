@@ -5,10 +5,15 @@ import java.util.List;
 
 public class Escuadron {
 
-	public List<AlgoFormer> algoFormers; // FIXME Debo ser privado!!
+	private List<AlgoFormer> algoFormers;
 	
 	public Escuadron(){
 		algoFormers = new ArrayList<AlgoFormer>(); 
+	}
+
+	//TODO Esta clase debe ser iterable
+	public AlgoFormer getAlgoFormer(int number){
+		return this.algoFormers.get(number);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
@@ -34,15 +39,13 @@ public class Escuadron {
 	}
 
 	public boolean perteneceAlgoformer(AlgoFormer unAlgoFormer) {
-/*		for (AlgoFormer eachAlgoFormer :
+		for (AlgoFormer eachAlgoFormer :
 				algoFormers) {
-//			if (eachAlgoFormer.getNombre() == unAlgoFormer.getNombre()) {
-//				return true;
-//			}
+			if (eachAlgoFormer == unAlgoFormer) {
+				return true;
+			}
 		}
-		*/
 		return false;
-		
 	}
 
 

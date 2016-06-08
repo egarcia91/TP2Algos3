@@ -25,9 +25,9 @@ public class JugadorTests {
 
 		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.algoFormers.add(primerAlgoFormer);
-		escuadronUno.algoFormers.add(segundoAlgoFormer);
-		escuadronUno.algoFormers.add(tercerAlgoFormer);
+		escuadronUno.agregarAlgoFormer(primerAlgoFormer);
+		escuadronUno.agregarAlgoFormer(segundoAlgoFormer);
+		escuadronUno.agregarAlgoFormer(tercerAlgoFormer);
 
 
 		Jugador jugador = new Jugador("Jere");

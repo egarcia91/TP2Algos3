@@ -79,23 +79,22 @@ public class AlgoFormer {
 		int y = posicion.getY();
 		y = y*y;
 		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
-//		return true; //Circunferencia de alcance
 	}
 
 	public void moverDerecha(){
-		tablero.moverAlgoFormer(this,1,0);
+		this.tablero.moverAlgoFormer(this,1,0);
 	}
 
 	public void moverIzquierda(){
-		tablero.moverAlgoFormer(this,-1,0);
+		this.tablero.moverAlgoFormer(this,-1,0);
 	}
 
 	public void moverArriba(){
-		tablero.moverAlgoFormer(this,0,-1);
+		this.tablero.moverAlgoFormer(this,0,-1);
 	}
 
 	public void moverAbajo(){
-		tablero.moverAlgoFormer(this,0,1);
+		this.tablero.moverAlgoFormer(this,0,1);
 	}
 
 	public void atacar(){
@@ -107,7 +106,7 @@ public class AlgoFormer {
 	}
 
 	public void recibirAtaque(int fuerzaAtaque){
-		estado.setVida(estado.getVida()-fuerzaAtaque);
+		this.estado.setVida(this.estado.getVida()-fuerzaAtaque);
 	}
 
 	public void setTablero(Tablero tablero) {

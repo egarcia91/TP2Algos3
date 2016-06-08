@@ -53,30 +53,6 @@ public class TableroTests{
 		tablero.agregarAlgoFormer(new Megatron(), TABLERO_ANCHO - 1, TABLERO_ALTO - 1);
 	}
 
-	@Test
-	public void test04MovimientoDeAlgoformers() {
-		Tablero tablero = new Tablero(200,200);
-		Megatron megatron = new Megatron();
-		Posicion posicionActual = new Posicion(10,10);
-		
-		tablero.agregarAlgoFormer(megatron,posicionActual);
-		
-		posicionActual.sumar(3,4);
-		tablero.moverAlgoFormer(megatron,3,4);
-		/*
-		Posicion pos = tablero.getPosicion(megatron);
-		System.out.println(pos.x);
-		System.out.println(pos.y);
-		System.out.println(posicionActual.x);
-		System.out.println(posicionActual.y);
-		*/
-		Assert.assertTrue(tablero.getPosicion(megatron) == posicionActual);
-		
-		posicionActual.sumar(-3,10);
-		tablero.moverAlgoFormer(megatron, -3,10);
-		Assert.assertTrue(tablero.getPosicion(megatron) == posicionActual);
-	}
-	
 	@Test (expected = CasilleroNoExisteException.class)
 	public void test05MovimientoNoSeVaDeLosLimitesDelTableroDerecha(){
 		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);

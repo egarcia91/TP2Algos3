@@ -9,5 +9,5 @@ public class CasilleroNoExisteException extends RuntimeException {
 	
 	CasilleroNoExisteException(String mensaje){
 		super(mensaje);
-	}	
+	}
 }

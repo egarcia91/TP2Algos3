@@ -61,8 +61,8 @@ public class AlgoFormerPrimerTests {
 
 		Assert.assertTrue(jugadorDos.existeEscuadron());
 		//TODO Posiciones.
-		int ancho=juego.tableroAncho();
-		int alto=juego.tableroAlto();
+		int ancho=juego.getTableroAncho();
+		int alto=juego.getTableroAlto();
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho-1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto-1,ancho));

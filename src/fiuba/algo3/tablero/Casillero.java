@@ -10,58 +10,54 @@ public class Casillero {
 	private Terreno terreno;
 
 	public boolean contieneAlgoFormer(){
-		return (algoFormer != null); 
+		return (this.algoFormer != null);
 	}
-	
+
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
-		if(this.contieneAlgoFormer() == true){
-				throw new CasilleroOcupadoException();
-		}
-		else
+		if(this.contieneAlgoFormer()){
+			throw new CasilleroOcupadoException();
+		} else {
 			this.algoFormer = unAlgoFormer;
+			this.quitarItem(); //No eliminar linea si no saben para que es
+		}
 	}
-	
+
 	public AlgoFormer getAlgoFormer(){
-		if(algoFormer == null)
+		if(!this.contieneAlgoFormer()){
 			throw new AlgoFormerNoExisteException();
-		else
+		} else {
 			return algoFormer;
+		}
 	}
-	
+
 	public void quitarAlgoFormer(){
 		this.algoFormer = null;
 	}
-	
+
 	public boolean contieneItem(){
-		return (spark != null);
+		return (this.spark != null);
 	}
-	
+
 	public void setItem(Spark unaSpark){
 		this.spark = unaSpark;
-	}	
-	
-	public Spark getItem(){
-		if(spark == null)
-			throw new ItemNoExisteException();
-		else
-			return spark;
 	}
-	
+
+	public Spark getItem(){
+		if(spark == null){
+			throw new ItemNoExisteException();
+		} else {
+			return spark;
+		}
+	}
+
 	public void quitarItem(){
 		this.spark = null;
 	}
-	
+
 	public boolean estaVacio(){
-		if(this.contieneItem() == false && this.contieneAlgoFormer() == false){
+		if(!this.contieneItem() && !this.contieneAlgoFormer()){
 			return true;
 		}
 		return false;
 	}
-
-
-
-
-
-
-
 }

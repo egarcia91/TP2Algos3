@@ -8,7 +8,7 @@ import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Tablero {
-	
+
 	private int ancho;
 	private int alto;
 	private Casillero[][] tablero;
@@ -29,7 +29,7 @@ public class Tablero {
 		}
 		this.ancho = ancho;
 		this.alto = alto;
-		posicionesElementos = new LinkedHashMap<String,Posicion>();
+		this.posicionesElementos = new LinkedHashMap<String,Posicion>();
 
 		escuadronUno = new Escuadron();
 		escuadronDos = new Escuadron();
@@ -45,7 +45,7 @@ public class Tablero {
 	}	
 	
 	public boolean estaDesierto(){
-		return posicionesElementos.isEmpty();
+		return this.posicionesElementos.isEmpty();
 	}
 
 	public Casillero getCasillero(int posX, int posY){
@@ -54,65 +54,55 @@ public class Tablero {
 		}catch(Exception e){
 			throw new CasilleroNoExisteException();
 		}
-	}		
-	
+	}
+
 	public Casillero getCasillero(Posicion posicion){
 		return this.getCasillero(posicion.getX(),posicion.getY());
 	}
-
 
 	public int cantidadAlgoFormer(){
 		return this.escuadronUno.cantidadMiembrosEscuadron()+ this.escuadronDos.cantidadMiembrosEscuadron();
 	}
 
-
-	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
-		posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
+		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
 		unAlgoFormer.setTablero(this);
 	}
-	
+
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){
 		agregarAlgoFormer(unAlgoFormer,new Posicion(x,y));
 	}
-	
+
 	public void quitarAlgoFormer(AlgoFormer unAlgoFormer){
 		String key = unAlgoFormer.getNombre();
-		Casillero casillero = this.getCasillero(posicionesElementos.get(key));
-		if(casillero == null) return;
-		else{
+		Casillero casillero = this.getCasillero(this.posicionesElementos.get(key));
+		if(casillero == null){
+			return;
+		} else{
 			casillero.quitarAlgoFormer();
-			posicionesElementos.remove(key);
-		}	
+			this.posicionesElementos.remove(key);
+		}
 	}
-	
+
 	public boolean tieneAlgoFormer(int posX,int posY){
-		return(this.tablero[posX][posY].contieneAlgoFormer());
+		return this.getCasillero(posX,posY).contieneAlgoFormer();
 	}
 
 	public void setItem(Spark item,int posX, int posY){
-		tablero[posX][posY].setItem(item);		
+		this.getCasillero(posX,posY).setItem(item);
 	}
-		
-	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
-		if(posicionesElementos.containsKey(unAlgoFormer.getNombre())== true){
-			return posicionesElementos.get(unAlgoFormer.getNombre());
 
-		}
-		else
+	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
+		if(posicionesElementos.containsKey(unAlgoFormer.getNombre())){
+			return posicionesElementos.get(unAlgoFormer.getNombre());
+		} else {
 			throw new AlgoFormerNoExisteException();
+		}
 	}
 
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int posX, int posY){
-		AlgoFormer algoFormer;
-		try{
-			algoFormer = this.getCasillero(posX, posY).getAlgoFormer();
-		}
-		catch(AlgoFormerNoExisteException e){
-			return false;
-		}
-		return (algoFormer.getNombre() == unAlgoFormer.getNombre());
+		return this.buscarAlgoFormer(unAlgoFormer).equals(new Posicion(posX,posY));
 	}
 	
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
@@ -138,7 +128,6 @@ public class Tablero {
 					}
 				}
 		}
-
 	}
 
 	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
@@ -151,17 +140,17 @@ public class Tablero {
 
 
 	private void ubicarEscuadronUno(){ //FIX: NO TIENE SENTIDO, INITX ES SIEMPRE 1
-		int initY = 1;
-		int initX = 1;
+		int y = 1;
+		int x = 1;
+		//Iterar Escuadron, no se hace asi
 		for (AlgoFormer algoFormer: this.escuadronUno.algoFormers) {
-			//algoFormer.tablero = this;
-			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
-			if(initX == 1){
-				initX = 2;
-				initY = 1;
+			this.agregarAlgoFormer(algoFormer,new Posicion(x,y));
+			if(x == 1){
+				x = 2;
+				y = 1;
 			} else {
-				initX = 1;
-				initY = 2;
+				x = 1;
+				y = 2;
 			}
 		}
 	}
@@ -190,7 +179,6 @@ public class Tablero {
 			this.ubicarEscuadronDos();
 		}
 	}
-	
 
 	public void moverAlgoFormer(AlgoFormer algoFormer, int x, int y) {
 		Posicion posicion = new Posicion(x,y);
@@ -199,11 +187,12 @@ public class Tablero {
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
 		Posicion posicionInicial;
-			
+
 		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
-		if(posicionInicial == null){	
+		if(posicionInicial == null){
 			throw new AlgoFormerNoExisteException();
 		}
+
 		Posicion posicionFinal = posicionInicial.getSuma(posRelativa);
 		if(this.getCasillero(posicionFinal).contieneAlgoFormer() == true){
 			throw new CasilleroOcupadoException();

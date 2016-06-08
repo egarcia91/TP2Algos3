@@ -52,13 +52,13 @@ public class CasilleroTests {
 		casillero.setItem(spark);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertFalse(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertFalse(casillero.contieneAlgoFormer());
 		Assert.assertTrue(casillero.getItem() == spark);
 
 		casillero.agregarAlgoFormer(algoFormer);
 		Assert.assertFalse(casillero.estaVacio());
 		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
-		Assert.assertFalse(casillero.getItem() == spark);
+		Assert.assertFalse(casillero.contieneItem());
 	}
 
 	@Test(expected=CasilleroOcupadoException.class)
@@ -88,7 +88,7 @@ public class CasilleroTests {
 
 		casillero.quitarAlgoFormer();
 		Assert.assertTrue(casillero.estaVacio());
-		Assert.assertFalse(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertFalse(casillero.contieneAlgoFormer());
 	}
 
 }

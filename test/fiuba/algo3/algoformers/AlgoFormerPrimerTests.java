@@ -51,89 +51,89 @@ public class AlgoFormerPrimerTests {
 		juego.agregarJugador(jugadorDos);
 		Assert.assertTrue(juego.existeJugador(jugadorDos));
 
-//		juego.iniciar();
-//
-//		Assert.assertTrue(jugadorUno.existeEscuadron());
-//		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
-//		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
-//		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
-//
-//		Assert.assertTrue(jugadorDos.existeEscuadron());
-//		//TODO Posiciones.
-//		int ancho = juego.getTableroAncho();
-//		int alto = juego.getTableroAlto();
-//		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho));
-//		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho-1));
-//		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto-1,ancho));
-//
-//		//FIXME esto nose como va a ser pero hay que corroborar los turnos
-//		jugadorUno.moverAlgoFormer();
-//
-//		jugadorDos.moverAlgoFormer();
-//
-//		//Exception!!!
-//		jugadorDos.moverAlgoFormer();
+		juego.iniciar();
+
+		Assert.assertTrue(jugadorUno.existeEscuadron());
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
+
+		Assert.assertTrue(jugadorDos.existeEscuadron());
+		//TODO Posiciones.
+		int ancho = juego.getTableroAncho();
+		int alto = juego.getTableroAlto();
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho-1));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto-1,ancho));
+
+		//FIXME esto nose como va a ser pero hay que corroborar los turnos
+		jugadorUno.moverAlgoFormer();
+
+		jugadorDos.moverAlgoFormer();
+
+		//Exception!!!
+		jugadorDos.moverAlgoFormer();
 	}
 
-//	@Test
-//	public void test05modosAtaques() {
-//		Tablero tab = new Tablero(20,20);
-//
-//		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-//		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
-//
-//		Escuadron escuadronUno = new Escuadron();
-//		Escuadron escuadronDos = new Escuadron();
-//
-//
-//		OptimusPrime optimusPrime = new OptimusPrime();
-//		optimusPrime.transformarAlterno();
-//		//escuadronUno.add(optimusPrime);
-//		escuadronUno.agregarAlgoFormer(optimusPrime);
-//
-//
-//		Megatron megatron = new Megatron();
-//		//escuadronDos.add(megatron);
-//		escuadronDos.agregarAlgoFormer(megatron);
-//
-//		tab.agregarEscuadron(escuadronUno);
-//		tab.agregarEscuadron(escuadronDos);
-//
-//		Assert.assertTrue(megatron.getVida() == 550);
-//
-//		optimusPrime.moverDerecha();
-//		optimusPrime.moverDerecha();
-//		optimusPrime.moverDerecha();
-//
-//		optimusPrime.moverArriba();
-//		optimusPrime.moverArriba();
-//		optimusPrime.moverArriba();
-//
-//		optimusPrime.atacar();
-//		Assert.assertTrue(megatron.getVida() == 535);
-//
-//		Assert.assertTrue(optimusPrime.getVida() == 500);
-//
-//		megatron.moverIzquierda();
-//		megatron.moverIzquierda();
-//		megatron.moverIzquierda();
-//
-//		megatron.moverAbajo();
-//		megatron.moverAbajo();
-//		megatron.moverAbajo();
-//
-//		megatron.atacar();
-//		Assert.assertTrue(optimusPrime.getVida() == 490);
-//
-//		optimusPrime.moverIzquierda();
-//		optimusPrime.moverIzquierda();
-//		optimusPrime.moverIzquierda();
-//
-//		//Ahora esta lejos!
-//		Assert.assertTrue(optimusPrime.getVida() == 490);
-//		megatron.atacar();
-//		Assert.assertTrue(optimusPrime.getVida() == 490);
-//	}
+	@Test
+	public void test05modosAtaques() {
+		Tablero tab = new Tablero(20,20);
+
+		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
+		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
+
+		Escuadron escuadronUno = new Escuadron();
+		Escuadron escuadronDos = new Escuadron();
+
+
+		OptimusPrime optimusPrime = new OptimusPrime();
+		optimusPrime.transformarAlterno();
+		//escuadronUno.add(optimusPrime);
+		escuadronUno.agregarAlgoFormer(optimusPrime);
+
+
+		Megatron megatron = new Megatron();
+		//escuadronDos.add(megatron);
+		escuadronDos.agregarAlgoFormer(megatron);
+
+		tab.agregarEscuadron(escuadronUno);
+		tab.agregarEscuadron(escuadronDos);
+
+		Assert.assertTrue(megatron.getVida() == 550);
+
+		optimusPrime.moverDerecha();
+		optimusPrime.moverDerecha();
+		optimusPrime.moverDerecha();
+
+		optimusPrime.moverArriba();
+		optimusPrime.moverArriba();
+		optimusPrime.moverArriba();
+
+		optimusPrime.atacar();
+		Assert.assertTrue(megatron.getVida() == 535);
+
+		Assert.assertTrue(optimusPrime.getVida() == 500);
+
+		megatron.moverIzquierda();
+		megatron.moverIzquierda();
+		megatron.moverIzquierda();
+
+		megatron.moverAbajo();
+		megatron.moverAbajo();
+		megatron.moverAbajo();
+
+		megatron.atacar();
+		Assert.assertTrue(optimusPrime.getVida() == 490);
+
+		optimusPrime.moverIzquierda();
+		optimusPrime.moverIzquierda();
+		optimusPrime.moverIzquierda();
+
+		//Ahora esta lejos!
+		Assert.assertTrue(optimusPrime.getVida() == 490);
+		megatron.atacar();
+		Assert.assertTrue(optimusPrime.getVida() == 490);
+	}
 
 	public void test06AtaqueAlgoFormer(){
 

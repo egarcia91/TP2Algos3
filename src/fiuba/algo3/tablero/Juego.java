@@ -25,6 +25,10 @@ public class Juego {
 		this.ubicarSpark(tablero);
 	}
 
+	public Tablero getTablero(){
+		return this.tablero;
+	}
+	
 	public void ubicarSpark(Tablero tablero){
 		Random rand = new Random();
 		int randX = Math.round((Juego.tableroAncho/2) + rand.nextInt(2));

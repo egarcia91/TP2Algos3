@@ -22,48 +22,49 @@ public class JuegoTests {
 		//Dado que no se en que posicion aleatoria se inicializo la Spark debo buscar hasta encontrala
 		
 		casillero = tablero.getCasillero(anchoMedio, altoMedio);
+
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};	
 		
 		casillero = tablero.getCasillero(anchoMedio - 1, altoMedio);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};	
 		
 		casillero = tablero.getCasillero(anchoMedio + 1, altoMedio);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};	
 		
 		casillero = tablero.getCasillero(anchoMedio - 1, altoMedio - 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};
 		
 		casillero = tablero.getCasillero(anchoMedio - 1, altoMedio + 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};
 		
 		casillero = tablero.getCasillero(anchoMedio + 1, altoMedio - 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};
 		
 		casillero = tablero.getCasillero(anchoMedio + 1, altoMedio + 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};	
 		
 		casillero = tablero.getCasillero(anchoMedio, altoMedio - 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};	
 		
 		casillero = tablero.getCasillero(anchoMedio, altoMedio + 1);
 		try{
-			if(casillero.getItem().getClass() == Spark.class) return;
+			if(casillero.getItem().esSpark()) return;
 		}catch(ItemNoExisteException e){};
 		
 		// Si llego hasta aca la Spark no existe;

@@ -1,5 +1,6 @@
 package fiuba.algo3.algoformers;
 
+import fiuba.algo3.tablero.Posicion;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -14,26 +15,17 @@ import fiuba.algo3.algoformers.personajes.OptimusPrime;
 public class AlgoFormerPrimerTests {
 
 	@Test
-	public void test02verificarTransformacion() {
-		Tablero tab = new Tablero(20,20);
+	public void test01verificarTransformacion(){
+		OptimusPrime optimusPrime = new OptimusPrime();
+		int velocidadHumaniode = optimusPrime.getVelocidad();
+		optimusPrime.transformarAlterno();
 
-		AlgoFormer algoFormer = new AlgoFormer();
-		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.agregarAlgoFormer(algoFormer);
+		Assert.assertFalse(velocidadHumaniode == optimusPrime.getVelocidad());
 
-		tab.agregarEscuadron(escuadronUno);
+		optimusPrime.transformarHumanoide();
 
-		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
+		Assert.assertTrue(velocidadHumaniode == optimusPrime.getVelocidad());
 
-		algoFormer.transformarAlterno();
-
-		Assert.assertFalse(algoFormer.getEstado().getClass() == Humanoide.class);
-		Assert.assertTrue(algoFormer.getEstado().getClass() == Alterno.class);
-
-		algoFormer.transformarHumanoide();
-
-		Assert.assertTrue(algoFormer.getEstado().getClass() == Humanoide.class);
-		Assert.assertFalse(algoFormer.getEstado().getClass() == Alterno.class);
 	}
 
 	@Test
@@ -44,12 +36,9 @@ public class AlgoFormerPrimerTests {
 		Jugador jugadorUno = new Jugador("Jere");
 
 		Jugador jugadorDos = new Jugador("Eze");
-		System.out.println("agrego jugador uno");
 		juego.agregarJugador(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
-		System.out.println("agrego jugador dos");
 		juego.agregarJugador(jugadorDos);
-		System.out.println("termine de agregad jugador dos");
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
 
 		juego.iniciar();

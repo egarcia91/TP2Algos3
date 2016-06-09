@@ -3,7 +3,7 @@ package fiuba.algo3.tablero;
 import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Casillero {
-	private Item item;
+	private Item item = new ItemVacio();
 	private AlgoFormer algoFormer;
 
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada

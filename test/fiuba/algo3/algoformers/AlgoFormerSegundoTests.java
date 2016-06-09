@@ -50,7 +50,7 @@ public class AlgoFormerSegundoTests {
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(2), 15, 14));
 	}
 
-	@Test
+	@Test  //>>>>>>>>>>>>>>>>> hay que mover el algoformer!
 	public void test02verificarMovimientoZonaPantanosaModoHumanoide() {
 
 		Tablero tab = new Tablero(20, 20);
@@ -63,9 +63,10 @@ public class AlgoFormerSegundoTests {
 
 		tab.agregarAlgoFormer(optimusPrime, posicion);
 
-		Posicion posicionRelativa = new Posicion(2, 2);
+		//Posicion posicionRelativa = new Posicion(2, 2);
 
-		Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 2, 2));
+		//optimusPrime.moverDerecha();
+		//Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 1, 2));
 		Assert.assertTrue(tab.existeAlgoFormer(optimusPrime, 1, 1));
 
 	}
@@ -93,9 +94,7 @@ public class AlgoFormerSegundoTests {
 
 
 		//Faltaria acomodar este test bien segun el mover para que tarde el doble por zona pantanosa
-
 	}
-
 
 	@Test
 	public void test05verificarTerrestreZonaEspinas() {

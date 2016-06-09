@@ -47,7 +47,6 @@ public class Tablero {
 	}
 
 	public Casillero getCasillero(int posX, int posY){
-		//System.out.println(">>>>(" + posX + "," + posY + ")<<<<<<" );
 		try{
 			return this.tablero[posX][posY];
 		}catch(Exception e){
@@ -164,7 +163,6 @@ public class Tablero {
 
 		int cantidadAlgoFormers = this.escuadronDos.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
-			System.out.println(initX + " <> " + initY);
 			this.agregarAlgoFormer(this.escuadronDos.getAlgoFormer(i),new Posicion(initX,initY));
 			if(initX == this.ancho-1){
 				initX--;
@@ -215,8 +213,8 @@ public class Tablero {
 		if(this.getCasillero(posicionFinal).contieneAlgoFormer()){
 			throw new CasilleroOcupadoException();
 		} else {
+			this.agregarAlgoFormer(unAlgoFormer,posicionFinal); //observar que se agrega antes de quitarlo.
 			this.quitarAlgoFormer(unAlgoFormer);
-			this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 			this.posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
 		}
 	}

@@ -5,6 +5,7 @@ import fiuba.algo3.algoformers.AlgoFormer;
 public class Casillero {
 	private Item item;
 	private AlgoFormer algoFormer;
+
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
 	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
 
@@ -74,5 +75,6 @@ public class Casillero {
 			return true;
 		}
 		return false;
-	} 
+	}
+
 }

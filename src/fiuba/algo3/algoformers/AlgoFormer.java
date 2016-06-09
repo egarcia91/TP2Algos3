@@ -3,12 +3,16 @@ package fiuba.algo3.algoformers;
 import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
-import fiuba.algo3.tablero.Tablero;
+import fiuba.algo3.tablero.Movimiento;
+import fiuba.algo3.tablero.Ataque;
 
 public class AlgoFormer {
 
-	protected Tablero tablero;
+	protected Movimiento movimiento;
 	protected EstadoAlgoformer estado;
+	protected int turnosCastigo = 0;
+	protected int penalizacionAtaque = 0;
+	public Ataque ataque;
 
 	protected String nombre = "Algoformer";
 
@@ -24,8 +28,28 @@ public class AlgoFormer {
 		return this.estado.getVida();
 	}
 
+	public void setPenalizacionAtaque(int unPenalizacion){
+		this.penalizacionAtaque = unPenalizacion;
+	}
+
+	public int getPenalizacionAtaque(){
+		return this.penalizacionAtaque;
+	}
+
+	public void setTurno(int unTurno){
+		this.turnosCastigo = unTurno;
+	}
+
+	public void setVida(int unaVida){
+		this.estado.setVida(unaVida);
+	}
+
 	public int getFuerzaAtaque(){
 		return this.estado.getFuerzaAtaque();
+	}
+
+	public void setFuerzaAtaque(int unAtaque){
+		this.estado.setFuerzaAtaque(unAtaque);
 	}
 
 	public int getDistanciaAtaque(){
@@ -35,7 +59,9 @@ public class AlgoFormer {
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
-	
+
+
+
 	public String getTipoUnidad(){
 		return this.estado.getTerreno();
 	}
@@ -63,54 +89,78 @@ public class AlgoFormer {
 	}
 
 
-	public void mover(Posicion posRelativa){
-		if(this.movimientoPosible(posRelativa)){
-			this.tablero.moverAlgoFormer(this,posRelativa);
+//	public void mover(Posicion posRelativa){
+//		if(this.movimientoPosible(posRelativa)){
+//			this.tablero.moverAlgoFormer(this,posRelativa);
+//		} else {
+//			throw new MovimientoFueraDeRangoException();
+//		}
+//	}
+
+
+//	private boolean movimientoPosible(Posicion posicion){
+//		int velocidad = this.getVelocidad();
+//		velocidad = velocidad*velocidad;
+//		int x = posicion.getX();
+//		x = x*x;
+//		int y = posicion.getY();
+//		y = y*y;
+//		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
+//	}
+
+	public void moverDerecha(){
+		if(this.turnosCastigo == 0){
+			this.movimiento.moverAlgoFormerDerecha(this,this.getVelocidad());
 		} else {
-			throw new MovimientoFueraDeRangoException();
+			this.turnosCastigo--;
 		}
 	}
 
-	private boolean movimientoPosible(Posicion posicion){
-		int velocidad = this.getVelocidad();
-		velocidad = velocidad*velocidad;
-		int x = posicion.getX();
-		x = x*x;
-		int y = posicion.getY();
-		y = y*y;
-
-		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
-	}
-
-	public void moverDerecha(){
-		this.tablero.moverAlgoFormer(this,1,0);
-	}
-
 	public void moverIzquierda(){
-		this.tablero.moverAlgoFormer(this,-1,0);
+		if(this.turnosCastigo == 0){
+			this.movimiento.moverAlgoFormerIzquierda(this,this.getVelocidad());
+		} else {
+			this.turnosCastigo--;
+		}
 	}
 
 	public void moverArriba(){
-		this.tablero.moverAlgoFormer(this,0,-1);
+		if(this.turnosCastigo == 0){
+			this.movimiento.moverAlgoFormerArriba(this,this.getVelocidad());
+		} else {
+			this.turnosCastigo--;
+		}
 	}
 
 	public void moverAbajo(){
-		this.tablero.moverAlgoFormer(this,0,1);
+		if(this.turnosCastigo == 0){
+			this.movimiento.moverAlgoFormerAbajo(this,this.getVelocidad());
+		} else {
+			this.turnosCastigo--;
+		}
 	}
 
-	public void atacar(){
+	/*public void atacar(){
 		this.tablero.ataqueZona(this,this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
-	}
+	}*/
+
+	public void atacar() { this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());}
 
 	public boolean estaEnPosicion(int x, int y){
-		return this.tablero.existeAlgoFormer(this, x, y);
+		//return this.tablero.existeAlgoFormer(this, x, y);
+		return this.movimiento.existeAlgoFormer(this, x, y);
+		//return false;
 	}
 
 	public void recibirAtaque(int fuerzaAtaque){
 		this.estado.setVida(this.estado.getVida()-fuerzaAtaque);
 	}
 
-	public void setTablero(Tablero tablero) {
-		this.tablero = tablero;
+	public void setMovimiento(Movimiento unMovimiento) {
+		this.movimiento = unMovimiento;
+	}
+
+	public void setAtaque(Ataque unAtaque) {
+		this.ataque = unAtaque;
 	}
 }

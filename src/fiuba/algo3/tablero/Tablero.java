@@ -12,8 +12,12 @@ public class Tablero {
 	private Casillero[][] tablero;
 	private Map<String,Posicion> posicionesElementos;
 
-	private Escuadron escuadronUno;
-	private Escuadron escuadronDos;
+	//private Escuadron escuadronUno;
+	//private Escuadron escuadronDos;
+	protected Escuadron escuadronUno;
+	protected Escuadron escuadronDos;
+
+
 
 	public Tablero(int ancho, int alto){
 		tablero = new Casillero[ancho][alto];
@@ -62,7 +66,12 @@ public class Tablero {
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
-		unAlgoFormer.setTablero(this);
+		Ataque ataque = new Ataque();
+		ataque.setTablero(this);
+		Movimiento movimiento = new Movimiento();
+		movimiento.setTablero(this);
+		unAlgoFormer.setAtaque(ataque);
+		unAlgoFormer.setMovimiento(movimiento);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){
@@ -88,7 +97,7 @@ public class Tablero {
 		this.getCasillero(posX,posY).setItem(item);
 	}
 
-	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
+	public Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
 		if(posicionesElementos.containsKey(unAlgoFormer.getNombre())){
 			return posicionesElementos.get(unAlgoFormer.getNombre());
 		} else {
@@ -125,11 +134,11 @@ public class Tablero {
 //		}
 	}
 
-	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
+	public boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		return this.escuadronUno.perteneceAlgoformer(unAlgoFormer);
 	}
 
-	private boolean perteneceEscuadronDos(AlgoFormer unAlgoFormer){
+	public boolean perteneceEscuadronDos(AlgoFormer unAlgoFormer){
 		return this.escuadronDos.perteneceAlgoformer(unAlgoFormer);
 	}
 
@@ -212,6 +221,10 @@ public class Tablero {
 		}
 	}
 
+	public void setPosicion(AlgoFormer unAlgoFormer, Posicion pos) {
+		this.posicionesElementos.replace(unAlgoFormer.getNombre(), pos);
+	}
+
 	public Posicion getPosicion(AlgoFormer algoFormer) {
 		Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
 		if(!posicionesElementos.containsKey(algoFormer.getNombre())){
@@ -220,11 +233,23 @@ public class Tablero {
 		return posicion;
 	}
 
-	public void setTodoTerrenoTerrestre(Terreno unTerreno){
-		//Hacer algo
+	public void setTodoTerrenoAereo(Terreno unTerreno){
+		for(int i = 0; i < this.ancho; i++){
+			for(int j = 0; j < this.alto; j++){
+				this.getCasillero(i,j).setTerrenoAereo(unTerreno);
+			}
+		}
 	}
 
-	public void setTodoTerrenoAereo(Terreno unTerreno){
-		//Hacer algo
+	public void setTodoTerrenoTerrestre(Terreno unTerreno){
+		for(int i = 0; i < this.ancho; i++){
+			for(int j = 0; j < this.alto; j++){
+				this.getCasillero(i,j).setTerrenoTerrestre(unTerreno);
+			}
+		}
 	}
+	
+
+
+
 }

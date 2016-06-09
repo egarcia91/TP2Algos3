@@ -16,33 +16,93 @@ public class AlgoFormerSegundoTests {
 	public void test01verificarMovimientoZonaRocosa() {
 		Tablero tab = new Tablero(20, 20);
 
-		/*OptimusPrime optimusPrime = new OptimusPrime();
-		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.agregarAlgoFormer(algoFormer);*/
 		EscuadronAutobot escuadronUno = new EscuadronAutobot();
-		Assert.assertTrue(escuadronUno.cantidadMiembrosEscuadron() == 3);
 		tab.agregarEscuadron(escuadronUno);
-		EscuadronDecepticon escuadronDos = new EscuadronDecepticon();
-		Assert.assertTrue(escuadronDos.cantidadMiembrosEscuadron() == 3);
-		//tab.agregarEscuadron(escuadronDos);
 
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 1, 1));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 2, 1));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 1, 2));
 
-		Posicion posicionRelativa = new Posicion(3, 3);
 
-		for (AlgoFormer eachAlgoFormer :
-				escuadronUno.algoFormers) {
-			eachAlgoFormer.transformarAlterno();
-			eachAlgoFormer.mover(posicionRelativa);
+		EscuadronDecepticon escuadronDos = new EscuadronDecepticon();
+		tab.agregarEscuadron(escuadronDos);
+
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(0), 19, 19));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(1), 18, 19));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(2), 19, 18));
+
+
+		Posicion posicionRelativa = new Posicion(4, 4);
+
+		for (int i=0; i< escuadronUno.cantidadMiembrosEscuadron(); i++) {
+			escuadronUno.getAlgoFormer(i).transformarAlterno();
+			escuadronUno.getAlgoFormer(i).mover(posicionRelativa);
 		}
 
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 4, 4));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 5, 4));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 4, 5));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 5, 5));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 6, 5));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 5, 6));
+
+		Posicion posicionRelativa2 = new Posicion(-4, -4);
+
+		for (int j=0; j< escuadronDos.cantidadMiembrosEscuadron(); j++){
+			escuadronDos.getAlgoFormer(j).transformarAlterno();
+			escuadronDos.getAlgoFormer(j).mover(posicionRelativa2);
+		}
+
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(0), 15, 15));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(1), 14, 15));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(2), 15, 14));
+	}
+
+	@Test
+	public void test02verificarMovimientoZonaPantanosaModoHumanoide() {
+
+		Tablero tab = new Tablero(20, 20);
+		Pantano pantano = new Pantano();
+
+		tab.setTodoTerreno(Pantano)
+
+		OptimusPrime optimusPrime = new OptimusPrime();
+		Posicion posicion = new Posicion(1, 1);
+
+		tab.agregarAlgoFormer(OptimusPrime, posicion);
+
+		Posicion posicionRelativa = new Posicion(2, 2);
+
+		optimusPrime.mover(posicionRelativa);
+
+		Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 2, 2));
+		Assert.assertTrue(tab.existeAlgoFormer(optimusPrime, 1, 1));
 
 	}
+
+	@Test
+	public void test03verificarMovimientoZonaPantanosaModoAlterno() {
+
+		Tablero tab = new Tablero(20, 20);
+		Pantano pantano = new Pantano();
+
+		tab.setTodoTerreno(Pantano)
+
+		OptimusPrime optimusPrime = new OptimusPrime();
+		Posicion posicion = new Posicion(1, 1);
+
+		tab.agregarAlgoFormer(OptimusPrime, posicion);
+
+		Posicion posicionRelativa = new Posicion(3, 3);
+
+		optimusPrime.transformarAlterno();
+		optimusPrime.mover(posicionRelativa);
+
+		Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 1, 1));
+		Assert.assertTrue(tab.existeAlgoFormer(optimusPrime, 2, 2));
+
+
+		//Faltaria acomodar este test bien segun el mover para que tarde el doble por zona pantanosa
+
+	}
+
 
 	@Test
 	public void test05verificarTerrestreZonaEspinas() {
@@ -227,5 +287,4 @@ public class AlgoFormerSegundoTests {
 			Assert.assertTrue((inicialFuerzaAtaque - finalFuerzaAtaque) == tormentaPsionica.getPenalizacionAtaque());
 		}
 	}
-
 }

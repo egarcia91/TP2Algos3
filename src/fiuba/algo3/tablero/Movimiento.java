@@ -30,7 +30,7 @@ public class Movimiento {
 				return unAlgoFormer.getVelocidad();
 			}
 		}
-		if(unAlgoFormer.getVelocidad != 1 && unAlgoFormer.estado.estadoHumanoide()){
+		if(unAlgoFormer.getVelocidad() != 1 && unAlgoFormer.getEstado().estadoHumanoide()){
 			return unAlgoFormer.getVelocidad();
 		}
 		return unTerreno.getVelocidad();

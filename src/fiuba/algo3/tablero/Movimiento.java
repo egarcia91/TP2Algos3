@@ -52,7 +52,7 @@ public class Movimiento {
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
 		Posicion posicionInicial = this.tablero.getPosicion(unAlgoFormer);
 		int cantVelocidad = velocidad;
-		Casillero casillero;
+		Casillero casillero = null;
 		int i = 1;
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));

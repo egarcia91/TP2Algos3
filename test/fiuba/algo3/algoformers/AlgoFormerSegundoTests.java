@@ -114,7 +114,7 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialVida = unAlgoFormer.getVida();
-			unAlgoFormer.moverDerecha(posicionRelativa);
+			unAlgoFormer.moverDerecha();
 			int finalVida = unAlgoFormer.getVida();
 			int porcentaje = (inicialVida - finalVida)*100/inicialVida; //El orden de los Factores no altera el producto
 			Assert.assertTrue(porcentaje == espinas.getPenalizacionVida());
@@ -146,7 +146,7 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialVida = unAlgoFormer.getVida();
-			unAlgoFormer.moverDerecha(posicionRelativa);
+			unAlgoFormer.moverDerecha();
 			int finalVida = unAlgoFormer.getVida();
 			Assert.assertTrue(inicialVida == finalVida);
 		}

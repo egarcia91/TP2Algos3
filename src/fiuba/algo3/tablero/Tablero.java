@@ -65,8 +65,12 @@ public class Tablero {
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
-		unAlgoFormer.setTablero(this);
-		unAlgoFormer.ataque.setTablero(this);
+		Ataque ataque = new Ataque();
+		ataque.setTablero(this);
+		Movimiento movimiento = new Movimiento();
+		movimiento.setTablero(this);
+		unAlgoFormer.setAtaque(ataque);
+		unAlgoFormer.setMovimiento(movimiento);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){
@@ -214,7 +218,7 @@ public class Tablero {
 		}
 	}
 
-	public void setPosicion(AlgoFormer algoFormer, Posicion pos) {
+	public void setPosicion(AlgoFormer unAlgoFormer, Posicion pos) {
 		this.posicionesElementos.replace(unAlgoFormer.getNombre(), pos);
 	}
 

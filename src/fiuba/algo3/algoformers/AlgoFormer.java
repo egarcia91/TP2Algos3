@@ -4,7 +4,6 @@ import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Movimiento;
-import fiuba.algo3.tablero.Tablero;
 import fiuba.algo3.tablero.Ataque;
 
 public class AlgoFormer {
@@ -157,5 +156,9 @@ public class AlgoFormer {
 
 	public void setMovimiento(Movimiento unMovimiento) {
 		this.movimiento = unMovimiento;
+	}
+
+	public void setAtaque(Ataque unAtaque) {
+		this.ataque = unAtaque;
 	}
 }

@@ -4,11 +4,13 @@ import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Tablero;
+import fiuba.algo3.tablero.Ataque;
 
 public class AlgoFormer {
 
 	protected Tablero tablero;
 	protected EstadoAlgoformer estado;
+	public Ataque ataque;
 
 	protected String nombre = "Algoformer";
 
@@ -35,7 +37,9 @@ public class AlgoFormer {
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
-	
+
+
+
 	public String getTipoUnidad(){
 		return this.estado.getTerreno();
 	}
@@ -97,9 +101,13 @@ public class AlgoFormer {
 		this.tablero.moverAlgoFormer(this,0,1);
 	}
 
-	public void atacar(){
+	/*public void atacar(){
 		this.tablero.ataqueZona(this,this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
-	}
+	}*/
+
+	public void atacar() { this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());}
+
+
 
 	public boolean estaEnPosicion(int x, int y){
 		return this.tablero.existeAlgoFormer(this, x, y);

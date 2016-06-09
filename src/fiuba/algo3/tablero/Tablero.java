@@ -12,8 +12,12 @@ public class Tablero {
 	private Casillero[][] tablero;
 	private Map<String,Posicion> posicionesElementos;
 
-	private Escuadron escuadronUno;
-	private Escuadron escuadronDos;
+	//private Escuadron escuadronUno;
+	//private Escuadron escuadronDos;
+	protected Escuadron escuadronUno;
+	protected Escuadron escuadronDos;
+
+
 
 	public Tablero(int ancho, int alto){
 		tablero = new Casillero[ancho][alto];
@@ -62,6 +66,7 @@ public class Tablero {
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
 		unAlgoFormer.setTablero(this);
+		unAlgoFormer.ataque.setTablero(this);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){
@@ -87,7 +92,7 @@ public class Tablero {
 		this.getCasillero(posX,posY).setItem(item);
 	}
 
-	private Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
+	public Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){
 		if(posicionesElementos.containsKey(unAlgoFormer.getNombre())){
 			return posicionesElementos.get(unAlgoFormer.getNombre());
 		} else {
@@ -124,11 +129,11 @@ public class Tablero {
 //		}
 	}
 
-	private boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
+	public boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		return this.escuadronUno.perteneceAlgoformer(unAlgoFormer);
 	}
 
-	private boolean perteneceEscuadronDos(AlgoFormer unAlgoFormer){
+	public boolean perteneceEscuadronDos(AlgoFormer unAlgoFormer){
 		return this.escuadronDos.perteneceAlgoformer(unAlgoFormer);
 	}
 
@@ -222,4 +227,8 @@ public class Tablero {
 
 	public void setTodoTerrenoTerrestre(Terreno unTerreno){
 	}
+	
+
+
+
 }

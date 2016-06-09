@@ -56,7 +56,7 @@ public class Movimiento {
 		int i = 1;
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
-			if(unAlgoFormer.getTipoUnidad() == "Terrestre"){
+			if(unAlgoFormer.getTipoUnidad() == "terrestre"){
 				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoTerrestre());
 			} else {
 				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoAereo());

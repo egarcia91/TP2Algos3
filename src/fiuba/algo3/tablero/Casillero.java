@@ -5,7 +5,8 @@ import fiuba.algo3.algoformers.AlgoFormer;
 public class Casillero {
 	private Item item;
 	private AlgoFormer algoFormer;
-	private Terreno terreno;
+	private Terreno terrenoTierra;
+	private Terreno terrenoAire;
 
 	public boolean contieneAlgoFormer(){
 		return (this.algoFormer != null);
@@ -57,5 +58,13 @@ public class Casillero {
 			return true;
 		}
 		return false;
+	}
+
+	public Terreno getTerrenoTerrestre() {
+		return terrenoTierra;
 	} 
+	
+	public Terreno getTerrenoAereo(){
+		return terrenoAire;
+	}
 }

@@ -11,7 +11,7 @@ public class JuegoTests {
 	private static final int TABLERO_ALTO = 200;
 
 	@Test
-	public void testVerificarSparkEnCentroDelTablero(){
+	public void test01VerificarSparkEnCentroDelTablero(){
 		Juego juego = new Juego();
 		Tablero tablero = juego.getTablero();
 		Casillero casillero;
@@ -70,4 +70,8 @@ public class JuegoTests {
 		Assert.fail();
 	}	
 
+	@Test
+	public void test02MovimientoDePersonajes(){
+		
+	}
 }

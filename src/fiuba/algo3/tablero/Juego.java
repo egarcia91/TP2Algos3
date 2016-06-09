@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
+import fiuba.algo3.algoformers.Humanoide;
 
 public class Juego {
 	private static final int tableroAncho = 200;
@@ -16,7 +18,7 @@ public class Juego {
 	private int turnoJugador;
 	public EscuadronAutobot escuadronAutobot; 
 	public EscuadronDecepticon escuadronDecepticon;
-
+	
 	public Juego(){
 		tablero = new Tablero(Juego.tableroAncho,Juego.tableroAlto);
 		jugadores = new ArrayList<Jugador>();
@@ -88,5 +90,62 @@ public class Juego {
 	public int getTableroAlto(){
 		return Juego.tableroAlto;
 	}
+	
+	public void agregarAlgoFormer(AlgoFormer algoFormer){
+		Random rand = new Random();
+		boolean ubicacionExitosa = false;
+		while(!ubicacionExitosa){
+			try{
+				this.tablero.agregarAlgoFormer(algoFormer,Math.round(rand.nextInt(tableroAncho)), Math.round(rand.nextInt(tableroAlto)));
+				ubicacionExitosa = true;
+			}catch(CasilleroOcupadoException e){};
+		}
+	}
+	
+	public void moverAlgoFormer(AlgoFormer algoFormer, int x, int y){
+		moverAlgoFormer(algoFormer, new Posicion(x,y));
+	}
 
+	public void moverAlgoFormer(AlgoFormer algoFormer, Posicion posRelativa){
+		Posicion posicionActual = tablero.getPosicion(algoFormer);
+		Posicion posicionFinal = posicionActual.getSuma(posRelativa);
+		
+		while(!posicionActual.equals(posicionFinal)){
+			Posicion posicionTentativa = posicionActual.getSuma(posRelativa.normalizar());
+			Casillero casillero = tablero.getCasillero(posicionTentativa);
+			if(algoFormer.getTipoUnidad() == "Terrestre"){
+				String nombreTerreno = casillero.getTerrenoTerrestre().getClass().getName();
+				
+				switch(nombreTerreno){
+					case "Espinas":
+						algoFormer.setVida((int)Math.floor(algoFormer.getVida() * 0.95));
+						break;
+					case "Pantano":
+						if(algoFormer.getEstado().getClass() == Humanoide.class){
+							return;
+						}
+						break;
+					case "Rocosa":
+						break;
+				}
+			}	
+			else{
+				String nombreTerreno = casillero.getTerrenoAereo().getClass().getName();
+				switch(nombreTerreno){
+					case "Nube":
+						break;
+					case "TormentaPsionica":
+						algoFormer.afectarPorTormentaPsionica();
+						break;
+					case "NebulosaDeAndromeda":
+						algoFormer.penalizarTurnos(3);
+						return;
+				}
+
+			}
+			tablero.moverAlgoFormer(algoFormer, posicionTentativa);
+			posicionActual = posicionTentativa;
+			posRelativa = posicionFinal.getResta(posicionActual);
+		}
+	}
 }

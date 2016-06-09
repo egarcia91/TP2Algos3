@@ -45,6 +45,10 @@ public class Posicion{
 	public Posicion getSuma(Posicion pos){
 		return new Posicion(this.x + pos.x, this.y + pos.y);
 	}
+	
+	public Posicion getResta(Posicion pos) {
+		return new Posicion(this.x - pos.x, this.y - pos.y);
+	}
 
 	public Posicion restar(Posicion pos){
 		this.x -= pos.x;
@@ -60,6 +64,11 @@ public class Posicion{
 		} else {
 			return false;
 		}
+	}
+
+	public Posicion normalizar(){
+		double norma = Math.sqrt((double)(x^2 + y^2));
+		return new Posicion((int)Math.round(this.x/norma),(int)Math.round(this.y/norma));
 	}
 
 }

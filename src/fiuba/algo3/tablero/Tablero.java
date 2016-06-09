@@ -231,9 +231,19 @@ public class Tablero {
 	}
 
 	public void setTodoTerrenoAereo(Terreno unTerreno){
+		for(int i = 0; i < this.ancho; i++){
+			for(int j = 0; j < this.alto; j++){
+				this.getCasillero(i,j).setTerrenoAereo(unTerreno);
+			}
+		}
 	}
 
 	public void setTodoTerrenoTerrestre(Terreno unTerreno){
+		for(int i = 0; i < this.ancho; i++){
+			for(int j = 0; j < this.alto; j++){
+				this.getCasillero(i,j).setTerrenoTerrestre(unTerreno);
+			}
+		}
 	}
 	
 

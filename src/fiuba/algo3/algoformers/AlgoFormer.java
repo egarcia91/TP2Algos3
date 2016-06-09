@@ -146,7 +146,7 @@ public class AlgoFormer {
 	public void atacar() { this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());}
 
 	public boolean estaEnPosicion(int x, int y){
-//		return this.tablero.existeAlgoFormer(this, x, y);
+		//return this.tablero.existeAlgoFormer(this, x, y);
 		return this.movimiento.existeAlgoFormer(this, x, y);
 		//return false;
 	}

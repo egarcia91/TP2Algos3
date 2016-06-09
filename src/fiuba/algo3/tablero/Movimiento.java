@@ -79,7 +79,9 @@ public class Movimiento {
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int x,int y){
 		Posicion posicionAlgoFormer = this.tablero.getPosicion(unAlgoFormer);
 		Posicion posicionConsulta = new Posicion(x,y);
-		if (posicionAlgoFormer == posicionConsulta){
+
+		if (posicionAlgoFormer.getX() == posicionConsulta.getX()
+				&& posicionAlgoFormer.getY() == posicionConsulta.getY()){
 			return true;}
 		else{
 		return false;

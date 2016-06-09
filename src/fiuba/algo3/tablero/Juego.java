@@ -98,6 +98,7 @@ public class Juego {
 			try{
 				this.tablero.agregarAlgoFormer(algoFormer,Math.round(rand.nextInt(tableroAncho)), Math.round(rand.nextInt(tableroAlto)));
 				ubicacionExitosa = true;
+				algoFormer.setJuego(this);
 			}catch(CasilleroOcupadoException e){};
 		}
 	}

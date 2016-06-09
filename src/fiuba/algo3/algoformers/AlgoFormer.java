@@ -121,4 +121,8 @@ public class AlgoFormer {
 		this.estado.setVida(this.estado.getVida()-fuerzaAtaque);
 	}
 
+	public void setJuego(Juego juego){
+		this.juego = juego;
+	}
+
 }

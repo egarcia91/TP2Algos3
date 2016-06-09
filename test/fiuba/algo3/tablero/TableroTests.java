@@ -24,7 +24,7 @@ public class TableroTests{
 					throw e;
 				}
 			}
-		}	
+		}	 
 	}
 	
 	@Test
@@ -88,5 +88,7 @@ public class TableroTests{
 		tablero.agregarAlgoFormer(megatron,0,TABLERO_ALTO - 1);
 		megatron.moverAbajo();
 	}
-		
+
 }
+
+

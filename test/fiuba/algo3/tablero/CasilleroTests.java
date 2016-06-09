@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.Spark;
 import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.algoformers.personajes.OptimusPrime;
 import fiuba.algo3.tablero.Casillero;
@@ -21,8 +20,8 @@ public class CasilleroTests {
 
 	@Test
 	public void test02CasilleroAgregarContenido() {
-		Spark spark = new Spark();
-
+		Spark spark = Spark.getInstance();
+ 
 		Casillero casillero = new Casillero();
 		casillero.setItem(spark);
 
@@ -46,7 +45,7 @@ public class CasilleroTests {
 	public void test04CasilleroSuperponerSpark() {
 		AlgoFormer algoFormer = new AlgoFormer();
 
-		Spark spark = new Spark();
+		Spark spark = Spark.getInstance();
 
 		Casillero casillero = new Casillero();
 		casillero.setItem(spark);

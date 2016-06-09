@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Escuadron {
 
-	private List<AlgoFormer> algoFormers;
+	//private List<AlgoFormer> algoFormers;
+	protected List<AlgoFormer> algoFormers;
 	
 	public Escuadron(){
 		algoFormers = new ArrayList<AlgoFormer>(); 

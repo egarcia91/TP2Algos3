@@ -3,8 +3,6 @@ package fiuba.algo3.tablero;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import fiuba.algo3.algoformers.Escuadron;
-import fiuba.algo3.algoformers.Spark;
-import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Tablero {
@@ -85,7 +83,7 @@ public class Tablero {
 		return this.getCasillero(posX,posY).contieneAlgoFormer();
 	}
 
-	public void setItem(Spark item,int posX, int posY){
+	public void setItem(Item item,int posX, int posY){
 		this.getCasillero(posX,posY).setItem(item);
 	}
 
@@ -194,7 +192,9 @@ public class Tablero {
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
 		Posicion posicionInicial;
+
 		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
+
 		if(!posicionesElementos.containsKey(unAlgoFormer.getNombre())){
 			throw new AlgoFormerNoExisteException();
 		}
@@ -203,20 +203,18 @@ public class Tablero {
 		if(this.getCasillero(posicionFinal).contieneAlgoFormer()){
 			throw new CasilleroOcupadoException();
 		} else {
-			this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 			this.quitarAlgoFormer(unAlgoFormer);
+			this.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 			this.posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
 		}
 	}
 
 	public Posicion getPosicion(AlgoFormer algoFormer) {
-
 		Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
 		if(!posicionesElementos.containsKey(algoFormer.getNombre())){
 			throw new AlgoFormerNoExisteException();
 		}
-		return posicionesElementos.get(algoFormer.getNombre());
+		return posicion;
 	}
 
 }
-

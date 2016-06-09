@@ -61,12 +61,12 @@ public class AlgoFormerSegundoTests {
 		Tablero tab = new Tablero(20, 20);
 		Pantano pantano = new Pantano();
 
-		tab.setTodoTerreno(Pantano)
+		tab.setTodoTerrenoTerrestre(pantano);
 
 		OptimusPrime optimusPrime = new OptimusPrime();
 		Posicion posicion = new Posicion(1, 1);
 
-		tab.agregarAlgoFormer(OptimusPrime, posicion);
+		tab.agregarAlgoFormer(optimusPrime, posicion);
 
 		Posicion posicionRelativa = new Posicion(2, 2);
 
@@ -99,12 +99,12 @@ public class AlgoFormerSegundoTests {
 		Tablero tab = new Tablero(20, 20);
 		Pantano pantano = new Pantano();
 
-		tab.setTodoTerreno(Pantano)
+		tab.setTodoTerrenoTerrestre(pantano);
 
 		OptimusPrime optimusPrime = new OptimusPrime();
 		Posicion posicion = new Posicion(1, 1);
 
-		tab.agregarAlgoFormer(OptimusPrime, posicion);
+		tab.agregarAlgoFormer(optimusPrime, posicion);
 
 		Posicion posicionRelativa = new Posicion(3, 3);
 

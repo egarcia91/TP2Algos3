@@ -217,4 +217,9 @@ public class Tablero {
 		return posicion;
 	}
 
+	public void setTodoTerrenoAereo(Terreno unTerreno){
+	}
+
+	public void setTodoTerrenoTerrestre(Terreno unTerreno){
+	}
 }

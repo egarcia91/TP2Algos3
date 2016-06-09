@@ -220,4 +220,11 @@ public class Tablero {
 		return posicion;
 	}
 
+	public void setTodoTerrenoTerrestre(Terreno unTerreno){
+		//Hacer algo
+	}
+
+	public void setTodoTerrenoAereo(Terreno unTerreno){
+		//Hacer algo
+	}
 }

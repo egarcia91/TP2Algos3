@@ -5,8 +5,10 @@ import fiuba.algo3.algoformers.AlgoFormer;
 public class Casillero {
 	private Item item;
 	private AlgoFormer algoFormer;
-	private Terreno terrenoTierra;
-	private Terreno terrenoAire;
+
+	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
+	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
+
 
 	public boolean contieneAlgoFormer(){
 		return (this.algoFormer != null);
@@ -49,6 +51,22 @@ public class Casillero {
 		}
 	}
 
+	public Terreno getTerrenoTerrestre(){
+		return this.terrenoTerrestre;
+	}
+
+	public void setTerrenoTerrestre(Terreno unTerreno){
+		this.terrenoTerrestre = unTerreno;
+	}
+
+	public Terreno getTerrenoAereo(){
+		return this.terrenoAereo;
+	}
+
+	public void setTerrenoAereo(Terreno unTerreno){
+		this.terrenoAereo = unTerreno;
+	}
+
 	public void quitarItem(){
 		this.item = null;
 	}
@@ -60,11 +78,4 @@ public class Casillero {
 		return false;
 	}
 
-	public Terreno getTerrenoTerrestre() {
-		return terrenoTierra;
-	} 
-	
-	public Terreno getTerrenoAereo(){
-		return terrenoAire;
-	}
 }

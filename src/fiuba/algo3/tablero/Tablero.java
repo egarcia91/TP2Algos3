@@ -150,13 +150,14 @@ public class Tablero {
 	}
 
 	private void ubicarEscuadronDos(){
-		int initY = 50;
-		int initX = 50;
+		int initY = this.alto-1;
+		int initX = this.ancho-1;
+
 		int cantidadAlgoFormers = this.escuadronDos.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			System.out.println(initX + " <> " + initY);
 			this.agregarAlgoFormer(this.escuadronDos.getAlgoFormer(i),new Posicion(initX,initY));
-			if(initX == this.ancho){
+			if(initX == this.ancho-1){
 				initX--;
 			} else {
 				initX = this.ancho-1;

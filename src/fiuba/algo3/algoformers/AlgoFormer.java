@@ -147,7 +147,8 @@ public class AlgoFormer {
 
 	public boolean estaEnPosicion(int x, int y){
 //		return this.tablero.existeAlgoFormer(this, x, y);
-		return false;
+		return this.movimiento.existeAlgoFormer(this, x, y);
+		//return false;
 	}
 
 	public void recibirAtaque(int fuerzaAtaque){

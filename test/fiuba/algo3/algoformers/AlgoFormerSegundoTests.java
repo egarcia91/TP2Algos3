@@ -31,23 +31,18 @@ public class AlgoFormerSegundoTests {
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(1), 18, 19));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(2), 19, 18));
 
-
-		Posicion posicionRelativa = new Posicion(4, 4);
-
 		for (int i=0; i< escuadronUno.cantidadMiembrosEscuadron(); i++) {
 			escuadronUno.getAlgoFormer(i).transformarAlterno();
-			//escuadronUno.getAlgoFormer(i).mover(posicionRelativa);
+			escuadronUno.getAlgoFormer(i).moverDerecha();
 		}
 
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 5, 5));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 6, 5));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 5, 6));
 
-		Posicion posicionRelativa2 = new Posicion(-4, -4);
-
 		for (AlgoFormer eachAlgoFormer :
 				escuadronUno.algoFormers) {
-			eachAlgoFormer.mover(posicionRelativa);
+			eachAlgoFormer.moverDerecha();
 		}
 
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(0), 15, 15));
@@ -91,7 +86,7 @@ public class AlgoFormerSegundoTests {
 		Posicion posicionRelativa = new Posicion(3, 3);
 
 		optimusPrime.transformarAlterno();
-		//optimusPrime.mover(posicionRelativa);
+		optimusPrime.moverDerecha();
 
 		Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 1, 1));
 		Assert.assertTrue(tab.existeAlgoFormer(optimusPrime, 2, 2));
@@ -119,7 +114,7 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialVida = unAlgoFormer.getVida();
-			//unAlgoFormer.mover(posicionRelativa);
+			unAlgoFormer.moverDerecha(posicionRelativa);
 			int finalVida = unAlgoFormer.getVida();
 			int porcentaje = (inicialVida - finalVida)*100/inicialVida; //El orden de los Factores no altera el producto
 			Assert.assertTrue(porcentaje == espinas.getPenalizacionVida());
@@ -134,27 +129,27 @@ public class AlgoFormerSegundoTests {
 
 		Ratchet ratchet = new Ratchet();
 		ratchet.transformarAlterno();
-/* FIXME
+
 		Megatron megatron = new Megatron();
 		megatron.transformarAlterno();
 
 		Escuadron escuadronUno = new Escuadron();
 		escuadronUno.agregarAlgoFormer(ratchet);
 		escuadronUno.agregarAlgoFormer(megatron);
-*/
+
 		Tablero tab = new Tablero(10, 10);
 		tab.setTodoTerrenoTerrestre(espinas);
-		//tab.agregarEscuadron(escuadronUno);
+		tab.agregarEscuadron(escuadronUno);
 
-		//int cantidadAlgoFormers = escuadronUno.cantidadMiembrosEscuadron();
+		int cantidadAlgoFormers = escuadronUno.cantidadMiembrosEscuadron();
 
-		//for(int i = 0; i < cantidadAlgoFormers; i++){
-			//AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
-			//int inicialVida = unAlgoFormer.getVida();
-			//unAlgoFormer.mover(posicionRelativa);
-			//int finalVida = unAlgoFormer.getVida();
-			//Assert.assertTrue(inicialVida == finalVida);
-		//}
+		for(int i = 0; i < cantidadAlgoFormers; i++){
+			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
+			int inicialVida = unAlgoFormer.getVida();
+			unAlgoFormer.moverDerecha(posicionRelativa);
+			int finalVida = unAlgoFormer.getVida();
+			Assert.assertTrue(inicialVida == finalVida);
+		}
 	}
 
 	@Test
@@ -182,7 +177,7 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialVida = unAlgoFormer.getVida();
-			//unAlgoFormer.mover(posicionRelativa);
+			unAlgoFormer.moverDerecha();
 			int finalVida = unAlgoFormer.getVida();
 			Assert.assertTrue(inicialVida == finalVida);
 			Assert.assertTrue(tab.existeAlgoFormer(unAlgoFormer, 2+i, 1));
@@ -213,11 +208,11 @@ public class AlgoFormerSegundoTests {
 
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
-			//unAlgoFormer.mover(posicionRelativa);
+			unAlgoFormer.moverDerecha();
 			Assert.assertTrue(tab.existeAlgoFormer(unAlgoFormer, 2+i, 1));
 			int cantidadTurnosPenalizacion = nebulosaAndromeda.getPenalizacionTurnos();
 			for(int j = 0; j < cantidadTurnosPenalizacion; j++){
-				//unAlgoFormer.mover(posicionRelativa);
+				unAlgoFormer.moverDerecha();
 				Assert.assertTrue(tab.existeAlgoFormer(unAlgoFormer, 2+i, 1)); //No se movio
 			}
 		}
@@ -248,7 +243,7 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialFuerzaAtaque = unAlgoFormer.getFuerzaAtaque();
-			//unAlgoFormer.mover(posicionRelativa);
+			unAlgoFormer.moverDerecha();
 			int finalFuerzaAtaque = unAlgoFormer.getFuerzaAtaque();
 			Assert.assertTrue((inicialFuerzaAtaque - finalFuerzaAtaque) == tormentaPsionica.getPenalizacionAtaque());
 		}
@@ -279,8 +274,8 @@ public class AlgoFormerSegundoTests {
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			AlgoFormer unAlgoFormer = escuadronUno.getAlgoFormer(i);
 			int inicialFuerzaAtaque = unAlgoFormer.getFuerzaAtaque();
-			//unAlgoFormer.mover(posicionRelativa); //Pasa dos veces por una TormentaPsionica
-			//unAlgoFormer.mover(posicionRelativa);
+			unAlgoFormer.moverDerecha(); //Pasa dos veces por una TormentaPsionica
+			unAlgoFormer.moverDerecha();
 			int finalFuerzaAtaque = unAlgoFormer.getFuerzaAtaque();
 			Assert.assertTrue((inicialFuerzaAtaque - finalFuerzaAtaque) == tormentaPsionica.getPenalizacionAtaque());
 		}

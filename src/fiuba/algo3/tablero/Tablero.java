@@ -209,6 +209,10 @@ public class Tablero {
 		}
 	}
 
+	public void setPosicion(AlgoFormer algoFormer, Posicion pos) {
+		this.posicionesElementos.replace(unAlgoFormer.getNombre(), pos);
+	}
+
 	public Posicion getPosicion(AlgoFormer algoFormer) {
 		Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
 		if(!posicionesElementos.containsKey(algoFormer.getNombre())){

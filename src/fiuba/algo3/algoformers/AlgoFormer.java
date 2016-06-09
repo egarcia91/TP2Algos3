@@ -78,6 +78,7 @@ public class AlgoFormer {
 		x = x*x;
 		int y = posicion.getY();
 		y = y*y;
+
 		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
 	}
 

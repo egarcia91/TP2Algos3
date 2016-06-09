@@ -43,6 +43,7 @@ public class Tablero {
 	}
 
 	public Casillero getCasillero(int posX, int posY){
+		//System.out.println(">>>>(" + posX + "," + posY + ")<<<<<<" );
 		try{
 			return this.tablero[posX][posY];
 		}catch(Exception e){
@@ -149,15 +150,16 @@ public class Tablero {
 	}
 
 	private void ubicarEscuadronDos(){
-		int initY = this.alto;
-		int initX = this.ancho;
+		int initY = 50;
+		int initX = 50;
 		int cantidadAlgoFormers = this.escuadronDos.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
+			System.out.println(initX + " <> " + initY);
 			this.agregarAlgoFormer(this.escuadronDos.getAlgoFormer(i),new Posicion(initX,initY));
 			if(initX == this.ancho){
 				initX--;
 			} else {
-				initX = this.ancho;
+				initX = this.ancho-1;
 				initY--;
 			}
 		}

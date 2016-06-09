@@ -18,7 +18,6 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
 		Escuadron escuadronUno = new Escuadron();
 		escuadronUno.agregarAlgoFormer(algoFormer);
 
@@ -45,11 +44,13 @@ public class AlgoFormerPrimerTests {
 		Jugador jugadorUno = new Jugador("Jere");
 
 		Jugador jugadorDos = new Jugador("Eze");
-
+		System.out.println("agrego jugador uno");
 		juego.agregarJugador(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
+		System.out.println("agrego jugador dos");
 		juego.agregarJugador(jugadorDos);
-		Assert.assertTrue(juego.existeJugador(jugadorDos));
+		System.out.println("termine de agregad jugador dos");
+		Assert.assertTrue(juego.existeJugador(jugadorUno));
 
 		juego.iniciar();
 

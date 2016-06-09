@@ -195,10 +195,7 @@ public class Tablero {
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
 		Posicion posicionInicial;
 		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
-
-
 		if(!posicionesElementos.containsKey(unAlgoFormer.getNombre())){
-			System.out.println("entro a la excepciom");
 			throw new AlgoFormerNoExisteException();
 		}
 
@@ -213,9 +210,9 @@ public class Tablero {
 	}
 
 	public Posicion getPosicion(AlgoFormer algoFormer) {
-		//Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
-		if(posicionesElementos.containsKey(algoFormer.getNombre())){
-			System.out.println("entra en el getPosition");
+
+		Posicion posicion = posicionesElementos.get(algoFormer.getNombre());
+		if(!posicionesElementos.containsKey(algoFormer.getNombre())){
 			throw new AlgoFormerNoExisteException();
 		}
 		return posicionesElementos.get(algoFormer.getNombre());

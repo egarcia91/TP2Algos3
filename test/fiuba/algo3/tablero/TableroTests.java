@@ -59,7 +59,7 @@ public class TableroTests{
 		Megatron megatron = new Megatron();
 		
 		tablero.agregarAlgoFormer(megatron,TABLERO_ANCHO - 1,0);
-		tablero.moverAlgoFormer(megatron,1,0);
+		megatron.moverArriba();
 	}
 
 	@Test (expected = CasilleroNoExisteException.class)
@@ -68,7 +68,7 @@ public class TableroTests{
 		Megatron megatron = new Megatron();
 		
 		tablero.agregarAlgoFormer(megatron,0,0);
-		tablero.moverAlgoFormer(megatron,-1,0);
+		megatron.moverIzquierda();
 	}
 	
 	@Test (expected = CasilleroNoExisteException.class)
@@ -77,7 +77,7 @@ public class TableroTests{
 		Megatron megatron = new Megatron();
 		
 		tablero.agregarAlgoFormer(megatron,0,0);
-		tablero.moverAlgoFormer(megatron,0,-1);
+		megatron.moverArriba();
 	}
 	
 	@Test (expected = CasilleroNoExisteException.class)
@@ -86,7 +86,7 @@ public class TableroTests{
 		Megatron megatron = new Megatron();
 		
 		tablero.agregarAlgoFormer(megatron,0,TABLERO_ALTO - 1);
-		tablero.moverAlgoFormer(megatron,0,1);
+		megatron.moverAbajo();
 	}
 
 }

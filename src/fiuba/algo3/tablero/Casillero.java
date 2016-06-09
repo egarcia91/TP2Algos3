@@ -9,7 +9,6 @@ public class Casillero {
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
 	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
 
-
 	public boolean contieneAlgoFormer(){
 		return (this.algoFormer != null);
 	}

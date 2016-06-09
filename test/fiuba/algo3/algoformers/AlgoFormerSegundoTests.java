@@ -47,7 +47,7 @@ public class AlgoFormerSegundoTests {
 
 		for (AlgoFormer eachAlgoFormer :
 				escuadronUno.algoFormers) {
-			//FIXME eachAlgoFormer.mover(posicionRelativa);
+			eachAlgoFormer.mover(posicionRelativa);
 		}
 
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronDos.getAlgoFormer(0), 15, 15));
@@ -70,7 +70,23 @@ public class AlgoFormerSegundoTests {
 
 		Posicion posicionRelativa = new Posicion(2, 2);
 
-		//optimusPrime.mover(posicionRelativa);
+		juego.iniciar();
+
+		Assert.assertTrue(jugadorUno.existeEscuadron());
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1, 1));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1, 2));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2, 1));
+
+		Assert.assertTrue(jugadorDos.existeEscuadron());
+		//TODO Posiciones.
+		int ancho = juego.getTableroAncho();
+		int alto = juego.getTableroAlto();
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto, ancho));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto, ancho - 1));
+		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto - 1, ancho));
+
+		//FIXME esto nose como va a ser pero hay que corroborar los turnos
+		jugadorUno.moverAlgoFormer();
 
 		Assert.assertFalse(tab.existeAlgoFormer(optimusPrime, 2, 2));
 		Assert.assertTrue(tab.existeAlgoFormer(optimusPrime, 1, 1));

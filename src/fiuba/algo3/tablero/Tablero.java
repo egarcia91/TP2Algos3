@@ -61,6 +61,7 @@ public class Tablero {
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
 		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
+		unAlgoFormer.setTablero(this);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){

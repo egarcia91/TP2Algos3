@@ -28,9 +28,7 @@ public class Escuadron {
 	public int cantidadMiembrosEscuadron(){
 		return this.algoFormers.size();
 	}
-	
-	//FIXME Este metodo no tiene sentido, La posicion absoluta solo la puede conoecer tablero
-	/*
+
 	public boolean estaAlgoformerEnPosicion(int x, int y){
 		for (AlgoFormer unAlgoFormer:
 				this.algoFormers){
@@ -40,7 +38,7 @@ public class Escuadron {
 		}
 		return false;
 	}
-	*/
+
 	public boolean perteneceAlgoformer(AlgoFormer unAlgoFormer) {
 		for (AlgoFormer eachAlgoFormer :
 				algoFormers) {

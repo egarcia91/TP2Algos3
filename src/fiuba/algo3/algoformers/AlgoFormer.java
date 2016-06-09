@@ -1,40 +1,25 @@
 package fiuba.algo3.algoformers;
 
-import fiuba.algo3.tablero.Juego;
+import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
+import fiuba.algo3.tablero.Posicion;
+import fiuba.algo3.tablero.Tablero;
 
 public class AlgoFormer {
 
-	protected Juego juego;
+	protected Tablero tablero;
 	protected EstadoAlgoformer estado;
+
 	protected String nombre = "Algoformer";
-	
-	boolean efectoTormentaPsionica = false;
-	int turnosDePenalizacion = 0;
 
 	public AlgoFormer(){
 		this.transformarHumanoide();
 	}
 
-	public void setVida(int vida) {
-		estado.setVida(vida);
-	}
-	
 	public String getNombre(){
 		return this.nombre;
 	}
 
-	public void afectarPorTormentaPsionica(){
-		if(efectoTormentaPsionica == false && this.getTipoUnidad()== "Aereo"){
-			estado.setFuerzaAtaque((int)(0.4*estado.getFuerzaAtaque()));
-			efectoTormentaPsionica = true;
-		}
-	}
-	
-	public void penalizarTurnos(int turnos){
-		if(turnos > 0) turnosDePenalizacion = turnos;
-	}
-	
 	public int getVida(){
 		return this.estado.getVida();
 	}
@@ -78,47 +63,53 @@ public class AlgoFormer {
 	}
 
 
-	public void mover(int deltaX,int deltaY){
-		if(turnosDePenalizacion > 0){
-			turnosDePenalizacion--;
-			return;
-		}
-		if(this.movimientoPosible(deltaX,deltaY)){
-			this.juego.moverAlgoFormer(this,deltaX,deltaY);
+	public void mover(Posicion posRelativa){
+		if(this.movimientoPosible(posRelativa)){
+			this.tablero.moverAlgoFormer(this,posRelativa);
 		} else {
 			throw new MovimientoFueraDeRangoException();
 		}
 	}
 
-	private boolean movimientoPosible(int x,int y){
+	private boolean movimientoPosible(Posicion posicion){
 		int velocidad = this.getVelocidad();
-		
 		velocidad = velocidad*velocidad;
-		return (x*x + y*y <= velocidad*velocidad); //Circunferencia de alcance
+		int x = posicion.getX();
+		x = x*x;
+		int y = posicion.getY();
+		y = y*y;
+		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
 	}
 
 	public void moverDerecha(){
-		this.mover(1,0);
+		this.tablero.moverAlgoFormer(this,1,0);
 	}
 
 	public void moverIzquierda(){
-		this.mover(-1,0);
+		this.tablero.moverAlgoFormer(this,-1,0);
 	}
 
 	public void moverArriba(){
-		this.mover(0,-1);
+		this.tablero.moverAlgoFormer(this,0,-1);
 	}
 
 	public void moverAbajo(){
-		this.mover(0,1);
+		this.tablero.moverAlgoFormer(this,0,1);
 	}
 
 	public void atacar(){
-		//this.tablero.ataqueZona(this,this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
+		this.tablero.ataqueZona(this,this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
+	}
+
+	public boolean estaEnPosicion(int x, int y){
+		return this.tablero.existeAlgoFormer(this, x, y);
 	}
 
 	public void recibirAtaque(int fuerzaAtaque){
 		this.estado.setVida(this.estado.getVida()-fuerzaAtaque);
 	}
 
+	public void setTablero(Tablero tablero) {
+		this.tablero = tablero;
+	}
 }

@@ -32,13 +32,10 @@ public class Jugador {
 		return this.escuadron.cantidadMiembrosEscuadron();
 	}
 
-	//FIXME Este metodo no tiene sentido, La posicion absoluta solo la puede conoecer tablero
-	/*
 	public boolean tieneAlgoFormerEnPosicion(int x, int y){
 		return (this.escuadron.estaAlgoformerEnPosicion( x, y));
 	}
-	*/
-	
+
 	public void moverAlgoFormer(){
 		if(this.juego.esTurnoJugador(this)){
 			this.juego.cambiarTurnoJugador();

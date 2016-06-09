@@ -52,7 +52,7 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(juego.existeJugador(jugadorDos));
 
 		juego.iniciar();
-/*FIXME 
+
 		Assert.assertTrue(jugadorUno.existeEscuadron());
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
@@ -65,7 +65,7 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto,ancho-1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(alto-1,ancho));
-*/
+
 		//FIXME esto nose como va a ser pero hay que corroborar los turnos
 		jugadorUno.moverAlgoFormer();
 

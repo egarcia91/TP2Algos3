@@ -17,8 +17,6 @@ public class Tablero {
 	protected Escuadron escuadronUno;
 	protected Escuadron escuadronDos;
 
-
-
 	public Tablero(int ancho, int alto){
 		tablero = new Casillero[ancho][alto];
 		for(int i = 0; i < ancho; i++){
@@ -108,31 +106,6 @@ public class Tablero {
 		return this.buscarAlgoFormer(unAlgoFormer).equals(new Posicion(posX,posY));
 	}
 
-	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
-//		Posicion posicion = this.buscarAlgoFormer(unAlgoFormer);
-//		int anchoFinal = posicion.getX()+unaDistanciaAtaque;
-//		int anchoInicial = posicion.getX()-unaDistanciaAtaque;
-//		int altoFinal = posicion.getY()+unaDistanciaAtaque;
-//		int altoInicial = posicion.getY()-unaDistanciaAtaque;
-//		if (this.perteneceEscuadronUno(unAlgoFormer)) {
-//			for (AlgoFormer eachAlgoFormer :
-//					this.escuadronDos.algoFormers) {
-//				Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
-//				if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
-//					eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
-//				}
-//			}
-//		}else{
-//				for (AlgoFormer eachAlgoFormer:
-//						this.escuadronUno.algoFormers){
-//					Posicion posicionEnemigo = this.buscarAlgoFormer(eachAlgoFormer);
-//					if (posicionEnemigo.getX() >= anchoInicial && posicionEnemigo.getX() <= anchoFinal && posicionEnemigo.getY() >= altoInicial && posicionEnemigo.getY() <= altoFinal) {
-//						eachAlgoFormer.recibirAtaque(unaFuerzaAtaque);
-//					}
-//				}
-//		}
-	}
-
 	public boolean perteneceEscuadronUno(AlgoFormer unAlgoFormer){
 		return this.escuadronUno.perteneceAlgoformer(unAlgoFormer);
 	}
@@ -141,18 +114,18 @@ public class Tablero {
 		return this.escuadronDos.perteneceAlgoformer(unAlgoFormer);
 	}
 
-	private void ubicarEscuadronUno(){ //FIX: NO TIENE SENTIDO, INITX ES SIEMPRE 1
-		int y = 1;
-		int x = 1;
+	private void ubicarEscuadronUno(){ //FIX: NO TIENE SENTIDO, INITX ES SIEMPRE 1 //TODO hace metodo. Si tiene sentido, lee bien el codigo
+		int y = 0;
+		int x = 0;
 		int cantidadAlgoFormers = this.escuadronUno.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			this.agregarAlgoFormer(this.escuadronUno.getAlgoFormer(i),new Posicion(x,y));
-			if(x == 1){
-				x = 2;
-				y = 1;
-			} else {
+			if(x == 0){
 				x = 1;
-				y = 2;
+				y = 0;
+			} else {
+				x = 0;
+				y = 1;
 			}
 		}
 	}
@@ -171,18 +144,6 @@ public class Tablero {
 				initY--;
 			}
 		}
-		/*
-		for (AlgoFormer algoFormer: this.escuadronDos.algoFormers){
-			//algoFormer.tablero = this;
-			this.getCasillero(initX,initY).agregarAlgoFormer(algoFormer);
-			if(initX == this.ancho){
-				initX--;
-			} else {
-				initX = this.ancho;
-				initY--;
-			}
-		}
-		*/
 	}
 
 	public void agregarEscuadron(Escuadron unEscuadron) {
@@ -192,30 +153,6 @@ public class Tablero {
 		} else if (!escuadronDos.existeEscuadron()) {
 			this.escuadronDos = unEscuadron;
 			this.ubicarEscuadronDos();
-		}
-	}
-
-	public void moverAlgoFormer(AlgoFormer algoFormer, int x, int y) {
-		Posicion posicion = new Posicion(x,y);
-		this.moverAlgoFormer(algoFormer,posicion);
-	}
-
-	public void moverAlgoFormer(AlgoFormer unAlgoFormer,Posicion posRelativa){
-		Posicion posicionInicial;
-
-		posicionInicial = posicionesElementos.get(unAlgoFormer.getNombre());
-
-		if(!posicionesElementos.containsKey(unAlgoFormer.getNombre())){
-			throw new AlgoFormerNoExisteException();
-		}
-
-		Posicion posicionFinal = posicionInicial.getSuma(posRelativa);
-		if(this.getCasillero(posicionFinal).contieneAlgoFormer()){
-			throw new CasilleroOcupadoException();
-		} else {
-			this.agregarAlgoFormer(unAlgoFormer,posicionFinal); //observar que se agrega antes de quitarlo.
-			this.quitarAlgoFormer(unAlgoFormer);
-			this.posicionesElementos.replace(unAlgoFormer.getNombre(), posicionFinal);
 		}
 	}
 
@@ -246,8 +183,5 @@ public class Tablero {
 			}
 		}
 	}
-	
-
-
 
 }

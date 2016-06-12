@@ -35,7 +35,7 @@ public class Casillero {
 	}
 
 	public boolean contieneItem(){
-		return (this.item.estaVacio());
+		return (!this.item.estaVacio());
 	}
 
 	public void setItem(Item item){

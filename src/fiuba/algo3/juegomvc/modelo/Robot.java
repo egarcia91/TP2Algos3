@@ -28,8 +28,7 @@ public class Robot {
 		if (this.sensor.isInContact(this.position)) {
 			this.direction = this.direction.inverse();
 			this.position = this.position.next(this.direction);
-		}
-		else {
+		} else {
 			this.position = this.position.next(this.direction);
 		}
 

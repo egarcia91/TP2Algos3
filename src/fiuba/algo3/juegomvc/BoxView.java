@@ -1,18 +1,37 @@
 package fiuba.algo3.juegomvc;
 
 import fiuba.algo3.juegomvc.modelo.Robot;
+import fiuba.algo3.tablero.*;
+import fiuba.algo3.algoformers.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 
 public class BoxView {
 
-	private final Robot robot;
+//	private final Robot robot;
+	private final Tablero tablero;
+	private int ancho;
+	private int alto;
+	private int pasoX;
+	private int radioX;
+	private int pasoY;
 	GraphicsContext gc;
 
-	public BoxView(GraphicsContext gc, Robot robot){
+//	public BoxView(GraphicsContext gc, Robot robot){
+//		this.gc = gc;
+//		this.robot = robot;
+//	}
+
+	public BoxView(GraphicsContext gc, Tablero tablero){
 		this.gc = gc;
-		this.robot = robot;
+		this.tablero = tablero;
+
+		this.ancho = this.tablero.getAncho();
+		this.alto = this.tablero.getAlto();
+		this.pasoX = 600/this.ancho;
+		this.radioX = this.pasoX/2;
+		this.pasoY = 600/this.alto;
 	}
 
 	public void draw() {
@@ -22,7 +41,12 @@ public class BoxView {
 	private void drawShapes(GraphicsContext gc) {
 		this.clean();
 		gc.setFill(Color.GREEN);
-		gc.fillOval(robot.getPosition().getX() + 230, robot.getPosition().getY() + 110, robot.RATIO, robot.RATIO);
+		int cantAF = this.tablero.cantidadAlgoFormer();
+//		for(int i = 0; i < cantAF; i++){
+//			Posicion pos = this.tablero.getPosicion(this.escuadronAutoBot.getAlgoFormer(i));
+//			gc.fillOval(this.pasoX*(pos.getX()-1)+this.radioX/2, this.pasoY*(pos.getY()-1)+this.radioX/2, this.radioX, this.radioX);
+//		}
+
 
 		//gc.setStroke(Color.BLUE);
 		//gc.setLineWidth(5);
@@ -46,8 +70,36 @@ public class BoxView {
 	}
 
 	public void clean() {
-		this.gc.setFill(Color.WHITE);
-		this.gc.fillRect(0, 0, 460, 220);
+		for(int i = 0; i < this.ancho; i++){
+			for(int j = 0; j < this.alto; j++){
+				this.gc.setFill(this.getColor(i+(this.alto*j)));
+				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
+
+//				Posicion posicion = new Posicion(i, j);
+				Casillero casillero = this.tablero.getCasillero(i,j);
+				if(casillero.contieneAlgoFormer()){
+//					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
+					this.gc.setFill(Color.GREEN);
+					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
+				}
+				if(casillero.contieneItem()){
+					this.gc.setFill(Color.WHITE);
+					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
+				}
+			}
+		}
+	}
+
+	private Color getColor(int position) {
+
+		int positionX = position%this.alto;
+		int positionY = (position - positionX)/this.alto;
+
+		if(positionX%2 == 0 && positionY%2 == 0 || positionX%2 == 1 && positionY%2 == 1){
+			return Color.BLACK;
+		} else {
+			return Color.RED;
+		}
 	}
 
 	public void update() {

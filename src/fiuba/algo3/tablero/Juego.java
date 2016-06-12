@@ -33,7 +33,7 @@ public class Juego {
 		Random rand = new Random();
 		int randX = Math.round((Juego.tableroAncho/2) + rand.nextInt(2));
 		int randY = Math.round((Juego.tableroAlto/2) + rand.nextInt(2));
-		tablero.setItem(Spark.getInstance(),randX,randY);
+		tablero.setItem(new Spark(),randX,randY);
 	}
 
 	public void agregarJugador(Jugador unJugador){

@@ -35,7 +35,7 @@ public class Casillero {
 	}
 
 	public boolean contieneItem(){
-		return (this.item != null);
+		return (this.item.estaVacio());
 	}
 
 	public void setItem(Item item){
@@ -43,10 +43,10 @@ public class Casillero {
 	}
 
 	public Item getItem(){
-		if(item == null){
+		if(!this.contieneItem()){
 			throw new ItemNoExisteException();
 		} else {
-			return item;
+			return this.item;
 		}
 	}
 
@@ -67,7 +67,7 @@ public class Casillero {
 	}
 
 	public void quitarItem(){
-		this.item = null;
+		this.item = new ItemVacio();
 	}
 
 	public boolean estaVacio(){

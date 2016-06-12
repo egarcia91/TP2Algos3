@@ -20,7 +20,7 @@ public class CasilleroTests {
 
 	@Test
 	public void test02CasilleroAgregarContenido() {
-		Spark spark = Spark.getInstance();
+		Spark spark = new Spark();
  
 		Casillero casillero = new Casillero();
 		casillero.setItem(spark);
@@ -45,7 +45,7 @@ public class CasilleroTests {
 	public void test04CasilleroSuperponerSpark() {
 		AlgoFormer algoFormer = new AlgoFormer();
 
-		Spark spark = Spark.getInstance();
+		Spark spark = new Spark();
 
 		Casillero casillero = new Casillero();
 		casillero.setItem(spark);

@@ -15,17 +15,59 @@ import fiuba.algo3.algoformers.personajes.OptimusPrime;
 public class AlgoFormerPrimerTests {
 
 	@Test
-	public void test01verificarTransformacion(){
-		OptimusPrime optimusPrime = new OptimusPrime();
-		int velocidadHumaniode = optimusPrime.getVelocidad();
-		optimusPrime.transformarAlterno();
+	public void test01verificarMovimiento() {
+		Tablero tab = new Tablero(20,20);
 
-		Assert.assertFalse(velocidadHumaniode == optimusPrime.getVelocidad());
+		AlgoFormer algoFormer = new AlgoFormer();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.agregarAlgoFormer(algoFormer);
 
-		optimusPrime.transformarHumanoide();
+		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(velocidadHumaniode == optimusPrime.getVelocidad());
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
+		algoFormer.moverDerecha();
+		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,5,1));
+	}
+
+	@Test
+	public void test02verificarTransformacion() {
+		Tablero tab = new Tablero(20,20);
+
+		AlgoFormer algoFormer = new AlgoFormer();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.agregarAlgoFormer(algoFormer);
+
+		tab.agregarEscuadron(escuadronUno);
+
+		Assert.assertTrue(algoFormer.esHumanoide());
+
+		algoFormer.transformarAlterno();
+
+		Assert.assertFalse(algoFormer.esHumanoide());
+		Assert.assertTrue(algoFormer.esAlterno());
+
+		algoFormer.transformarHumanoide();
+
+		Assert.assertTrue(algoFormer.esHumanoide());
+		Assert.assertFalse(algoFormer.esAlterno());
+	}
+
+	@Test
+	public void test03verificarMovimientoAlterno() {
+		Tablero tab = new Tablero(20,20);
+
+		AlgoFormer algoFormer = new AlgoFormer();
+		algoFormer.transformarAlterno();
+		Escuadron escuadronUno = new Escuadron();
+		escuadronUno.agregarAlgoFormer(algoFormer);
+
+		tab.agregarEscuadron(escuadronUno);
+
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
+
+		algoFormer.moverDerecha();
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,2,1));
 	}
 
 	@Test
@@ -33,59 +75,56 @@ public class AlgoFormerPrimerTests {
 
 		Juego juego = new Juego();
 
-		Jugador jugadorUno = new Jugador("Jere");
+		Jugador jugadorUno = new Jugador("Sam");
 
-		Jugador jugadorDos = new Jugador("Eze");
+		Jugador jugadorDos = new Jugador("Max");
+
 		juego.agregarJugador(jugadorUno);
 		Assert.assertTrue(juego.existeJugador(jugadorUno));
 		juego.agregarJugador(jugadorDos);
-		Assert.assertTrue(juego.existeJugador(jugadorUno));
+		Assert.assertTrue(juego.existeJugador(jugadorDos));
 
 		juego.iniciar();
 
 		Assert.assertTrue(jugadorUno.existeEscuadron());
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
-		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
 		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
+
 
 		Assert.assertTrue(jugadorDos.existeEscuadron());
-		//TODO Posiciones.
+
 		int ancho = juego.getTableroAncho();
 		int alto = juego.getTableroAlto();
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(ancho-1,alto-1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(ancho-2,alto-1));
 		Assert.assertTrue(jugadorDos.tieneAlgoFormerEnPosicion(ancho-1,alto-2));
 
-		//FIXME esto nose como va a ser pero hay que corroborar los turnos
-		jugadorUno.moverAlgoFormer();
 
-		jugadorDos.moverAlgoFormer();
-
-		//Exception!!!
-		jugadorDos.moverAlgoFormer();
+//		//FIXME esto nose como va a ser pero hay que corroborar los turnos
+//		jugadorUno.moverAlgoFormer();
+//
+//		jugadorDos.moverAlgoFormer();
+//
+//		//Exception!!!
+//		jugadorDos.moverAlgoFormer();
 	}
 
 	@Test
 	public void test05modosAtaques() {
-		Tablero tab = new Tablero(20,20);
-
-		//List<AlgoFormer> escuadronUno = new ArrayList<AlgoFormer>();
-		//List<AlgoFormer> escuadronDos = new ArrayList<AlgoFormer>();
-
-		Escuadron escuadronUno = new Escuadron();
-		Escuadron escuadronDos = new Escuadron();
-
 
 		OptimusPrime optimusPrime = new OptimusPrime();
 		optimusPrime.transformarAlterno();
-		//escuadronUno.add(optimusPrime);
+
+		Escuadron escuadronUno = new Escuadron();
 		escuadronUno.agregarAlgoFormer(optimusPrime);
 
-
 		Megatron megatron = new Megatron();
-		//escuadronDos.add(megatron);
+
+		Escuadron escuadronDos = new Escuadron();
 		escuadronDos.agregarAlgoFormer(megatron);
 
+		Tablero tab = new Tablero(20,20);
 		tab.agregarEscuadron(escuadronUno);
 		tab.agregarEscuadron(escuadronDos);
 
@@ -125,36 +164,4 @@ public class AlgoFormerPrimerTests {
 		Assert.assertTrue(optimusPrime.getVida() == 490);
 	}
 
-	public void test06AtaqueAlgoFormer(){
-
-		Juego juego = new Juego();
-		Jugador fede = new Jugador("Fede");
-		Jugador eze = new Jugador("Eze");
-
-		Megatron megatron = new Megatron();
-		OptimusPrime optimus = new OptimusPrime();
-		/*
-		fede.agregarAlgoforme(megatron);
-		eze.agregarAlgoforme(optimus);
-		fede.asignarEscuadron(new EscuadronAutobot);
-		eze.asignarEscuadron(new EscuadronDecepticon);
-
-		juego.agregarJugador(fede);
-		juego.agregarJugador(eze);
-		*/
-
-//		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size());
-//		Assert.assertTrue(tablero.existeAlgoFormer(primerAlgoFormer,1,1));
-//
-//		tablero.agregarEscuadron(escuadronDos);
-//		Assert.assertFalse(tablero.estaDesierto());
-//		Assert.assertTrue(tablero.cantidadAlgoFormer() == escuadronUno.size() + escuadronDos.size());
-//		int ancho = tablero.ancho();
-//		int alto = tablero.alto();
-//		Assert.assertTrue(tablero.existeAlgoFormer(segundoAlgoFormer,ancho-1,alto-1));
-//
-//		Assert.assertTrue(segundoAlgoFormer.vida() == 500);
-//		primerAlgoFormer.atacar();
-//		Assert.assertTrue(segundoAlgoFormer.vida() == 450);
-	}
 }

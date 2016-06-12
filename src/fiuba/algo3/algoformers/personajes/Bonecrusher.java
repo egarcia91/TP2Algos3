@@ -18,7 +18,7 @@ public class Bonecrusher extends AlgoFormer {
 		this.estado.setFuerzaAtaque(30);
 		this.estado.setDistanciaAtaque(3);
 		this.estado.setVelocidad(8);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Bonecrusher extends AlgoFormer {
 		this.estado.setFuerzaAtaque(30);
 		this.estado.setDistanciaAtaque(3);
 		this.estado.setVelocidad(1);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

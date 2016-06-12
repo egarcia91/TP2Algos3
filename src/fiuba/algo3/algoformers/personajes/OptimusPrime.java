@@ -18,7 +18,7 @@ public class OptimusPrime extends AlgoFormer {
 		this.estado.setFuerzaAtaque(15);
 		this.estado.setDistanciaAtaque(4);
 		this.estado.setVelocidad(5);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class OptimusPrime extends AlgoFormer {
 		this.estado.setFuerzaAtaque(50);
 		this.estado.setDistanciaAtaque(2);
 		this.estado.setVelocidad(2);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

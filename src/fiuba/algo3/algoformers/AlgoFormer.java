@@ -60,14 +60,20 @@ public class AlgoFormer {
 		return this.estado.getVelocidad();
 	}
 
-
-
-	public String getTipoUnidad(){
-		return this.estado.getTerreno();
+	public boolean esTerrestre(){
+		return this.estado.getTerrestre();
 	}
 
-	public EstadoAlgoformer getEstado(){
-		return this.estado;
+	public boolean esAereo(){
+		return this.estado.getAereo();
+	}
+
+	public boolean esHumanoide(){
+		return this.estado.estadoHumanoide();
+	}
+
+	public boolean esAlterno(){
+		return this.estado.estadoAlterno();
 	}
 
 	public void transformarAlterno(){
@@ -76,7 +82,7 @@ public class AlgoFormer {
 		this.estado.setFuerzaAtaque(15);
 		this.estado.setDistanciaAtaque(4);
 		this.estado.setVelocidad(5);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 	public void transformarHumanoide(){
@@ -85,7 +91,7 @@ public class AlgoFormer {
 		this.estado.setFuerzaAtaque(50);
 		this.estado.setDistanciaAtaque(2);
 		this.estado.setVelocidad(2);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 

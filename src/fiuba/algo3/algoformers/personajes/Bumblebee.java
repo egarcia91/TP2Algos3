@@ -18,7 +18,7 @@ public class Bumblebee extends AlgoFormer {
 		this.estado.setFuerzaAtaque(20);
 		this.estado.setDistanciaAtaque(3);
 		this.estado.setVelocidad(5);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Bumblebee extends AlgoFormer {
 		this.estado.setFuerzaAtaque(40);
 		this.estado.setDistanciaAtaque(1);
 		this.estado.setVelocidad(2);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

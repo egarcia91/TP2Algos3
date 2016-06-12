@@ -10,13 +10,11 @@ public class OptimusPrimeTests {
 	private int fuerzaAtaqueHumanoide = 50;
 	private int distanciaAtaqueHumanoide = 2;
 	private int velocidadHumanoide = 2;
-	private String unidadHumanoide = "terrestre";
 
 	private int vidaAlterno = 500;
 	private int fuerzaAtaqueAlterno = 15;
 	private int distanciaAtaqueAlterno = 4;
 	private int velocidadAlterno = 5;
-	private String unidadAlterno = "terrestre";
 
 	@Test
 	public void test01CrearOptimus() {
@@ -32,7 +30,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(optimusPrime.esTerrestre());
 	}
 
 	@Test
@@ -43,7 +41,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadAlterno);
+		Assert.assertTrue(optimusPrime.esTerrestre());
 	}
 
 	@Test
@@ -54,7 +52,7 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadAlterno);
+		Assert.assertTrue(optimusPrime.esTerrestre());
 	}
 
 	@Test
@@ -66,6 +64,6 @@ public class OptimusPrimeTests {
 		Assert.assertTrue(optimusPrime.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(optimusPrime.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(optimusPrime.getTipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(optimusPrime.esTerrestre());
 	}
 }

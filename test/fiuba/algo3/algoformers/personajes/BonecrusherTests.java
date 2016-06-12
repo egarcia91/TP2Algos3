@@ -10,13 +10,11 @@ public class BonecrusherTests {
 	private int fuerzaAtaqueHumanoide = 30;
 	private int distanciaAtaqueHumanoide = 3;
 	private int velocidadHumanoide = 1;
-	private String unidadHumanoide = "terrestre";
 
 	private int vidaAlterno = 200;
 	private int fuerzaAtaqueAlterno = 30;
 	private int distanciaAtaqueAlterno = 3;
 	private int velocidadAlterno = 8;
-	private String unidadAlterno = "terrestre";
 
 	@Test
 	public void test01CrearBonecrusher() {
@@ -32,7 +30,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bonecrusher.esTerrestre());
 	}
 
 	@Test
@@ -43,7 +41,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bonecrusher.esTerrestre());
 	}
 
 	@Test
@@ -54,7 +52,7 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueAlterno);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadAlterno);
-		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadAlterno);
+		Assert.assertTrue(bonecrusher.esTerrestre());
 	}
 
 	@Test
@@ -66,6 +64,6 @@ public class BonecrusherTests {
 		Assert.assertTrue(bonecrusher.getFuerzaAtaque() == fuerzaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getDistanciaAtaque() == distanciaAtaqueHumanoide);
 		Assert.assertTrue(bonecrusher.getVelocidad() == velocidadHumanoide);
-		Assert.assertTrue(bonecrusher.getTipoUnidad() == unidadHumanoide);
+		Assert.assertTrue(bonecrusher.esTerrestre());
 	}
 }

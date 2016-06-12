@@ -30,7 +30,7 @@ public class Movimiento {
 				return unAlgoFormer.getVelocidad();
 			}
 		}
-		if(unAlgoFormer.getVelocidad() != 1 && unAlgoFormer.getEstado().estadoHumanoide()){
+		if(unAlgoFormer.getVelocidad() != 1 && unAlgoFormer.esHumanoide()){
 			return unAlgoFormer.getVelocidad();
 		}
 		return unTerreno.getVelocidad();
@@ -59,7 +59,7 @@ public class Movimiento {
 		int i = 1;
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
-			if(unAlgoFormer.getTipoUnidad() == "terrestre"){
+			if(unAlgoFormer.esTerrestre()){
 				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoTerrestre());
 			} else {
 				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoAereo());

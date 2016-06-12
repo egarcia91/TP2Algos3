@@ -18,7 +18,7 @@ public class Frenzy extends AlgoFormer {
 		this.estado.setFuerzaAtaque(25);
 		this.estado.setDistanciaAtaque(2);
 		this.estado.setVelocidad(6);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Frenzy extends AlgoFormer {
 		this.estado.setFuerzaAtaque(10);
 		this.estado.setDistanciaAtaque(5);
 		this.estado.setVelocidad(2);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

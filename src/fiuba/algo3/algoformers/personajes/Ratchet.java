@@ -18,7 +18,7 @@ public class Ratchet extends AlgoFormer {
 		this.estado.setFuerzaAtaque(35);
 		this.estado.setDistanciaAtaque(2);
 		this.estado.setVelocidad(8);
-		this.estado.setTerreno("aerea");
+		this.estado.setAereo(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Ratchet extends AlgoFormer {
 		this.estado.setFuerzaAtaque(5);
 		this.estado.setDistanciaAtaque(5);
 		this.estado.setVelocidad(1);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

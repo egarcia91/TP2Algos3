@@ -18,7 +18,7 @@ public class Megatron extends AlgoFormer {
 		this.estado.setFuerzaAtaque(55);
 		this.estado.setDistanciaAtaque(2);
 		this.estado.setVelocidad(8);
-		this.estado.setTerreno("aerea");
+		this.estado.setAereo(true);
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class Megatron extends AlgoFormer {
 		this.estado.setFuerzaAtaque(10);
 		this.estado.setDistanciaAtaque(3);
 		this.estado.setVelocidad(1);
-		this.estado.setTerreno("terrestre");
+		this.estado.setTerrestre(true);
 	}
 
 }

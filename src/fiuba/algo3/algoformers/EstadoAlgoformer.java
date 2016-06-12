@@ -7,7 +7,8 @@ public class EstadoAlgoformer{
 	private int velocidad;
 	private int fuerzaAtaque;
 	private int distanciaAtaque;
-	private String terreno;
+	private boolean terrestre = false;
+	private boolean aereo = false;
 
 	public int getVida(){
 		return this.vida;
@@ -25,8 +26,22 @@ public class EstadoAlgoformer{
 		return this.distanciaAtaque;
 	}
 
-	public String getTerreno(){
-		return this.terreno;
+	public boolean getTerrestre(){
+		return this.terrestre;
+	}
+
+	public boolean getAereo(){
+		return this.aereo;
+	}
+
+	public void setTerrestre(boolean esTerrestre){
+		this.terrestre = esTerrestre;
+		this.aereo = !esTerrestre;
+	}
+
+	public void setAereo(boolean esAereo){
+		this.terrestre = !esAereo;
+		this.aereo = esAereo;
 	}
 
 	public void setVida(int unaVida){
@@ -43,10 +58,6 @@ public class EstadoAlgoformer{
 
 	public void setDistanciaAtaque(int unaDistanciaAtaque){
 		this.distanciaAtaque = unaDistanciaAtaque;
-	}
-
-	public void setTerreno(String unTerreno){
-		this.terreno = unTerreno;
 	}
 
 	public boolean estaEnRango(int deltaX,int deltaY){

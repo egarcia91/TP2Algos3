@@ -7,9 +7,12 @@ import fiuba.algo3.tablero.Casillero;
 import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.CasilleroNoExisteException;
 import fiuba.algo3.tablero.Posicion;
+import java.util.ArrayList;
 
 public class Movimiento {
 	private Tablero tablero;
+	//lo agregue ahora
+	private Posicion posicionFinal;
 
 	public void setTablero(Tablero unTablero){
 		this.tablero = unTablero;
@@ -53,7 +56,10 @@ public class Movimiento {
 	}
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
+
 		Posicion posicionInicial = this.tablero.getPosicion(unAlgoFormer);
+		Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+		/*
 		int cantVelocidad = velocidad;
 		Casillero casillero = null;
 		int i = 1;
@@ -66,6 +72,9 @@ public class Movimiento {
 			}
 		}
 		Posicion posicionFinal = new Posicion(posicionInicial.getX()+(i*x),posicionInicial.getY()+(i*y));
+		*/
+		//posicionFinal = posiblePosicionFinal(unAlgoFormer, velocidad,  x, y);
+
 
 		if(casillero == null){
 			throw new CasilleroNoExisteException();
@@ -90,6 +99,60 @@ public class Movimiento {
 		return false;
 		}
 	}
+
+
+
+	// Todo esto seria lo mas nuevo, saque cosas de moverAlgoFormer para hacer las posibles posiciones
+	// para que por otro lado si uno quiere mover el algoformer, llama al metodo de posible posicion final
+	// y luego lo corre segun corresponta, cosa que no se quiere hacer justamente cuando solo se quiere ver
+	// las posibles posiciones, por eso lo separe
+
+	public Casillero posibleCasilleroFinal(AlgoFormer unAlgoFormer, int velocidad, int x, int y){
+		Posicion posicionInicial = this.tablero.getPosicion(unAlgoFormer);
+		int cantVelocidad = velocidad;
+		Casillero casillero = null;
+		int i = 1;
+		for(; i <= cantVelocidad; i++){
+			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
+			if(unAlgoFormer.esTerrestre()){
+				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoTerrestre());
+			} else {
+				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoAereo());
+			}
+		}
+		this.posicionFinal = new Posicion(posicionInicial.getX()+(i*x),posicionInicial.getY()+(i*y));
+		return casillero;
+	}
+
+	public Casillero posiblePosicionDerecha(AlgoFormer unAlgoFormer,int velocidad){
+		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,1,0);
+	}
+
+	public Casillero  posiblePosicionIzquierda(AlgoFormer unAlgoFormer,int velocidad){
+		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,-1,0);
+	}
+
+	public Casillero  posiblePosicionAbajo(AlgoFormer unAlgoFormer,int velocidad){
+		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,0,1);
+	}
+
+	public Casillero  posiblePosicionArriba(AlgoFormer unAlgoFormer,int velocidad) {
+		return this.posibleCasilleroFinal(unAlgoFormer, velocidad, 0, -1);
+	}
+
+
+	public void posiblesMovimientos(AlgoFormer unAlgoFormer, int velocidad){
+		//Aca lo que se me ocurre asi planteado
+		//seria que ejecute los cuatro metodos de posiblePosicion
+		//guardados en un Array, que de alguna forma se podrian visualizar en la Interfaz
+		ArrayList<Casillero> posiblesPosicionesFinales = new ArrayList<Casillero>();
+		posiblesPosicionesFinales.add(posiblePosicionDerecha(unAlgoFormer, velocidad));
+		posiblesPosicionesFinales.add(posiblePosicionIzquierda(unAlgoFormer, velocidad));
+		posiblesPosicionesFinales.add(posiblePosicionAbajo(unAlgoFormer, velocidad));
+		posiblesPosicionesFinales.add(posiblePosicionArriba(unAlgoFormer, velocidad));
+	}
+
+
 
 }
 

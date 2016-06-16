@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+import javafx.scene.paint.Color;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -28,12 +30,11 @@ public class Program extends Application {
 
 //		Robot robot = createModel();
 
-		Tablero tablero = new Tablero(7, 7);
-		EscuadronAutobot escuadronAutoBot = new EscuadronAutobot();
-		EscuadronDecepticon escuadronDecepticon = new EscuadronDecepticon();
-		tablero.setItem(new Spark(),3,3);
-		tablero.agregarEscuadron(escuadronAutoBot);
-		tablero.agregarEscuadron(escuadronDecepticon);
+		Juego juego = new Juego();
+		Jugador jugadorUno = new Jugador("Sam");
+		Jugador jugadorDos = new Jugador("Max");
+		juego.agregarJugador(jugadorUno);
+		juego.agregarJugador(jugadorDos);
 
 		primaryStage.setTitle("Autobots fight untill end. Decepticions allways loose");
 
@@ -41,35 +42,45 @@ public class Program extends Application {
 		Canvas canvas = new Canvas(600, 600);
 		gc = canvas.getGraphicsContext2D();
 //		this.boxView = new BoxView(gc, robot);
-		this.boxView = new BoxView(gc, tablero);
+		this.boxView = new BoxView(gc, juego);
 		this.boxView.draw();
 
 		canvasContainer.getChildren().add(canvas);
 
 		Button moveRButton = new Button();
-		moveRButton.setText("MoveDerecha");
+		moveRButton.setText("Derecha");
 //		MoveButtonHandler moveButtonHandler = new MoveButtonHandler(this.boxView, robot);
 //		moveButton.setOnAction(moveButtonHandler);
 
 		Button moveLButton = new Button();
-		moveLButton.setText("MoverIzquiera");
+		moveLButton.setText("Izquierda");
 //		DirectionButtonHandler directionButtonHandler = new DirectionButtonHandler(robot);
 //		directionButton.setOnAction(directionButtonHandler);
 
 		Button moveDButton = new Button();
-		moveDButton.setText("MoverAbajo");
-//		MoveButtonHandler moveButtonHandler = new MoveButtonHandler(this.boxView, robot);
-//		moveButton.setOnAction(moveButtonHandler);
+		moveDButton.setText("Abajo");
+		MoveDButtonHandler moveDButtonHandler = new MoveDButtonHandler(this.boxView, juego);
+		moveDButton.setOnAction(moveDButtonHandler);
 
 		Button moveUButton = new Button();
-		moveUButton.setText("MoverArriba");
+		moveUButton.setText("Arriba");
+		MoveUButtonHandler moveUButtonHandler = new MoveUButtonHandler(this.boxView, juego);
+		moveUButton.setOnAction(moveUButtonHandler);
+
+		Button aButton = new Button();
+		aButton.setText("A");
+		AButtonHandler aButtonHandler = new AButtonHandler(this.boxView, juego);
+		aButton.setOnAction(aButtonHandler);
+
+		Button bButton = new Button();
+		bButton.setText("B");
 //		DirectionButtonHandler directionButtonHandler = new DirectionButtonHandler(robot);
 //		directionButton.setOnAction(directionButtonHandler);
 
-		HBox contenedorHorizontal = new HBox(moveRButton, moveLButton, moveUButton, moveDButton);
+		HBox contenedorHorizontal = new HBox(moveRButton, moveLButton, moveUButton, moveDButton, aButton, bButton);
 		contenedorHorizontal.setSpacing(10);
 
-		VBox contenedorPrincipal = new VBox(contenedorHorizontal, canvasContainer);
+		VBox contenedorPrincipal = new VBox(canvasContainer, contenedorHorizontal);
 		contenedorPrincipal.setSpacing(10);
 		contenedorPrincipal.setPadding(new Insets(20));
 
@@ -93,20 +104,4 @@ public class Program extends Application {
 
 		//stage.show();
 	}
-
-//	private Robot createModel() {
-//		Box box = new Box(1500,1500);
-//		Sensor sensor = new Sensor(box);
-//		Robot robot = new Robot(sensor, new Position(25,25));
-//		robot.setDirection(Direction.east());
-//		return robot;
-//	}
-
-//	private Juego createModel() {
-//		Box box = new Box(50,50);
-//		Sensor sensor = new Sensor(box);
-//		Robot robot = new Robot(sensor, new Position(0,0));
-//		robot.setDirection(Direction.east());
-//		return robot;
-//	}
 }

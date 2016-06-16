@@ -8,8 +8,8 @@ import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
 
 public class Juego {
-	private static final int tableroAncho = 200;
-	private static final int tableroAlto = 200;
+	private static final int tableroAncho = 7;
+	private static final int tableroAlto = 7;
 
 	private Tablero tablero;
 	private List<Jugador> jugadores;
@@ -29,6 +29,9 @@ public class Juego {
 		return this.tablero;
 	}
 	
+	public Jugador getJugadorTurno(){
+		return this.jugadores.get(this.turnoJugador);
+	}
 	public void ubicarSpark(Tablero tablero){
 		Random rand = new Random();
 		int randX = Math.round((Juego.tableroAncho/2) + rand.nextInt(2));

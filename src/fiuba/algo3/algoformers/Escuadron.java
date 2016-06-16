@@ -6,7 +6,7 @@ import java.util.List;
 public class Escuadron {
 
 	//private List<AlgoFormer> algoFormers;
-	protected List<AlgoFormer> algoFormers;
+	protected ArrayList<AlgoFormer> algoFormers;
 	
 	public Escuadron(){
 		algoFormers = new ArrayList<AlgoFormer>(); 
@@ -17,6 +17,10 @@ public class Escuadron {
 		return this.algoFormers.get(number);
 	}
 
+	public ArrayList<AlgoFormer> getAlgoFormers(){
+		return algoFormers;
+	}
+	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
 		this.algoFormers.add(unAlgoFormer);
 	}

@@ -1,12 +1,15 @@
 package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.algoformers.AlgoFormer;
 
 public class Jugador {
 
 	private String nombre;
 	protected Juego juego;
 	private Escuadron escuadron;
+	private int indiceAlgoFormer = 0;
+	private boolean selectAlgoFormer = false;
 
 	public Jugador(String nombre) {
 		this.nombre = nombre;
@@ -16,8 +19,39 @@ public class Jugador {
 		this.nombre = unNombre;
 	}
 
+	public void selectAlgoFormer(){
+		this.selectAlgoFormer = true;
+		//MOVER POR DEFECTO
+	}
+
+	public boolean estaSeleccionadoAlgoFormer(){
+		return this.selectAlgoFormer;
+	}
+
 	public String getNombre(){
 		return this.nombre;
+	}
+
+	public AlgoFormer getSelectAlgoFormer(){
+		return this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+	}
+
+	public void nextAlgoFormer(){
+		int cantidadAlgoFormers = this.escuadron.cantidadMiembrosEscuadron();
+		if(this.indiceAlgoFormer == (cantidadAlgoFormers-1)){
+			this.indiceAlgoFormer = 0;
+		} else {
+			this.indiceAlgoFormer++;
+		}
+	}
+
+	public void prevAlgoFormer(){
+		int cantidadAlgoFormers = this.escuadron.cantidadMiembrosEscuadron();
+		if(this.indiceAlgoFormer == 0){
+			this.indiceAlgoFormer = (cantidadAlgoFormers-1);
+		} else {
+			this.indiceAlgoFormer--;
+		}
 	}
 
 	public void asignarEscuadron(Escuadron unEscuadron){

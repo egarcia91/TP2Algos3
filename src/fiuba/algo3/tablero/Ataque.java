@@ -1,6 +1,10 @@
 package fiuba.algo3.tablero;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.algoformers.AlgoFormer;
@@ -13,6 +17,38 @@ public class Ataque {
 		this.tablero = tablero;
 	}
 
+	private boolean estaEnRangoDeAtaque(AlgoFormer algoFormer,Posicion posicion,int rango){
+		Posicion posicionAlgoformer = tablero.getPosicion(algoFormer);
+		posicionAlgoformer.restar(posicion);
+		if(Math.abs(posicionAlgoformer.getX()) <= rango || Math.abs(posicionAlgoformer.getY()) <= rango){
+			return true;
+		}
+		else{
+			return false;
+		}	
+	}
+	
+	private ArrayList<AlgoFormer> getAlgoformersEnRango(Posicion posicion,int rango){
+		ArrayList<AlgoFormer> listaAlgoformersEnRango = new ArrayList<AlgoFormer>();
+		
+		
+		ArrayList<AlgoFormer> listaAlgoformersEnTablero = tablero.escuadronUno.getAlgoFormers();
+		for(Iterator<AlgoFormer> i = listaAlgoformersEnTablero.iterator(); i.hasNext();){
+			AlgoFormer algoFormer = i.next(); 
+			if(estaEnRangoDeAtaque(algoFormer,posicion,rango)){
+				listaAlgoformersEnRango.add(algoFormer);
+			}
+		}
+		
+		listaAlgoformersEnTablero = tablero.escuadronDos.getAlgoFormers();
+		for(Iterator<AlgoFormer> i = listaAlgoformersEnTablero.iterator(); i.hasNext();){
+			AlgoFormer algoFormer = i.next(); 
+			if(estaEnRangoDeAtaque(algoFormer,posicion,rango)){
+				listaAlgoformersEnRango.add(algoFormer);
+			}
+		}		
+		return listaAlgoformersEnRango;
+	}
 
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
 		Posicion posicionActual = this.tablero.buscarAlgoFormer(unAlgoFormer);

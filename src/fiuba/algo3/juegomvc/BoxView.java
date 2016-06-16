@@ -11,6 +11,8 @@ public class BoxView {
 
 //	private final Robot robot;
 	private final Tablero tablero;
+	private AlgoFormer algoFormer;
+	private final Juego juego;
 	private int ancho;
 	private int alto;
 	private int pasoX;
@@ -23,9 +25,10 @@ public class BoxView {
 //		this.robot = robot;
 //	}
 
-	public BoxView(GraphicsContext gc, Tablero tablero){
+	public BoxView(GraphicsContext gc, Juego juego){
 		this.gc = gc;
-		this.tablero = tablero;
+		this.juego = juego;
+		this.tablero = juego.getTablero();
 
 		this.ancho = this.tablero.getAncho();
 		this.alto = this.tablero.getAlto();
@@ -39,6 +42,10 @@ public class BoxView {
 	}
 
 	private void drawShapes(GraphicsContext gc) {
+		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
+		AlgoFormer algoFormerActual = jugadorTurnoActual.getSelectAlgoFormer();
+		this.algoFormer = algoFormerActual;
+
 		this.clean();
 		gc.setFill(Color.GREEN);
 		int cantAF = this.tablero.cantidadAlgoFormer();
@@ -47,6 +54,14 @@ public class BoxView {
 //			gc.fillOval(this.pasoX*(pos.getX()-1)+this.radioX/2, this.pasoY*(pos.getY()-1)+this.radioX/2, this.radioX, this.radioX);
 //		}
 
+		gc.setFill(Color.WHITE);
+		gc.fillText("Turno Jugador: "+ jugadorTurnoActual.getNombre(),20,20);
+		if(jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
+			gc.fillText("AlgoFormer: "+ algoFormerActual.getNombre(),50,50);
+//			gc.fillText("Seleccione Accion: "+ algoFormerActual.getNombre(),50,50);
+		} else {
+			gc.fillText("Seleccione AlgoFormer: "+ algoFormerActual.getNombre(),50,50);
+		}
 
 		//gc.setStroke(Color.BLUE);
 		//gc.setLineWidth(5);
@@ -78,8 +93,12 @@ public class BoxView {
 //				Posicion posicion = new Posicion(i, j);
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				if(casillero.contieneAlgoFormer()){
-//					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
-					this.gc.setFill(Color.GREEN);
+					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
+					if(this.algoFormer == unAlgoFormer){
+						this.gc.setFill(Color.BLUE);
+					} else {
+						this.gc.setFill(Color.GREEN);
+					}
 					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
 				if(casillero.contieneItem()){

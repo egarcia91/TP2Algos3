@@ -19,15 +19,17 @@ public class AlgoFormerPrimerTests {
 		Tablero tab = new Tablero(20,20);
 
 		AlgoFormer algoFormer = new AlgoFormer();
-		Escuadron escuadronUno = new Escuadron();
-		escuadronUno.agregarAlgoFormer(algoFormer);
+		//Escuadron escuadronUno = new Escuadron();
+		//escuadronUno.agregarAlgoFormer(algoFormer);
 
-		tab.agregarEscuadron(escuadronUno);
-
+		//tab.agregarEscuadron(escuadronUno);
+		Posicion unaPosicion = new Posicion(1,1);
+		tab.agregarAlgoFormer(algoFormer,unaPosicion);
 		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
 
 		algoFormer.moverDerecha();
-		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,5,1));
+
+		Assert.assertFalse(tab.existeAlgoFormer(algoFormer,2,1));
 	}
 
 	@Test
@@ -64,10 +66,13 @@ public class AlgoFormerPrimerTests {
 
 		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,1,1));
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,0,0));
 
+		//System.out.println("primero esta en: " + tab.getPosicion(algoFormer).getX() + "," + tab.getPosicion(algoFormer).getY());
 		algoFormer.moverDerecha();
-		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,2,1));
+		//System.out.println("y luego: " + tab.getPosicion(algoFormer).getX() + "," + tab.getPosicion(algoFormer).getY());
+
+		Assert.assertTrue(tab.existeAlgoFormer(algoFormer,4,0));
 	}
 
 	@Test
@@ -87,9 +92,9 @@ public class AlgoFormerPrimerTests {
 		juego.iniciar();
 
 		Assert.assertTrue(jugadorUno.existeEscuadron());
-		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,1));
-		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,2));
-		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(2,1));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(0,0));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(0,1));
+		Assert.assertTrue(jugadorUno.tieneAlgoFormerEnPosicion(1,0));
 
 
 		Assert.assertTrue(jugadorDos.existeEscuadron());
@@ -129,7 +134,8 @@ public class AlgoFormerPrimerTests {
 		tab.agregarEscuadron(escuadronDos);
 
 		Assert.assertTrue(megatron.getVida() == 550);
-
+		//System.out.println("primero esta en: " + tab.getPosicion(optimusPrime).getX() + "," + tab.getPosicion(optimusPrime).getY());
+		optimusPrime.moverDerecha();
 		optimusPrime.moverDerecha();
 		optimusPrime.moverDerecha();
 		optimusPrime.moverDerecha();
@@ -137,12 +143,14 @@ public class AlgoFormerPrimerTests {
 		optimusPrime.moverArriba();
 		optimusPrime.moverArriba();
 		optimusPrime.moverArriba();
-
+		optimusPrime.moverArriba();
+		
 		optimusPrime.atacar();
 		Assert.assertTrue(megatron.getVida() == 535);
 
 		Assert.assertTrue(optimusPrime.getVida() == 500);
 
+		//System.out.println("primero esta en: " + tab.getPosicion(optimusPrime).getX() + "," + tab.getPosicion(optimusPrime).getY());
 		megatron.moverIzquierda();
 		megatron.moverIzquierda();
 		megatron.moverIzquierda();
@@ -150,7 +158,8 @@ public class AlgoFormerPrimerTests {
 		megatron.moverAbajo();
 		megatron.moverAbajo();
 		megatron.moverAbajo();
-
+		//System.out.println("luego de mover arriba x 3: " + tab.getPosicion(optimusPrime).getX() + "," + tab.getPosicion(optimusPrime).getY());
+	
 		megatron.atacar();
 		Assert.assertTrue(optimusPrime.getVida() == 490);
 

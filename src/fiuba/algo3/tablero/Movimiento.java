@@ -48,11 +48,11 @@ public class Movimiento {
 	}
 
 	public void moverAlgoFormerAbajo(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,1);
+		this.moverAlgoFormer(unAlgoFormer,velocidad,0,-1);
 	}
 
 	public void moverAlgoFormerArriba(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,-1);
+		this.moverAlgoFormer(unAlgoFormer,velocidad,0,1);
 	}
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
@@ -87,7 +87,6 @@ public class Movimiento {
 		}
 	}
 
-
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int x,int y){
 		Posicion posicionAlgoFormer = this.tablero.getPosicion(unAlgoFormer);
 		Posicion posicionConsulta = new Posicion(x,y);
@@ -99,7 +98,6 @@ public class Movimiento {
 		return false;
 		}
 	}
-
 
 
 	// Todo esto seria lo mas nuevo, saque cosas de moverAlgoFormer para hacer las posibles posiciones

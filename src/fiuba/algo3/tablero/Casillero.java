@@ -1,16 +1,17 @@
 package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.AlgoFormerVacio;
 
 public class Casillero {
 	private Item item = new ItemVacio();
-	private AlgoFormer algoFormer;
+	private AlgoFormer algoFormer = new AlgoFormerVacio();
 
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
 	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
 
 	public boolean contieneAlgoFormer(){
-		return (this.algoFormer != null);
+		return (!this.algoFormer.estaVacio());
 	}
  
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
@@ -31,7 +32,7 @@ public class Casillero {
 	}
 
 	public void quitarAlgoFormer(){
-		this.algoFormer = null;
+		this.algoFormer = new AlgoFormerVacio();
 	}
 
 	public boolean contieneItem(){

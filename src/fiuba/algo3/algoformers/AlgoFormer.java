@@ -16,6 +16,10 @@ public class AlgoFormer {
 
 	protected String nombre = "Algoformer";
 
+	public boolean estaVacio(){
+		return false;
+	}
+
 	public AlgoFormer(){
 		this.transformarHumanoide();
 	}

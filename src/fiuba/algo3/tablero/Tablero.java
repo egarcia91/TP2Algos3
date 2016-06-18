@@ -12,8 +12,6 @@ public class Tablero {
 	private Casillero[][] tablero;
 	private Map<String,Posicion> posicionesElementos;
 
-	//private Escuadron escuadronUno;
-	//private Escuadron escuadronDos;
 	protected Escuadron escuadronUno;
 	protected Escuadron escuadronDos;
 
@@ -61,7 +59,7 @@ public class Tablero {
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
-		this.getCasillero(pos).agregarAlgoFormer(unAlgoFormer);
+		this.getCasillero(pos).agregarContenido(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
 		Ataque ataque = new Ataque();
 		ataque.setTablero(this);
@@ -78,20 +76,20 @@ public class Tablero {
 	public void quitarAlgoFormer(AlgoFormer unAlgoFormer){
 		String key = unAlgoFormer.getNombre();
 		Casillero casillero = this.getCasillero(this.posicionesElementos.get(key));
-		if(casillero == null){
+		if(casillero.noExiste()){
 			return;
 		} else{
-			casillero.quitarAlgoFormer();
+			casillero.quitarContenido();
 			this.posicionesElementos.remove(key);
 		}
 	}
 
 	public boolean tieneAlgoFormer(int posX,int posY){
-		return this.getCasillero(posX,posY).contieneAlgoFormer();
+		return this.getCasillero(posX,posY).tieneContenido();
 	}
 
 	public void setItem(Item item,int posX, int posY){
-		this.getCasillero(posX,posY).setItem(item);
+		this.getCasillero(posX,posY).agregarContenido(item);
 	}
 
 	public Posicion buscarAlgoFormer(AlgoFormer unAlgoFormer){

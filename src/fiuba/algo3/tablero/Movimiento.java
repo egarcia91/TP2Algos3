@@ -4,6 +4,7 @@ import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.tablero.Tablero;
 import fiuba.algo3.tablero.Terreno;
 import fiuba.algo3.tablero.Casillero;
+import fiuba.algo3.tablero.CasilleroNoExiste;
 import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.CasilleroNoExisteException;
 import fiuba.algo3.tablero.Posicion;
@@ -57,28 +58,12 @@ public class Movimiento {
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
 
-		Posicion posicionInicial = this.tablero.getPosicion(unAlgoFormer);
 		Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
-		/*
-		int cantVelocidad = velocidad;
-		Casillero casillero = null;
-		int i = 1;
-		for(; i <= cantVelocidad; i++){
-			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
-			if(unAlgoFormer.esTerrestre()){
-				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoTerrestre());
-			} else {
-				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoAereo());
-			}
-		}
-		Posicion posicionFinal = new Posicion(posicionInicial.getX()+(i*x),posicionInicial.getY()+(i*y));
-		*/
-		//posicionFinal = posiblePosicionFinal(unAlgoFormer, velocidad,  x, y);
 
-
-		if(casillero == null){
+		if(casillero.noExiste()){
 			throw new CasilleroNoExisteException();
-		} else if(casillero.contieneAlgoFormer()){
+//		} else if(casillero.contieneAlgoFormer()){
+		} else if(casillero.tieneContenido()){
 			throw new CasilleroOcupadoException();
 		} else {
 			this.tablero.quitarAlgoFormer(unAlgoFormer);
@@ -108,7 +93,7 @@ public class Movimiento {
 	public Casillero posibleCasilleroFinal(AlgoFormer unAlgoFormer, int velocidad, int x, int y){
 		Posicion posicionInicial = this.tablero.getPosicion(unAlgoFormer);
 		int cantVelocidad = velocidad;
-		Casillero casillero = null;
+		Casillero casillero = new CasilleroNoExiste();
 		int i = 1;
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));

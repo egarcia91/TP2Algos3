@@ -4,51 +4,32 @@ import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.AlgoFormerVacio;
 
 public class Casillero {
-	private Item item = new ItemVacio();
-	private AlgoFormer algoFormer = new AlgoFormerVacio();
+	private Contenido contenido = new ContenidoVacio();
 
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
 	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
 
-	public boolean contieneAlgoFormer(){
-		return (!this.algoFormer.estaVacio());
+	public boolean noExiste(){
+		return false;
 	}
- 
-	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
-		if(this.contieneAlgoFormer()){
+
+	public void agregarContenido(Contenido unContenido){
+		if(this.tieneContenido() && unContenido.esAlgoFormer() && this.contenido.esAlgoFormer()){
 			throw new CasilleroOcupadoException();
-		} else {
-			this.algoFormer = unAlgoFormer;
-			this.quitarItem(); //No eliminar linea si no saben para que es
 		}
+		this.contenido = unContenido;
 	}
 
-	public AlgoFormer getAlgoFormer(){
-		if(!this.contieneAlgoFormer()){
-			throw new AlgoFormerNoExisteException();
-		} else {
-			return algoFormer;
-		}
+	public Contenido getContenido(){
+		return this.contenido;
 	}
 
-	public void quitarAlgoFormer(){
-		this.algoFormer = new AlgoFormerVacio();
+	public void quitarContenido(){
+		this.contenido = new ContenidoVacio();
 	}
 
-	public boolean contieneItem(){
-		return (!this.item.estaVacio());
-	}
-
-	public void setItem(Item item){
-		this.item = item;
-	}
-
-	public Item getItem(){
-		if(!this.contieneItem()){
-			throw new ItemNoExisteException();
-		} else {
-			return this.item;
-		}
+	public boolean tieneContenido(){
+		return !this.estaVacio();
 	}
 
 	public Terreno getTerrenoTerrestre(){
@@ -67,15 +48,8 @@ public class Casillero {
 		this.terrenoAereo = unTerreno;
 	}
 
-	public void quitarItem(){
-		this.item = new ItemVacio();
-	}
-
 	public boolean estaVacio(){
-		if(!this.contieneItem() && !this.contieneAlgoFormer()){
-			return true;
-		}
-		return false;
+		return this.contenido.estaVacio();
 	}
 
 }

@@ -1,17 +1,10 @@
 package fiuba.algo3.tablero;
 
-public abstract class Item {
+public abstract class Item extends Contenido {
 	private String nombre = "Item";
 
 	public String getNombre(){
 		return this.nombre;
 	}
 
-	public boolean esSpark(){
-		return false;
-	}
-
-	public boolean estaVacio(){
-		return false;
-	}
 }

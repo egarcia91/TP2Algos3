@@ -21,12 +21,12 @@ public class CasilleroTests {
 	@Test
 	public void test02CasilleroAgregarContenido() {
 		Spark spark = new Spark();
- 
+
 		Casillero casillero = new Casillero();
-		casillero.setItem(spark);
+		casillero.agregarContenido(spark);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.getItem() == spark);
+		Assert.assertTrue(casillero.getContenido() == spark);
 	}
 
 	@Test
@@ -34,12 +34,11 @@ public class CasilleroTests {
 		AlgoFormer algoFormer = new AlgoFormer();
 
 		Casillero casillero = new Casillero();
-		casillero.agregarAlgoFormer(algoFormer);
+		casillero.agregarContenido(algoFormer);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertTrue(casillero.getContenido() == algoFormer);
 	}
-
 
 	@Test
 	public void test04CasilleroSuperponerSpark() {
@@ -48,16 +47,14 @@ public class CasilleroTests {
 		Spark spark = new Spark();
 
 		Casillero casillero = new Casillero();
-		casillero.setItem(spark);
+		casillero.agregarContenido(spark);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertFalse(casillero.contieneAlgoFormer());
-		Assert.assertTrue(casillero.getItem() == spark);
+		Assert.assertTrue(casillero.getContenido() == spark);
 
-		casillero.agregarAlgoFormer(algoFormer);
+		casillero.agregarContenido(algoFormer);
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
-		Assert.assertFalse(casillero.contieneItem());
+		Assert.assertTrue(casillero.getContenido() == algoFormer);
 	}
 
 	@Test(expected=CasilleroOcupadoException.class)
@@ -67,12 +64,12 @@ public class CasilleroTests {
 		Megatron megatron = new Megatron();
 
 		Casillero casillero = new Casillero();
-		casillero.agregarAlgoFormer(optimusPrime);
+		casillero.agregarContenido(optimusPrime);
 
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.getAlgoFormer() == optimusPrime);
+		Assert.assertTrue(casillero.getContenido() == optimusPrime);
 
-		casillero.agregarAlgoFormer(megatron);
+		casillero.agregarContenido(megatron);
 	}
 
 	@Test
@@ -81,13 +78,12 @@ public class CasilleroTests {
 		AlgoFormer algoFormer = new AlgoFormer();
 		Casillero casillero = new Casillero();
 
-		casillero.agregarAlgoFormer(algoFormer);
+		casillero.agregarContenido(algoFormer);
 		Assert.assertFalse(casillero.estaVacio());
-		Assert.assertTrue(casillero.getAlgoFormer() == algoFormer);
+		Assert.assertTrue(casillero.getContenido() == algoFormer);
 
-		casillero.quitarAlgoFormer();
+		casillero.quitarContenido();
 		Assert.assertTrue(casillero.estaVacio());
-		Assert.assertFalse(casillero.contieneAlgoFormer());
 	}
 
 }

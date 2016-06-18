@@ -5,8 +5,9 @@ import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Movimiento;
 import fiuba.algo3.tablero.Ataque;
+import fiuba.algo3.tablero.Contenido;
 
-public class AlgoFormer {
+public class AlgoFormer extends Contenido {
 
 	protected Movimiento movimiento;
 	protected EstadoAlgoformer estado;
@@ -16,16 +17,16 @@ public class AlgoFormer {
 
 	protected String nombre = "Algoformer";
 
-	public boolean estaVacio(){
-		return false;
-	}
-
 	public AlgoFormer(){
 		this.transformarHumanoide();
 	}
 
 	public String getNombre(){
 		return this.nombre;
+	}
+
+	public boolean esAlgoFormer(){
+		return true;
 	}
 
 	public int getVida(){
@@ -98,26 +99,6 @@ public class AlgoFormer {
 		this.estado.setTerrestre(true);
 	}
 
-
-//	public void mover(Posicion posRelativa){
-//		if(this.movimientoPosible(posRelativa)){
-//			this.tablero.moverAlgoFormer(this,posRelativa);
-//		} else {
-//			throw new MovimientoFueraDeRangoException();
-//		}
-//	}
-
-
-//	private boolean movimientoPosible(Posicion posicion){
-//		int velocidad = this.getVelocidad();
-//		velocidad = velocidad*velocidad;
-//		int x = posicion.getX();
-//		x = x*x;
-//		int y = posicion.getY();
-//		y = y*y;
-//		return (x <= velocidad && y <= velocidad); //Circunferencia de alcance
-//	}
-
 	public void moverDerecha(){
 		if(this.turnosCastigo == 0){
 			this.movimiento.moverAlgoFormerDerecha(this,this.getVelocidad());
@@ -150,16 +131,12 @@ public class AlgoFormer {
 		}
 	}
 
-	/*public void atacar(){
-		this.tablero.ataqueZona(this,this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
-	}*/
-
-	public void atacar() { this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());}
+	public void atacar() {
+		this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
+	}
 
 	public boolean estaEnPosicion(int x, int y){
-		//return this.tablero.existeAlgoFormer(this, x, y);
 		return this.movimiento.existeAlgoFormer(this, x, y);
-		//return false;
 	}
 
 	public void recibirAtaque(int fuerzaAtaque){

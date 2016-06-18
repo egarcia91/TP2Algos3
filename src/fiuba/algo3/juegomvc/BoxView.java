@@ -92,19 +92,23 @@ public class BoxView {
 
 //				Posicion posicion = new Posicion(i, j);
 				Casillero casillero = this.tablero.getCasillero(i,j);
-				if(casillero.contieneAlgoFormer()){
-					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
-					if(this.algoFormer == unAlgoFormer){
-						this.gc.setFill(Color.BLUE);
-					} else {
-						this.gc.setFill(Color.GREEN);
-					}
+				if(casillero.tieneContenido()){
+					this.gc.setFill(Color.GREEN);
 					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
-				if(casillero.contieneItem()){
-					this.gc.setFill(Color.WHITE);
-					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
-				}
+//				if(casillero.contieneAlgoFormer()){
+//					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
+//					if(this.algoFormer == unAlgoFormer){
+//						this.gc.setFill(Color.BLUE);
+//					} else {
+//						this.gc.setFill(Color.GREEN);
+//					}
+//					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
+//				}
+//				if(casillero.contieneItem()){
+//					this.gc.setFill(Color.WHITE);
+//					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
+//				}
 			}
 		}
 	}

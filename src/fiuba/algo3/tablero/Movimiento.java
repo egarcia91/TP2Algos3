@@ -58,18 +58,28 @@ public class Movimiento {
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
 
-		Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+		//Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+		Casillero casillero = new Casillero();
+		try{
+			casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+		}
+		catch (CasilleroNoExisteException excepcion){}
 
-		if(casillero.noExiste()){
-			throw new CasilleroNoExisteException();
+
+		//if(casillero.noExiste()){
+		//	throw new CasilleroNoExisteException();
 //		} else if(casillero.contieneAlgoFormer()){
-		} else if(casillero.tieneContenido()){
-			throw new CasilleroOcupadoException();
-		} else {
+		//else if(casillero.tieneContenido()){
+		//	throw new CasilleroOcupadoException();
+		//} else {
+		try{
+			casillero.agregarContenido(unAlgoFormer);
+		}catch (CasilleroOcupadoException exception){}
+
 			this.tablero.quitarAlgoFormer(unAlgoFormer);
 			this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 			this.tablero.setPosicion(unAlgoFormer, posicionFinal);
-		}
+		//}
 	}
 
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int x,int y){
@@ -95,6 +105,11 @@ public class Movimiento {
 		int cantVelocidad = velocidad;
 		Casillero casillero = new CasilleroNoExiste();
 		int i = 1;
+
+		if (x>this.tablero.getAncho() || x<0 || y>this.tablero.getAlto() || y<0 ){
+			throw new CasilleroNoExisteException();
+		}
+
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
 			if(casillero.noExiste()){

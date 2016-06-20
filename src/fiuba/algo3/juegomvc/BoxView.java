@@ -6,24 +6,21 @@ import fiuba.algo3.algoformers.*;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BoxView {
 
-//	private final Robot robot;
 	private final Tablero tablero;
 	private AlgoFormer algoFormer;
 	private final Juego juego;
+	private Jugador jugador;
 	private int ancho;
 	private int alto;
 	private int pasoX;
 	private int radioX;
 	private int pasoY;
 	GraphicsContext gc;
-
-//	public BoxView(GraphicsContext gc, Robot robot){
-//		this.gc = gc;
-//		this.robot = robot;
-//	}
 
 	public BoxView(GraphicsContext gc, Juego juego){
 		this.gc = gc;
@@ -42,49 +39,24 @@ public class BoxView {
 	}
 
 	private void drawShapes(GraphicsContext gc) {
-		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
-		AlgoFormer algoFormerActual = jugadorTurnoActual.getSelectAlgoFormer();
-		this.algoFormer = algoFormerActual;
+		this.jugador = this.juego.getJugadorTurno();
+		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
-		this.clean();
-		gc.setFill(Color.GREEN);
-		int cantAF = this.tablero.cantidadAlgoFormer();
-//		for(int i = 0; i < cantAF; i++){
-//			Posicion pos = this.tablero.getPosicion(this.escuadronAutoBot.getAlgoFormer(i));
-//			gc.fillOval(this.pasoX*(pos.getX()-1)+this.radioX/2, this.pasoY*(pos.getY()-1)+this.radioX/2, this.radioX, this.radioX);
-//		}
+		this.reDraw();
 
 		gc.setFill(Color.WHITE);
-		gc.fillText("Turno Jugador: "+ jugadorTurnoActual.getNombre(),20,20);
-		if(jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
-			gc.fillText("AlgoFormer: "+ algoFormerActual.getNombre(),50,50);
-//			gc.fillText("Seleccione Accion: "+ algoFormerActual.getNombre(),50,50);
+		gc.fillText("Turno Jugador: "+ this.jugador.getNombre(),20,20);
+		if(this.jugador.estaSeleccionadoAlgoFormer()){
+			if(this.jugador.estaSeleccionadoAccion()){
+			}else{
+				this.action();
+			}
 		} else {
-			gc.fillText("Seleccione AlgoFormer: "+ algoFormerActual.getNombre(),50,50);
+			gc.fillText("Seleccione AlgoFormer: "+ this.algoFormer.getNombre(),50,50);
 		}
-
-		//gc.setStroke(Color.BLUE);
-		//gc.setLineWidth(5);
-		//gc.strokeLine(40, 10, 10, 40);
-		//gc.fillOval(10, 60, 30, 30);
-		//gc.strokeOval(60, 60, 30, 30);
-		//gc.fillRoundRect(110, 60, 30, 30, 10, 10);
-		//gc.strokeRoundRect(160, 60, 30, 30, 10, 10);
-		//gc.fillArc(10, 110, 30, 30, 45, 240, ArcType.OPEN);
-		//gc.fillArc(60, 110, 30, 30, 45, 240, ArcType.CHORD);
-		//gc.fillArc(110, 110, 30, 30, 45, 240, ArcType.ROUND);
-		//gc.strokeArc(10, 160, 30, 30, 45, 240, ArcType.OPEN);
-		//gc.strokeArc(60, 160, 30, 30, 45, 240, ArcType.CHORD);
-		//gc.strokeArc(110, 160, 30, 30, 45, 240, ArcType.ROUND);
-		//gc.fillPolygon(new double[]{10, 40, 10, 40},
-		//new double[]{210, 210, 240, 240}, 4);
-		//gc.strokePolygon(new double[]{60, 90, 60, 90},
-		//new double[]{210, 210, 240, 240}, 4);
-		//gc.strokePolyline(new double[]{110, 140, 110, 140},
-		//new double[]{210, 210, 240, 240}, 4);
 	}
 
-	public void clean() {
+	public void reDraw() {
 		for(int i = 0; i < this.ancho; i++){
 			for(int j = 0; j < this.alto; j++){
 				this.gc.setFill(this.getColor(i+(this.alto*j)));
@@ -93,22 +65,16 @@ public class BoxView {
 //				Posicion posicion = new Posicion(i, j);
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				if(casillero.tieneContenido()){
-					this.gc.setFill(Color.GREEN);
+					Contenido contenido = casillero.getContenido();
+					//contenido.getClass();
+					if(this.algoFormer == contenido){
+						this.gc.setFill(Color.BLUE);
+					} else {
+						this.gc.setFill(Color.GREEN);
+					}
+
 					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
-//				if(casillero.contieneAlgoFormer()){
-//					AlgoFormer unAlgoFormer = casillero.getAlgoFormer();
-//					if(this.algoFormer == unAlgoFormer){
-//						this.gc.setFill(Color.BLUE);
-//					} else {
-//						this.gc.setFill(Color.GREEN);
-//					}
-//					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
-//				}
-//				if(casillero.contieneItem()){
-//					this.gc.setFill(Color.WHITE);
-//					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
-//				}
 			}
 		}
 	}
@@ -127,5 +93,22 @@ public class BoxView {
 
 	public void update() {
 		this.draw();
+	}
+
+	public void action() {
+		this.gc.setFill(Color.WHITE);
+		this.gc.fillText("AlgoFormer: "+ this.algoFormer.getNombre(),50,50);
+		this.gc.fillText("Seleccione Accion: ",70,70);
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Atacar");
+		acciones.add("Mover");
+		acciones.add("Transformar");
+
+		int indexSelecAction = this.jugador.getSelectAccion();
+		String selectAction = acciones.get(indexSelecAction);
+		acciones.set(indexSelecAction, "> ".concat(selectAction));
+		this.gc.fillText(acciones.get(0),10,90);
+		this.gc.fillText(acciones.get(1),90,90);
+		this.gc.fillText(acciones.get(2),220,90);
 	}
 }

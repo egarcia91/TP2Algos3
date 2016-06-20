@@ -9,7 +9,9 @@ public class Jugador {
 	protected Juego juego;
 	private Escuadron escuadron;
 	private int indiceAlgoFormer = 0;
+	private int indiceAccion = 0;
 	private boolean selectAlgoFormer = false;
+	private boolean selectAccion = false;
 
 	public Jugador(String nombre) {
 		this.nombre = nombre;
@@ -21,11 +23,18 @@ public class Jugador {
 
 	public void selectAlgoFormer(){
 		this.selectAlgoFormer = true;
-		//MOVER POR DEFECTO
+	}
+
+	public void selectAccion(){
+		this.selectAccion = true;
 	}
 
 	public boolean estaSeleccionadoAlgoFormer(){
 		return this.selectAlgoFormer;
+	}
+
+	public boolean estaSeleccionadoAccion(){
+		return this.selectAccion;
 	}
 
 	public String getNombre(){
@@ -34,6 +43,28 @@ public class Jugador {
 
 	public AlgoFormer getSelectAlgoFormer(){
 		return this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+	}
+
+	//TODO Deshardcodear indice accion
+	public void nextAccion(){
+		if(this.indiceAccion == 2){
+			this.indiceAccion = 0;
+		} else {
+			this.indiceAccion++;
+		}
+	}
+
+	//TODO Deshardcodear indice accion
+	public void prevAccion(){
+		if(this.indiceAccion == 0){
+			this.indiceAccion = 2;
+		} else {
+			this.indiceAccion--;
+		}
+	}
+
+	public int getSelectAccion(){
+		return this.indiceAccion;
 	}
 
 	public void nextAlgoFormer(){

@@ -20,7 +20,10 @@ public class MoveDButtonHandler implements EventHandler<ActionEvent> {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
 		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
 			jugadorTurnoActual.prevAlgoFormer();
+		} else {
+			jugadorTurnoActual.prevAccion();
 		}
+
 		this.view.update();
 	}
 }

@@ -28,8 +28,6 @@ public class Program extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-//		Robot robot = createModel();
-
 		Juego juego = new Juego();
 		Jugador jugadorUno = new Jugador("Sam");
 		Jugador jugadorDos = new Jugador("Max");
@@ -41,7 +39,6 @@ public class Program extends Application {
 		Group canvasContainer = new Group();
 		Canvas canvas = new Canvas(600, 600);
 		gc = canvas.getGraphicsContext2D();
-//		this.boxView = new BoxView(gc, robot);
 		this.boxView = new BoxView(gc, juego);
 		this.boxView.draw();
 
@@ -49,13 +46,13 @@ public class Program extends Application {
 
 		Button moveRButton = new Button();
 		moveRButton.setText("Derecha");
-//		MoveButtonHandler moveButtonHandler = new MoveButtonHandler(this.boxView, robot);
-//		moveButton.setOnAction(moveButtonHandler);
+		MoveRButtonHandler moveRButtonHandler = new MoveRButtonHandler(this.boxView, juego);
+		moveRButton.setOnAction(moveRButtonHandler);
 
 		Button moveLButton = new Button();
 		moveLButton.setText("Izquierda");
-//		DirectionButtonHandler directionButtonHandler = new DirectionButtonHandler(robot);
-//		directionButton.setOnAction(directionButtonHandler);
+		MoveLButtonHandler moveLButtonHandler = new MoveLButtonHandler(this.boxView, juego);
+		moveLButton.setOnAction(moveLButtonHandler);
 
 		Button moveDButton = new Button();
 		moveDButton.setText("Abajo");
@@ -87,21 +84,5 @@ public class Program extends Application {
 		primaryStage.setScene(new Scene(contenedorPrincipal,1000,1000));
 		primaryStage.show();
 
-		//BotonLimpiarEventHandler botonLimpiarEventHandler = new BotonLimpiarEventHandler(texto);
-		//botonLimpiar.setOnAction(botonLimpiarEventHandler);
-
-		//BotonEnviarEventHandler botonEnviarEventHandler = new BotonEnviarEventHandler(texto, etiqueta);
-		//botonEnviar.setOnAction(botonEnviarEventHandler);
-
-		//TextoEventHandler textoEventHandler = new TextoEventHandler(botonEnviar);
-		//texto.setOnKeyPressed(textoEventHandler);
-
-
-
-		//Scene scene = new Scene(contenedorPrincipal, 300, 250);
-
-		//stage.setScene(scene);
-
-		//stage.show();
 	}
 }

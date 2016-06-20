@@ -5,12 +5,12 @@ import fiuba.algo3.tablero.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class MoveUButtonHandler implements EventHandler<ActionEvent> {
+public class MoveLButtonHandler implements EventHandler<ActionEvent> {
 
 	private final BoxView view;
 	private final Juego juego;
 
-	public MoveUButtonHandler(BoxView view, Juego juego) {
+	public MoveLButtonHandler(BoxView view, Juego juego) {
 		this.view = view;
 		this.juego = juego;
 	}
@@ -19,9 +19,9 @@ public class MoveUButtonHandler implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent actionEvent) {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
 		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
-			jugadorTurnoActual.nextAlgoFormer();
+			jugadorTurnoActual.prevAlgoFormer();
 		} else {
-			jugadorTurnoActual.nextAccion();
+			jugadorTurnoActual.prevAccion();
 		}
 		this.view.update();
 	}

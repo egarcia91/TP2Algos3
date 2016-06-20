@@ -5,12 +5,12 @@ import fiuba.algo3.tablero.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
-public class MoveUButtonHandler implements EventHandler<ActionEvent> {
+public class MoveRButtonHandler implements EventHandler<ActionEvent> {
 
 	private final BoxView view;
 	private final Juego juego;
 
-	public MoveUButtonHandler(BoxView view, Juego juego) {
+	public MoveRButtonHandler(BoxView view, Juego juego) {
 		this.view = view;
 		this.juego = juego;
 	}

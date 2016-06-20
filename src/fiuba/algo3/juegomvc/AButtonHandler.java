@@ -18,7 +18,11 @@ public class AButtonHandler implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
-		jugadorTurnoActual.selectAlgoFormer();
+		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
+			jugadorTurnoActual.selectAlgoFormer();
+		} else {
+			jugadorTurnoActual.selectAccion();
+		}
 		this.view.update();
 	}
 }

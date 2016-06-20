@@ -147,6 +147,10 @@ public class AlgoFormer extends Contenido {
 		this.movimiento = unMovimiento;
 	}
 
+	public Movimiento getMovimiento() {
+		return this.movimiento;
+	}
+
 	public void setAtaque(Ataque unAtaque) {
 		this.ataque = unAtaque;
 	}

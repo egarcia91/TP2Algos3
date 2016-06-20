@@ -45,7 +45,7 @@ public class Tablero {
 	public Casillero getCasillero(int posX, int posY){
 		try{
 			return this.tablero[posX][posY];
-		}catch(Exception e){
+		}catch(CasilleroNoExisteException e){
 			throw new CasilleroNoExisteException();
 		}
 	}

@@ -97,6 +97,9 @@ public class Movimiento {
 		int i = 1;
 		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
+			if(casillero.noExiste()){
+				return casillero;
+			}
 			if(unAlgoFormer.esTerrestre()){
 				cantVelocidad -= recorrerCasillero(unAlgoFormer,casillero.getTerrenoTerrestre());
 			} else {
@@ -124,7 +127,7 @@ public class Movimiento {
 	}
 
 
-	public void posiblesMovimientos(AlgoFormer unAlgoFormer, int velocidad){
+	public ArrayList<Casillero> posiblesMovimientos(AlgoFormer unAlgoFormer, int velocidad){
 		//Aca lo que se me ocurre asi planteado
 		//seria que ejecute los cuatro metodos de posiblePosicion
 		//guardados en un Array, que de alguna forma se podrian visualizar en la Interfaz
@@ -133,9 +136,8 @@ public class Movimiento {
 		posiblesPosicionesFinales.add(posiblePosicionIzquierda(unAlgoFormer, velocidad));
 		posiblesPosicionesFinales.add(posiblePosicionAbajo(unAlgoFormer, velocidad));
 		posiblesPosicionesFinales.add(posiblePosicionArriba(unAlgoFormer, velocidad));
+		return posiblesPosicionesFinales;
 	}
-
-
 
 }
 

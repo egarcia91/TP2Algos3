@@ -15,6 +15,7 @@ public class BoxView {
 	private AlgoFormer algoFormer;
 	private final Juego juego;
 	private Jugador jugador;
+	private ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 	private int ancho;
 	private int alto;
 	private int pasoX;
@@ -29,9 +30,9 @@ public class BoxView {
 
 		this.ancho = this.tablero.getAncho();
 		this.alto = this.tablero.getAlto();
-		this.pasoX = 600/this.ancho;
+		this.pasoX = 400/this.ancho;
 		this.radioX = this.pasoX/2;
-		this.pasoY = 600/this.alto;
+		this.pasoY = 400/this.alto;
 	}
 
 	public void draw() {
@@ -44,26 +45,36 @@ public class BoxView {
 
 		this.reDraw();
 
-		gc.setFill(Color.WHITE);
-		gc.fillText("Turno Jugador: "+ this.jugador.getNombre(),20,20);
+		this.gc.setFill(Color.WHITE);
+		this.gc.fillRect(0, 400, 600, 600);
+		this.gc.fillRect(400, 0, 600, 600);
+		gc.setFill(Color.BLACK);
+		gc.fillText("Turno Jugador: "+ this.jugador.getNombre(),20,420);
 		if(this.jugador.estaSeleccionadoAlgoFormer()){
 			if(this.jugador.estaSeleccionadoAccion()){
+				this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
 			}else{
 				this.action();
 			}
 		} else {
-			gc.fillText("Seleccione AlgoFormer: "+ this.algoFormer.getNombre(),50,50);
+			gc.fillText("Seleccione AlgoFormer: "+ this.algoFormer.getNombre(),50,450);
 		}
 	}
 
 	public void reDraw() {
 		for(int i = 0; i < this.ancho; i++){
 			for(int j = 0; j < this.alto; j++){
-				this.gc.setFill(this.getColor(i+(this.alto*j)));
+				Casillero casillero = this.tablero.getCasillero(i,j);
+				if(this.posiblesMovimientos.contains(casillero)){
+					this.gc.setFill(Color.WHITE);
+				} else {
+					this.gc.setFill(this.getColor(i+(this.alto*j)));
+				}
+
 				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
 
 //				Posicion posicion = new Posicion(i, j);
-				Casillero casillero = this.tablero.getCasillero(i,j);
+
 				if(casillero.tieneContenido()){
 					Contenido contenido = casillero.getContenido();
 					//contenido.getClass();
@@ -96,9 +107,9 @@ public class BoxView {
 	}
 
 	public void action() {
-		this.gc.setFill(Color.WHITE);
-		this.gc.fillText("AlgoFormer: "+ this.algoFormer.getNombre(),50,50);
-		this.gc.fillText("Seleccione Accion: ",70,70);
+		this.gc.setFill(Color.BLACK);
+		this.gc.fillText("AlgoFormer: "+ this.algoFormer.getNombre(),50,450);
+		this.gc.fillText("Seleccione Accion: ",70,470);
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Atacar");
 		acciones.add("Mover");
@@ -107,8 +118,8 @@ public class BoxView {
 		int indexSelecAction = this.jugador.getSelectAccion();
 		String selectAction = acciones.get(indexSelecAction);
 		acciones.set(indexSelecAction, "> ".concat(selectAction));
-		this.gc.fillText(acciones.get(0),10,90);
-		this.gc.fillText(acciones.get(1),90,90);
-		this.gc.fillText(acciones.get(2),220,90);
+		this.gc.fillText(acciones.get(0),10,490);
+		this.gc.fillText(acciones.get(1),90,490);
+		this.gc.fillText(acciones.get(2),220,490);
 	}
 }

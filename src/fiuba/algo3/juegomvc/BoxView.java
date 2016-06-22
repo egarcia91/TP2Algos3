@@ -1,13 +1,13 @@
 package fiuba.algo3.juegomvc;
 
-import fiuba.algo3.juegomvc.modelo.Robot;
 import fiuba.algo3.tablero.*;
 import fiuba.algo3.algoformers.*;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.Bloom;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BoxView {
 
@@ -16,30 +16,26 @@ public class BoxView {
 	private final Juego juego;
 	private Jugador jugador;
 	private ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
-	private int ancho;
-	private int alto;
-	private int pasoX;
-	private int radioX;
-	private int pasoY;
+	private int cantidadCasillerosX;
+	private int cantidadCasillerosY;
+	private int pixCasilleroAncho = 48;
+	private int pixCasilleroAlto = 48;
 	GraphicsContext gc;
 
 	public BoxView(GraphicsContext gc, Juego juego){
 		this.gc = gc;
 		this.juego = juego;
 		this.tablero = juego.getTablero();
+		
+		this.cantidadCasillerosX = this.tablero.getAncho();
+		this.cantidadCasillerosY = this.tablero.getAlto();
+	}	
 
-		this.ancho = this.tablero.getAncho();
-		this.alto = this.tablero.getAlto();
-		this.pasoX = 400/this.ancho;
-		this.radioX = this.pasoX/2;
-		this.pasoY = 400/this.alto;
+	public void update() {
+		this.draw();
 	}
-
-	public void draw() {
-		this.drawShapes(gc);
-	}
-
-	private void drawShapes(GraphicsContext gc) {
+		
+	public void draw(){
 		this.jugador = this.juego.getJugadorTurno();
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
@@ -62,19 +58,24 @@ public class BoxView {
 	}
 
 	public void reDraw() {
-		for(int i = 0; i < this.ancho; i++){
-			for(int j = 0; j < this.alto; j++){
+		for(int i = 0; i < this.cantidadCasillerosX; i++){
+			for(int j = 0; j < this.cantidadCasillerosY; j++){
 				Casillero casillero = this.tablero.getCasillero(i,j);
-				if(this.posiblesMovimientos.contains(casillero)){
-					this.gc.setFill(Color.WHITE);
-				} else {
-					this.gc.setFill(this.getColor(i+(this.alto*j)));
+				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+				if(casillero.tieneContenido() == true){
+					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
+					
+							
+				/*
+				if(this.posiblesMovimientos.contains(casillero))
+					this.gc.setFill(Color.WHITE);
+
 
 				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
 
 //				Posicion posicion = new Posicion(i, j);
-
+				
 				if(casillero.tieneContenido()){
 					Contenido contenido = casillero.getContenido();
 					//contenido.getClass();
@@ -86,24 +87,41 @@ public class BoxView {
 
 					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
+				*/
 			}
 		}
+
 	}
 
-	private Color getColor(int position) {
+	private void pintarContenido(Contenido contenido,int i,int j) {
+		Image image = new Image("Robot.png");
+		gc.drawImage(image,i,j);
+		
+	}
 
-		int positionX = position%this.alto;
-		int positionY = (position - positionX)/this.alto;
-
-		if(positionX%2 == 0 && positionY%2 == 0 || positionX%2 == 1 && positionY%2 == 1){
-			return Color.BLACK;
-		} else {
-			return Color.RED;
+	private void pintarTerreno(Terreno terreno, int i, int j) {
+		String terrenoCasillero = terreno.getClass().getName();
+		Image image;
+		switch(terrenoCasillero){
+			case "Rocosa":
+				image = new Image("Pasto.png");
+				gc.drawImage(image,i,j);
+				image = new Image("Rocks.png");
+				gc.drawImage(image,i,j);
+				break;
+			case "Espinas":
+				image = new Image("Pasto.png");
+				gc.drawImage(image,i,j);
+				break;
+			case "Pantano":
+				image = new Image("Pantano.png");
+				gc.drawImage(image,i,j);
+				break;
+			default:
+				image = new Image("Pasto.png");
+				gc.drawImage(image,i,j);
+				break;
 		}
-	}
-
-	public void update() {
-		this.draw();
 	}
 
 	public void action() {

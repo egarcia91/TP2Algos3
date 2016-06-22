@@ -6,4 +6,5 @@ tmp/
 .project
 .project.bak
 settings/
-/bin/
+.class
+

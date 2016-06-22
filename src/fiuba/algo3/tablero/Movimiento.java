@@ -106,7 +106,8 @@ public class Movimiento {
 		Casillero casillero = new CasilleroNoExiste();
 		int i = 1;
 
-		if (x>this.tablero.getAncho() || x<0 || y>this.tablero.getAlto() || y<0 ){
+		if (x>this.tablero.getAncho() || (posicionInicial.getX()+x)<0
+				|| y>this.tablero.getAlto() || (posicionInicial.getY()+y)<0 ){
 			throw new CasilleroNoExisteException();
 		}
 
@@ -134,11 +135,11 @@ public class Movimiento {
 	}
 
 	public Casillero  posiblePosicionAbajo(AlgoFormer unAlgoFormer,int velocidad){
-		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,0,1);
+		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,0,-1);
 	}
 
 	public Casillero  posiblePosicionArriba(AlgoFormer unAlgoFormer,int velocidad) {
-		return this.posibleCasilleroFinal(unAlgoFormer, velocidad, 0, -1);
+		return this.posibleCasilleroFinal(unAlgoFormer, velocidad, 0,1);
 	}
 
 

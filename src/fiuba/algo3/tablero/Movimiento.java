@@ -147,7 +147,7 @@ public class Movimiento {
 		ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 		for (int i=1 ; i<=velocidad ; i++){
 			try {
-			posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,0));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,0));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,0));
@@ -159,15 +159,23 @@ public class Movimiento {
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,-i));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i-1));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-1,i));
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i+1));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+1,-i));
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i+1));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-1,-i));
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+1,i));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i-1));
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i));
 			}catch (CasilleroNoExisteException excepcion){}
 		}

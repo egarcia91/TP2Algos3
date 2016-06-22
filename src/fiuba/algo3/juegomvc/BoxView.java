@@ -45,7 +45,7 @@ public class BoxView {
 
 		if(this.jugador.estaSeleccionadoAlgoFormer()){
 			if(this.jugador.estaSeleccionadoAccion()){
-				this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
+				//this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
 			}
 		}
 

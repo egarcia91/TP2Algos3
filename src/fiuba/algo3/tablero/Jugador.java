@@ -3,6 +3,8 @@ package fiuba.algo3.tablero;
 import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.AlgoFormerVacio;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
 
@@ -10,6 +12,7 @@ public class Jugador {
 	protected Juego juego;
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
+	private ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 	private int indiceAlgoFormer = 0;
 	private int indiceAlgoFormerRival = 0;
 	private int indiceAccion = 0;
@@ -40,8 +43,10 @@ public class Jugador {
 				this.atacarAlgoFormer();
 				break;
 			case 1:
+				this.moverAlgoFormer();
 				break;
 			case 2:
+				this.transformarAlgoFormer();
 				break;
 			default:
 				break;
@@ -147,10 +152,18 @@ public class Jugador {
 	}
 
 	public void moverAlgoFormer(){
-		if(this.juego.esTurnoJugador(this)){
-			this.juego.cambiarTurnoJugador();
-			//BLA BLA;
+		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+
+		Movimiento movimiento = unAlgoFormer.getMovimiento();
+		this.posiblesMovimientos = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getVelocidad());
+	}
+
+	public void transformarAlgoFormer(){
+		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+		if(unAlgoFormer.esHumanoide()){
+			unAlgoFormer.transformarAlterno();
 		} else {
+			unAlgoFormer.transformarHumanoide();
 		}
 	}
 

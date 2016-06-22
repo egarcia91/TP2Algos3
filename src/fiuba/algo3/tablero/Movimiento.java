@@ -147,10 +147,18 @@ public class Movimiento {
 		//seria que ejecute los cuatro metodos de posiblePosicion
 		//guardados en un Array, que de alguna forma se podrian visualizar en la Interfaz
 		ArrayList<Casillero> posiblesPosicionesFinales = new ArrayList<Casillero>();
-		posiblesPosicionesFinales.add(posiblePosicionDerecha(unAlgoFormer, velocidad));
+		try {
+			posiblesPosicionesFinales.add(posiblePosicionDerecha(unAlgoFormer, velocidad));
+		}catch (CasilleroNoExisteException excepcion){}
+		try {
 		posiblesPosicionesFinales.add(posiblePosicionIzquierda(unAlgoFormer, velocidad));
+		}catch (CasilleroNoExisteException excepcion){}
+		try {
 		posiblesPosicionesFinales.add(posiblePosicionAbajo(unAlgoFormer, velocidad));
+		}catch (CasilleroNoExisteException excepcion){}
+		try {
 		posiblesPosicionesFinales.add(posiblePosicionArriba(unAlgoFormer, velocidad));
+		}catch (CasilleroNoExisteException excepcion){}
 		return posiblesPosicionesFinales;
 	}
 

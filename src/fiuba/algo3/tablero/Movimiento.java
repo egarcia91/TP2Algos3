@@ -111,7 +111,7 @@ public class Movimiento {
 			throw new CasilleroNoExisteException();
 		}
 
-		for(; i <= cantVelocidad; i++){
+		for(; i <= cantVelocidad+1; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
 			if(casillero.noExiste()){
 				return casillero;

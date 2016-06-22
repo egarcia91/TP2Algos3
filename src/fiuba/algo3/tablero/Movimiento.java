@@ -158,26 +158,29 @@ public class Movimiento {
 			try {
 				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,-i));
 			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i-1));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-1,i));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i+1));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+1,-i));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i+1));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-1,-i));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+1,i));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i-1));
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i));
-			}catch (CasilleroNoExisteException excepcion){}
+			for (int j=1 ; j<=velocidad ; j++ ){
+				try {
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i-j));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-j,i));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i));
+				}catch (CasilleroNoExisteException excepcion){}
+				try {
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i+j));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+j,-i));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i));
+				}catch (CasilleroNoExisteException excepcion){}
+				try {
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i+j));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-j,-i));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i));
+				}catch (CasilleroNoExisteException excepcion){}
+				try {
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+j,i));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i-j));
+					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i));
+				}catch (CasilleroNoExisteException excepcion){}
+			}
+
 		}
 		return posiblesMovimientos;
 	}

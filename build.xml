@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="fiuba.algo3.javafx.Program" basedir="." default="test">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="fiuba.algo3.juegomvc.Program" basedir="." default="test">
 	<property name="build" location="build" />
 	<property name="libs" location="libs" />
 	<property name="classes.dir" location="build" />
@@ -63,11 +63,11 @@
 		</javac>
 	</target>
 
-    <target name="compilar.tests.sin.instrumentar" depends="compilar.aplicacion">
-        <javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.8">
-            <classpath refid="classpath" />
-        </javac>
-    </target>
+	<target name="compilar.tests.sin.instrumentar" depends="compilar.aplicacion">
+		<javac srcdir="test" destdir="${build}/tests" includeantruntime="false" debug="yes" target="1.8">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
 
 	<target name="instrumentar.aplicacion" depends="compilar.aplicacion, init">
 		<delete file="${build}/cobertura.ser" />
@@ -83,28 +83,28 @@
 	</target>
 
 
-    <target name="ejecutar.tests" depends="compilar.tests">
-        <junit fork="yes" failureProperty="test.failure" forkmode="once" showoutput="true">
-            <sysproperty key="net.sourceforge.cobertura.datafile" file="${build}/cobertura.ser" />
-            <classpath location="${instrumented.dir}" />
-            <classpath location="${build}" />
-            <classpath refid="cobertura.classpath" />
-            <classpath refid="classpath" />
-            <formatter type="xml" />
-            <test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
-            <batchtest todir="${reports.xml.dir}" unless="testcase">
-                <fileset dir="${build}/tests" includes="**/*Tests.class" />
-                <fileset dir="${build}/tests" includes="**/Prueba*.class" />
-            </batchtest>
-        </junit>
-        <fail message="Pruebas fallidas" if="test.failure" />
-        <junitreport todir="${reports.xml.dir}">
-            <fileset dir="${reports.xml.dir}">
-                <include name="TEST-*.xml" />
-            </fileset>
-            <report format="frames" todir="${reports.html.dir}" />
-        </junitreport>
-    </target>
+	<target name="ejecutar.tests" depends="compilar.tests">
+		<junit fork="yes" failureProperty="test.failure" forkmode="once" showoutput="true">
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${build}/cobertura.ser" />
+			<classpath location="${instrumented.dir}" />
+			<classpath location="${build}" />
+			<classpath refid="cobertura.classpath" />
+			<classpath refid="classpath" />
+			<formatter type="xml" />
+			<test name="${testcase}" todir="${reports.xml.dir}" if="testcase" />
+			<batchtest todir="${reports.xml.dir}" unless="testcase">
+				<fileset dir="${build}/tests" includes="**/*Tests.class" />
+				<fileset dir="${build}/tests" includes="**/Prueba*.class" />
+			</batchtest>
+		</junit>
+		<fail message="Pruebas fallidas" if="test.failure" />
+		<junitreport todir="${reports.xml.dir}">
+			<fileset dir="${reports.xml.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${reports.html.dir}" />
+		</junitreport>
+	</target>
 
 	<target name="init">
 		<mkdir dir="${instrumented.dir}" />
@@ -132,19 +132,19 @@
 		</cobertura-report>
 	</target>
 
-    <target name="test" depends="compilar.tests.sin.instrumentar">
-        <junit fork="no" failureProperty="test.failure" showoutput="true">
-            <classpath location="${build}" />
-            <classpath refid="classpath" />
-            <batchtest todir="${reports.xml.dir}" unless="testcase">
-                <fileset dir="${build}/tests" includes="**/*Tests.class" />
-                <formatter type="plain" usefile="false"/>
-            </batchtest>
-        </junit>
-    </target>
+	<target name="test" depends="compilar.tests.sin.instrumentar">
+		<junit fork="no" failureProperty="test.failure" showoutput="true">
+			<classpath location="${build}" />
+			<classpath refid="classpath" />
+			<batchtest todir="${reports.xml.dir}" unless="testcase">
+				<fileset dir="${build}/tests" includes="**/*Tests.class" />
+				<formatter type="plain" usefile="false"/>
+			</batchtest>
+		</junit>
+	</target>
 
 
-    <target name="compilar.paquete" depends="test">
+	<target name="compilar.paquete" depends="test">
 		<javac srcdir="src" destdir="${build}/classes" debug="no">
 		</javac>
 	</target>
@@ -196,16 +196,15 @@
 		</pmd>
 	</target>
 
-
 	<target name="empaquetar.con.imagenes" depends="compilar.paquete">
-			<copydir src="src/gui/imagess"
-				dest="${build}/classes/gui/imagess"
+			<copydir src="src/imagenes"
+				dest="${build}/"
 				includes="**/*.png"/>
-		<jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes"/>
+		<!--jar destfile="${build}/dist/algo3.jar" basedir="${build}/classes"/-->
 	</target>
 
-	<target name="ejecutar.aplicacion" depends="empaquetar">
-		<java classname="fiuba.algo3.javafx.Program" fork="true">
+	<target name="ejecutar.aplicacion" depends="empaquetar.con.imagenes">
+		<java classname="fiuba.algo3.juegomvc.Program" fork="true">
 			<classpath refid="classpath" />
 			<!--<classpath location="${build}/dist/algo3.jar" />-->
 		</java>

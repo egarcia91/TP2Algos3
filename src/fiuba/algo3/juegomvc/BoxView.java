@@ -92,7 +92,7 @@ public class BoxView {
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
-		Image image = new Image("Robot.png");
+		Image image = new Image("/Robot.png");
 		gc.drawImage(image,i,j);
 		
 	}
@@ -102,21 +102,19 @@ public class BoxView {
 		Image image;
 		switch(terrenoCasillero){
 			case "Rocosa":
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				image = new Image("Rocks.png");
+				image = new Image("/Rocks.png");
 				gc.drawImage(image,i,j);
 				break;
 			case "Espinas":
-				image = new Image("Pasto.png");
+				image = new Image("/Pasto.png");
 				gc.drawImage(image,i,j);
 				break;
 			case "Pantano":
-				image = new Image("Pantano.png");
+				image = new Image("/Pantano.png");
 				gc.drawImage(image,i,j);
 				break;
 			default:
-				image = new Image("Pasto.png");
+				image = new Image("/Pasto.png");
 				gc.drawImage(image,i,j);
 				break;
 		}

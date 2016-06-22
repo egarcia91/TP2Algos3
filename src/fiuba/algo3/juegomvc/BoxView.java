@@ -68,30 +68,28 @@ public class BoxView {
 
 	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
 
-			gc.fillText("Seleccione AlgoFormer: "+ unAlgoFormer.getNombre(),50,450);
-		
-			gc.fillText("--caracteristicas--",20,480);
-			gc.fillText("vida: " + unAlgoFormer.getVida(),20,500);
-			gc.fillText("velocidad: " + unAlgoFormer.getVelocidad(),20,515);			
-			gc.fillText("Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque(),20,530);
-			gc.fillText("Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque(),20,545);
+		this.gc.fillText("Seleccione AlgoFormer: "+ unAlgoFormer.getNombre(),50,450);
 
-			gc.fillText("---Estado---",160,480);
-			if(unAlgoFormer.esHumanoide()){
-				gc.fillText("Humanoide",160,500);
-			}
-			else 
-				gc.fillText("Alterno",170,500);
+		this.gc.fillText("--caracteristicas--",20,480);
+		this.gc.fillText("vida: " + unAlgoFormer.getVida(),20,500);
+		this.gc.fillText("velocidad: " + unAlgoFormer.getVelocidad(),20,515);
+		this.gc.fillText("Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque(),20,530);
+		this.gc.fillText("Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque(),20,545);
 
-			gc.fillText("--Tipo de unidad--",260,480);
-			if(unAlgoFormer.esTerrestre()){
-				gc.fillText("Terrestre",260,500);
-			}
-			else 
-				gc.fillText("Aereo",260,500);
+		this.gc.fillText("---Estado---",160,480);
+		if(unAlgoFormer.esHumanoide()){
+			this.gc.fillText("Humanoide",160,500);
+		} else {
+			this.gc.fillText("Alterno",170,500);
 		}
 
-	
+		this.gc.fillText("--Tipo de unidad--",260,480);
+		if(unAlgoFormer.esTerrestre()){
+			this.gc.fillText("Terrestre",260,500);
+		} else {
+			this.gc.fillText("Aereo",260,500);
+		}
+	}
 
 	public void reDraw() {
 		for(int i = 0; i < this.ancho; i++){

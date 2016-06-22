@@ -19,9 +19,9 @@ public class AlgoFormerSegundoTests {
 		EscuadronAutobot escuadronUno = new EscuadronAutobot();
 		tab.agregarEscuadron(escuadronUno);
 
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 1, 1));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 2, 1));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 1, 2));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 0, 0));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 1, 0));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 0, 1));
 
 
 		EscuadronDecepticon escuadronDos = new EscuadronDecepticon();
@@ -36,7 +36,9 @@ public class AlgoFormerSegundoTests {
 			escuadronUno.getAlgoFormer(i).moverDerecha();
 		}
 
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 5, 5));
+		System.out.println("la posicion es: " + tab.getPosicion(escuadronUno.getAlgoFormer(0)).getX());
+
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 5, 0));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 6, 5));
 		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 5, 6));
 

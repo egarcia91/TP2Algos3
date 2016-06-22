@@ -154,4 +154,8 @@ public class AlgoFormer extends Contenido {
 	public void setAtaque(Ataque unAtaque) {
 		this.ataque = unAtaque;
 	}
+
+	public Escuadron getAlgoformersEnRango(){
+		return this.ataque.getAlgoformersEnRango(this);
+	}
 }

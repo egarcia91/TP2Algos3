@@ -43,11 +43,11 @@ public class BoxView {
 		this.jugador = this.juego.getJugadorTurno();
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
-		if(this.jugador.estaSeleccionadoAlgoFormer()){
-			if(this.jugador.estaSeleccionadoAccion()){
-				//this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
-			}
-		}
+//		if(this.jugador.estaSeleccionadoAlgoFormer()){
+//			if(this.jugador.estaSeleccionadoAccion()){
+//				//this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
+//			}
+//		}
 
 		this.reDraw();
 
@@ -95,7 +95,7 @@ public class BoxView {
 		for(int i = 0; i < this.ancho; i++){
 			for(int j = 0; j < this.alto; j++){
 				Casillero casillero = this.tablero.getCasillero(i,j);
-				if(this.posiblesMovimientos.contains(casillero)){
+				if(this.jugador.posiblesMovimientos.contains(casillero)){
 					this.gc.setFill(Color.WHITE);
 				} else {
 					this.gc.setFill(this.getColor(i+(this.alto*j)));

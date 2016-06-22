@@ -58,6 +58,10 @@ public class BoxView {
 			}
 		} else {
 			gc.fillText("Seleccione AlgoFormer: "+ this.algoFormer.getNombre(),50,450);
+			gc.fillText("vida: " + this.algoFormer.getVida(),180,465);
+			gc.fillText("velocidad: " + this.algoFormer.getVelocidad(),180,480);			
+			gc.fillText("Distancia de ataque: " + this.algoFormer.getDistanciaAtaque(),180,495);
+			gc.fillText("Fuerza de ataque: " + this.algoFormer.getFuerzaAtaque(),180,510);
 		}
 	}
 

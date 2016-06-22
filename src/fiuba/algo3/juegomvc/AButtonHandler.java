@@ -23,6 +23,7 @@ public class AButtonHandler implements EventHandler<ActionEvent> {
 		} else {
 			jugadorTurnoActual.selectAccion();
 		}
+
 		this.view.update();
 	}
 }

@@ -2,6 +2,7 @@ package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.algoformers.AlgoFormerVacio;
 
 public class Jugador {
 
@@ -10,8 +11,10 @@ public class Jugador {
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
 	private int indiceAlgoFormer = 0;
+	private int indiceAlgoFormerRival = 0;
 	private int indiceAccion = 0;
 	private boolean selectAlgoFormer = false;
+	private boolean selectAlgoFormerRival = false;
 	private boolean selectAccion = false;
 
 	public Jugador(String nombre) {
@@ -26,12 +29,31 @@ public class Jugador {
 		this.selectAlgoFormer = true;
 	}
 
+	public void selectAlgoFormerRival(){
+		this.selectAlgoFormerRival = true;
+	}
+
 	public void selectAccion(){
 		this.selectAccion = true;
+		switch(this.indiceAccion){
+			case 0:
+				this.atacarAlgoFormer();
+				break;
+			case 1:
+				break;
+			case 2:
+				break;
+			default:
+				break;
+		}
 	}
 
 	public boolean estaSeleccionadoAlgoFormer(){
 		return this.selectAlgoFormer;
+	}
+
+	public boolean estaSeleccionadoAlgoFormerRival(){
+		return this.selectAlgoFormerRival;
 	}
 
 	public boolean estaSeleccionadoAccion(){
@@ -44,6 +66,10 @@ public class Jugador {
 
 	public AlgoFormer getSelectAlgoFormer(){
 		return this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+	}
+
+	public AlgoFormer getSelectAlgoFormerRival(){
+		return this.escuadronRivalAtacable.getAlgoFormer(this.indiceAlgoFormerRival);
 	}
 
 	//TODO Deshardcodear indice accion
@@ -66,6 +92,24 @@ public class Jugador {
 
 	public int getSelectAccion(){
 		return this.indiceAccion;
+	}
+
+	public void nextAlgoFormerRival(){
+		int cantidadAlgoFormers = this.escuadronRivalAtacable.cantidadMiembrosEscuadron();
+		if(this.indiceAlgoFormerRival == (cantidadAlgoFormers-1)){
+			this.indiceAlgoFormerRival = 0;
+		} else {
+			this.indiceAlgoFormerRival++;
+		}
+	}
+
+	public void prevAlgoFormerRival(){
+		int cantidadAlgoFormers = this.escuadronRivalAtacable.cantidadMiembrosEscuadron();
+		if(this.indiceAlgoFormerRival == 0){
+			this.indiceAlgoFormerRival = (cantidadAlgoFormers-1);
+		} else {
+			this.indiceAlgoFormerRival--;
+		}
 	}
 
 	public void nextAlgoFormer(){

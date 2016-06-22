@@ -1,8 +1,5 @@
 package fiuba.algo3.tablero;
 
-import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.AlgoFormerVacio;
-
 public class Casillero {
 	private Contenido contenido = new ContenidoVacio();
 

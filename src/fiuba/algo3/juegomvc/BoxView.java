@@ -47,13 +47,11 @@ public class BoxView {
 		gc.setFill(Color.BLACK);
 		gc.fillText("Turno Jugador: "+ this.jugador.getNombre(),20,420);
 		if(this.jugador.estaSeleccionadoAlgoFormer()){
-			if(this.jugador.estaSeleccionadoAccion()){
-				this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
-			}else{
+			if(!this.jugador.estaSeleccionadoAccion()){
 				this.action();
 			}
 		} else {
-			gc.fillText("Seleccione AlgoFormer: "+ this.algoFormer.getNombre(),50,450);
+		this.imprimirCaracteristicas(this.algoFormer);
 		}
 	}
 
@@ -90,7 +88,7 @@ public class BoxView {
 				*/
 			}
 		}
-
+	
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
@@ -139,5 +137,30 @@ public class BoxView {
 		this.gc.fillText(acciones.get(0),10,490);
 		this.gc.fillText(acciones.get(1),90,490);
 		this.gc.fillText(acciones.get(2),220,490);
+	}
+	
+	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
+
+		this.gc.fillText("Seleccione AlgoFormer: "+ unAlgoFormer.getNombre(),50,450);
+
+		this.gc.fillText("--caracteristicas--",20,480);
+		this.gc.fillText("vida: " + unAlgoFormer.getVida(),20,500);
+		this.gc.fillText("velocidad: " + unAlgoFormer.getVelocidad(),20,515);
+		this.gc.fillText("Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque(),20,530);
+		this.gc.fillText("Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque(),20,545);
+
+		this.gc.fillText("---Estado---",160,480);
+		if(unAlgoFormer.esHumanoide()){
+			this.gc.fillText("Humanoide",160,500);
+		} else {
+			this.gc.fillText("Alterno",170,500);
+		}
+
+		this.gc.fillText("--Tipo de unidad--",260,480);
+		if(unAlgoFormer.esTerrestre()){
+			this.gc.fillText("Terrestre",260,500);
+		} else {
+			this.gc.fillText("Aereo",260,500);
+		}
 	}
 }

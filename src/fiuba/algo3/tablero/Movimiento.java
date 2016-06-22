@@ -125,7 +125,7 @@ public class Movimiento {
 		this.posicionFinal = new Posicion(posicionInicial.getX()+(i*x),posicionInicial.getY()+(i*y));
 		return casillero;
 	}
-
+	/*
 	public Casillero posiblePosicionDerecha(AlgoFormer unAlgoFormer,int velocidad){
 		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,1,0);
 	}
@@ -138,11 +138,31 @@ public class Movimiento {
 		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,0,-1);
 	}
 
-	public Casillero  posiblePosicionArriba(AlgoFormer unAlgoFormer,int velocidad) {
+	public Casillero  posiblePosicionArriba(AlgoFormer unAlgoFormer,int velocidad){
 		return this.posibleCasilleroFinal(unAlgoFormer, velocidad, 0,1);
 	}
+	*/
 
+	public ArrayList<Casillero> posiblesMovimientos (AlgoFormer unAlgoFormer, int velocidad){
+		ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
+		for (int i=1 ; i<=velocidad ; i++){
+			try {
+			posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,0));
+			}catch (CasilleroNoExisteException excepcion){}
+			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,0));
+			}catch (CasilleroNoExisteException excepcion){}
+			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,i));
+			}catch (CasilleroNoExisteException excepcion){}
+			try {
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,-i));
+			}catch (CasilleroNoExisteException excepcion){}
+		}
+		return posiblesMovimientos;
+	}
 
+	/*
 	public ArrayList<Casillero> posiblesMovimientos(AlgoFormer unAlgoFormer, int velocidad){
 		//Aca lo que se me ocurre asi planteado
 		//seria que ejecute los cuatro metodos de posiblePosicion
@@ -162,6 +182,7 @@ public class Movimiento {
 		}catch (CasilleroNoExisteException excepcion){}
 		return posiblesPosicionesFinales;
 	}
+	*/
 
 }
 

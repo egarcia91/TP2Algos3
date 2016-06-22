@@ -8,6 +8,7 @@ public class Jugador {
 	private String nombre;
 	protected Juego juego;
 	private Escuadron escuadron;
+	private Escuadron escuadronRivalAtacable = new Escuadron();
 	private int indiceAlgoFormer = 0;
 	private int indiceAccion = 0;
 	private boolean selectAlgoFormer = false;
@@ -107,6 +108,11 @@ public class Jugador {
 			//BLA BLA;
 		} else {
 		}
+	}
+
+	public void atacarAlgoFormer(){
+		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+		this.escuadronRivalAtacable = unAlgoFormer.getAlgoformersEnRango();
 	}
 
 	public void setJuego(Juego juego) {

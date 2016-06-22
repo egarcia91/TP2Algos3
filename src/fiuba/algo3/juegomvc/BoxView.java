@@ -43,6 +43,12 @@ public class BoxView {
 		this.jugador = this.juego.getJugadorTurno();
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
+		if(this.jugador.estaSeleccionadoAlgoFormer()){
+			if(this.jugador.estaSeleccionadoAccion()){
+				this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
+			}
+		}
+
 		this.reDraw();
 
 		this.gc.setFill(Color.WHITE);
@@ -51,9 +57,7 @@ public class BoxView {
 		gc.setFill(Color.BLACK);
 		gc.fillText("Turno Jugador: "+ this.jugador.getNombre(),20,420);
 		if(this.jugador.estaSeleccionadoAlgoFormer()){
-			if(this.jugador.estaSeleccionadoAccion()){
-				this.posiblesMovimientos = this.algoFormer.getMovimiento().posiblesMovimientos(this.algoFormer, this.algoFormer.getVelocidad());
-			}else{
+			if(!this.jugador.estaSeleccionadoAccion()){
 				this.action();
 			}
 		} else {

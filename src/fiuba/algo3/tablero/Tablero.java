@@ -50,6 +50,13 @@ public class Tablero {
 		}
 	}
 
+	public Escuadron getEscuadronRival(AlgoFormer unAlgoFormer){
+		if(this.escuadronUno.perteneceAlgoformer(unAlgoFormer)){
+			return this.escuadronDos;
+		}
+		return this.escuadronUno;
+	}
+
 	public Casillero getCasillero(Posicion posicion){
 		return this.getCasillero(posicion.getX(),posicion.getY());
 	}

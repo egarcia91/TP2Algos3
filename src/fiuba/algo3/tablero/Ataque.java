@@ -17,37 +17,31 @@ public class Ataque {
 		this.tablero = tablero;
 	}
 
-	private boolean estaEnRangoDeAtaque(AlgoFormer algoFormer,Posicion posicion,int rango){
-		Posicion posicionAlgoformer = tablero.getPosicion(algoFormer);
+	private boolean estaEnRangoDeAtaque(AlgoFormer algoFormer, Posicion posicion, int rango){
+		Posicion posicionAlgoformer = this.tablero.getPosicion(algoFormer);
 		posicionAlgoformer.restar(posicion);
 		if(Math.abs(posicionAlgoformer.getX()) <= rango || Math.abs(posicionAlgoformer.getY()) <= rango){
 			return true;
-		}
-		else{
+		} else {
 			return false;
-		}	
+		}
 	}
-	
-	private ArrayList<AlgoFormer> getAlgoformersEnRango(Posicion posicion,int rango){
-		ArrayList<AlgoFormer> listaAlgoformersEnRango = new ArrayList<AlgoFormer>();
-		
-		
-		ArrayList<AlgoFormer> listaAlgoformersEnTablero = tablero.escuadronUno.getAlgoFormers();
-		for(Iterator<AlgoFormer> i = listaAlgoformersEnTablero.iterator(); i.hasNext();){
-			AlgoFormer algoFormer = i.next(); 
-			if(estaEnRangoDeAtaque(algoFormer,posicion,rango)){
-				listaAlgoformersEnRango.add(algoFormer);
+
+	public Escuadron getAlgoformersEnRango(AlgoFormer unAlgoFormer){
+		Escuadron algoformersEnRango = new Escuadron();
+		Posicion posicion = this.tablero.getPosicion(unAlgoFormer);
+		int rango = unAlgoFormer.getDistanciaAtaque();
+
+		Escuadron escuadronRival = this.tablero.getEscuadronRival(unAlgoFormer);
+		int cantidadAlgoFormers = escuadronRival.cantidadMiembrosEscuadron();
+		for(int i = 0; i < cantidadAlgoFormers; i++){
+			AlgoFormer rivalAlgoFormer = escuadronRival.getAlgoFormer(i);
+			if(this.estaEnRangoDeAtaque(rivalAlgoFormer,posicion,rango)){
+				algoformersEnRango.agregarAlgoFormer(rivalAlgoFormer);
 			}
 		}
-		
-		listaAlgoformersEnTablero = tablero.escuadronDos.getAlgoFormers();
-		for(Iterator<AlgoFormer> i = listaAlgoformersEnTablero.iterator(); i.hasNext();){
-			AlgoFormer algoFormer = i.next(); 
-			if(estaEnRangoDeAtaque(algoFormer,posicion,rango)){
-				listaAlgoformersEnRango.add(algoFormer);
-			}
-		}		
-		return listaAlgoformersEnRango;
+
+		return algoformersEnRango;
 	}
 
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
@@ -57,15 +51,15 @@ public class Ataque {
 		Posicion posicionMayor = new Posicion(posicionActual.getX()+unaDistanciaAtaque,posicionActual.getY()+unaDistanciaAtaque);
 
 		if (this.tablero.perteneceEscuadronUno(unAlgoFormer)) {
-			for (int i=0; i <this.tablero.escuadronDos.cantidadMiembrosEscuadron();i++){
+			for (int i=0; i <this.tablero.escuadronDos.cantidadMiembrosEscuadron(); i++){
 				Posicion posicionEnemigo = this.tablero.buscarAlgoFormer(this.tablero.escuadronDos.getAlgoFormer(i));
 				if (posicionEnemigo.getX() >= posicionMenor.getX() && posicionEnemigo.getX() <= posicionMayor.getX()
 						&& posicionEnemigo.getY() >= posicionMenor.getY() && posicionEnemigo.getY() <= posicionMayor.getY()) {
 					this.tablero.escuadronDos.getAlgoFormer(i).recibirAtaque(unaFuerzaAtaque);
 				}
 			}
-		}else{
-			for (int j=0; j <this.tablero.escuadronUno.cantidadMiembrosEscuadron();j++){
+		} else {
+			for (int j=0; j < this.tablero.escuadronUno.cantidadMiembrosEscuadron(); j++){
 				Posicion posicionEnemigo = this.tablero.buscarAlgoFormer(this.tablero.escuadronUno.getAlgoFormer(j));
 				if (posicionEnemigo.getX() >= posicionMenor.getX() && posicionEnemigo.getX() <= posicionMayor.getX()
 						&& posicionEnemigo.getY() >= posicionMenor.getY() && posicionEnemigo.getY() <= posicionMayor.getY()) {
@@ -74,6 +68,5 @@ public class Ataque {
 			}
 		}
 	}
-
 
 }

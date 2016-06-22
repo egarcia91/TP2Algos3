@@ -7,9 +7,9 @@ public class Escuadron {
 
 	//private List<AlgoFormer> algoFormers;
 	protected ArrayList<AlgoFormer> algoFormers;
-	
+
 	public Escuadron(){
-		algoFormers = new ArrayList<AlgoFormer>(); 
+		algoFormers = new ArrayList<AlgoFormer>();
 	}
 
 	//TODO Esta clase debe ser iterable

@@ -52,7 +52,7 @@ public class Program extends Application {
 		primaryStage.setScene(scene);
         
 		double canvasAncho = resolucionPantallaX;
-        double canvasAlto = resolucionPantallaY;
+        double canvasAlto = resolucionPantallaY * 0.95;
 		Canvas canvas = new Canvas(canvasAncho,canvasAlto);
 		root.getChildren().add(canvas);
 		canvas.relocate(10,10);
@@ -104,10 +104,11 @@ public class Program extends Application {
 		
 		AButtonHandler aButtonHandler = new AButtonHandler(this.boxView, juego);
 		Button botonA = crearBoton("A",aButtonHandler);
-	
 		
-			
-		HBox contenedorBotones = new HBox(botonIzquierda,botonArriba,botonAbajo,botonDerecha,botonA);
+		BButtonHandler bButtonHandler = new BButtonHandler(this.boxView, juego);
+		Button botonB = crearBoton("B",aButtonHandler);
+		
+		HBox contenedorBotones = new HBox(botonIzquierda,botonArriba,botonAbajo,botonDerecha,botonA,botonB);
 		contenedorBotones.setSpacing(10);
 		return contenedorBotones;
 	}

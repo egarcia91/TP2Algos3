@@ -52,7 +52,7 @@ public class Program extends Application {
 		primaryStage.setScene(scene);
         
 		double canvasAncho = resolucionPantallaX;
-        double canvasAlto = resolucionPantallaY * 0.95;
+        double canvasAlto = resolucionPantallaY;
 		Canvas canvas = new Canvas(canvasAncho,canvasAlto);
 		root.getChildren().add(canvas);
 		canvas.relocate(10,10);
@@ -65,7 +65,7 @@ public class Program extends Application {
     	//MediaPlayer player = new MediaPlayer(media); 
     	//player.play();
 		
-		Juego juego = new Juego((int)Math.ceil(canvasAncho/pixCasilleroAncho)-1,(int)Math.ceil(canvasAlto/pixCasilleroAlto)-1);
+		Juego juego = new Juego((int)Math.ceil(canvasAncho/pixCasilleroAncho)-1,(int)Math.ceil(canvasAlto/pixCasilleroAlto)-2);
 		Jugador jugadorUno = new Jugador("Sam");
 		Jugador jugadorDos = new Jugador("Max");
 		juego.agregarJugador(jugadorUno);

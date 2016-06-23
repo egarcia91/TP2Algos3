@@ -36,11 +36,13 @@ public class AlgoFormerSegundoTests {
 			escuadronUno.getAlgoFormer(i).moverDerecha();
 		}
 
-		System.out.println("la posicion es: " + tab.getPosicion(escuadronUno.getAlgoFormer(0)).getX());
+		System.out.println("la posicion es: " + tab.getPosicion(escuadronUno.getAlgoFormer(2)).getX());
+		System.out.println("la posicion es: " + tab.getPosicion(escuadronUno.getAlgoFormer(2)).getY());
 
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 5, 0));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 6, 5));
-		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 5, 6));
+
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(0), 4, 0));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(1), 6, 0));
+		Assert.assertTrue(tab.existeAlgoFormer(escuadronUno.getAlgoFormer(2), 4, 1));
 
 		for (AlgoFormer eachAlgoFormer :
 				escuadronUno.algoFormers) {

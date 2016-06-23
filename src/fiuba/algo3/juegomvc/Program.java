@@ -7,17 +7,20 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.paint.Color;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -35,21 +38,27 @@ public class Program extends Application {
 	BoxView boxView;
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage mainStage) throws Exception {
 
+		Group root = new Group();/*
+		GridPane grid = definirNombresJugadores();
+		Scene primaryScene = new Scene(root);
+		primaryStage.setScene(primaryScene);
+		primaryStage.show();
+		
+		definirNombresJugadores();
+		*/
 		Rectangle2D visualBounds = Screen.getPrimary().getVisualBounds();
 		double resolucionPantallaX = visualBounds.getWidth();
 		double resolucionPantallaY = visualBounds.getHeight();
 		
-		Group root = new Group();
-  		
-		primaryStage.centerOnScreen();
-        primaryStage.setResizable(false);
-        primaryStage.setFullScreen(true);
+		mainStage.centerOnScreen();
+        mainStage.setResizable(false);
+        mainStage.setFullScreen(true);
 		
         Scene scene = new Scene(root,resolucionPantallaX,resolucionPantallaY);
 		scene.setFill(Color.BLACK);
-		primaryStage.setScene(scene);
+		mainStage.setScene(scene);
         
 		double canvasAncho = resolucionPantallaX;
         double canvasAlto = resolucionPantallaY;
@@ -77,13 +86,13 @@ public class Program extends Application {
 
 		HBox botonera = crearBotonera(juego);
 		root.getChildren().add(botonera);
-		botonera.relocate(20,canvasAlto + 10);
+		botonera.relocate(20,resolucionPantallaY * 0.95 + 10);
 		
 
 			//VBox contenedorPrincipal = new VBox(root, contenedorBotones);
 		//contenedorPrincipal.setSpacing(10);
 		//contenedorPrincipal.setPadding(new Insets(20));
-		primaryStage.show();
+		mainStage.show();
 		
 
 		
@@ -119,4 +128,28 @@ public class Program extends Application {
 		button.setOnAction(handler);
 		return button;
 	}	
+	
+	private GridPane definirNombresJugadores(){
+		GridPane grid = new GridPane();
+		grid.setPadding(new Insets(10, 10, 10, 10));
+		grid.setVgap(5);
+		grid.setHgap(5);
+
+		final TextField name = new TextField();
+		name.setPromptText("Ingrese nombre del jugador Autobot!");
+		name.setPrefColumnCount(10);
+		name.getText();
+		GridPane.setConstraints(name, 0, 0);
+		grid.getChildren().add(name);
+
+		final TextField lastName = new TextField();
+		lastName.setPromptText("Ingrese nombre del jugador Decepticon >_<");
+		GridPane.setConstraints(lastName, 0, 1);
+		grid.getChildren().add(lastName);
+
+		Button botonOk = new Button("Ok");
+		GridPane.setConstraints(botonOk, 1, 0);
+		grid.getChildren().add(botonOk);
+		return grid;
+	}
 }	

@@ -35,10 +35,13 @@ public class Jugador {
 		this.selectAccion = false;
 		this.selectAlgoFormerRival = false;
 		this.posiblesMovimientos = new ArrayList<Casillero>();
+		this.posicionPosibleMovimiento = new Posicion(-1,-1);
 	}
 
 	public void selectMovimiento(){
 		this.selectMovimiento = true;
+		AlgoFormer algoFormerActual = this.getSelectAlgoFormer();
+		algoFormerActual.mover(this.posicionPosibleMovimiento);
 		this.juego.cambiarTurnoJugador();
 	}
 

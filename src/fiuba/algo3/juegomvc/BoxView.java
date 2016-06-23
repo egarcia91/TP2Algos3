@@ -55,9 +55,15 @@ public class BoxView {
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
 		this.reDraw();
+		this.nombreJugador();
+		if(!this.jugador.estaSeleccionadoAlgoFormer()){
+			this.seleccionePersonaje();
+		} else {
+			if(!this.jugador.estaSeleccionadoAccion()){
+				this.action();
+			}
+		}
 		this.imprimirCaracteristicas(this.algoFormer);
-		this.action();
-
 	}
 
 	public void reDraw() {
@@ -68,7 +74,6 @@ public class BoxView {
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 
 				if(this.jugador.posiblesMovimientos.contains(casillero)){
-					//this.gc.setFill(Color.WHITE);
 					this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
 
@@ -77,38 +82,34 @@ public class BoxView {
 				}
 
 				if(casillero.tieneContenido()){
-					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
-				}
-
-				/*
-				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
-//				Posicion posicion = new Posicion(i, j);
-				
-				if(casillero.tieneContenido()){
 					Contenido contenido = casillero.getContenido();
-					//contenido.getClass();
-					if(this.algoFormer == contenido){
-						this.gc.setFill(Color.BLUE);
-					} else {
-						this.gc.setFill(Color.GREEN);
+					this.pintarContenido(contenido,pixCasilleroAncho * i, pixCasilleroAlto * j);
+					if(!this.jugador.estaSeleccionadoAlgoFormer() && this.algoFormer == contenido){
+						this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
 					}
-					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
-				*/
 			}
 		}
 	
 	}
 
+	public void nombreJugador() {
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,25));
+		this.gc.setFill(Color.ALICEBLUE);
+		this.gc.fillText("Turno Jugador "+ this.jugador.getNombre(),sceneX*0.5,sceneY * 0.1);
+	}
+
+	public void seleccionePersonaje() {
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,20));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText("Seleccione Personaje",sceneX*0.4,sceneY * 0.25);
+	}
+
 	public void action() {
 
-		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
-		this.gc.setFill(Color.ALICEBLUE);
-		this.gc.fillText("Juega "+ this.jugador.getNombre(),sceneX*0.5,sceneY * 0.5);
-
-		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,20));
 		this.gc.setFill(Color.ANTIQUEWHITE);
-		this.gc.fillText("Seleccione accion",sceneX*0.5,sceneY * 0.55);
+		this.gc.fillText("Seleccione accion",sceneX*0.5,sceneY * 0.25);
 
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Atacar");
@@ -121,9 +122,9 @@ public class BoxView {
 		acciones.set(indexSelecAction, "> ".concat(selectAction));
 		
 		String separador = "  ";
-		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,17));
 		this.gc.setFill(Color.ANTIQUEWHITE);
-		this.gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX*0.5,sceneY * 0.6);
+		this.gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX*0.5,sceneY * 0.3);
 
 	}
 
@@ -147,10 +148,6 @@ public class BoxView {
 
 	}
 
-
-
-
-
 	private void pintarTerreno(Terreno terreno, int i, int j) {
 		String terrenoCasillero = terreno.getClass().getName();
 		terrenoCasillero = terrenoCasillero.replace("fiuba.algo3.tablero.","");
@@ -161,7 +158,7 @@ public class BoxView {
 
 	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
 
-		gc.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,12));
+		gc.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,19));
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setFill(Color.SALMON);
 		gc.fillText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')',sceneX*0.8,sceneY * 0.1);
@@ -179,7 +176,7 @@ public class BoxView {
 			nombreTipoUnidad = "Aereo";
 		}
 
-		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,17));
 		gc.setFill(Color.WHEAT);
 		gc.fillText(
 		"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
@@ -187,6 +184,6 @@ public class BoxView {
 		"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
 		nombreEstado+ ' ' + nombreTipoUnidad,
 		sceneX*0.8,
-		15 + (sceneY * 0.1));
+		25 + (sceneY * 0.1));
 	}
 }

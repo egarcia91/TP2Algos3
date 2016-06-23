@@ -99,6 +99,10 @@ public class AlgoFormer extends Contenido {
 		this.estado.setTerrestre(true);
 	}
 
+	public void mover(Posicion posicion){
+		this.movimiento.mover(posicion, this);
+	}
+
 	public void moverDerecha(){
 		if(this.turnosCastigo == 0){
 			this.movimiento.moverAlgoFormerDerecha(this,this.getVelocidad());

@@ -8,8 +8,8 @@ import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
 
 public class Juego {
-	private static final int tableroAncho = 7;
-	private static final int tableroAlto = 7;
+	private static final int TABLERO_ANCHO = 7;
+	private static final int TABLERO_ALTO = 7;
 
 	private Tablero tablero;
 	private List<Jugador> jugadores;
@@ -18,7 +18,11 @@ public class Juego {
 	public EscuadronDecepticon escuadronDecepticon;
 
 	public Juego(){
-		tablero = new Tablero(Juego.tableroAncho,Juego.tableroAlto);
+		new Juego(Juego.TABLERO_ANCHO,Juego.TABLERO_ALTO);
+	}
+	
+	public Juego(int anchoTablero, int altoTablero){
+		tablero = new Tablero(anchoTablero,altoTablero);
 		jugadores = new ArrayList<Jugador>();
 		escuadronAutobot = new EscuadronAutobot();
 		escuadronDecepticon = new EscuadronDecepticon();
@@ -34,8 +38,8 @@ public class Juego {
 	}
 	public void ubicarSpark(Tablero tablero){
 		Random rand = new Random();
-		int randX = Math.round((Juego.tableroAncho/2) + rand.nextInt(2));
-		int randY = Math.round((Juego.tableroAlto/2) + rand.nextInt(2));
+		int randX = Math.round((Juego.TABLERO_ANCHO/2) + rand.nextInt(2));
+		int randY = Math.round((Juego.TABLERO_ALTO/2) + rand.nextInt(2));
 		tablero.setItem(new Spark(),randX,randY);
 	}
 
@@ -85,11 +89,11 @@ public class Juego {
 	}
 
 	public int getTableroAncho(){
-		return Juego.tableroAncho;
+		return Juego.TABLERO_ANCHO;
 	}
 
 	public int getTableroAlto(){
-		return Juego.tableroAlto;
+		return Juego.TABLERO_ALTO;
 	}
 
 }

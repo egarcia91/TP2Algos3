@@ -43,7 +43,9 @@ public class BoxView {
 		this.sceneY = sceneY;
 		
 		this.cantidadCasillerosX = this.tablero.getAncho();
+
 		this.cantidadCasillerosY = this.tablero.getAlto();
+
 	}
 
 	public void update() {

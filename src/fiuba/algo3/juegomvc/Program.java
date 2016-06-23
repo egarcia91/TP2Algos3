@@ -92,7 +92,7 @@ public class Program extends Application {
 				String path = file.toURI().toASCIIString();
 				AudioClip audioClip = new AudioClip(path);
 				audioClip.play();
-			
+
 		}catch(Exception e){};	
 		
 

@@ -20,7 +20,7 @@ public class Tablero {
 		for(int i = 0; i < ancho; i++){
 			for(int j = 0; j < alto; j++){
 				tablero[i][j] = new Casillero();
-			} 
+			}
 		}
 		this.ancho = ancho;
 		this.alto = alto;
@@ -30,8 +30,11 @@ public class Tablero {
 		this.escuadronDos = new Escuadron();
 
 		this.setMapa();
+		System.out.println(""+this.ancho);
+		System.out.println(""+this.alto);
 
 	}
+
 
 	private void setMapa(){
 	
@@ -71,8 +74,8 @@ public class Tablero {
 		};
 
 	
-		 for(int i=0; i < this.ancho ;i++){
-		 	for(int j=0; j < this.alto;j++){
+		 for(int i=0; i < this.ancho-2 ;i++){
+		 	for(int j=0; j < this.alto-2;j++){
 
 		 		switch(mat[j][i]){
 		 		

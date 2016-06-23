@@ -20,11 +20,22 @@ public class MoveUButtonHandler implements EventHandler<ActionEvent> {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
 		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
 			jugadorTurnoActual.nextAlgoFormer();
-		} else if(!jugadorTurnoActual.estaSeleccionadoAccion()){
+		} else if(!jugadorTurnoActual.estaSeleccionadoAccion()) {
 			jugadorTurnoActual.nextAccion();
-		} else if(!jugadorTurnoActual.estaSeleccionadoAlgoFormerRival()) {
-			jugadorTurnoActual.nextAlgoFormerRival();
+		} else {
+			switch (jugadorTurnoActual.getSelectAccion()){
+				case 0:
+					jugadorTurnoActual.nextAlgoFormerRival();
+					break;
+				case 1:
+					jugadorTurnoActual.upPosicion();
+					break;
+				default:
+					break;
+			}
 		}
+
+
 		this.view.update();
 	}
 }

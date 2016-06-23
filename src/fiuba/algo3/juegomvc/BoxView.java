@@ -63,13 +63,19 @@ public class BoxView {
 	public void reDraw() {
 		for(int i = 0; i < this.cantidadCasillerosX; i++){
 			for(int j = 0; j < this.cantidadCasillerosY; j++){
+				Posicion posicion = new Posicion(i,j);
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+
+				if(posicion.equals(this.jugador.posicionPosibleMovimiento)){
+					this.pintarPosicionFutura(pixCasilleroAncho * i, pixCasilleroAlto * j);
+				}
+
 				if(this.jugador.posiblesMovimientos.contains(casillero)){
 					//this.gc.setFill(Color.WHITE);
-					this.pintarContenidoSeleccionado(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
-
+					this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
+
 				if(casillero.tieneContenido()){
 					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
@@ -121,24 +127,14 @@ public class BoxView {
 
 	}
 
-	private void pintarContenidoSeleccionado(Contenido contenido,int i,int j) {
-		String contenidoName = contenido.getClass().getName();
-			contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
-			contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
-			//Image image = new Image("/"+contenidoName+".png");
-	/*
-			ImageView imageView = new ImageView(image);
-			ColorAdjust colorAdjust = new ColorAdjust();
-			colorAdjust.setContrast(0.1);
-			colorAdjust.setHue(-0.05);
-			colorAdjust.setBrightness(0.1);
-			colorAdjust.setSaturation(0.2);
+	private void pintarPosicionFutura(int i,int j) {
+		Image image = new Image("/posicionFutura.png");
+		gc.drawImage(image,i,j);
+	}
 
-			imageView.setEffect(colorAdjust);
-	*/
+	private void pintarContenidoSeleccionado(int i,int j) {
 		Image image = new Image("/PosibleMovimiento.png");
 		gc.drawImage(image,i,j);
-		
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {

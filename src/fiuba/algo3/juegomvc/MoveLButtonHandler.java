@@ -20,17 +20,23 @@ public class MoveLButtonHandler implements EventHandler<ActionEvent> {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
 		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
 			jugadorTurnoActual.prevAlgoFormer();
-		} else {
+		} else if(!jugadorTurnoActual.estaSeleccionadoAccion()) {
 			jugadorTurnoActual.prevAccion();
+		} else {
+			switch (jugadorTurnoActual.getSelectAccion()){
+				case 0:
+//					jugadorTurnoActual.selectAlgoFormerRival();
+					break;
+				case 1:
+					jugadorTurnoActual.leftPosicion();
+					break;
+				default:
+					break;
+			}
 		}
+
 		this.view.update();
 	}
-
-	public void moveDown (ActionEvent actionEvent){
-
-	}
-
-
 
 }
 

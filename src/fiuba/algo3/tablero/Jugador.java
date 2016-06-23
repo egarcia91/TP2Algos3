@@ -13,6 +13,7 @@ public class Jugador {
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
 	public ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
+	public Posicion posicionPosibleMovimiento = new Posicion(0,0);
 	private int indiceAlgoFormer = 0;
 	private int indiceAlgoFormerRival = 0;
 	private int indiceAccion = 0;
@@ -105,6 +106,21 @@ public class Jugador {
 		return this.escuadronRivalAtacable.getAlgoFormer(this.indiceAlgoFormerRival);
 	}
 
+	public void upPosicion(){
+		posicionPosibleMovimiento.sumar(new Posicion(0,1));
+	}
+
+	public void downPosicion(){
+		posicionPosibleMovimiento.sumar(new Posicion(0,-1));
+	}
+
+	public void leftPosicion(){
+		posicionPosibleMovimiento.sumar(new Posicion(-1,0));
+	}
+
+	public void rightPosicion(){
+		posicionPosibleMovimiento.sumar(new Posicion(1,0));
+	}
 	//TODO Deshardcodear indice accion
 	public void nextAccion(){
 		if(this.indiceAccion == 2){

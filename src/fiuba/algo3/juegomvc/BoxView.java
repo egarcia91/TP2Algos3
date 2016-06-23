@@ -8,6 +8,9 @@ import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
 
 public class BoxView {
 
@@ -61,8 +64,11 @@ public class BoxView {
 			for(int j = 0; j < this.cantidadCasillerosY; j++){
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
-//				if(this.jugador.posiblesMovimientos.contains(casillero))
-//					this.gc.setFill(Color.WHITE);
+				if(this.jugador.posiblesMovimientos.contains(casillero)){
+					//this.gc.setFill(Color.WHITE);
+					this.pintarContenidoSeleccionado(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+
+				}
 				if(casillero.tieneContenido()){
 					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
@@ -106,15 +112,39 @@ public class BoxView {
 		this.gc.fillText(acciones.get(2),220,490);
 	}
 
-	private void pintarContenido(Contenido contenido,int i,int j) {
+	private void pintarContenidoSeleccionado(Contenido contenido,int i,int j) {
 		String contenidoName = contenido.getClass().getName();
 			contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
 			contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
+			//Image image = new Image("/"+contenidoName+".png");
+	/*
+			ImageView imageView = new ImageView(image);
+			ColorAdjust colorAdjust = new ColorAdjust();
+			colorAdjust.setContrast(0.1);
+			colorAdjust.setHue(-0.05);
+			colorAdjust.setBrightness(0.1);
+			colorAdjust.setSaturation(0.2);
 
-			Image image = new Image("/"+contenidoName+".png");
+			imageView.setEffect(colorAdjust);
+	*/
+		Image image = new Image("/PosibleMovimiento.png");
 		gc.drawImage(image,i,j);
 		
 	}
+
+	private void pintarContenido(Contenido contenido,int i,int j) {
+		String contenidoName = contenido.getClass().getName();
+		contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
+		contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
+
+		Image image = new Image("/"+contenidoName+".png");
+		gc.drawImage(image,i,j);
+
+	}
+
+
+
+
 
 	private void pintarTerreno(Terreno terreno, int i, int j) {
 		String terrenoCasillero = terreno.getClass().getName();

@@ -3,6 +3,11 @@ package fiuba.algo3.juegomvc;
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.personajes.Megatron;
 import fiuba.algo3.tablero.*;
+
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,6 +27,9 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -67,13 +75,24 @@ public class Program extends Application {
 		canvas.relocate(10,10);
 		
 		gc = canvas.getGraphicsContext2D();
-        
+       /*
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		Media media = new Media("file:\\\" + s + "\\build\\musica.mp3");
 		
-		//Media media = new Media(Test.class.getResource("/musica.mp3").toString());
+    	MediaPlayer player = new MediaPlayer(media); 
+    	player.play();
+		*/
+		try{
+			Path currentRelativePath = Paths.get("");
+			String s = currentRelativePath.toAbsolutePath().toString();
+			File file = new File(s+"\\src\\musica.mp3");
+			String path = file.toURI().toASCIIString();
+			AudioClip audioClip = new AudioClip(path);
+			audioClip.play();
+		}catch(Exception e){};	
 		
-    	//MediaPlayer player = new MediaPlayer(media); 
-    	//player.play();
-		
+
 		Juego juego = new Juego((int)Math.ceil(canvasAncho/pixCasilleroAncho)-1,(int)Math.ceil(canvasAlto/pixCasilleroAlto)-2);
 		Jugador jugadorUno = new Jugador("Sam");
 		Jugador jugadorDos = new Jugador("Max");

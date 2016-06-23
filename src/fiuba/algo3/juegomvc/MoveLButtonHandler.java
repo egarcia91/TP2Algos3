@@ -25,5 +25,12 @@ public class MoveLButtonHandler implements EventHandler<ActionEvent> {
 		}
 		this.view.update();
 	}
+
+	public void moveDown (ActionEvent actionEvent){
+
+	}
+
+
+
 }
 

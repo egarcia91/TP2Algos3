@@ -104,14 +104,14 @@ public class BoxView {
 		textoNombreJugador.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
 		textoNombreJugador.setFill(Color.ALICEBLUE);
 		root.getChildren().add(textoNombreJugador);
-		textoNombreJugador.relocate(sceneX/2 - 100,sceneY);		
+		textoNombreJugador.relocate(sceneX/2 - 120,sceneY - 30);		
 		
 		Text textoSeleccionAccion = new Text();
 		textoSeleccionAccion.setFont(Font.font("Verdana",FontWeight.BOLD,12));
 		textoSeleccionAccion.setText("Seleccione accion");
 		textoSeleccionAccion.setFill(Color.ANTIQUEWHITE);
 		root.getChildren().add(textoSeleccionAccion);
-		textoSeleccionAccion.relocate(sceneX/2,sceneY);
+		textoSeleccionAccion.relocate(sceneX/2,sceneY - 30);
 		
 		
 		ArrayList<String> acciones = new ArrayList<String>();
@@ -130,7 +130,7 @@ public class BoxView {
 		textoAccionesPosibles.setText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2));
 		textoAccionesPosibles.setFill(Color.ANTIQUEWHITE);
 		root.getChildren().add(textoAccionesPosibles);
-		textoAccionesPosibles.relocate(sceneX/2 + 120,sceneY);	
+		textoAccionesPosibles.relocate(sceneX/2 + 120,sceneY - 30);	
 
 		
 	}

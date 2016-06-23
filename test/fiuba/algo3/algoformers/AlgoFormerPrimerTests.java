@@ -145,7 +145,7 @@ public class AlgoFormerPrimerTests {
 		optimusPrime.moverArriba();
 		optimusPrime.moverArriba();
 		
-		optimusPrime.atacar();
+//		optimusPrime.atacar();
 		Assert.assertTrue(megatron.getVida() == 535);
 
 		Assert.assertTrue(optimusPrime.getVida() == 500);
@@ -160,7 +160,7 @@ public class AlgoFormerPrimerTests {
 		megatron.moverAbajo();
 		//System.out.println("luego de mover arriba x 3: " + tab.getPosicion(optimusPrime).getX() + "," + tab.getPosicion(optimusPrime).getY());
 	
-		megatron.atacar();
+//		megatron.atacar();
 		Assert.assertTrue(optimusPrime.getVida() == 490);
 
 		optimusPrime.moverIzquierda();
@@ -169,7 +169,7 @@ public class AlgoFormerPrimerTests {
 
 		//Ahora esta lejos!
 		Assert.assertTrue(optimusPrime.getVida() == 490);
-		megatron.atacar();
+//		megatron.atacar();
 		Assert.assertTrue(optimusPrime.getVida() == 490);
 	}
 

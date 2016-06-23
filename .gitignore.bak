@@ -1,0 +1,9 @@
+*.sw
+build/
+libs/
+tmp/
+.classpath
+.project
+.project.bak
+settings/
+/bin/

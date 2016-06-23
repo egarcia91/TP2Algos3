@@ -61,7 +61,7 @@ public class Movimiento {
 		//Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
 		Casillero casillero = new Casillero();
 		try{
-			casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+			casillero = posibleCasilleroFinal(unAlgoFormer, velocidad+2, x, y);
 		}
 		catch (CasilleroNoExisteException excepcion){}
 
@@ -111,7 +111,7 @@ public class Movimiento {
 			throw new CasilleroNoExisteException();
 		}
 
-		for(; i <= cantVelocidad+1; i++){
+		for(; i <= cantVelocidad; i++){
 			casillero = this.tablero.getCasillero(posicionInicial.getX()+(i*x), posicionInicial.getY()+(i*y));
 			if(casillero.noExiste()){
 				return casillero;

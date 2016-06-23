@@ -13,7 +13,6 @@ import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
 
-
 public class BoxView {
 
 	private final Tablero tablero;
@@ -91,15 +90,14 @@ public class BoxView {
 
 	public void action() {
 
-		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
-		gc.setFill(Color.ALICEBLUE);
-		gc.fillText("Juega "+ this.jugador.getNombre(),sceneX/2 - 120,sceneY - 30);
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
+		this.gc.setFill(Color.ALICEBLUE);
+		this.gc.fillText("Juega "+ this.jugador.getNombre(),sceneX*0.5,sceneY * 0.5);
 
-		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.fillText("Seleccione accion",sceneX/2,sceneY - 30);
-		
-		
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText("Seleccione accion",sceneX*0.5,sceneY * 0.55);
+
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Atacar");
 		acciones.add("Mover");
@@ -111,9 +109,9 @@ public class BoxView {
 		acciones.set(indexSelecAction, "> ".concat(selectAction));
 		
 		String separador = "  ";
-		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		gc.setFill(Color.ANTIQUEWHITE);
-		gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX/2 + 120,sceneY - 30);
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX*0.5,sceneY * 0.6);
 
 	}
 
@@ -142,8 +140,6 @@ public class BoxView {
 		gc.setFill(Color.SALMON);
 		gc.fillText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')',sceneX*0.8,sceneY * 0.1);
 
-
-		
 		String nombreEstado;
 		if(unAlgoFormer.esHumanoide()){
 			nombreEstado = "Humanoide";
@@ -160,13 +156,11 @@ public class BoxView {
 		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
 		gc.setFill(Color.WHEAT);
 		gc.fillText(
-				
-				"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
-				"Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque()+'\n'+
-				"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
-				nombreEstado+ ' ' + nombreTipoUnidad 
-				
-				,sceneX*0.8 , 15 + (sceneY * 0.1));
-		
+		"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
+		"Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque()+'\n'+
+		"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
+		nombreEstado+ ' ' + nombreTipoUnidad,
+		sceneX*0.8,
+		15 + (sceneY * 0.1));
 	}
 }

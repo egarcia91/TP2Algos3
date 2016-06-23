@@ -8,8 +8,8 @@ import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
 
 public class Juego {
-	private static final int TABLERO_ANCHO = 7;
-	private static final int TABLERO_ALTO = 7;
+	private static final int TABLERO_ANCHO = 26;
+	private static final int TABLERO_ALTO = 15;
 
 	private Tablero tablero;
 	private List<Jugador> jugadores;

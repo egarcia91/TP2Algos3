@@ -75,7 +75,7 @@ public class Tablero {
 
 	
 		 for(int i=0; i < this.ancho-2 ;i++){
-		 	for(int j=0; j < this.alto-2;j++){
+		 	for(int j=0; j < this.alto-2 ;j++){
 
 		 		switch(mat[j][i]){
 		 		

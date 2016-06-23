@@ -2,19 +2,17 @@ package fiuba.algo3.juegomvc;
 
 import fiuba.algo3.tablero.*;
 import fiuba.algo3.algoformers.*;
-import fiuba.algo3.algoformers.personajes.Megatron;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
+
 
 public class BoxView {
 
@@ -31,6 +29,8 @@ public class BoxView {
 	Group root;
 	double sceneX;
 	double sceneY;
+	TextFlow textFlowAcciones;
+	TextFlow textFlowAlgoformer;
 
 	public BoxView(Group root,double sceneX,double sceneY,GraphicsContext gc, Juego juego){
 		this.gc = gc;
@@ -53,14 +53,8 @@ public class BoxView {
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
 		this.reDraw();
-
-		if(this.jugador.estaSeleccionadoAlgoFormer()){
-			if(!this.jugador.estaSeleccionadoAccion()){
-				this.action();
-			}
-		} else {
-			this.imprimirCaracteristicas(this.algoFormer);
-		}
+		this.imprimirCaracteristicas(this.algoFormer);
+		this.action();
 
 	}
 
@@ -76,9 +70,7 @@ public class BoxView {
 				}
 
 				/*
-
 				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
-
 //				Posicion posicion = new Posicion(i, j);
 				
 				if(casillero.tieneContenido()){
@@ -89,7 +81,6 @@ public class BoxView {
 					} else {
 						this.gc.setFill(Color.GREEN);
 					}
-
 					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
 				*/
@@ -99,19 +90,14 @@ public class BoxView {
 	}
 
 	public void action() {
-		Text textoNombreJugador = new Text();
-		textoNombreJugador.setText("Juega "+ this.jugador.getNombre());
-		textoNombreJugador.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
-		textoNombreJugador.setFill(Color.ALICEBLUE);
-		root.getChildren().add(textoNombreJugador);
-		textoNombreJugador.relocate(sceneX/2 - 120,sceneY - 30);		
-		
-		Text textoSeleccionAccion = new Text();
-		textoSeleccionAccion.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoSeleccionAccion.setText("Seleccione accion");
-		textoSeleccionAccion.setFill(Color.ANTIQUEWHITE);
-		root.getChildren().add(textoSeleccionAccion);
-		textoSeleccionAccion.relocate(sceneX/2,sceneY - 30);
+
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
+		gc.setFill(Color.ALICEBLUE);
+		gc.fillText("Juega "+ this.jugador.getNombre(),sceneX/2 - 120,sceneY - 30);
+
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		gc.setFill(Color.ANTIQUEWHITE);
+		gc.fillText("Seleccione accion",sceneX/2,sceneY - 30);
 		
 		
 		ArrayList<String> acciones = new ArrayList<String>();
@@ -124,15 +110,11 @@ public class BoxView {
 		String selectAction = acciones.get(indexSelecAction);
 		acciones.set(indexSelecAction, "> ".concat(selectAction));
 		
-		Text textoAccionesPosibles = new Text();
 		String separador = "  ";
-		textoAccionesPosibles.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoAccionesPosibles.setText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2));
-		textoAccionesPosibles.setFill(Color.ANTIQUEWHITE);
-		root.getChildren().add(textoAccionesPosibles);
-		textoAccionesPosibles.relocate(sceneX/2 + 120,sceneY - 30);	
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		gc.setFill(Color.ANTIQUEWHITE);
+		gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX/2 + 120,sceneY - 30);
 
-		
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
@@ -155,14 +137,12 @@ public class BoxView {
 
 	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
 
-		Text textoAlgoFormer = new Text();
-		textoAlgoFormer.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,12));
-		textoAlgoFormer.setTextAlignment(TextAlignment.CENTER);
-		textoAlgoFormer.setText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')');
-		textoAlgoFormer.setFill(Color.SALMON);
-		root.getChildren().add(textoAlgoFormer);
-		textoAlgoFormer.relocate(sceneX*0.8,sceneY * 0.1);
-		
+		gc.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,12));
+		gc.setTextAlign(TextAlignment.CENTER);
+		gc.setFill(Color.SALMON);
+		gc.fillText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')',sceneX*0.8,sceneY * 0.1);
+
+
 		
 		String nombreEstado;
 		if(unAlgoFormer.esHumanoide()){
@@ -176,20 +156,17 @@ public class BoxView {
 		} else {
 			nombreTipoUnidad = "Aereo";
 		}
-		Text textoCaracteristicas = new Text();
-		textoCaracteristicas.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoCaracteristicas.setText(
+
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,12));
+		gc.setFill(Color.WHEAT);
+		gc.fillText(
 				
 				"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
 				"Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque()+'\n'+
 				"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
 				nombreEstado+ ' ' + nombreTipoUnidad 
 				
-		);
-		textoCaracteristicas.setFill(Color.WHEAT);
-		root.getChildren().add(textoCaracteristicas);
-		textoCaracteristicas.relocate(sceneX*0.8,15 + (sceneY * 0.1));
-		
+				,sceneX*0.8 , 15 + (sceneY * 0.1));
 		
 	}
 }

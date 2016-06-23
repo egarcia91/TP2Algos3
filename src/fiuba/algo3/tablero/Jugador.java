@@ -12,7 +12,7 @@ public class Jugador {
 	protected Juego juego;
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
-	private ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
+	public ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 	private int indiceAlgoFormer = 0;
 	private int indiceAlgoFormerRival = 0;
 	private int indiceAccion = 0;
@@ -26,6 +26,12 @@ public class Jugador {
 
 	public void setNombre(String unNombre){
 		this.nombre = unNombre;
+	}
+
+	public void resetSelection(){
+		this.selectAlgoFormer = false;
+		this.selectAccion = false;
+		this.selectAlgoFormerRival = false;
 	}
 
 	public void selectAlgoFormer(){
@@ -165,6 +171,7 @@ public class Jugador {
 		} else {
 			unAlgoFormer.transformarHumanoide();
 		}
+		this.juego.cambiarTurnoJugador();
 	}
 
 	public void atacarAlgoFormer(){

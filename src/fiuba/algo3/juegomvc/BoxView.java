@@ -29,18 +29,18 @@ public class BoxView {
 		
 		this.cantidadCasillerosX = this.tablero.getAncho();
 		this.cantidadCasillerosY = this.tablero.getAlto();
-	}	
+	}
 
 	public void update() {
 		this.draw();
 	}
-		
+
 	public void draw(){
 		this.jugador = this.juego.getJugadorTurno();
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
 		this.reDraw();
-/*
+
 		this.gc.setFill(Color.WHITE);
 		this.gc.fillRect(0, 400, 600, 600);
 		this.gc.fillRect(400, 0, 600, 600);
@@ -51,9 +51,9 @@ public class BoxView {
 				this.action();
 			}
 		} else {
-		this.imprimirCaracteristicas(this.algoFormer);
+			this.imprimirCaracteristicas(this.algoFormer);
 		}
-		*/
+
 	}
 
 	public void reDraw() {
@@ -90,6 +90,22 @@ public class BoxView {
 	
 	}
 
+	public void action() {
+		this.gc.setFill(Color.BLACK);
+		this.gc.fillText("AlgoFormer: "+ this.algoFormer.getNombre(),50,450);
+		this.gc.fillText("Seleccione Accion: ",70,470);
+		ArrayList<String> acciones = new ArrayList<String>();
+		acciones.add("Atacar");
+		acciones.add("Mover");
+		acciones.add("Transformar");
+		int indexSelecAction = this.jugador.getSelectAccion();
+		String selectAction = acciones.get(indexSelecAction);
+		acciones.set(indexSelecAction, "> ".concat(selectAction));
+		this.gc.fillText(acciones.get(0),10,490);
+		this.gc.fillText(acciones.get(1),90,490);
+		this.gc.fillText(acciones.get(2),220,490);
+	}
+
 	private void pintarContenido(Contenido contenido,int i,int j) {
 		String contenidoName = contenido.getClass().getName();
 			contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
@@ -108,8 +124,6 @@ public class BoxView {
 		gc.drawImage(image,i,j);
 	}
 
-
-	/*
 	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
 
 		this.gc.fillText("Seleccione AlgoFormer: "+ unAlgoFormer.getNombre(),50,450);
@@ -133,5 +147,5 @@ public class BoxView {
 		} else {
 			this.gc.fillText("Aereo",260,500);
 		}
-	}*/
+	}
 }

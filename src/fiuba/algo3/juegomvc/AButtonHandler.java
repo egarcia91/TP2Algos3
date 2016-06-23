@@ -20,8 +20,19 @@ public class AButtonHandler implements EventHandler<ActionEvent> {
 		Jugador jugadorTurnoActual = this.juego.getJugadorTurno();
 		if(!jugadorTurnoActual.estaSeleccionadoAlgoFormer()){
 			jugadorTurnoActual.selectAlgoFormer();
-		} else {
+		} else if(!jugadorTurnoActual.estaSeleccionadoAccion()) {
 			jugadorTurnoActual.selectAccion();
+		} else {
+			switch (jugadorTurnoActual.getSelectAccion()){
+				case 0:
+					jugadorTurnoActual.selectAlgoFormerRival();
+					break;
+				case 1:
+					jugadorTurnoActual.selectMovimiento();
+					break;
+				default:
+					break;
+			}
 		}
 
 		this.view.update();

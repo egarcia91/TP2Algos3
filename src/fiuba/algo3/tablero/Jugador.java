@@ -28,6 +28,12 @@ public class Jugador {
 		this.nombre = unNombre;
 	}
 
+	public void resetSelection(){
+		this.selectAlgoFormer = false;
+		this.selectAccion = false;
+		this.selectAlgoFormerRival = false;
+	}
+
 	public void selectAlgoFormer(){
 		this.selectAlgoFormer = true;
 	}
@@ -165,6 +171,7 @@ public class Jugador {
 		} else {
 			unAlgoFormer.transformarHumanoide();
 		}
+		this.juego.cambiarTurnoJugador();
 	}
 
 	public void atacarAlgoFormer(){

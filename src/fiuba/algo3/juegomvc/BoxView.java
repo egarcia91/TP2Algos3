@@ -67,13 +67,13 @@ public class BoxView {
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 
-				if(posicion.equals(this.jugador.posicionPosibleMovimiento)){
-					this.pintarPosicionFutura(pixCasilleroAncho * i, pixCasilleroAlto * j);
-				}
-
 				if(this.jugador.posiblesMovimientos.contains(casillero)){
 					//this.gc.setFill(Color.WHITE);
 					this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
+				}
+
+				if(posicion.equals(this.jugador.posicionPosibleMovimiento)){
+					this.pintarPosicionFutura(pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
 
 				if(casillero.tieneContenido()){

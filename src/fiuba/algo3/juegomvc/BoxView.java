@@ -93,34 +93,21 @@ public class BoxView {
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
-		Image image = new Image("Robot.png");
+		String contenidoName = contenido.getClass().getName();
+			contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
+			contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
+
+			Image image = new Image("/"+contenidoName+".png");
 		gc.drawImage(image,i,j);
 		
 	}
 
 	private void pintarTerreno(Terreno terreno, int i, int j) {
 		String terrenoCasillero = terreno.getClass().getName();
+		terrenoCasillero = terrenoCasillero.replace("fiuba.algo3.tablero.","");
 		Image image;
-		switch(terrenoCasillero){
-			case "Rocosa":
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				image = new Image("Rocks.png");
-				gc.drawImage(image,i,j);
-				break;
-			case "Espinas":
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				break;
-			case "Pantano":
-				image = new Image("Pantano.png");
-				gc.drawImage(image,i,j);
-				break;
-			default:
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				break;
-		}
+		image = new Image("/"+terrenoCasillero+".png");
+		gc.drawImage(image,i,j);
 	}
 
 

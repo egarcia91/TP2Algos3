@@ -117,7 +117,7 @@ public class Program extends Application {
 		textoInformacion.setTextAlignment(TextAlignment.CENTER);
 		textoInformacion.setText("AlgoFormer: "+ this.algoFormer.getNombre());
 		this.gc.setFill(Color.BLACK);
-		this.gc.fillText(,50,450);
+		//this.gc.fillText(,50,450);
 		this.gc.fillText("Seleccione Accion: ",70,470);
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Atacar");
@@ -132,5 +132,6 @@ public class Program extends Application {
 		this.gc.fillText(acciones.get(2),220,490);
 	}
 	*/
+
 	
 }

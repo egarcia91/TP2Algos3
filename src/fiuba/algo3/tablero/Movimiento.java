@@ -76,10 +76,10 @@ public class Movimiento {
 			casillero.agregarContenido(unAlgoFormer);
 		}catch (CasilleroOcupadoException exception){}
 
-			//this.tablero.quitarAlgoFormer(unAlgoFormer);
+			this.tablero.quitarAlgoFormer(unAlgoFormer);
 			this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 			this.tablero.quitarAlgoFormer(unAlgoFormer);
-			this.tablero.setPosicion(unAlgoFormer, posicionFinal);
+			//this.tablero.setPosicion(unAlgoFormer, posicionFinal);
 		//}
 	}
 
@@ -146,19 +146,22 @@ public class Movimiento {
 
 	public ArrayList<Casillero> posiblesMovimientos (AlgoFormer unAlgoFormer, int velocidad){
 		ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
-		for (int i=1 ; i<=velocidad ; i++){
+		int cantvelocidad=unAlgoFormer.getVelocidad();
+		System.out.println(""+cantvelocidad);
+		for (int i=1 ; i<=cantvelocidad ; i++){
 			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,0));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,i,0));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,0));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,-i,0));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,i));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,0,i));
 			}catch (CasilleroNoExisteException excepcion){}
 			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,0,-i));
+				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,0,-i));
 			}catch (CasilleroNoExisteException excepcion){}
+
 			for (int j=1 ; j<=velocidad ; j++ ){
 				try {
 					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i-j));
@@ -209,8 +212,9 @@ public class Movimiento {
 	*/
 
 	public void mover(Posicion posicionFinal, AlgoFormer unAlgoFormer){
-		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+
 		this.tablero.quitarAlgoFormer(unAlgoFormer);
+		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
 	}
 }
 

@@ -184,32 +184,32 @@ public class Tablero {
 	}
 
 	private void ubicarEscuadronUno(){ //FIX: NO TIENE SENTIDO, INITX ES SIEMPRE 1 //TODO hace metodo. Si tiene sentido, lee bien el codigo
-		int y = 0;
-		int x = 0;
+		int y = 1;//0;
+		int x = 1;//0;
 		int cantidadAlgoFormers = this.escuadronUno.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			this.agregarAlgoFormer(this.escuadronUno.getAlgoFormer(i),new Posicion(x,y));
-			if(x == 0){
-				x = 1;
-				y = 0;
+			if(x == 1){
+				x = 2;//1;
+				y = 1;//0;
 			} else {
-				x = 0;
-				y = 1;
+				x = 1;//0;
+				y = 2;//1;
 			}
 		}
 	}
 
 	private void ubicarEscuadronDos(){
-		int initY = this.alto-1;
-		int initX = this.ancho-1;
+		int initY = this.alto-3;//this.alto-1;
+		int initX = this.ancho-3;//this.ancho-1;
 
 		int cantidadAlgoFormers = this.escuadronDos.cantidadMiembrosEscuadron();
 		for(int i = 0; i < cantidadAlgoFormers; i++){
 			this.agregarAlgoFormer(this.escuadronDos.getAlgoFormer(i),new Posicion(initX,initY));
-			if(initX == this.ancho-1){
+			if(initX == this.ancho-3){
 				initX--;
 			} else {
-				initX = this.ancho-1;
+				initX = this.ancho-3;
 				initY--;
 			}
 		}

@@ -69,4 +69,10 @@ public class Ataque {
 		}
 	}
 
+	public void atacar(AlgoFormer unAlgoFormer, int unaFuerzaAtaque){
+		if(!unAlgoFormer.estaVacio()){
+			unAlgoFormer.recibirAtaque(unaFuerzaAtaque);
+		}
+	}
+
 }

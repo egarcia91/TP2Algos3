@@ -131,8 +131,8 @@ public class AlgoFormer extends Contenido {
 		}
 	}
 
-	public void atacar() {
-		this.ataque.ataqueZona(this, this.estado.getDistanciaAtaque(),this.estado.getFuerzaAtaque());
+	public void atacar(AlgoFormer unAlgoFormer) {
+		this.ataque.atacar(unAlgoFormer,this.getFuerzaAtaque());
 	}
 
 	public boolean estaEnPosicion(int x, int y){

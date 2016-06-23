@@ -29,73 +29,72 @@ public class Tablero {
 		this.escuadronUno = new Escuadron();
 		this.escuadronDos = new Escuadron();
 
-		tablero[6][7].setTerreno(new Pantano(), new Nube());
-		tablero[7][7].setTerreno(new Pantano(), new Nube());
-		tablero[8][7].setTerreno(new Pantano(), new Nube());
-		tablero[9][7].setTerreno(new Pantano(), new Nube());
-		tablero[10][7].setTerreno(new Pantano(), new Nube());
-		tablero[6][8].setTerreno(new Pantano(), new Nube());
-		tablero[7][8].setTerreno(new Pantano(), new Nube());
-		tablero[8][8].setTerreno(new Pantano(), new Nube());
-		tablero[9][8].setTerreno(new Pantano(), new Nube());
-		tablero[10][8].setTerreno(new Pantano(), new Nube());
-		tablero[3][9].setTerreno(new Pantano(), new Nube());
-		tablero[4][9].setTerreno(new Pantano(), new Nube());
-		tablero[5][9].setTerreno(new Pantano(), new Nube());
-		tablero[6][9].setTerreno(new Pantano(), new Nube());
-		tablero[7][9].setTerreno(new Pantano(), new Nube());
-		tablero[8][9].setTerreno(new Pantano(), new Nube());
-		tablero[9][9].setTerreno(new Pantano(), new Nube());
-		tablero[10][9].setTerreno(new Pantano(), new Nube());
-		tablero[3][10].setTerreno(new Pantano(), new Nube());
-		tablero[4][10].setTerreno(new Pantano(), new Nube());
-		tablero[5][10].setTerreno(new Pantano(), new Nube());
-		tablero[6][10].setTerreno(new Pantano(), new Nube());
-		tablero[7][10].setTerreno(new Pantano(), new Nube());
-		tablero[8][10].setTerreno(new Pantano(), new Nube());
-		tablero[9][10].setTerreno(new Pantano(), new Nube());
-		tablero[3][11].setTerreno(new Pantano(), new Nube());
-		tablero[4][11].setTerreno(new Pantano(), new Nube());
-		tablero[5][11].setTerreno(new Pantano(), new Nube());
-		tablero[6][11].setTerreno(new Pantano(), new Nube());
-		tablero[7][11].setTerreno(new Pantano(), new Nube());
-		tablero[8][11].setTerreno(new Pantano(), new Nube());
-		tablero[9][11].setTerreno(new Pantano(), new Nube());
+		this.setMapa();
 
-		tablero[16][0].setTerreno(new Pantano(), new Nube());
-		tablero[16][1].setTerreno(new Pantano(), new Nube());
-		tablero[16][2].setTerreno(new Pantano(), new Nube());
-		tablero[16][3].setTerreno(new Pantano(), new Nube());
-		tablero[17][0].setTerreno(new Pantano(), new Nube());
-		tablero[17][1].setTerreno(new Pantano(), new Nube());
-		tablero[17][2].setTerreno(new Pantano(), new Nube());
-		tablero[17][3].setTerreno(new Pantano(), new Nube());
-		tablero[18][0].setTerreno(new Pantano(), new Nube());
-		tablero[18][1].setTerreno(new Pantano(), new Nube());
-		tablero[18][2].setTerreno(new Pantano(), new Nube());
-		tablero[18][3].setTerreno(new Pantano(), new Nube());
-		tablero[19][0].setTerreno(new Pantano(), new Nube());
-		tablero[19][1].setTerreno(new Pantano(), new Nube());
-		tablero[19][2].setTerreno(new Pantano(), new Nube());
-		tablero[19][3].setTerreno(new Pantano(), new Nube());
+	}
 
+	private void setMapa(){
+	
+		char[][] mat ={
 
-		tablero[5][0].setTerreno(new Espinas(), new Nube());
-		tablero[5][1].setTerreno(new Espinas(), new Nube());
-		tablero[5][2].setTerreno(new Espinas(), new Nube());
-		tablero[5][3].setTerreno(new Espinas(), new Nube());
-		tablero[6][0].setTerreno(new Espinas(), new Nube());
-		tablero[6][1].setTerreno(new Espinas(), new Nube());
-		tablero[6][2].setTerreno(new Espinas(), new Nube());
-		tablero[6][3].setTerreno(new Espinas(), new Nube());
-		tablero[7][0].setTerreno(new Espinas(), new Nube());
-		tablero[7][1].setTerreno(new Espinas(), new Nube());
-		tablero[7][2].setTerreno(new Espinas(), new Nube());
-		tablero[7][3].setTerreno(new Espinas(), new Nube());
-		tablero[8][0].setTerreno(new Espinas(), new Nube());
-		tablero[8][1].setTerreno(new Espinas(), new Nube());
-		tablero[8][2].setTerreno(new Espinas(), new Nube());
-		tablero[8][3].setTerreno(new Espinas(), new Nube());
+		{'r','r','r','r','r','r','r','p','p','p','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		{'r','r','r','r','e','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','e','r','e','r','r'},
+		{'r','r','r','r','r','r','e','r','r','r','r','r','r','r','r','r','r','r','r','r','e','e','e','e','e','r'},
+		{'r','r','r','e','r','r','r','r','r','r','r','r','r','r','p','p','p','r','r','r','e','e','e','e','e','r'},
+		{'r','r','r','r','r','r','r','r','r','r','r','r','r','p','p','p','p','p','r','r','r','e','r','e','r','r'},
+		{'e','e','r','r','e','r','r','r','r','r','e','r','e','p','e','p','p','p','r','r','r','r','r','r','r','r'},
+		{'p','p','e','r','r','r','r','r','r','e','e','e','e','e','e','e','p','p','r','r','r','r','r','r','r','r'},
+		{'p','p','p','e','r','r','r','r','r','r','e','e','e','e','e','p','p','r','r','r','r','r','r','r','e','r'},
+		{'e','e','p','p','e','e','e','r','r','e','e','e','e','e','e','e','r','r','r','r','r','e','r','r','r','r'},
+		{'r','r','e','p','p','p','p','e','r','r','e','r','e','r','e','r','r','r','r','r','r','r','r','e','r','r'},
+		{'r','r','r','e','p','p','p','p','e','r','r','r','r','r','r','r','r','r','r','r','e','r','r','r','r','r'},
+		{'r','r','r','r','e','e','e','p','p','e','e','r','r','r','r','r','r','r','r','e','r','r','r','r','r','r'},
+		{'r','r','r','r','r','r','r','e','p','p','p','e','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		{'r','r','r','r','r','r','r','r','e','p','p','p','e','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		{'r','r','r','r','r','r','r','r','r','e','e','p','p','e','r','r','r','r','r','r','r','r','e','r','r','r'},
+
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
+		};
+
+	
+	
+
+		 		System.out.println("alto: " + this.alto +" ancho: "+ this.ancho);
+		 for(int i=0; i < this.ancho ;i++){
+		 	for(int j=0; j < this.alto;j++){
+
+		 		switch(mat[j][i]){
+		 		
+		 		case 'e':
+		 		this.tablero[i][j].setTerreno(new Espinas(), new Nube());
+		 		break;
+
+		 		case 'p': 
+		 		this.tablero[i][j].setTerreno(new Pantano(), new Nube());
+		 		break;
+		 		
+		 		default:
+		 		this.tablero[i][j].setTerreno(new Rocosa(), new Nube());
+		 		} 
+		 	}
+		this.tablero[25][14].setTerreno(new Pantano(), new Nube()); 
+		 }
+
+	
 	}
 
 	public int getAncho(){

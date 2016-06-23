@@ -20,7 +20,7 @@ public class Tablero {
 		for(int i = 0; i < ancho; i++){
 			for(int j = 0; j < alto; j++){
 				tablero[i][j] = new Casillero();
-			}
+			} 
 		}
 		this.ancho = ancho;
 		this.alto = alto;
@@ -28,6 +28,74 @@ public class Tablero {
 
 		this.escuadronUno = new Escuadron();
 		this.escuadronDos = new Escuadron();
+
+		tablero[6][7].setTerreno(new Pantano(), new Nube());
+		tablero[7][7].setTerreno(new Pantano(), new Nube());
+		tablero[8][7].setTerreno(new Pantano(), new Nube());
+		tablero[9][7].setTerreno(new Pantano(), new Nube());
+		tablero[10][7].setTerreno(new Pantano(), new Nube());
+		tablero[6][8].setTerreno(new Pantano(), new Nube());
+		tablero[7][8].setTerreno(new Pantano(), new Nube());
+		tablero[8][8].setTerreno(new Pantano(), new Nube());
+		tablero[9][8].setTerreno(new Pantano(), new Nube());
+		tablero[10][8].setTerreno(new Pantano(), new Nube());
+		tablero[3][9].setTerreno(new Pantano(), new Nube());
+		tablero[4][9].setTerreno(new Pantano(), new Nube());
+		tablero[5][9].setTerreno(new Pantano(), new Nube());
+		tablero[6][9].setTerreno(new Pantano(), new Nube());
+		tablero[7][9].setTerreno(new Pantano(), new Nube());
+		tablero[8][9].setTerreno(new Pantano(), new Nube());
+		tablero[9][9].setTerreno(new Pantano(), new Nube());
+		tablero[10][9].setTerreno(new Pantano(), new Nube());
+		tablero[3][10].setTerreno(new Pantano(), new Nube());
+		tablero[4][10].setTerreno(new Pantano(), new Nube());
+		tablero[5][10].setTerreno(new Pantano(), new Nube());
+		tablero[6][10].setTerreno(new Pantano(), new Nube());
+		tablero[7][10].setTerreno(new Pantano(), new Nube());
+		tablero[8][10].setTerreno(new Pantano(), new Nube());
+		tablero[9][10].setTerreno(new Pantano(), new Nube());
+		tablero[3][11].setTerreno(new Pantano(), new Nube());
+		tablero[4][11].setTerreno(new Pantano(), new Nube());
+		tablero[5][11].setTerreno(new Pantano(), new Nube());
+		tablero[6][11].setTerreno(new Pantano(), new Nube());
+		tablero[7][11].setTerreno(new Pantano(), new Nube());
+		tablero[8][11].setTerreno(new Pantano(), new Nube());
+		tablero[9][11].setTerreno(new Pantano(), new Nube());
+
+		tablero[16][0].setTerreno(new Pantano(), new Nube());
+		tablero[16][1].setTerreno(new Pantano(), new Nube());
+		tablero[16][2].setTerreno(new Pantano(), new Nube());
+		tablero[16][3].setTerreno(new Pantano(), new Nube());
+		tablero[17][0].setTerreno(new Pantano(), new Nube());
+		tablero[17][1].setTerreno(new Pantano(), new Nube());
+		tablero[17][2].setTerreno(new Pantano(), new Nube());
+		tablero[17][3].setTerreno(new Pantano(), new Nube());
+		tablero[18][0].setTerreno(new Pantano(), new Nube());
+		tablero[18][1].setTerreno(new Pantano(), new Nube());
+		tablero[18][2].setTerreno(new Pantano(), new Nube());
+		tablero[18][3].setTerreno(new Pantano(), new Nube());
+		tablero[19][0].setTerreno(new Pantano(), new Nube());
+		tablero[19][1].setTerreno(new Pantano(), new Nube());
+		tablero[19][2].setTerreno(new Pantano(), new Nube());
+		tablero[19][3].setTerreno(new Pantano(), new Nube());
+
+
+		tablero[5][0].setTerreno(new Espinas(), new Nube());
+		tablero[5][1].setTerreno(new Espinas(), new Nube());
+		tablero[5][2].setTerreno(new Espinas(), new Nube());
+		tablero[5][3].setTerreno(new Espinas(), new Nube());
+		tablero[6][0].setTerreno(new Espinas(), new Nube());
+		tablero[6][1].setTerreno(new Espinas(), new Nube());
+		tablero[6][2].setTerreno(new Espinas(), new Nube());
+		tablero[6][3].setTerreno(new Espinas(), new Nube());
+		tablero[7][0].setTerreno(new Espinas(), new Nube());
+		tablero[7][1].setTerreno(new Espinas(), new Nube());
+		tablero[7][2].setTerreno(new Espinas(), new Nube());
+		tablero[7][3].setTerreno(new Espinas(), new Nube());
+		tablero[8][0].setTerreno(new Espinas(), new Nube());
+		tablero[8][1].setTerreno(new Espinas(), new Nube());
+		tablero[8][2].setTerreno(new Espinas(), new Nube());
+		tablero[8][3].setTerreno(new Espinas(), new Nube());
 	}
 
 	public int getAncho(){

@@ -18,6 +18,7 @@ public class Jugador {
 	private int indiceAccion = 0;
 	private boolean selectAlgoFormer = false;
 	private boolean selectAlgoFormerRival = false;
+	private boolean selectMovimiento = false;
 	private boolean selectAccion = false;
 
 	public Jugador(String nombre) {
@@ -32,10 +33,20 @@ public class Jugador {
 		this.selectAlgoFormer = false;
 		this.selectAccion = false;
 		this.selectAlgoFormerRival = false;
+		this.posiblesMovimientos = new ArrayList<Casillero>();
+	}
+
+	public void selectMovimiento(){
+		this.selectMovimiento = true;
+		this.juego.cambiarTurnoJugador();
 	}
 
 	public void selectAlgoFormer(){
 		this.selectAlgoFormer = true;
+	}
+
+	public void deselectAlgoFormer(){
+		this.selectAlgoFormer = false;
 	}
 
 	public void selectAlgoFormerRival(){
@@ -45,6 +56,12 @@ public class Jugador {
 		AlgoFormer algoFormerActual = this.getSelectAlgoFormer();
 		algoFormerActual.atacar(unAlgoFormerRival);
 		this.juego.cambiarTurnoJugador();
+	}
+
+	public void deselectAccion(){
+		this.selectAccion = false;
+		this.posiblesMovimientos = new ArrayList<Casillero>();
+		this.escuadronRivalAtacable = new Escuadron();
 	}
 
 	public void selectAccion(){

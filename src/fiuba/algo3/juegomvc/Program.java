@@ -106,7 +106,7 @@ public class Program extends Application {
 		Button botonA = crearBoton("A",aButtonHandler);
 		
 		BButtonHandler bButtonHandler = new BButtonHandler(this.boxView, juego);
-		Button botonB = crearBoton("B",aButtonHandler);
+		Button botonB = crearBoton("B",bButtonHandler);
 		
 		HBox contenedorBotones = new HBox(botonIzquierda,botonArriba,botonAbajo,botonDerecha,botonA,botonB);
 		contenedorBotones.setSpacing(10);

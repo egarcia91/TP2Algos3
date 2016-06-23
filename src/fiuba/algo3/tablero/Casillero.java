@@ -1,13 +1,19 @@
 package fiuba.algo3.tablero;
 
 public class Casillero {
-	private Contenido contenido = new ContenidoVacio();
 
+	private Contenido contenido = new ContenidoVacio();
 	private Terreno terrenoTerrestre = new Rocosa(); //Por defecto lleno de nada
 	private Terreno terrenoAereo = new Nube(); //Por defecto lleno de nada
 
 	public boolean noExiste(){
 		return false;
+	}
+
+	public void Casillero(Terreno unTerrenoTerrestre,Terreno  unTerrenoAereo){
+		this.terrenoTerrestre = unTerrenoTerrestre;
+		this.terrenoAereo = unTerrenoAereo;
+		this.contenido = new ContenidoVacio();
 	}
 
 	public void agregarContenido(Contenido unContenido){
@@ -43,6 +49,11 @@ public class Casillero {
 
 	public void setTerrenoAereo(Terreno unTerreno){
 		this.terrenoAereo = unTerreno;
+	}
+
+	public void setTerreno(Terreno unTerrenoTerrestre, Terreno unTerrenoAereo){
+		this.terrenoTerrestre = unTerrenoTerrestre;
+		this.terrenoAereo = unTerrenoAereo;
 	}
 
 	public boolean estaVacio(){

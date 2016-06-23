@@ -61,7 +61,7 @@ public class Movimiento {
 		//Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
 		Casillero casillero = new Casillero();
 		try{
-			casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
+			casillero = posibleCasilleroFinal(unAlgoFormer, velocidad+2, x, y);
 		}
 		catch (CasilleroNoExisteException excepcion){}
 

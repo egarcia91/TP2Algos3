@@ -15,7 +15,6 @@ public class BoxView {
 	private AlgoFormer algoFormer;
 	private final Juego juego;
 	private Jugador jugador;
-	private ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 	private int cantidadCasillerosX;
 	private int cantidadCasillerosY;
 	private int pixCasilleroAncho = 48;
@@ -60,66 +59,54 @@ public class BoxView {
 			for(int j = 0; j < this.cantidadCasillerosY; j++){
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
-				if(casillero.tieneContenido() == true){
+
+//				if(this.jugador.posiblesMovimientos.contains(casillero)){
+//					this.pintarTerreno(new Espinas(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+//				}
+
+				if(casillero.tieneContenido()){
 					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
-					
-							
-				/*
-				if(this.posiblesMovimientos.contains(casillero))
-					this.gc.setFill(Color.WHITE);
-
-
-				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
+//					this.gc.setFill(Color.WHITE);
+//
+//
+//				this.gc.fillRect((this.pixCasilleroAncho*i), (this.pixCasilleroAlto*j), this.pixCasilleroAncho*(1+i), this.pixCasilleroAlto*(1+j));
 
 //				Posicion posicion = new Posicion(i, j);
-				
-				if(casillero.tieneContenido()){
-					Contenido contenido = casillero.getContenido();
-					//contenido.getClass();
-					if(this.algoFormer == contenido){
-						this.gc.setFill(Color.BLUE);
-					} else {
-						this.gc.setFill(Color.GREEN);
-					}
 
-					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
-				}
-				*/
+//				if(casillero.tieneContenido()){
+//					Contenido contenido = casillero.getContenido();
+//					//contenido.getClass();
+//					if(this.algoFormer == contenido){
+//						this.gc.setFill(Color.BLUE);
+//					} else {
+//						this.gc.setFill(Color.GREEN);
+//					}
+//
+//					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
+//				}
+				
 			}
 		}
 	
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
-		Image image = new Image("Robot.png");
+		String contenidoName = contenido.getClass().getName();
+		contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
+		contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
+
+		Image image = new Image("/"+contenidoName+".png");
 		gc.drawImage(image,i,j);
 		
 	}
 
 	private void pintarTerreno(Terreno terreno, int i, int j) {
 		String terrenoCasillero = terreno.getClass().getName();
+		terrenoCasillero = terrenoCasillero.replace("fiuba.algo3.tablero.","");
 		Image image;
-		switch(terrenoCasillero){
-			case "Rocosa":
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				image = new Image("Rocks.png");
-				gc.drawImage(image,i,j);
-				break;
-			case "Espinas":
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				break;
-			case "Pantano":
-				image = new Image("Pantano.png");
-				gc.drawImage(image,i,j);
-				break;
-			default:
-				image = new Image("Pasto.png");
-				gc.drawImage(image,i,j);
-				break;
-		}
+		image = new Image("/"+terrenoCasillero+".png");
+		gc.drawImage(image,i,j);
 	}
 
 	public void action() {

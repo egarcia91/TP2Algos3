@@ -82,7 +82,7 @@ public class Juego {
 
 	public void cambiarTurnoJugador(){
 		this.jugadores.get(this.turnoJugador).resetSelection();
-		if(this.turnoJugador == jugadores.size()){
+		if(this.turnoJugador == (jugadores.size()-1)){
 			this.turnoJugador = 0;
 		} else {
 			this.turnoJugador++;

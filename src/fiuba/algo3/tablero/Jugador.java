@@ -40,6 +40,11 @@ public class Jugador {
 
 	public void selectAlgoFormerRival(){
 		this.selectAlgoFormerRival = true;
+
+		AlgoFormer unAlgoFormerRival = this.getSelectAlgoFormerRival();
+		AlgoFormer algoFormerActual = this.getSelectAlgoFormer();
+		algoFormerActual.atacar(unAlgoFormerRival);
+		this.juego.cambiarTurnoJugador();
 	}
 
 	public void selectAccion(){

@@ -207,5 +207,9 @@ public class Movimiento {
 	}
 	*/
 
+	public void mover(Posicion posicionFinal, AlgoFormer unAlgoFormer){
+		this.tablero.quitarAlgoFormer(unAlgoFormer);
+		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+	}
 }
 

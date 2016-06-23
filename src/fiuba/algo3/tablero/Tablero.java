@@ -71,9 +71,6 @@ public class Tablero {
 		};
 
 	
-	
-
-		 		System.out.println("alto: " + this.alto +" ancho: "+ this.ancho);
 		 for(int i=0; i < this.ancho ;i++){
 		 	for(int j=0; j < this.alto;j++){
 
@@ -91,10 +88,7 @@ public class Tablero {
 		 		this.tablero[i][j].setTerreno(new Rocosa(), new Nube());
 		 		} 
 		 	}
-		this.tablero[25][14].setTerreno(new Pantano(), new Nube()); 
 		 }
-
-	
 	}
 
 	public int getAncho(){
@@ -256,4 +250,32 @@ public class Tablero {
 		}
 	}
 
+	public void setTerreno(Terreno unTerrestreTerreno, Posicion posicion, int radio){
+		int limiteSupX = posicion.getX()+(radio/2);
+		int limiteSupY = posicion.getY()+(radio/2);
+		int limiteInfX = posicion.getX()-(radio/2);
+		int limiteInfY = posicion.getY()-(radio/2);
+
+		if(limiteSupX > this.ancho){
+			limiteSupX = this.ancho;
+		}
+
+		if(limiteInfX < 0){
+			limiteInfX = 0;
+		}
+
+		if(limiteSupY > this.alto){
+			limiteSupY = this.alto;
+		}
+
+		if(limiteInfY < 0){
+			limiteInfY = 0;
+		}
+
+		for(int i = limiteInfX; i < limiteSupX; i++){
+			for(int j = limiteInfY; j < limiteSupY; j++){
+				this.getCasillero(i,j).setTerrenoTerrestre(unTerrestreTerreno);
+			}
+		}
+	}
 }

@@ -13,6 +13,7 @@ public class Jugador {
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
 	public ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
+	public Posicion posicionPosibleMovimiento = new Posicion(-1,-1);
 	private int indiceAlgoFormer = 0;
 	private int indiceAlgoFormerRival = 0;
 	private int indiceAccion = 0;
@@ -34,10 +35,13 @@ public class Jugador {
 		this.selectAccion = false;
 		this.selectAlgoFormerRival = false;
 		this.posiblesMovimientos = new ArrayList<Casillero>();
+		this.posicionPosibleMovimiento = new Posicion(-1,-1);
 	}
 
 	public void selectMovimiento(){
 		this.selectMovimiento = true;
+		AlgoFormer algoFormerActual = this.getSelectAlgoFormer();
+		algoFormerActual.mover(this.posicionPosibleMovimiento);
 		this.juego.cambiarTurnoJugador();
 	}
 
@@ -105,6 +109,36 @@ public class Jugador {
 		return this.escuadronRivalAtacable.getAlgoFormer(this.indiceAlgoFormerRival);
 	}
 
+	public void cambiarPosicion(int x, int y){
+		Posicion posiblePosicion = new Posicion(this.posicionPosibleMovimiento);
+		posiblePosicion.sumar(new Posicion(x,y));
+		Casillero casillero = new CasilleroNoExiste();
+		try{
+			casillero = this.juego.getTablero().getCasillero(posiblePosicion);
+		}catch (CasilleroNoExisteException excepcion){}
+
+		if(!casillero.noExiste()){
+			if(this.posiblesMovimientos.contains(casillero)){
+				this.posicionPosibleMovimiento = posiblePosicion;
+			}
+		}
+	}
+
+	public void upPosicion(){
+		this.cambiarPosicion(0,-1);
+	}
+
+	public void downPosicion(){
+		this.cambiarPosicion(0,1);
+	}
+
+	public void leftPosicion(){
+		this.cambiarPosicion(-1,0);
+	}
+
+	public void rightPosicion(){
+		this.cambiarPosicion(1,0);
+	}
 	//TODO Deshardcodear indice accion
 	public void nextAccion(){
 		if(this.indiceAccion == 2){
@@ -181,9 +215,9 @@ public class Jugador {
 
 	public void moverAlgoFormer(){
 		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
-
 		Movimiento movimiento = unAlgoFormer.getMovimiento();
 		this.posiblesMovimientos = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getVelocidad());
+		this.posicionPosibleMovimiento = this.juego.getTablero().buscarAlgoFormer(unAlgoFormer);
 	}
 
 	public void transformarAlgoFormer(){

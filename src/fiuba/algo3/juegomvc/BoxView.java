@@ -2,19 +2,19 @@ package fiuba.algo3.juegomvc;
 
 import fiuba.algo3.tablero.*;
 import fiuba.algo3.algoformers.*;
-import fiuba.algo3.algoformers.personajes.Megatron;
 import javafx.scene.Group;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
+import javafx.scene.image.ImageView;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.Effect;
 
 public class BoxView {
 
@@ -31,6 +31,8 @@ public class BoxView {
 	Group root;
 	double sceneX;
 	double sceneY;
+	TextFlow textFlowAcciones;
+	TextFlow textFlowAlgoformer;
 
 	public BoxView(Group root,double sceneX,double sceneY,GraphicsContext gc, Juego juego){
 		this.gc = gc;
@@ -53,67 +55,62 @@ public class BoxView {
 		this.algoFormer = this.jugador.getSelectAlgoFormer();
 
 		this.reDraw();
-
-		if(this.jugador.estaSeleccionadoAlgoFormer()){
+		this.nombreJugador();
+		if(!this.jugador.estaSeleccionadoAlgoFormer()){
+			this.seleccionePersonaje();
+		} else {
 			if(!this.jugador.estaSeleccionadoAccion()){
 				this.action();
 			}
-		} else {
-			this.imprimirCaracteristicas(this.algoFormer);
 		}
-
+		this.imprimirCaracteristicas(this.algoFormer);
 	}
 
 	public void reDraw() {
 		for(int i = 0; i < this.cantidadCasillerosX; i++){
 			for(int j = 0; j < this.cantidadCasillerosY; j++){
+				Posicion posicion = new Posicion(i,j);
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
-//				if(this.jugador.posiblesMovimientos.contains(casillero))
-//					this.gc.setFill(Color.WHITE);
-				if(casillero.tieneContenido()){
-					this.pintarContenido(casillero.getContenido(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+
+				if(this.jugador.posiblesMovimientos.contains(casillero)){
+					this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
 				}
 
-				/*
+				if(posicion.equals(this.jugador.posicionPosibleMovimiento)){
+					this.pintarPosicionFutura(pixCasilleroAncho * i, pixCasilleroAlto * j);
+				}
 
-				this.gc.fillRect((this.pasoX*i), (this.pasoY*j), this.pasoX*(1+i), this.pasoY*(1+j));
-
-//				Posicion posicion = new Posicion(i, j);
-				
 				if(casillero.tieneContenido()){
 					Contenido contenido = casillero.getContenido();
-					//contenido.getClass();
-					if(this.algoFormer == contenido){
-						this.gc.setFill(Color.BLUE);
-					} else {
-						this.gc.setFill(Color.GREEN);
+					this.pintarContenido(contenido,pixCasilleroAncho * i, pixCasilleroAlto * j);
+					if(!this.jugador.estaSeleccionadoAlgoFormer() && this.algoFormer == contenido){
+						this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
 					}
-
-					this.gc.fillOval(this.pasoX*(i)+this.radioX/2, this.pasoY*(j)+this.radioX/2, this.radioX, this.radioX);
 				}
-				*/
 			}
 		}
 	
 	}
 
+	public void nombreJugador() {
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,25));
+		this.gc.setFill(Color.ALICEBLUE);
+		this.gc.fillText("Turno Jugador "+ this.jugador.getNombre(),sceneX*0.5,sceneY * 0.1);
+	}
+
+	public void seleccionePersonaje() {
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,20));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText("Seleccione Personaje",sceneX*0.4,sceneY * 0.25);
+	}
+
 	public void action() {
-		Text textoNombreJugador = new Text();
-		textoNombreJugador.setText("Juega "+ this.jugador.getNombre());
-		textoNombreJugador.setFont(Font.font("Verdana",FontWeight.BOLD,12.5));
-		textoNombreJugador.setFill(Color.ALICEBLUE);
-		root.getChildren().add(textoNombreJugador);
-		textoNombreJugador.relocate(sceneX/2 - 120,sceneY - 30);		
-		
-		Text textoSeleccionAccion = new Text();
-		textoSeleccionAccion.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoSeleccionAccion.setText("Seleccione accion");
-		textoSeleccionAccion.setFill(Color.ANTIQUEWHITE);
-		root.getChildren().add(textoSeleccionAccion);
-		textoSeleccionAccion.relocate(sceneX/2,sceneY - 30);
-		
-		
+
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,20));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText("Seleccione accion",sceneX*0.5,sceneY * 0.25);
+
 		ArrayList<String> acciones = new ArrayList<String>();
 		acciones.add("Atacar");
 		acciones.add("Mover");
@@ -124,25 +121,31 @@ public class BoxView {
 		String selectAction = acciones.get(indexSelecAction);
 		acciones.set(indexSelecAction, "> ".concat(selectAction));
 		
-		Text textoAccionesPosibles = new Text();
 		String separador = "  ";
-		textoAccionesPosibles.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoAccionesPosibles.setText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2));
-		textoAccionesPosibles.setFill(Color.ANTIQUEWHITE);
-		root.getChildren().add(textoAccionesPosibles);
-		textoAccionesPosibles.relocate(sceneX/2 + 120,sceneY - 30);	
+		this.gc.setFont(Font.font("Verdana",FontWeight.BOLD,17));
+		this.gc.setFill(Color.ANTIQUEWHITE);
+		this.gc.fillText(acciones.get(0) + separador + acciones.get(1) + separador + acciones.get(2),sceneX*0.5,sceneY * 0.3);
 
-		
+	}
+
+	private void pintarPosicionFutura(int i,int j) {
+		Image image = new Image("/posicionFutura.png");
+		gc.drawImage(image,i,j);
+	}
+
+	private void pintarContenidoSeleccionado(int i,int j) {
+		Image image = new Image("/PosibleMovimiento.png");
+		gc.drawImage(image,i,j);
 	}
 
 	private void pintarContenido(Contenido contenido,int i,int j) {
 		String contenidoName = contenido.getClass().getName();
-			contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
-			contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
+		contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
+		contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
 
-			Image image = new Image("/"+contenidoName+".png");
+		Image image = new Image("/"+contenidoName+".png");
 		gc.drawImage(image,i,j);
-		
+
 	}
 
 	private void pintarTerreno(Terreno terreno, int i, int j) {
@@ -155,15 +158,11 @@ public class BoxView {
 
 	public void imprimirCaracteristicas(AlgoFormer unAlgoFormer){
 
-		Text textoAlgoFormer = new Text();
-		textoAlgoFormer.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,12));
-		textoAlgoFormer.setTextAlignment(TextAlignment.CENTER);
-		textoAlgoFormer.setText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')');
-		textoAlgoFormer.setFill(Color.SALMON);
-		root.getChildren().add(textoAlgoFormer);
-		textoAlgoFormer.relocate(sceneX*0.8,sceneY * 0.1);
-		
-		
+		gc.setFont(Font.font("Verdana",FontWeight.EXTRA_BOLD,19));
+		gc.setTextAlign(TextAlignment.CENTER);
+		gc.setFill(Color.SALMON);
+		gc.fillText(unAlgoFormer.getNombre()+ '('+unAlgoFormer.getVida()+')',sceneX*0.8,sceneY * 0.1);
+
 		String nombreEstado;
 		if(unAlgoFormer.esHumanoide()){
 			nombreEstado = "Humanoide";
@@ -176,20 +175,15 @@ public class BoxView {
 		} else {
 			nombreTipoUnidad = "Aereo";
 		}
-		Text textoCaracteristicas = new Text();
-		textoCaracteristicas.setFont(Font.font("Verdana",FontWeight.BOLD,12));
-		textoCaracteristicas.setText(
-				
-				"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
-				"Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque()+'\n'+
-				"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
-				nombreEstado+ ' ' + nombreTipoUnidad 
-				
-		);
-		textoCaracteristicas.setFill(Color.WHEAT);
-		root.getChildren().add(textoCaracteristicas);
-		textoCaracteristicas.relocate(sceneX*0.8,15 + (sceneY * 0.1));
-		
-		
+
+		gc.setFont(Font.font("Verdana",FontWeight.BOLD,17));
+		gc.setFill(Color.WHEAT);
+		gc.fillText(
+		"velocidad: " + unAlgoFormer.getVelocidad()+'\n'+
+		"Distancia de ataque: " + unAlgoFormer.getDistanciaAtaque()+'\n'+
+		"Fuerza de ataque: " + unAlgoFormer.getFuerzaAtaque()+'\n'+
+		nombreEstado+ ' ' + nombreTipoUnidad,
+		sceneX*0.8,
+		25 + (sceneY * 0.1));
 	}
 }

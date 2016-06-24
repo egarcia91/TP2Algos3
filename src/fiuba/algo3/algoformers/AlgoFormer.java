@@ -7,7 +7,7 @@ import fiuba.algo3.tablero.Movimiento;
 import fiuba.algo3.tablero.Ataque;
 import fiuba.algo3.tablero.Contenido;
 
-public class AlgoFormer extends Contenido {
+public class AlgoFormer implements Contenido {
 
 	protected Movimiento movimiento;
 	protected EstadoAlgoformer estado;
@@ -23,10 +23,6 @@ public class AlgoFormer extends Contenido {
 
 	public String getNombre(){
 		return this.nombre;
-	}
-
-	public boolean esAlgoFormer(){
-		return true;
 	}
 
 	public int getVida(){
@@ -49,6 +45,10 @@ public class AlgoFormer extends Contenido {
 		this.estado.setVida(unaVida);
 	}
 
+	public void setVelocidad(int unaVelocidad) {
+		this.estado.setVelocidad(unaVelocidad);
+	}	
+	
 	public int getFuerzaAtaque(){
 		return this.estado.getFuerzaAtaque();
 	}
@@ -162,4 +162,27 @@ public class AlgoFormer extends Contenido {
 	public Escuadron getAlgoformersEnRango(){
 		return this.ataque.getAlgoformersEnRango(this);
 	}
+	
+	//Metodos de interfaz contenido
+	
+	@Override
+	public boolean estaVacio(){
+		return false;
+	}
+
+	@Override
+	public boolean esAlgoFormer(){
+		return true;
+	}
+
+	@Override
+	public boolean esSpark(){
+		return false;
+	}
+	
+	@Override
+	public boolean esBonus(){
+		return false;
+	}
+
 }

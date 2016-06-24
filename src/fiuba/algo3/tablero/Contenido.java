@@ -1,17 +1,10 @@
 package fiuba.algo3.tablero;
 
-public class Contenido {
+public interface Contenido {
 
-	public boolean estaVacio(){
-		return false;
-	}
-
-	public boolean esAlgoFormer(){
-		return false;
-	}
-
-	public boolean esSpark(){
-		return false;
-	}
+	public abstract boolean estaVacio();
+	public abstract boolean esAlgoFormer();
+	public abstract boolean esSpark();
+	public abstract boolean esBonus();
 
 }

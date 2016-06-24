@@ -18,6 +18,23 @@ public class Movimiento {
 	public void setTablero(Tablero unTablero){
 		this.tablero = unTablero;
 	}
+	
+	public void moverAlgoFormerDerecha(AlgoFormer unAlgoFormer,int velocidad){
+		this.moverAlgoFormer(unAlgoFormer,velocidad,1,0);
+	}
+
+	public void moverAlgoFormerIzquierda(AlgoFormer unAlgoFormer,int velocidad){
+		this.moverAlgoFormer(unAlgoFormer,velocidad,-1,0);
+	}
+
+	public void moverAlgoFormerAbajo(AlgoFormer unAlgoFormer,int velocidad){
+		this.moverAlgoFormer(unAlgoFormer,velocidad,0,-1);
+	}
+
+	public void moverAlgoFormerArriba(AlgoFormer unAlgoFormer,int velocidad){
+		this.moverAlgoFormer(unAlgoFormer,velocidad,0,1);
+	}
+
 
 	private int recorrerCasillero(AlgoFormer unAlgoFormer, Terreno unTerreno){
 		if(unTerreno.tienePenalizacion()){
@@ -40,21 +57,6 @@ public class Movimiento {
 		return unTerreno.getVelocidad();
 	}
 
-	public void moverAlgoFormerDerecha(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,1,0);
-	}
-
-	public void moverAlgoFormerIzquierda(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,-1,0);
-	}
-
-	public void moverAlgoFormerAbajo(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,-1);
-	}
-
-	public void moverAlgoFormerArriba(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,1);
-	}
 
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
 
@@ -65,22 +67,14 @@ public class Movimiento {
 		}
 		catch (CasilleroNoExisteException excepcion){}
 
-
-		//if(casillero.noExiste()){
-		//	throw new CasilleroNoExisteException();
-//		} else if(casillero.contieneAlgoFormer()){
-		//else if(casillero.tieneContenido()){
-		//	throw new CasilleroOcupadoException();
-		//} else {
 		try{
 			casillero.agregarContenido(unAlgoFormer);
-		}catch (CasilleroOcupadoException exception){}
 
 			this.tablero.quitarAlgoFormer(unAlgoFormer);
 			this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
-			this.tablero.quitarAlgoFormer(unAlgoFormer);
-			//this.tablero.setPosicion(unAlgoFormer, posicionFinal);
-		//}
+		}catch (CasilleroOcupadoException exception){}
+
+		//this.tablero.setPosicion(unAlgoFormer, posicionFinal);
 	}
 
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int x,int y){
@@ -212,9 +206,22 @@ public class Movimiento {
 	*/
 
 	public void mover(Posicion posicionFinal, AlgoFormer unAlgoFormer){
-
+		
+		Casillero casillero = this.tablero.getCasillero(posicionFinal);
+		if(casillero.tieneContenido() == true){
+			Contenido contenido = casillero.getContenido();
+			
+			if(contenido.esBonus() == true){
+					Item bonus = (Item) contenido;
+				unAlgoFormer.setFuerzaAtaque(unAlgoFormer.getFuerzaAtaque() * bonus.getFactorBonificacionPoderAtaque());
+				unAlgoFormer.setVelocidad(unAlgoFormer.getVelocidad() * bonus.getFactorBonificacionVelocidad());
+				
+			}
+		}
 		this.tablero.quitarAlgoFormer(unAlgoFormer);
 		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+
 	}
+	
 }
 

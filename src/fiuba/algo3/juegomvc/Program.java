@@ -87,11 +87,12 @@ public class Program extends Application {
 
 				Path currentRelativePath = Paths.get("");
 				String s = currentRelativePath.toAbsolutePath().toString();
-				//File file = new File(s+"\\src\\musica.mp3");
 				File file = new File(s + "\\src\\Transformers8bit.mp3");
 				String path = file.toURI().toASCIIString();
-				AudioClip audioClip = new AudioClip(path);
-				audioClip.play();
+				Media media = new Media(path);
+				MediaPlayer player = new MediaPlayer(media);
+				player.setCycleCount(MediaPlayer.INDEFINITE);
+				player.play();
 
 		}catch(Exception e){};	
 		

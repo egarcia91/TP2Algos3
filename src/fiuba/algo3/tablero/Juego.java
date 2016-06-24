@@ -8,8 +8,11 @@ import fiuba.algo3.algoformers.EscuadronAutobot;
 import fiuba.algo3.algoformers.EscuadronDecepticon;
 
 public class Juego {
-	private static final int TABLERO_ANCHO = 26;
-	private static final int TABLERO_ALTO = 15;
+
+	private static final int MAX_BONUS_TABLERO = 12;
+	private static final int NUMERO_BONUS_POSIBLES = 3;
+	private int tableroAncho = 12;
+	private int tableroAlto = 12;
 
 	private Tablero tablero;
 	private List<Jugador> jugadores;
@@ -18,15 +21,18 @@ public class Juego {
 	public EscuadronDecepticon escuadronDecepticon;
 
 	public Juego(){
-		new Juego(Juego.TABLERO_ANCHO,Juego.TABLERO_ALTO);
+		new Juego(this.tableroAncho,this.tableroAlto);
 	}
 	
 	public Juego(int anchoTablero, int altoTablero){
 		tablero = new Tablero(anchoTablero,altoTablero);
+		this.tableroAncho = anchoTablero;
+		this.tableroAlto = altoTablero;
 		jugadores = new ArrayList<Jugador>();
 		escuadronAutobot = new EscuadronAutobot();
 		escuadronDecepticon = new EscuadronDecepticon();
 		this.ubicarSpark(tablero);
+		this.ubicarBonus(tablero);
 	}
 
 	public Tablero getTablero(){
@@ -38,11 +44,41 @@ public class Juego {
 	}
 	public void ubicarSpark(Tablero tablero){
 		Random rand = new Random();
-		int randX = Math.round((Juego.TABLERO_ANCHO/2) + rand.nextInt(2));
-		int randY = Math.round((Juego.TABLERO_ALTO/2) + rand.nextInt(2));
+		int randX = Math.round((this.tableroAncho/2) + rand.nextInt(2));
+		int randY = Math.round((this.tableroAlto/2) + rand.nextInt(2));
 		tablero.setItem(new Spark(),randX,randY);
 	}
 
+	public void ubicarBonus(Tablero tablero){
+		Random rand = new Random();
+		int randomNumberItems = rand.nextInt(MAX_BONUS_TABLERO);
+		
+		for(int i = 0; i < randomNumberItems ; i++){
+			boolean bonusPudoSerUbicado = false;
+			while(!bonusPudoSerUbicado){
+				int randX = rand.nextInt(this.tableroAncho);
+				int randY = rand.nextInt(this.tableroAlto);
+				if(tablero.getCasillero(randX, randY).estaVacio() == true){
+					int randItem = rand.nextInt(NUMERO_BONUS_POSIBLES);
+					Item unItem;
+					switch(randItem){
+						case 0:
+							unItem = new CanionDoble();
+							break;
+						case 1:
+							unItem = new Flash();
+							break;
+						default:
+							unItem = new BurbujaInmaculada();
+							break;
+					}
+					tablero.setItem(unItem, randX, randY);
+					bonusPudoSerUbicado = true;
+				}
+			}
+		}
+	}
+	
 	public void agregarJugador(Jugador unJugador){
 		int cantidadJugadores = jugadores.size();
 		if(cantidadJugadores == 0){
@@ -90,11 +126,11 @@ public class Juego {
 	}
 
 	public int getTableroAncho(){
-		return Juego.TABLERO_ANCHO;
+		return this.tableroAncho;
 	}
 
 	public int getTableroAlto(){
-		return Juego.TABLERO_ALTO;
+		return this.tableroAlto;
 	}
 
 }

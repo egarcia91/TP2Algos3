@@ -15,7 +15,9 @@ public class Escuadron {
 
 	//TODO Esta clase debe ser iterable
 	public AlgoFormer getAlgoFormer(int number){
+		if(number >= algoFormers.size() || number < 0) number = 0;
 		return this.algoFormers.get(number);
+
 	}
 
 	public ArrayList<AlgoFormer> getAlgoFormers(){

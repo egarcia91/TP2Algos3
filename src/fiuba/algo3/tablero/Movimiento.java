@@ -130,23 +130,6 @@ public class Movimiento {
 		return casillero;
 	}
 
-	public Casillero posiblePosicionDerecha(AlgoFormer unAlgoFormer,int velocidad){
-		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,1,0);
-	}
-
-	public Casillero  posiblePosicionIzquierda(AlgoFormer unAlgoFormer,int velocidad){
-		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,-1,0);
-	}
-
-	public Casillero  posiblePosicionAbajo(AlgoFormer unAlgoFormer,int velocidad){
-		return this.posibleCasilleroFinal(unAlgoFormer,velocidad,0,-1);
-	}
-
-	public Casillero  posiblePosicionArriba(AlgoFormer unAlgoFormer,int velocidad){
-		return this.posibleCasilleroFinal(unAlgoFormer, velocidad, 0,1);
-	}
-
-
 	public ArrayList<Casillero> posiblesMovimientos (AlgoFormer unAlgoFormer, int velocidad){
 		ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
 		int cantvelocidad = unAlgoFormer.getVelocidad();
@@ -162,27 +145,6 @@ public class Movimiento {
 		return posiblesMovimientos;
 	}
 
-	/*
-	public ArrayList<Casillero> posiblesMovimientos(AlgoFormer unAlgoFormer, int velocidad){
-		//Aca lo que se me ocurre asi planteado
-		//seria que ejecute los cuatro metodos de posiblePosicion
-		//guardados en un Array, que de alguna forma se podrian visualizar en la Interfaz
-		ArrayList<Casillero> posiblesPosicionesFinales = new ArrayList<Casillero>();
-		try {
-			posiblesPosicionesFinales.add(posiblePosicionDerecha(unAlgoFormer, velocidad));
-		}catch (CasilleroNoExisteException excepcion){}
-		try {
-		posiblesPosicionesFinales.add(posiblePosicionIzquierda(unAlgoFormer, velocidad));
-		}catch (CasilleroNoExisteException excepcion){}
-		try {
-		posiblesPosicionesFinales.add(posiblePosicionAbajo(unAlgoFormer, velocidad));
-		}catch (CasilleroNoExisteException excepcion){}
-		try {
-		posiblesPosicionesFinales.add(posiblePosicionArriba(unAlgoFormer, velocidad));
-		}catch (CasilleroNoExisteException excepcion){}
-		return posiblesPosicionesFinales;
-	}
-	*/
 	
 	public void mover(int x, int y, AlgoFormer unAlgoFormer){
 		mover(new Posicion(x,y),unAlgoFormer);

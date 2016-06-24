@@ -3,18 +3,9 @@ package fiuba.algo3.tablero;
 import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.juegomvc.SoundPlayer;
 import fiuba.algo3.juegomvc.SoundPlayer.enumSound;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import fiuba.algo3.algoformers.AlgoFormer;
-import fiuba.algo3.algoformers.AlgoFormerVacio;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Jugador {
 
@@ -22,7 +13,7 @@ public class Jugador {
 	protected Juego juego;
 	private Escuadron escuadron;
 	private Escuadron escuadronRivalAtacable = new Escuadron();
-	public ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
+	public ArrayList<Casillero> casillerosEnRango = new ArrayList<Casillero>();
 	public Posicion posicionPosibleMovimiento = new Posicion(-1,-1);
 	private int indiceAlgoFormer = 0;
 	private int indiceAlgoFormerRival = 0;
@@ -44,7 +35,7 @@ public class Jugador {
 		this.selectAlgoFormer = false;
 		this.selectAccion = false;
 		this.selectAlgoFormerRival = false;
-		this.posiblesMovimientos = new ArrayList<Casillero>();
+		this.casillerosEnRango = new ArrayList<Casillero>();
 		this.posicionPosibleMovimiento = new Posicion(-1,-1); //RARO
 	}
 
@@ -74,7 +65,7 @@ public class Jugador {
 
 	public void deselectAccion(){
 		this.selectAccion = false;
-		this.posiblesMovimientos = new ArrayList<Casillero>();
+		this.casillerosEnRango = new ArrayList<Casillero>();
 		this.escuadronRivalAtacable = new Escuadron();
 	}
 
@@ -95,6 +86,10 @@ public class Jugador {
 		}
 	}
 
+	public int getAccionSeleccionada(){
+		return this.indiceAccion;
+	}
+	
 	public boolean estaSeleccionadoAlgoFormer(){
 		return this.selectAlgoFormer;
 	}
@@ -128,7 +123,7 @@ public class Jugador {
 		}catch (CasilleroNoExisteException excepcion){}
 
 		if(!casillero.noExiste()){
-			if(this.posiblesMovimientos.contains(casillero)){
+			if(this.casillerosEnRango.contains(casillero)){
 				this.posicionPosibleMovimiento = posiblePosicion;
 			}
 		}
@@ -226,7 +221,7 @@ public class Jugador {
 	public void moverAlgoFormer(){
 		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
 		Movimiento movimiento = unAlgoFormer.getMovimiento();
-		this.posiblesMovimientos = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getVelocidad());
+		this.casillerosEnRango = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getVelocidad());
 		this.posicionPosibleMovimiento = this.juego.getTablero().buscarAlgoFormer(unAlgoFormer);
 	}
 
@@ -245,11 +240,12 @@ public class Jugador {
 	}
 
 	public void atacarAlgoFormer(){
-		Movimiento movimiento = new Movimiento();
-		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
-		ArrayList<Casillero> casillerosEnRangoDeAtaque = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getDistanciaAtaque());
 		
-		for(Iterator<Casillero> i = casillerosEnRangoDeAtaque.iterator(); i.hasNext();){
+		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
+		Movimiento movimiento = unAlgoFormer.getMovimiento();
+		this.casillerosEnRango = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getDistanciaAtaque());
+		
+		for(Iterator<Casillero> i = casillerosEnRango.iterator(); i.hasNext();){
 			Casillero casillero = i.next();
 			if(casillero.tieneContenido() == true){
 				Contenido contenido = casillero.getContenido();
@@ -261,8 +257,8 @@ public class Jugador {
 				}
 			}
 		}
-		
-		//this.escuadronRivalAtacable = unAlgoFormer.getAlgoformersEnRango();
+		SoundPlayer sound = new SoundPlayer();
+		sound.play(enumSound.ATAQUE_SOUND);
 	}
 
 	public void setJuego(Juego juego) {

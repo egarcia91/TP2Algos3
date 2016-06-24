@@ -26,7 +26,7 @@ public class Ataque {
 			return false;
 		}
 	}
-
+/*
 	public Escuadron getAlgoformersEnRango(AlgoFormer unAlgoFormer){
 		Escuadron algoformersEnRango = new Escuadron();
 		Posicion posicion = this.tablero.getPosicion(unAlgoFormer);
@@ -42,8 +42,8 @@ public class Ataque {
 		}
 
 		return algoformersEnRango;
-	}
-
+	}*/
+/*
 	public void ataqueZona(AlgoFormer unAlgoFormer,int unaDistanciaAtaque, int unaFuerzaAtaque){
 		Posicion posicionActual = this.tablero.buscarAlgoFormer(unAlgoFormer);
 
@@ -68,7 +68,7 @@ public class Ataque {
 			}
 		}
 	}
-
+*/
 	public void atacar(AlgoFormer unAlgoFormer, int unaFuerzaAtaque){
 		if(!unAlgoFormer.estaVacio()){
 			unAlgoFormer.recibirAtaque(unaFuerzaAtaque);

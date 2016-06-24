@@ -77,8 +77,18 @@ public class BoxView {
 				Casillero casillero = this.tablero.getCasillero(i,j);
 				this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
 
-				if(this.jugador.posiblesMovimientos.contains(casillero)){
-					this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
+				if(this.jugador.casillerosEnRango.contains(casillero)){
+					switch(this.jugador.getAccionSeleccionada()){
+						case 1:
+							this.pintarContenidoSeleccionado(pixCasilleroAncho * i, pixCasilleroAlto * j);
+							break;
+						case 0:
+							this.pintarAtaque(pixCasilleroAncho * i, pixCasilleroAlto * j);
+							//this.pintarTerreno(casillero.getTerrenoTerrestre(),pixCasilleroAncho * i, pixCasilleroAlto * j);
+							break;
+						default:
+							break;
+					}
 				}
 
 				if(posicion.equals(this.jugador.posicionPosibleMovimiento)){
@@ -136,6 +146,12 @@ public class BoxView {
 		Image image = new Image("/posicionFutura.png");
 		gc.drawImage(image,i,j);
 	}
+	
+	private void pintarAtaque(int i,int j){
+		Image image = new Image("/Ataque.png");
+		gc.drawImage(image,i,j);
+	}
+
 
 	private void pintarContenidoSeleccionado(int i,int j) {
 		Image image = new Image("/PosibleMovimiento.png");

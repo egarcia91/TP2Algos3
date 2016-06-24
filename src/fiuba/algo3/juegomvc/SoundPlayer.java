@@ -14,6 +14,7 @@ public class SoundPlayer {
 	private final static String antitransformationPath = "\\src\\antitransformation.wav";
 	private final static String movimientoPath = "\\src\\movimiento.wav";
 	private final static String casilleroOcupadoPath = "\\src\\casillero_ocupado.wav";
+	private final static String ataquePath = "\\src\\explosion.mp3";
 	
 	public static enum enumSound{
 		BONUS_SOUND,
@@ -39,6 +40,7 @@ public class SoundPlayer {
 				str = antitransformationPath;
 				break;
 			case ATAQUE_SOUND:
+				str = ataquePath;
 				break;
 			case WIN:
 				break;

@@ -219,7 +219,7 @@ public class Movimiento {
 	}
 
 	public void mover(Posicion posicionFinal, AlgoFormer unAlgoFormer){
-		
+		SoundPlayer sound = new SoundPlayer();
 		Casillero casillero = this.tablero.getCasillero(posicionFinal);
 		if(casillero.tieneContenido() == true){
 			Contenido contenido = casillero.getContenido();
@@ -229,12 +229,16 @@ public class Movimiento {
 				unAlgoFormer.setFuerzaAtaque(unAlgoFormer.getFuerzaAtaque() * bonus.getFactorBonificacionPoderAtaque());
 				unAlgoFormer.setVelocidad(unAlgoFormer.getVelocidad() * bonus.getFactorBonificacionVelocidad());
 				unAlgoFormer.agregarItem(bonus);
-				SoundPlayer sound = new SoundPlayer();
 				sound.play(enumSound.BONUS_SOUND);
+			}
+			if(contenido.esAlgoFormer() == true){
+				sound.play(enumSound.CASILLERO_OCUPADO);
+				throw new CasilleroOcupadoException();
 			}
 		}
 		this.tablero.quitarAlgoFormer(unAlgoFormer);
 		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+		sound.play(enumSound.MOVIMIENTO);
 		unAlgoFormer.setPosicion(posicionFinal);
 
 	}

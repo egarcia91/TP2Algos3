@@ -4,8 +4,13 @@ import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Movimiento;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import fiuba.algo3.tablero.Ataque;
 import fiuba.algo3.tablero.Contenido;
+import fiuba.algo3.tablero.Item;
 
 public class AlgoFormer implements Contenido {
 
@@ -15,11 +20,13 @@ public class AlgoFormer implements Contenido {
 	protected int penalizacionAtaque = 0;
 	protected Escuadron escuadron;
 	public Ataque ataque;
+	protected ArrayList<Item> bonusCollected;
 
 	protected String nombre = "Algoformer";
 
 	public AlgoFormer(){
 		this.transformarHumanoide();
+		bonusCollected = new ArrayList<Item>();
 	}
 
 	public String getNombre(){
@@ -192,6 +199,14 @@ public class AlgoFormer implements Contenido {
 	
 	public Escuadron getEscuadron(){
 		return this.escuadron;
+	}
+
+	public void agregarItem(Item bonus) {
+		bonusCollected.add(bonus);
+	}
+
+	public ArrayList<Item> getItems() {
+		return bonusCollected;
 	}
 
 }

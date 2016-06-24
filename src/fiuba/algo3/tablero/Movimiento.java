@@ -1,13 +1,21 @@
 package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.AlgoFormer;
+import fiuba.algo3.juegomvc.SoundPlayer;
+import fiuba.algo3.juegomvc.SoundPlayer.enumSound;
 import fiuba.algo3.tablero.Tablero;
 import fiuba.algo3.tablero.Terreno;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import fiuba.algo3.tablero.Casillero;
 import fiuba.algo3.tablero.CasilleroNoExiste;
 import fiuba.algo3.tablero.CasilleroOcupadoException;
 import fiuba.algo3.tablero.CasilleroNoExisteException;
 import fiuba.algo3.tablero.Posicion;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Movimiento {
@@ -215,7 +223,9 @@ public class Movimiento {
 					Item bonus = (Item) contenido;
 				unAlgoFormer.setFuerzaAtaque(unAlgoFormer.getFuerzaAtaque() * bonus.getFactorBonificacionPoderAtaque());
 				unAlgoFormer.setVelocidad(unAlgoFormer.getVelocidad() * bonus.getFactorBonificacionVelocidad());
-				
+				unAlgoFormer.agregarItem(bonus);
+				SoundPlayer sound = new SoundPlayer();
+				sound.play(enumSound.BONUS_SOUND);
 			}
 		}
 		this.tablero.quitarAlgoFormer(unAlgoFormer);

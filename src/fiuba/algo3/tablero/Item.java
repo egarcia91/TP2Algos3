@@ -1,7 +1,7 @@
 package fiuba.algo3.tablero;
 
 public abstract class Item implements Contenido {
-	private String nombre = "Item";
+	protected String nombre = "Item";
 	private int cantidadTurnosDuracion = 0;
 	private int factorBonificacionPoderAtaque = 1;
 	private int factorBonificacionVelocidad = 1;
@@ -64,5 +64,9 @@ public abstract class Item implements Contenido {
 	public boolean esBonus(){
 		return true;
 	}	
+	
+	public void disminuirTurnosDuracion(){
+		cantidadTurnosDuracion--;
+	}
 
 }

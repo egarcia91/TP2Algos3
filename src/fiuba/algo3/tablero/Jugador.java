@@ -1,8 +1,17 @@
 package fiuba.algo3.tablero;
 
 import fiuba.algo3.algoformers.Escuadron;
+import fiuba.algo3.juegomvc.SoundPlayer;
+import fiuba.algo3.juegomvc.SoundPlayer.enumSound;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.AlgoFormerVacio;
+
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -225,8 +234,12 @@ public class Jugador {
 		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
 		if(unAlgoFormer.esHumanoide()){
 			unAlgoFormer.transformarAlterno();
+			SoundPlayer sound = new SoundPlayer();
+			sound.play(enumSound.TRANSFORMATION_SOUND);
 		} else {
 			unAlgoFormer.transformarHumanoide();
+			SoundPlayer sound = new SoundPlayer();
+			sound.play(enumSound.ANTITRANSFORMATION_SOUND);
 		}
 		this.juego.cambiarTurnoJugador();
 	}

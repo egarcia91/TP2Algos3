@@ -12,6 +12,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.Effect;
@@ -187,5 +189,8 @@ public class BoxView {
 		nombreEstado+ ' ' + nombreTipoUnidad,
 		sceneX*0.8,
 		25 + (sceneY * 0.1));
+		for(Iterator<Item> i = unAlgoFormer.getItems().iterator(); i.hasNext();){
+			gc.fillText("Bonus! :" +  i.next().getNombre(), sceneX*0.8, (sceneY * 0.1) - 100 );
+		}
 	}
 }

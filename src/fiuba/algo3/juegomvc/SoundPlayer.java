@@ -13,7 +13,9 @@ public class SoundPlayer {
 	private final static String movimientoPath = "/movimiento.wav";
 	private final static String casilleroOcupadoPath = "/casillero_ocupado.wav";
 	private final static String ataquePath = "/explosion.mp3";
-	
+	private final static String winningPath = "/YouWin.wav";
+	private final static String stormPath = "Storm.wav";
+			
 	public static enum enumSound{
 		BONUS_SOUND,
 		TRANSFORMATION_SOUND,
@@ -21,7 +23,9 @@ public class SoundPlayer {
 		ATAQUE_SOUND,
 		MOVIMIENTO,
 		CASILLERO_OCUPADO,
-		WIN
+		WIN,
+		STORM,
+		
 	};		
 	
 	public void play(enumSound enumSound){
@@ -41,12 +45,16 @@ public class SoundPlayer {
 				str = ataquePath;
 				break;
 			case WIN:
+				str = winningPath;
 				break;
 			case MOVIMIENTO:
 				str = movimientoPath;
 				break;
 			case CASILLERO_OCUPADO:
 				str = casilleroOcupadoPath;
+				break;
+			case STORM:	
+				str = stormPath;
 				break;
 			default:
 				break;

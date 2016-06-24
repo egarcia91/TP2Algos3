@@ -35,6 +35,8 @@ public class BoxView {
 	double sceneY;
 	TextFlow textFlowAcciones;
 	TextFlow textFlowAlgoformer;
+	
+	
 
 	public BoxView(Group root,double sceneX,double sceneY,GraphicsContext gc, Juego juego){
 		this.gc = gc;

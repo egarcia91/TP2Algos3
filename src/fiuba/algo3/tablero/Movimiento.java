@@ -161,7 +161,10 @@ public class Movimiento {
 				unAlgoFormer.setFuerzaAtaque(unAlgoFormer.getFuerzaAtaque() * bonus.getFactorBonificacionPoderAtaque());
 				unAlgoFormer.setVelocidad(unAlgoFormer.getVelocidad() * bonus.getFactorBonificacionVelocidad());
 				unAlgoFormer.agregarItem(bonus);
-				sound.play(enumSound.BONUS_SOUND);
+				if(bonus.esSpark() == false)
+					sound.play(enumSound.BONUS_SOUND);
+				else
+					sound.play(enumSound.WIN);
 			}
 			if(contenido.esAlgoFormer() == true){
 				sound.play(enumSound.CASILLERO_OCUPADO);

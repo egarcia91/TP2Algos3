@@ -83,6 +83,7 @@ public class Program extends Application {
 				File file = new File(s + "/src/Transformers8bit.mp3");
 				String path = file.toURI().toASCIIString();
 				AudioClip audioClip = new AudioClip(path);
+				audioClip.setCycleCount(100);;
 				audioClip.play();
 
 		}catch(IllegalArgumentException e){};	

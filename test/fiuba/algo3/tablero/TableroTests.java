@@ -53,42 +53,6 @@ public class TableroTests{
 		tablero.agregarAlgoFormer(new Megatron(), TABLERO_ANCHO - 1, TABLERO_ALTO - 1);
 	}
 
-	@Test (expected = CasilleroNoExisteException.class)
-	public void test05MovimientoNoSeVaDeLosLimitesDelTableroDerecha(){
-		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		Megatron megatron = new Megatron();
-		
-		tablero.agregarAlgoFormer(megatron,TABLERO_ANCHO - 1,0);
-		megatron.moverArriba();
-	}
-
-	@Test (expected = CasilleroNoExisteException.class)
-	public void test06MovimientoNoSeVaDeLosLimitesDelTableroIzquierda(){
-		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		Megatron megatron = new Megatron();
-		
-		tablero.agregarAlgoFormer(megatron,0,0);
-		megatron.moverIzquierda();
-	}
-	
-	@Test (expected = CasilleroNoExisteException.class)
-	public void test07MovimientoNoSeVaDeLosLimitesDelTableroArriba(){
-		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		Megatron megatron = new Megatron();
-		
-		tablero.agregarAlgoFormer(megatron,0,0);
-		megatron.moverArriba();
-	}
-	
-	@Test (expected = CasilleroNoExisteException.class)
-	public void test08MovimientoNoSeVaDeLosLimitesDelTableroAbajo(){
-		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
-		Megatron megatron = new Megatron();
-		
-		tablero.agregarAlgoFormer(megatron,0,TABLERO_ALTO - 1);
-		megatron.moverAbajo();
-	}
-
 }
 
 

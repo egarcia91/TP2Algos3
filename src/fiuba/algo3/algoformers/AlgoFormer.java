@@ -1,13 +1,9 @@
 package fiuba.algo3.algoformers;
 
-import fiuba.algo3.tablero.CasilleroOcupadoException;
-import fiuba.algo3.tablero.MovimientoFueraDeRangoException;
 import fiuba.algo3.tablero.Posicion;
 import fiuba.algo3.tablero.Movimiento;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
 import fiuba.algo3.tablero.Ataque;
 import fiuba.algo3.tablero.Contenido;
 import fiuba.algo3.tablero.Item;
@@ -21,6 +17,7 @@ public class AlgoFormer implements Contenido {
 	protected Escuadron escuadron;
 	public Ataque ataque;
 	protected ArrayList<Item> bonusCollected;
+	Posicion posicion;
 
 	protected String nombre = "Algoformer";
 
@@ -72,6 +69,10 @@ public class AlgoFormer implements Contenido {
 	public int getVelocidad(){
 		return this.estado.getVelocidad();
 	}
+	
+	public String getNombreEstado(){
+		return this.estado.getNombreEstado();
+	}
 
 	public boolean esTerrestre(){
 		return this.estado.getTerrestre();
@@ -113,7 +114,7 @@ public class AlgoFormer implements Contenido {
 
 	public void moverDerecha(){
 		if(this.turnosCastigo == 0){
-			this.movimiento.moverAlgoFormerDerecha(this,this.getVelocidad());
+			this.movimiento.moverAlgoFormerDerecha(this);
 		} else {
 			this.turnosCastigo--;
 		}
@@ -121,7 +122,7 @@ public class AlgoFormer implements Contenido {
 
 	public void moverIzquierda(){
 		if(this.turnosCastigo == 0){
-			this.movimiento.moverAlgoFormerIzquierda(this,this.getVelocidad());
+			this.movimiento.moverAlgoFormerIzquierda(this);
 		} else {
 			this.turnosCastigo--;
 		}
@@ -129,7 +130,7 @@ public class AlgoFormer implements Contenido {
 
 	public void moverArriba(){
 		if(this.turnosCastigo == 0){
-			this.movimiento.moverAlgoFormerArriba(this,this.getVelocidad());
+			this.movimiento.moverAlgoFormerArriba(this);
 		} else {
 			this.turnosCastigo--;
 		}
@@ -137,7 +138,7 @@ public class AlgoFormer implements Contenido {
 
 	public void moverAbajo(){
 		if(this.turnosCastigo == 0){
-			this.movimiento.moverAlgoFormerAbajo(this,this.getVelocidad());
+			this.movimiento.moverAlgoFormerAbajo(this);
 		} else {
 			this.turnosCastigo--;
 		}
@@ -207,6 +208,14 @@ public class AlgoFormer implements Contenido {
 
 	public ArrayList<Item> getItems() {
 		return bonusCollected;
+	}
+
+	public void setPosicion(Posicion posicion) {
+		this.posicion = posicion;
+	}
+	
+	public Posicion getPosicion(){
+		return this.posicion;
 	}
 
 }

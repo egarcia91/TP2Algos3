@@ -9,6 +9,7 @@ public class EstadoAlgoformer{
 	private int distanciaAtaque;
 	private boolean terrestre = false;
 	private boolean aereo = false;
+	protected String nombreEstado;
 
 	public int getVida(){
 		return this.vida;
@@ -32,6 +33,10 @@ public class EstadoAlgoformer{
 
 	public boolean getAereo(){
 		return this.aereo;
+	}
+	
+	public String getNombreEstado(){
+		return this.nombreEstado;
 	}
 
 	public void setTerrestre(boolean esTerrestre){

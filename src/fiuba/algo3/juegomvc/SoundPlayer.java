@@ -15,7 +15,9 @@ public class SoundPlayer {
 	public static enum enumSound{
 		BONUS_SOUND,
 		TRANSFORMATION_SOUND,
-		ANTITRANSFORMATION_SOUND
+		ANTITRANSFORMATION_SOUND,
+		ATAQUE_SOUND,
+		WIN
 	};		
 	
 	public void play(enumSound enumSound){
@@ -30,6 +32,10 @@ public class SoundPlayer {
 				break;
 			case ANTITRANSFORMATION_SOUND:
 				str = antitransformationPath;
+				break;
+			case ATAQUE_SOUND:
+				break;
+			case WIN:
 				break;
 			default:
 				break;

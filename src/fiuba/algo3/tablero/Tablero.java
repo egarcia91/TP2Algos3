@@ -16,10 +16,10 @@ public class Tablero {
 	protected Escuadron escuadronDos;
 
 	public Tablero(int ancho, int alto){
-		tablero = new Casillero[ancho][alto];
+		tablero = new Casillero[alto][ancho];
 		for(int i = 0; i < ancho; i++){
 			for(int j = 0; j < alto; j++){
-				tablero[i][j] = new Casillero();
+				tablero[j][i] = new Casillero();
 			}
 		}
 		this.ancho = ancho;
@@ -30,15 +30,15 @@ public class Tablero {
 		this.escuadronDos = new Escuadron();
 
 		this.setMapa();
-		System.out.println(""+this.ancho);
-		System.out.println(""+this.alto);
+		//System.out.println(""+this.ancho);
+		//System.out.println(""+this.alto);
 
 	}
 
 
 	private void setMapa(){
 	
-		char[][] mat ={
+		final char[][] mat ={
 
 		{'r','r','r','r','r','r','r','p','p','p','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
 		{'r','r','r','r','e','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','e','r','e','r','r'},
@@ -72,24 +72,23 @@ public class Tablero {
 		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
 		// {'r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r','r'},
 		};
-
 	
-		 for(int i=0; i < this.ancho-2 ;i++){
-		 	for(int j=0; j < this.alto-2 ;j++){
-
-		 		switch(mat[j][i]){
-		 		
-		 		case 'e':
-		 		this.tablero[i][j].setTerreno(new Espinas(), new Nube());
-		 		break;
-
-		 		case 'p': 
-		 		this.tablero[i][j].setTerreno(new Pantano(), new Nube());
-		 		break;
-		 		
-		 		default:
-		 		this.tablero[i][j].setTerreno(new Rocosa(), new Nube());
-		 		} 
+		for(int i=0; i < this.ancho; i++){
+			for(int j=0; j < this.alto; j++){
+				try{
+			 		switch(mat[j][i]){
+			 			case 'e':
+				 			this.getCasillero(i,j).setTerreno(new Espinas(), new Nube());
+				 			break;
+		
+				 		case 'p': 
+				 			this.getCasillero(i,j).setTerreno(new Pantano(), new Nube());
+				 			break;
+				 		
+				 		default:
+				 			this.getCasillero(i,j).setTerreno(new Rocosa(), new Nube());
+				 	} 
+				}catch(ArrayIndexOutOfBoundsException e){};
 		 	}
 		 }
 	}
@@ -107,11 +106,10 @@ public class Tablero {
 	}
 
 	public Casillero getCasillero(int posX, int posY){
-		try{
-			return this.tablero[posX][posY];
-		}catch(CasilleroNoExisteException e){
+		if((posX >= ancho) || (posY >= alto) || (posX < 0) || (posY < 0)) 
 			throw new CasilleroNoExisteException();
-		}
+		else
+			return this.tablero[posY][posX];
 	}
 
 	public Escuadron getEscuadronRival(AlgoFormer unAlgoFormer){
@@ -130,6 +128,7 @@ public class Tablero {
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,Posicion pos){
+		//TODO y si es un Algoformer?
 		this.getCasillero(pos).agregarContenido(unAlgoFormer);
 		this.posicionesElementos.put(unAlgoFormer.getNombre(),new Posicion(pos));
 		Ataque ataque = new Ataque();
@@ -138,6 +137,7 @@ public class Tablero {
 		movimiento.setTablero(this);
 		unAlgoFormer.setAtaque(ataque);
 		unAlgoFormer.setMovimiento(movimiento);
+		unAlgoFormer.setPosicion(pos);
 	}
 
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer,int x, int y){

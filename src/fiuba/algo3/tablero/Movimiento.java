@@ -27,20 +27,20 @@ public class Movimiento {
 		this.tablero = unTablero;
 	}
 	
-	public void moverAlgoFormerDerecha(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,1,0);
+	public void moverAlgoFormerDerecha(AlgoFormer unAlgoFormer){
+		this.moverAlgoFormer(unAlgoFormer,unAlgoFormer.getVelocidad(),1,0);
 	}
 
-	public void moverAlgoFormerIzquierda(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,-1,0);
+	public void moverAlgoFormerIzquierda(AlgoFormer unAlgoFormer){
+		this.moverAlgoFormer(unAlgoFormer,unAlgoFormer.getVelocidad(),-1,0);
 	}
 
-	public void moverAlgoFormerAbajo(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,-1);
+	public void moverAlgoFormerAbajo(AlgoFormer unAlgoFormer){
+		this.moverAlgoFormer(unAlgoFormer,unAlgoFormer.getVelocidad(),0,-1);
 	}
 
-	public void moverAlgoFormerArriba(AlgoFormer unAlgoFormer,int velocidad){
-		this.moverAlgoFormer(unAlgoFormer,velocidad,0,1);
+	public void moverAlgoFormerArriba(AlgoFormer unAlgoFormer){
+		this.moverAlgoFormer(unAlgoFormer,unAlgoFormer.getVelocidad(),0,1);
 	}
 
 
@@ -65,7 +65,7 @@ public class Movimiento {
 		return unTerreno.getVelocidad();
 	}
 
-
+	
 	public void moverAlgoFormer(AlgoFormer unAlgoFormer,int velocidad,int x, int y){
 
 		//Casillero casillero = posibleCasilleroFinal(unAlgoFormer, velocidad, x, y);
@@ -84,7 +84,8 @@ public class Movimiento {
 
 		//this.tablero.setPosicion(unAlgoFormer, posicionFinal);
 	}
-
+	
+	
 	public boolean existeAlgoFormer(AlgoFormer unAlgoFormer, int x,int y){
 		Posicion posicionAlgoFormer = this.tablero.getPosicion(unAlgoFormer);
 		Posicion posicionConsulta = new Posicion(x,y);
@@ -212,6 +213,10 @@ public class Movimiento {
 		return posiblesPosicionesFinales;
 	}
 	*/
+	
+	public void mover(int x, int y, AlgoFormer unAlgoFormer){
+		mover(new Posicion(x,y),unAlgoFormer);
+	}
 
 	public void mover(Posicion posicionFinal, AlgoFormer unAlgoFormer){
 		
@@ -230,6 +235,7 @@ public class Movimiento {
 		}
 		this.tablero.quitarAlgoFormer(unAlgoFormer);
 		this.tablero.agregarAlgoFormer(unAlgoFormer,posicionFinal);
+		unAlgoFormer.setPosicion(posicionFinal);
 
 	}
 	

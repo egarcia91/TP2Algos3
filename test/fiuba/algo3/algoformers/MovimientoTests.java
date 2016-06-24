@@ -9,32 +9,27 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class MovimientoTests {
+	private final static int TABLERO_ANCHO = 10;
+	private final static int TABLERO_ALTO = 10;
 
 	@Test
 	public void test01MovimientoNormalAlgoFormer(){
-		Tablero tablero = new Tablero(100,100);
+		Tablero tablero = new Tablero(10,10);
 		OptimusPrime optimusPrime = new OptimusPrime();
-		Posicion unaPosicion = new Posicion(50,50);
 
-		tablero.agregarAlgoFormer(optimusPrime,unaPosicion);
+		tablero.agregarAlgoFormer(optimusPrime,new Posicion(5,5));
 		optimusPrime.moverDerecha();
-		Assert.assertTrue(tablero.existeAlgoFormer(optimusPrime,52,50));
+		Assert.assertTrue(tablero.existeAlgoFormer(optimusPrime,7,5));
 	}
 
 	@Test(expected=CasilleroOcupadoException.class)
 	public void test02MovimientoHaciaCasilleroOcupado(){
-		Tablero tablero = new Tablero(200,200);
+		Tablero tablero = new Tablero(20,20);
+		
 		Megatron megatron = new Megatron();
 		OptimusPrime optimusPrime = new OptimusPrime();
-
-		Posicion unaPosicion = new Posicion(50,50);
-		Posicion otraPosicion = new Posicion(51,50);
-
-		tablero.agregarAlgoFormer(megatron,unaPosicion);
-		tablero.agregarAlgoFormer(optimusPrime,otraPosicion);
-
-		//System.out.println("megatron = (" + tablero.getPosicion(megatron).getX() + "," + tablero.getPosicion(megatron).getY()+")\n");
-		//megatron.mover(posRelativa);
+		tablero.agregarAlgoFormer(megatron,new Posicion(9,10));
+		tablero.agregarAlgoFormer(optimusPrime,new Posicion(9+optimusPrime.getVelocidad(),10));
 		megatron.moverDerecha();
 		}
 
@@ -101,6 +96,43 @@ public class MovimientoTests {
 		ratchet.moverDerecha();
 
 		//Assert.assertTrue(tablero.existeAlgoFormer(ratchet,51,50));
+	}
+	
+
+	@Test (expected = CasilleroNoExisteException.class)
+	public void test05MovimientoNoSeVaDeLosLimitesDelTableroDerecha(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		Megatron megatron = new Megatron();
+		
+		tablero.agregarAlgoFormer(megatron,TABLERO_ANCHO - 1,0);
+		megatron.moverArriba();
+	}
+
+	@Test (expected = CasilleroNoExisteException.class)
+	public void test06MovimientoNoSeVaDeLosLimitesDelTableroIzquierda(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		Megatron megatron = new Megatron();
+		
+		tablero.agregarAlgoFormer(megatron,0,0);
+		megatron.moverIzquierda();
+	}
+	
+	@Test (expected = CasilleroNoExisteException.class)
+	public void test07MovimientoNoSeVaDeLosLimitesDelTableroArriba(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		Megatron megatron = new Megatron();
+		
+		tablero.agregarAlgoFormer(megatron,0,0);
+		megatron.moverArriba();
+	}
+	
+	@Test (expected = CasilleroNoExisteException.class)
+	public void test08MovimientoNoSeVaDeLosLimitesDelTableroAbajo(){
+		Tablero tablero = new Tablero(TABLERO_ANCHO,TABLERO_ALTO);
+		Megatron megatron = new Megatron();
+		
+		tablero.agregarAlgoFormer(megatron,0,TABLERO_ALTO - 1);
+		megatron.moverAbajo();
 	}
 
 }

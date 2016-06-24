@@ -63,5 +63,9 @@ public class Posicion{
 		}
 	}
 
+	public Posicion getSuma(int x, int y) {
+		return new Posicion(this.x + x, this.y + y);
+	}
+
 }
 

@@ -146,8 +146,14 @@ public class BoxView {
 		String contenidoName = contenido.getClass().getName();
 		contenidoName = contenidoName.replace("fiuba.algo3.tablero.","");
 		contenidoName = contenidoName.replace("fiuba.algo3.algoformers.personajes.","");
-
-		Image image = new Image("/"+contenidoName+".png");
+		Image image;
+		if(contenido.esAlgoFormer() == true){
+			AlgoFormer algoFormer = (AlgoFormer) contenido;
+			image = new Image("/"+contenidoName+ algoFormer.getNombreEstado() +".png");
+		}
+		else{
+			image = new Image("/"+contenidoName+".png");
+		}	
 		gc.drawImage(image,i,j);
 
 	}

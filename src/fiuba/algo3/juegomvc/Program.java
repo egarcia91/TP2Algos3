@@ -80,7 +80,7 @@ public class Program extends Application {
 
 				Path currentRelativePath = Paths.get("");
 				String s = currentRelativePath.toAbsolutePath().toString();
-				File file = new File(s + "\\src\\Transformers8bit.mp3");
+				File file = new File(s + "/src/Transformers8bit.mp3");
 				String path = file.toURI().toASCIIString();
 				Media media = new Media(path);
 				MediaPlayer player = new MediaPlayer(media);

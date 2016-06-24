@@ -7,12 +7,12 @@ import javafx.scene.media.AudioClip;
 
 public class SoundPlayer {
 	
-	private final static String bonusPath = "\\bonus_collected.mp3";
-	private final static String transformationPath ="\\transformation.wav";
-	private final static String antitransformationPath = "\\antitransformation.wav";
-	private final static String movimientoPath = "\\movimiento.wav";
-	private final static String casilleroOcupadoPath = "\\casillero_ocupado.wav";
-	private final static String ataquePath = "\\explosion.mp3";
+	private final static String bonusPath = "/bonus_collected.mp3";
+	private final static String transformationPath ="/transformation.wav";
+	private final static String antitransformationPath = "/antitransformation.wav";
+	private final static String movimientoPath = "/movimiento.wav";
+	private final static String casilleroOcupadoPath = "/casillero_ocupado.wav";
+	private final static String ataquePath = "/explosion.mp3";
 	
 	public static enum enumSound{
 		BONUS_SOUND,

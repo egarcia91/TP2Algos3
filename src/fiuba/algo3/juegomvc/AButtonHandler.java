@@ -37,8 +37,8 @@ public class AButtonHandler implements EventHandler<ActionEvent> {
 					jugadorTurnoActual.selectMovimiento();
 					break;
 				default:
-					System.out.println("Ataque");
-					jugadorTurnoActual.atacarAlgoFormer();
+					//System.out.println("Ataque");
+					//jugadorTurnoActual.atacarAlgoFormer();
 					break;
 			}
 		}

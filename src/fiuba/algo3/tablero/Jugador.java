@@ -45,7 +45,7 @@ public class Jugador {
 		this.selectAccion = false;
 		this.selectAlgoFormerRival = false;
 		this.posiblesMovimientos = new ArrayList<Casillero>();
-		this.posicionPosibleMovimiento = new Posicion(-1,-1);
+		this.posicionPosibleMovimiento = new Posicion(-1,-1); //RARO
 	}
 
 	public void selectMovimiento(){

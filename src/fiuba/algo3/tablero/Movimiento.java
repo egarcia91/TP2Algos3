@@ -149,46 +149,16 @@ public class Movimiento {
 
 	public ArrayList<Casillero> posiblesMovimientos (AlgoFormer unAlgoFormer, int velocidad){
 		ArrayList<Casillero> posiblesMovimientos = new ArrayList<Casillero>();
-		int cantvelocidad=unAlgoFormer.getVelocidad();
-		System.out.println(""+cantvelocidad);
-		for (int i=1 ; i<=cantvelocidad ; i++){
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,i,0));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,-i,0));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,0,i));
-			}catch (CasilleroNoExisteException excepcion){}
-			try {
-				posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,cantvelocidad,0,-i));
-			}catch (CasilleroNoExisteException excepcion){}
+		int cantvelocidad = unAlgoFormer.getVelocidad();
 
-			for (int j=1 ; j<=velocidad ; j++ ){
-				try {
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i-j));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-j,i));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,i));
-				}catch (CasilleroNoExisteException excepcion){}
-				try {
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i+j));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+j,-i));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,-i));
-				}catch (CasilleroNoExisteException excepcion){}
-				try {
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i+j));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i-j,-i));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,i,-i));
-				}catch (CasilleroNoExisteException excepcion){}
-				try {
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i+j,i));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i-j));
-					posiblesMovimientos.add(posibleCasilleroFinal(unAlgoFormer,velocidad,-i,i));
-				}catch (CasilleroNoExisteException excepcion){}
+		for (int i = -cantvelocidad ; i <=cantvelocidad ; i++){
+			for(int j = -cantvelocidad; j<= cantvelocidad; j++){
+				Posicion posicion = unAlgoFormer.getPosicion().getSuma(i,j);
+				try{
+					posiblesMovimientos.add(tablero.getCasillero(posicion));
+				}catch(CasilleroNoExisteException e){};	
 			}
-
-		}
+		}	
 		return posiblesMovimientos;
 	}
 

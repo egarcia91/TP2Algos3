@@ -7,6 +7,7 @@ public class Escuadron {
 
 	//private List<AlgoFormer> algoFormers;
 	protected ArrayList<AlgoFormer> algoFormers;
+	protected String nombre;
 
 	public Escuadron(){
 		algoFormers = new ArrayList<AlgoFormer>();
@@ -23,6 +24,7 @@ public class Escuadron {
 	
 	public void agregarAlgoFormer(AlgoFormer unAlgoFormer){
 		this.algoFormers.add(unAlgoFormer);
+		unAlgoFormer.setEscuadron(this);
 	}
 
 	public boolean existeEscuadron(){
@@ -53,5 +55,8 @@ public class Escuadron {
 		return false;
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
 
 }

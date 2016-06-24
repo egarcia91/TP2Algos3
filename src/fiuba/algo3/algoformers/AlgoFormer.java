@@ -13,6 +13,7 @@ public class AlgoFormer implements Contenido {
 	protected EstadoAlgoformer estado;
 	protected int turnosCastigo = 0;
 	protected int penalizacionAtaque = 0;
+	protected Escuadron escuadron;
 	public Ataque ataque;
 
 	protected String nombre = "Algoformer";
@@ -183,6 +184,14 @@ public class AlgoFormer implements Contenido {
 	@Override
 	public boolean esBonus(){
 		return false;
+	}
+
+	public void setEscuadron(Escuadron escuadron) {
+		this.escuadron = escuadron;
+	}
+	
+	public Escuadron getEscuadron(){
+		return this.escuadron;
 	}
 
 }

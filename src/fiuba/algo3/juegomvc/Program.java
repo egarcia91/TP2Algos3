@@ -75,14 +75,7 @@ public class Program extends Application {
 		canvas.relocate(10,10);
 		
 		gc = canvas.getGraphicsContext2D();
-       /*
-		Path currentRelativePath = Paths.get("");
-		String s = currentRelativePath.toAbsolutePath().toString();
-		Media media = new Media("file:\\\" + s + "\\build\\musica.mp3");
-		
-    	MediaPlayer player = new MediaPlayer(media); 
-    	player.play();
-		*/
+
 		try{
 
 				Path currentRelativePath = Paths.get("");
@@ -94,7 +87,7 @@ public class Program extends Application {
 				player.setCycleCount(MediaPlayer.INDEFINITE);
 				player.play();
 
-		}catch(Exception e){};	
+		}catch(IllegalArgumentException e){};	
 		
 
 		Juego juego = new Juego((int)Math.ceil(canvasAncho/pixCasilleroAncho)-1,(int)Math.ceil(canvasAlto/pixCasilleroAlto)-2);

@@ -7,6 +7,7 @@ import fiuba.algo3.algoformers.personajes.Megatron;
 public class EscuadronDecepticon extends Escuadron {
 
 	public EscuadronDecepticon(){
+		this.nombre = "Decepticon";
 		this.agregarAlgoFormer(new Megatron());
 		this.agregarAlgoFormer(new Bonecrusher());
 		this.agregarAlgoFormer(new Frenzy());

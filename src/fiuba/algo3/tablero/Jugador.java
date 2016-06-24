@@ -4,6 +4,7 @@ import fiuba.algo3.algoformers.Escuadron;
 import fiuba.algo3.algoformers.AlgoFormer;
 import fiuba.algo3.algoformers.AlgoFormerVacio;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Jugador {
@@ -231,8 +232,24 @@ public class Jugador {
 	}
 
 	public void atacarAlgoFormer(){
+		Movimiento movimiento = new Movimiento();
 		AlgoFormer unAlgoFormer = this.escuadron.getAlgoFormer(this.indiceAlgoFormer);
-		this.escuadronRivalAtacable = unAlgoFormer.getAlgoformersEnRango();
+		ArrayList<Casillero> casillerosEnRangoDeAtaque = movimiento.posiblesMovimientos(unAlgoFormer, unAlgoFormer.getDistanciaAtaque());
+		
+		for(Iterator<Casillero> i = casillerosEnRangoDeAtaque.iterator(); i.hasNext();){
+			Casillero casillero = i.next();
+			if(casillero.tieneContenido() == true){
+				Contenido contenido = casillero.getContenido();
+				if(contenido.esAlgoFormer() == true){
+					AlgoFormer algoFormer = (AlgoFormer) contenido;
+					if(this.getSelectAlgoFormer().getEscuadron().getNombre() != algoFormer.getEscuadron().getNombre()){
+						algoFormer.setVida(algoFormer.getVida() - unAlgoFormer.getFuerzaAtaque());
+					}
+				}
+			}
+		}
+		
+		//this.escuadronRivalAtacable = unAlgoFormer.getAlgoformersEnRango();
 	}
 
 	public void setJuego(Juego juego) {
